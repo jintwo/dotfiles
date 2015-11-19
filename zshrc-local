@@ -1,0 +1,46 @@
+# -*- mode: sh -*-
+# vim: set ft=sh:
+
+fpath=(/usr/local/share/zsh-completions ~/.zsh/completions $fpath)
+
+alias dropbox="cd $HOME/Dropbox"
+alias sandbox="cd $DOC_ROOT/Sandbox"
+alias startmpd="mpd; mpdas -d -c $HOME/.mpdasrc"
+alias emd="emacs --daemon"
+alias emdk="emacsclient -e '(kill-emacs)'"
+alias em="emacsclient -t"
+alias emx="emacsclient -nc"
+alias gpa="gp --all"
+alias gsl="git svn rebase"
+alias gsp="git svn dcommit"
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin
+export PATH=~/.cabal/bin:~/.local/bin:$PATH
+export VIRTUAL_ENV_DISABLE_PROMPT='Y'
+export EDITOR="vim"
+export TERM="xterm-256color"
+export GOPATH=~/Documents/Sandbox/go
+export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128M"
+
+platform=`uname`
+if [[ "$platform" == 'Darwin' ]]; then
+    export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+fi
+
+# additional path
+export PATH=$PATH:$HOME/bin:$HOME/.cabal/bin:$GOPATH/bin
+
+# virtualenvwrapper
+which virtualenvwrapper.sh 2>&1 > /dev/null && export WORKON_HOME=$HOME/.virtualenvs && source `which virtualenvwrapper.sh`
+
+# perlbrew
+if [ -d ~/perl5/perlbrew ]; then
+    source ~/perl5/perlbrew/etc/bashrc
+fi
+
+# private
+if [ -f ~/.zshrc-private ]; then
+    source ~/.zshrc-private
+fi
+
+unalias gg

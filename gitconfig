@@ -1,0 +1,30 @@
+[user]
+    name = Eugeny Volobuev
+    email = qulert@gmail.com
+[color]
+    ui = auto
+[credential]
+    helper = osxkeychain
+[alias]
+    ci = commit
+    st = status --short
+    co = checkout
+    cob = checkout -b
+    br = branch
+    in = !git log ..origin/master
+    out = !git log origin/master..
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    ds = !git diff | vim
+[core]
+    editor = vim
+    excludesfile = /Users/jin/.gitignore
+    quotepath = false
+    autocrlf = input
+[push]
+    default = current
+[github]
+    user = jintwo
+[filter "lfs"]
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
