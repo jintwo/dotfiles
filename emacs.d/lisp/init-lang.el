@@ -1,10 +1,12 @@
 ;;; init-lang.el --- other development languages config
 ;;; Commentary:
 ;;; Code:
+;; avro
+(jin/add-auto-mode 'javascript-mode "\\.avsc\\'")
+
 ;; erlang + elixir
 (jin/require-package 'erlang 'elixir-mode 'alchemist)
 (jin/add-auto-mode 'erlang-mode "\\.erl\\'" "\\.hrl\\'" "rebar\\.config\\'")
-(jin/add-auto-mode 'javascript-mode "\\.avsc\\'")
 (require 'alchemist)
 
 ;; perl
@@ -22,12 +24,6 @@
           (lambda ()
             (local-set-key (kbd "C-c C-j") 'imenu)))
 
-;; racket
-(jin/require-package 'racket-mode)
-(add-hook 'racket-mode-hook
-          (lambda ()
-            (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
-
 ;; ruby
 (jin/require-package 'enh-ruby-mode 'robe)
 (defalias 'ruby-mode 'enh-ruby-mode)
@@ -35,25 +31,25 @@
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
 
 ;; c/c++
-;; (jin/require-package 'irony)
-;; (add-hook 'c-mode-hook 'irony-mode)
-;; (add-hook 'c++-mode-hook 'irony-mode)
-;; (add-hook 'objc-mode-hook 'irony-mode)
+(jin/require-package 'irony 'cmake-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
 
-;; (defun irony-mode-hook ()
-;;   "C/C++ mode hook."
-;;   (define-key
-;;     irony-mode-map
-;;     [remap completion-at-point]
-;;     'irony-completion-at-point-async)
-;;   (define-key
-;;     irony-mode-map
-;;     [remap complete-symbol]
-;;     'irony-completion-at-point-async))
+(defun irony-mode-hook ()
+  "C/C++ mode hook."
+  (define-key
+    irony-mode-map
+    [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key
+    irony-mode-map
+    [remap complete-symbol]
+    'irony-completion-at-point-async))
 
-;; (add-hook 'irony-mode-hook 'irony-mode-hook)
-;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-;; (push 'company-irony company-backends)
+(add-hook 'irony-mode-hook 'irony-mode-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(push 'company-irony company-backends)
 
 ;; conf
 (add-hook 'conf-mode-hook
@@ -66,7 +62,10 @@
 ;; disabled: 'malabar-mode 'tuareg-mode 'merlin 'd-mode
 (jin/require-package 'yaml-mode 'rust-mode 'toml-mode
                      'swift-mode 'protobuf-mode 'groovy-mode
-                     'gradle-mode 'php-mode 'nim-mode 'julia-mode)
+                     'gradle-mode 'php-mode 'nim-mode 'julia-mode
+                     'web-mode)
+
+(jin/add-auto-mode 'web-mode "\\.html\\'")
 
 ;; indent
 (setq-default

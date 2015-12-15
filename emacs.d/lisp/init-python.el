@@ -6,7 +6,7 @@
 
 (jin/add-auto-mode 'python-mode "fabfile")
 (jin/add-auto-mode 'clojure-mode "\\.hy\\'")
-(jin/add-auto-mode 'jinja2-mode "\\.tmpl\\'" "\\.html\\'")
+(jin/add-auto-mode 'jinja2-mode "\\.tmpl\\'")
 
 (elpy-enable)
 (elpy-use-ipython)

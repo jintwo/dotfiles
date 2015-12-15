@@ -7,6 +7,9 @@
 (setq whitespace-style '(face empty trailing lines-tail))
 (setq whitespace-global-modes '(not go-mode))
 
+(jin/require-package 'unicode-whitespace)
+(unicode-whitespace-setup 'subdued-faces)
+
 ;; re-builder
 (setq reb-re-syntax 'string)
 
@@ -62,15 +65,21 @@
 ;; emamux
 (jin/require-package 'emamux)
 
+;; resize-window
+(jin/require-package 'resize-window)
+(global-set-key (kbd "C-c w") 'resize-window)
+
 ;; aliases
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; annotate todos
+(setq todos '(".*TODO:.*" ".*FIXME:.*" ".*INFO:.*"))
 (defun annotate-todo ()
   "Annotate TODOs in 'prog-mode' buffer."
   (interactive)
-  (highlight-lines-matching-regexp ".*TODO:.*")
-  (highlight-lines-matching-regexp ".*FIXME:.*"))
+  (dolist (text todos)
+    (highlight-lines-matching-regexp text)))
+
 (add-hook 'prog-mode-hook 'annotate-todo)
 
 (provide 'init-utils)
