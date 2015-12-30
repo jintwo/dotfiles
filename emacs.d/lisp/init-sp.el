@@ -28,7 +28,7 @@
   (sp-local-pair "<" ">"))
 
 ;;; lisp modes
-(sp-with-modes sp--lisp-modes
+(sp-with-modes sp-lisp-modes
   (sp-local-pair "(" nil :bind "C-("))
 
 (provide 'init-sp)

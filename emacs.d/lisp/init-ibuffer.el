@@ -1,6 +1,8 @@
 ;;; init-ibuffer.el --- ibuffer config
 ;;; Commentary:
 ;;; Code:
+(require 'ibuffer)
+
 (setq ibuffer-saved-filter-groups
       (quote (("default"
                ("C"
@@ -8,6 +10,10 @@
                  (mode . c-mode)
                  (mode . objc-mode)
                  (mode . c++-mode)))
+               ("Erlang"
+                (or
+                 (mode . erlang-mode)
+                 (mode . elixir-mode)))
                ("Go"
                 (or
                  (mode . go-mode)))

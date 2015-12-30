@@ -12,6 +12,7 @@
 (elpy-use-ipython)
 (pyenv-mode)
 
+(require 'python)
 (define-key python-mode-map (kbd "C-c .") 'elpy-goto-definition)
 (define-key python-mode-map (kbd "C-c ,") 'pop-tag-mark)
 (define-key python-mode-map (kbd "C-c M-j") 'run-python)

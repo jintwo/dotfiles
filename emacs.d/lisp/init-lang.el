@@ -1,6 +1,9 @@
 ;;; init-lang.el --- other development languages config
 ;;; Commentary:
 ;;; Code:
+;; json
+(jin/require-package 'json-reformat)
+
 ;; avro
 (jin/add-auto-mode 'javascript-mode "\\.avsc\\'")
 
@@ -12,6 +15,8 @@
 ;; perl
 (jin/require-package 'cperl-mode)
 (defalias 'perl-mode 'cperl-mode)
+
+(require 'cperl-mode)
 (setq cperl-close-paren-offset -4
       cperl-continued-statement-offset 4
       cperl-indent-level 4
@@ -36,6 +41,7 @@
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)
 
+(require 'irony)
 (defun irony-mode-hook ()
   "C/C++ mode hook."
   (define-key
@@ -60,6 +66,8 @@
 
 ;; other
 ;; disabled: 'malabar-mode 'tuareg-mode 'merlin 'd-mode
+(require 'crystal-mode)
+
 (jin/require-package 'yaml-mode 'rust-mode 'toml-mode
                      'swift-mode 'protobuf-mode 'groovy-mode
                      'gradle-mode 'php-mode 'nim-mode 'julia-mode

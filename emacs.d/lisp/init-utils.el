@@ -3,6 +3,7 @@
 ;;; Code:
 ;; whitespace
 (global-whitespace-mode)
+(require 'whitespace)
 (setq whitespace-line-column 100)
 (setq whitespace-style '(face empty trailing lines-tail))
 (setq whitespace-global-modes '(not go-mode))
@@ -11,9 +12,11 @@
 (unicode-whitespace-setup 'subdued-faces)
 
 ;; re-builder
+(require 're-builder)
 (setq reb-re-syntax 'string)
 
 ;; tramp
+(require 'tramp)
 (setq tramp-default-method "ssh")
 
 ;; undo-tree
@@ -34,10 +37,11 @@
 (yas-global-mode t)
 
 ;; eshell
+(require 'eshell)
 (defun eshell-mode-hook-func ()
   "Update eshell env."
-  (setq eshell-path-env (concat "/usr/local/bin:" eshell-path-env))
-  (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH"))))
+  (setq eshell-path-env (concat "~/bin:/usr/local/bin:" eshell-path-env))
+  (setenv "PATH" (concat "~/bin:/usr/local/bin:" (getenv "PATH"))))
 (add-hook 'eshell-mode-hook 'eshell-mode-hook-func)
 
 ;; neotree
@@ -51,6 +55,7 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; linum
+(require 'linum)
 (line-number-mode t)
 (column-number-mode t)
 (size-indication-mode t)

@@ -3,6 +3,7 @@
 ;;; Code:
 (jin/require-package 'lua-mode)
 
+(require 'lua-mode)
 (setq lua-indent-level 4)
 
 (defun lua-goto-definition ()

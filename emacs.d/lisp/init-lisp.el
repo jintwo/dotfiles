@@ -14,8 +14,9 @@
 ;; clojure
 (jin/require-package 'clojure-mode 'cider)
 
+(require 'cider)
 (setq cider-repl-use-clojure-font-lock t
-      cider-interactive-eval-result-prefix ";; => ")
+      cider-eval-result-prefix ";; => ")
 
 (add-hook 'clojure-mode-hook (lambda ()
                                (cider-mode)
@@ -27,6 +28,8 @@
 
 ;; racket
 (jin/require-package 'racket-mode)
+
+(require 'racket-mode)
 (add-hook 'racket-mode-hook
           (lambda ()
             (define-key racket-mode-map (kbd "C-c M-j") 'racket-run)))

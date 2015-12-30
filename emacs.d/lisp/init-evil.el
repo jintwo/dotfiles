@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (jin/require-package 'evil)
+(require 'evil)
 (setq-default evil-default-cursor t)
 (setq evil-move-cursor-back nil)
 
