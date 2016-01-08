@@ -20,8 +20,13 @@
 
 ;; load vendor modules
 (require 'dash)
+
+(defun is-valid-dir-p (path)
+  "Check is PATH valid directory name."
+  (not (or (string= path ".") (string= path ".."))))
+
 (let* ((contents (directory-files vendor-lib-path))
-       (vendor-modules (-filter (lambda (path) (not (or (string= path ".") (string= path "..")))) contents)))
+       (vendor-modules (-filter 'is-valid-dir-p contents)))
   (-each vendor-modules (lambda (mod-name) (add-to-list 'load-path (format "%s/%s" vendor-lib-path mod-name)))))
 
 (setenv "ESHELL" (expand-file-name "~/bin/eshell"))

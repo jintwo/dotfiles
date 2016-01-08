@@ -33,6 +33,8 @@ export PATH=$PATH:$HOME/bin:$HOME/.cabal/bin:$GOPATH/bin
 # virtualenvwrapper
 which virtualenvwrapper.sh 2>&1 > /dev/null && export WORKON_HOME=$HOME/.virtualenvs && source `which virtualenvwrapper.sh`
 
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
 # perlbrew
 if [ -d ~/perl5/perlbrew ]; then
     source ~/perl5/perlbrew/etc/bashrc
@@ -43,4 +45,9 @@ if [ -f ~/.zshrc-private ]; then
     source ~/.zshrc-private
 fi
 
-unalias gg
+export HADOOP_CONF_DIR=/usr/local/Cellar/hadoop/2.7.1/libexec/etc/hadoop
+
+alias hstart="start-dfs.sh;start-yarn.sh"
+alias hstop="stop-yarn.sh;stop-dfs.sh"
+
+unalias gb
