@@ -67,6 +67,8 @@
 ;; other
 ;; disabled: 'malabar-mode 'tuareg-mode 'merlin 'd-mode
 (require 'crystal-mode)
+(require 'ooc-mode)
+(require 'flymake-ooc)
 
 (jin/require-package 'yaml-mode 'rust-mode 'toml-mode
                      'swift-mode 'protobuf-mode 'groovy-mode
