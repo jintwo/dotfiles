@@ -1,4 +1,4 @@
-;;; init-lang.el --- other development languages config
+;;; init-lang.el --- other languages config
 ;;; Commentary:
 ;;; Code:
 ;; json
@@ -16,6 +16,9 @@
 (jin/require-package 'cperl-mode)
 (defalias 'perl-mode 'cperl-mode)
 
+(require 'perlbrew-mini)
+(perlbrew-mini-use-latest)
+
 (require 'cperl-mode)
 (setq cperl-close-paren-offset -4
       cperl-continued-statement-offset 4
@@ -23,6 +26,7 @@
       cperl-indent-parens-as-block t
       cperl-tabs-always-indent t
       cperl-indent-subs-specially nil)
+
 (jin/add-auto-mode 'perl-mode "\\.pl\\'" "\\.t\\'")
 
 (add-hook 'cperl-mode-hook
@@ -72,10 +76,11 @@
 
 (jin/require-package 'yaml-mode 'rust-mode 'toml-mode
                      'swift-mode 'protobuf-mode 'groovy-mode
-                     'gradle-mode 'php-mode 'nim-mode 'julia-mode
-                     'web-mode)
+                     'gradle-mode 'nim-mode 'julia-mode
+                     'web-mode 'dtrace-script-mode)
 
 (jin/add-auto-mode 'web-mode "\\.html\\'")
+(jin/add-auto-mode 'dtrace-script-mode "\\.d\\'")
 
 ;; indent
 (setq-default

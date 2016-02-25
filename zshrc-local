@@ -13,6 +13,9 @@ alias emx="emacsclient -nc"
 alias gpa="gp --all"
 alias gsl="git svn rebase"
 alias gsp="git svn dcommit"
+alias hgpb="hgp --new-branch"
+alias dm="docker-machine"
+alias dcp="docker-compose"
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin
 export PATH=~/.cabal/bin:~/.local/bin:$PATH
@@ -49,5 +52,4 @@ export HADOOP_CONF_DIR=/usr/local/Cellar/hadoop/2.7.1/libexec/etc/hadoop
 
 alias hstart="start-dfs.sh;start-yarn.sh"
 alias hstop="stop-yarn.sh;stop-dfs.sh"
-
 unalias gb

@@ -32,7 +32,7 @@
 (setenv "ESHELL" (expand-file-name "~/bin/eshell"))
 
 (setq
- exec-path (append '("/usr/sbin" "/usr/bin" "/usr/local/bin" "/usr/local/sbin" "~/bin/"))
+ exec-path (append '("/bin" "/sbin" "/usr/sbin" "/usr/bin" "/usr/local/bin" "/usr/local/sbin" "~/bin/" "~/Documents/Work/Lance/drip-adserver/bin"))
  backup-directory-alist `(("." . "~/.emacs.d/saves"))
  initial-frame-alist '((top . 0) (left . 0) (width . 140) (height . 40)))
 
@@ -59,7 +59,7 @@
  '(neo-theme (quote ascii))
  '(package-selected-packages
    (quote
-    (go-projectile exec-path-from-shell cider clojure-mode zenburn-theme yaml-mode web-mode unicode-whitespace toml-mode tangotango-theme tabulated-list swift-mode sublime-themes subatomic256-theme subatomic-theme soothe-theme solarized-theme sml-mode smartparens slime-company rust-mode robe rich-minority resize-window rainbow-delimiters racket-mode python-mode python-environment pyenv-mode protobuf-mode php-mode pcre2el pastelmac-theme paradox obsidian-theme noctilux-theme nim-mode neotree naquadah-theme multiple-cursors monokai-theme markdown-mode lua-mode llvm-mode julia-mode json-reformat jinja2-mode idomenu ibuffer-vc ht heroku-theme helm-projectile helm-ag gruber-darker-theme groovy-mode grizzl graphviz-dot-mode gradle-mode gitignore-mode gitconfig-mode gist fsm fold-this flycheck-gometalinter flatui-theme flatland-theme evil-surround evil-nerd-commenter evil-magit evil-leader ensime enh-ruby-mode emamux elpy edts dracula-theme dockerfile-mode direx dash-at-point cperl-mode company-irony company-go company-ghc color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ample-theme alchemist ag afternoon-theme)))
+    (dtrace-script-mode go-projectile exec-path-from-shell cider clojure-mode zenburn-theme yaml-mode web-mode unicode-whitespace toml-mode tangotango-theme tabulated-list swift-mode sublime-themes subatomic256-theme subatomic-theme soothe-theme solarized-theme sml-mode smartparens slime-company rust-mode robe rich-minority resize-window rainbow-delimiters racket-mode python-mode python-environment pyenv-mode protobuf-mode pcre2el pastelmac-theme paradox obsidian-theme noctilux-theme nim-mode neotree naquadah-theme multiple-cursors monokai-theme markdown-mode lua-mode llvm-mode julia-mode json-reformat jinja2-mode idomenu ibuffer-vc ht heroku-theme helm-projectile helm-ag gruber-darker-theme groovy-mode grizzl graphviz-dot-mode gradle-mode gitignore-mode gitconfig-mode gist fsm fold-this flycheck-gometalinter flatui-theme flatland-theme evil-surround evil-nerd-commenter evil-magit evil-leader ensime enh-ruby-mode emamux elpy edts dracula-theme dockerfile-mode direx dash-at-point cperl-mode company-irony company-go company-ghc color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ample-theme alchemist ag afternoon-theme)))
  '(paradox-github-token t)
  '(projectile-hg-command "/usr/local/bin/hg locate -0 -I .")
  '(safe-local-variable-values
