@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(load-library "url-handlers")
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -54,12 +56,13 @@
     ("133222702a3c75d16ea9c50743f66b987a7209fb8b964f2c0938a816a83379a0" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(elpy-rpc-python-command "python3")
  '(magit-use-overlays nil)
- '(markdown-css-path
-   "http://jasonm23.github.io/markdown-css-themes/markdown.css")
+ '(markdown-css-paths
+   (quote
+    ("http://jasonm23.github.io/markdown-css-themes/markdown.css")))
  '(neo-theme (quote ascii))
  '(package-selected-packages
    (quote
-    (dtrace-script-mode go-projectile exec-path-from-shell cider clojure-mode zenburn-theme yaml-mode web-mode unicode-whitespace toml-mode tangotango-theme tabulated-list swift-mode sublime-themes subatomic256-theme subatomic-theme soothe-theme solarized-theme sml-mode smartparens slime-company rust-mode robe rich-minority resize-window rainbow-delimiters racket-mode python-mode python-environment pyenv-mode protobuf-mode pcre2el pastelmac-theme paradox obsidian-theme noctilux-theme nim-mode neotree naquadah-theme multiple-cursors monokai-theme markdown-mode lua-mode llvm-mode julia-mode json-reformat jinja2-mode idomenu ibuffer-vc ht heroku-theme helm-projectile helm-ag gruber-darker-theme groovy-mode grizzl graphviz-dot-mode gradle-mode gitignore-mode gitconfig-mode gist fsm fold-this flycheck-gometalinter flatui-theme flatland-theme evil-surround evil-nerd-commenter evil-magit evil-leader ensime enh-ruby-mode emamux elpy edts dracula-theme dockerfile-mode direx dash-at-point cperl-mode company-irony company-go company-ghc color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ample-theme alchemist ag afternoon-theme)))
+    (company-tern dash-at-point zenburn-theme yaml-mode web-mode unicode-whitespace toml-mode tangotango-theme tabulated-list swift-mode sublime-themes subatomic256-theme subatomic-theme soothe-theme solarized-theme sml-mode smartparens slime-company rust-mode rich-minority resize-window rainbow-delimiters racket-mode python-mode python-environment pyenv-mode protobuf-mode pcre2el pastelmac-theme paradox obsidian-theme noctilux-theme nim-mode neotree naquadah-theme multiple-cursors monokai-theme markdown-mode lua-mode llvm-mode julia-mode json-reformat jinja2-mode idomenu ibuffer-vc ht heroku-theme helm-projectile helm-ag gruber-darker-theme groovy-mode grizzl graphviz-dot-mode gradle-mode go-projectile gitconfig-mode gist fsm fold-this flycheck-gometalinter flatui-theme flatland-theme exec-path-from-shell evil-surround evil-nerd-commenter evil-magit evil-leader ensime enh-ruby-mode emamux elpy edts dtrace-script-mode dracula-theme dockerfile-mode direx company-irony company-go company-ghc color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode cider ample-theme alchemist ag afternoon-theme)))
  '(paradox-github-token t)
  '(projectile-hg-command "/usr/local/bin/hg locate -0 -I .")
  '(safe-local-variable-values

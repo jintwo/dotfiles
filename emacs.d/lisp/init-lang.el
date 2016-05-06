@@ -7,34 +7,16 @@
 ;; avro
 (jin/add-auto-mode 'javascript-mode "\\.avsc\\'")
 
+;; js
+(add-hook 'js-mode-hook 'tern-mode)
+(push 'company-tern company-backends)
+
 ;; erlang + elixir
 (jin/require-package 'erlang 'elixir-mode 'alchemist)
 (jin/add-auto-mode 'erlang-mode "\\.erl\\'" "\\.hrl\\'" "rebar\\.config\\'")
 (require 'alchemist)
 
-;; perl
-(jin/require-package 'cperl-mode)
-(defalias 'perl-mode 'cperl-mode)
-
-(require 'perlbrew-mini)
-(perlbrew-mini-use-latest)
-
-(require 'cperl-mode)
-(setq cperl-close-paren-offset -4
-      cperl-continued-statement-offset 4
-      cperl-indent-level 4
-      cperl-indent-parens-as-block t
-      cperl-tabs-always-indent t
-      cperl-indent-subs-specially nil)
-
-(jin/add-auto-mode 'perl-mode "\\.pl\\'" "\\.t\\'")
-
-(add-hook 'cperl-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c C-j") 'imenu)))
-
 ;; ruby
-(jin/require-package 'enh-ruby-mode 'robe)
 (defalias 'ruby-mode 'enh-ruby-mode)
 (push 'company-robe company-backends)
 (add-hook 'enh-ruby-mode-hook 'robe-mode)

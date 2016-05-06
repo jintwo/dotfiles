@@ -7,7 +7,7 @@
                      'flatui-theme 'ample-theme 'dracula-theme)
 
 ;; (load-theme 'subatomic t)
-;; (load-theme 'zenburn t)
+(load-theme 'zenburn t)
 ;; (load-theme 'noctilux t)
 ;; (load-theme 'heroku t)
 ;; (load-theme 'afternoon t)
@@ -20,7 +20,7 @@
 ;; (load-theme 'ample t)
 ;; (load-theme 'ample-flat t)
 ;; (load-theme 'ample-light t)
-(load-theme 'dracula t)
+;; (load-theme 'dracula t)
 
 (provide 'init-themes)
 ;;; init-themes.el ends here
