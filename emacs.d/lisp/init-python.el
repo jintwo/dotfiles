@@ -1,16 +1,13 @@
 ;;; init-python.el --- python mode config
 ;;; Commentary:
 ;;; Code:
-(jin/require-package 'python-mode 'elpy 'jinja2-mode
-                     'python-environment 'pyenv-mode)
+(jin/require-package 'python-mode 'elpy 'jinja2-mode)
 
 (jin/add-auto-mode 'python-mode "fabfile")
-(jin/add-auto-mode 'clojure-mode "\\.hy\\'")
 (jin/add-auto-mode 'jinja2-mode "\\.tmpl\\'")
 
 (elpy-enable)
 (elpy-use-ipython)
-(pyenv-mode)
 
 (require 'python)
 (define-key python-mode-map (kbd "C-c .") 'elpy-goto-definition)

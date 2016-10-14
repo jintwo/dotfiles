@@ -1,7 +1,7 @@
 ;;; init-haskell.el --- haskell mode config
 ;;; Commentary:
 ;;; Code:
-(jin/require-package 'haskell-mode)
+(jin/require-package 'haskell-mode 'company-ghc)
 (require 'haskell-mode)
 
 (add-to-list 'exec-path "~/.cabal/bin")

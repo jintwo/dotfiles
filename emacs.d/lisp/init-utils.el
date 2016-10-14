@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 ;; whitespace
-(global-whitespace-mode)
 (require 'whitespace)
+(global-whitespace-mode)
 (setq whitespace-line-column 100)
 (setq whitespace-style '(face empty trailing lines-tail))
 (setq whitespace-global-modes '(not go-mode))
@@ -29,8 +29,8 @@
 ;; rainbow-delimiters
 (jin/require-package 'rainbow-delimiters)
 (add-hook 'prog-mode-hook (lambda ()
-                            (rainbow-delimiters-mode)))
-                            ;; (whitespace-mode)))
+                            (rainbow-delimiters-mode)
+                            (whitespace-mode)))
 
 ;; yas
 (jin/require-package 'yasnippet)
@@ -78,14 +78,21 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; annotate todos
-(setq todos '(".*TODO:.*" ".*FIXME:.*" ".*INFO:.*"))
-(defun annotate-todo ()
+(setq to-highlight '(".*TODO.*" ".*FIXME.*"))
+(defun annotate ()
   "Annotate TODOs in 'prog-mode' buffer."
   (interactive)
-  (dolist (text todos)
+  (dolist (text to-highlight)
     (highlight-lines-matching-regexp text)))
 
-(add-hook 'prog-mode-hook 'annotate-todo)
+(add-hook 'prog-mode-hook 'annotate)
+
+;; wakatime
+(jin/require-package 'wakatime-mode)
+(global-wakatime-mode)
+
+;; restclient
+(jin/require-package 'restclient)
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

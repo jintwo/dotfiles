@@ -2,24 +2,22 @@
 ;;; Commentary:
 ;;; Code:
 ;; json
-(jin/require-package 'json-reformat)
+(jin/require-package 'json-reformat 'json-mode)
+(jin/add-auto-mode 'json-mode "\\.json\\'" "\\.avsc\\'")
 
-;; avro
-(jin/add-auto-mode 'javascript-mode "\\.avsc\\'")
+(defun my-find-file-check-make-large-file-read-only-hook ()
+  "If a file is over a given size, make the buffer read only."
+  (when (> (buffer-size) (* 100 1024))
+    (setq buffer-read-only t)
+    (buffer-disable-undo)
+    (fundamental-mode)))
 
-;; js
-(add-hook 'js-mode-hook 'tern-mode)
-(push 'company-tern company-backends)
+(add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 
 ;; erlang + elixir
 (jin/require-package 'erlang 'elixir-mode 'alchemist)
 (jin/add-auto-mode 'erlang-mode "\\.erl\\'" "\\.hrl\\'" "rebar\\.config\\'")
 (require 'alchemist)
-
-;; ruby
-(defalias 'ruby-mode 'enh-ruby-mode)
-(push 'company-robe company-backends)
-(add-hook 'enh-ruby-mode-hook 'robe-mode)
 
 ;; c/c++
 (jin/require-package 'irony 'cmake-mode)
@@ -50,16 +48,28 @@
 ;; llvm
 (jin/require-package 'llvm-mode)
 
+;; js
+;; (jin/require-package 'tern)
+;; (add-hook 'js-mode-hook 'tern-mode)
+;; (push 'company-tern company-backends)
+
+;; ;; ruby
+;; (jin/require-package 'robe)
+;; (add-hook 'ruby-mode-hook 'robe-mode)
+;; (push 'company-robe company-backends)
+
 ;; other
-;; disabled: 'malabar-mode 'tuareg-mode 'merlin 'd-mode
+;; vendor libs
 (require 'crystal-mode)
 (require 'ooc-mode)
 (require 'flymake-ooc)
 
-(jin/require-package 'yaml-mode 'rust-mode 'toml-mode
-                     'swift-mode 'protobuf-mode 'groovy-mode
-                     'gradle-mode 'nim-mode 'julia-mode
-                     'web-mode 'dtrace-script-mode)
+;; disabled:
+;; 'malabar-mode 'tuareg-mode 'merlin 'd-mode 'rust-mode
+;; 'toml-mode 'nim-mode 'julia-mode 'dtrace-script-mode
+;; 'groovy-mode 'gradle-mode 'sml-mode
+(jin/require-package 'yaml-mode 'swift-mode 'protobuf-mode
+                     'web-mode 'elm-mode 'dockerfile-mode)
 
 (jin/add-auto-mode 'web-mode "\\.html\\'")
 (jin/add-auto-mode 'dtrace-script-mode "\\.d\\'")

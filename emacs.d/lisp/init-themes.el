@@ -6,8 +6,8 @@
                      'monokai-theme 'tangotango-theme 'solarized-theme
                      'flatui-theme 'ample-theme 'dracula-theme)
 
-;; (load-theme 'subatomic t)
-(load-theme 'zenburn t)
+(load-theme 'subatomic t)
+;; (load-theme 'zenburn t)
 ;; (load-theme 'noctilux t)
 ;; (load-theme 'heroku t)
 ;; (load-theme 'afternoon t)
