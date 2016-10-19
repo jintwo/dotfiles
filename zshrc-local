@@ -13,9 +13,10 @@ alias emx="emacsclient -nc"
 alias gpa="gp --all"
 alias gsl="git svn rebase"
 alias gsp="git svn dcommit"
-alias hgpb="hgp --new-branch"
 alias dm="docker-machine"
 alias dcp="docker-compose"
+alias dk="docker"
+alias dke="dk exec -it"
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin
 export PATH=~/.cabal/bin:~/.local/bin:$PATH
@@ -39,20 +40,13 @@ export PATH=$PATH:$HOME/bin:$HOME/.cabal/bin:$GOPATH/bin
 # virtualenvwrapper
 which virtualenvwrapper.sh 2>&1 > /dev/null && export WORKON_HOME=$HOME/.virtualenvs && source `which virtualenvwrapper.sh`
 
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
-# perlbrew
-if [ -d ~/perl5/perlbrew ]; then
-    source ~/perl5/perlbrew/etc/bashrc
-fi
-
 # private
 if [ -f ~/.zshrc-private ]; then
     source ~/.zshrc-private
 fi
 
-export HADOOP_CONF_DIR=/usr/local/Cellar/hadoop/2.7.1/libexec/etc/hadoop
+# docker hack
+export DOCKER_API_VERSION=1.22
 
-alias hstart="start-dfs.sh;start-yarn.sh"
-alias hstop="stop-yarn.sh;stop-dfs.sh"
-unalias gb
+# android dev
+export ANDROID_HOME=/usr/local/opt/android-sdk
