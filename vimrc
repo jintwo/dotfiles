@@ -16,7 +16,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'firat/vim-bufexplorer'
 Bundle 'tpope/vim-fugitive'
 Bundle 'davidhalter/jedi-vim'
-Bundle 'derekwyatt/vim-scala'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-lua-inspect'
@@ -49,10 +48,6 @@ let g:pymode_lint_write = 1
 let g:pymode_folding = 0
 let g:pymode_rope = 0
 let g:jedi#auto_vim_configuration = 0
-let g:vimclojure#HighlightContrib = 1
-let g:vimclojure#HighlightBuiltins = 1
-let g:vimclojure#ParenRainbow = 1
-let g:vimclojure#DynamicHighlighting = 1
 let g:Powerline_symbols = 'fancy'
 
 nmap <F5> :NERDTreeToggle<CR>
