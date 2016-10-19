@@ -24,8 +24,8 @@
 (jin/require-package 'evil-magit 'evil-surround)
 ;; (global-evil-surround-mode 1)
 
-(jin/require-package 'evil-vimish-fold)
-(evil-vimish-fold-mode 1)
+;; (jin/require-package 'evil-vimish-fold)
+;; (evil-vimish-fold-mode 1)
 
 (defcustom jin/evil-modes
   '(fundamental-mode

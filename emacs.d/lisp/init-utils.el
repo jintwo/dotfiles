@@ -44,6 +44,11 @@
   (setenv "PATH" (concat "~/bin:/usr/local/bin:" (getenv "PATH"))))
 (add-hook 'eshell-mode-hook 'eshell-mode-hook-func)
 
+;; exec-path-from-shell
+(jin/require-package 'exec-path-from-shell)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 ;; neotree
 (jin/require-package 'neotree)
 (global-set-key (kbd "<f5>") 'neotree-toggle)
@@ -93,6 +98,9 @@
 
 ;; restclient
 (jin/require-package 'restclient)
+
+;; paradox
+(jin/require-package 'paradox)
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

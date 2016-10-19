@@ -60,9 +60,9 @@
 
 ;; other
 ;; vendor libs
-(require 'crystal-mode)
-(require 'ooc-mode)
-(require 'flymake-ooc)
+;; (require 'crystal-mode)
+;; (require 'ooc-mode)
+;; (require 'flymake-ooc)
 
 ;; disabled:
 ;; 'malabar-mode 'tuareg-mode 'merlin 'd-mode 'rust-mode

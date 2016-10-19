@@ -9,12 +9,6 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-mini)
 
-;; recentf
-(require 'recentf)
-(recentf-mode 1)
-(setq recentf-max-menu-items 50)
-(global-set-key (kbd "C-x C-r") 'helm-recentf)
-
 ;; helm-projectile
 (jin/require-package 'helm-projectile)
 (helm-projectile-on)
@@ -24,6 +18,14 @@
       helm-recentf-fuzzy-match t
       helm-M-x-fuzzy-match t
       helm-file-cache-fuzzy-match t)
+
+(jin/require-package 'helm-ag)
+
+;; recentf
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 50)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
 
 (provide 'init-helm)
 ;;; init-helm.el ends here

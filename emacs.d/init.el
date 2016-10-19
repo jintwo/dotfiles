@@ -2,10 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(package-initialize)
+(load-library "url-handlers")
 
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+(package-initialize)
 
 (defconst user-lib-path (expand-file-name "lisp" user-emacs-directory))
 (defconst vendor-lib-path (expand-file-name "vendor" user-emacs-directory))
@@ -15,15 +14,15 @@
 (add-to-list 'load-path user-lib-path)
 
 ;; load vendor modules
-(require 'dash)
+;; (require 'dash)
 
 (defun is-valid-dir-p (path)
   "Check is PATH valid directory name."
   (not (or (string= path ".") (string= path ".."))))
 
-(let* ((contents (directory-files vendor-lib-path))
-       (vendor-modules (-filter 'is-valid-dir-p contents)))
-  (-each vendor-modules (lambda (mod-name) (add-to-list 'load-path (format "%s/%s" vendor-lib-path mod-name)))))
+;(let* ((contents (directory-files vendor-lib-path))
+       ;(vendor-modules (-filter 'is-valid-dir-p contents)))
+  ;(-each vendor-modules (lambda (mod-name) (add-to-list 'load-path (format "%s/%s" vendor-lib-path mod-name)))))
 
 (setenv "ESHELL" (expand-file-name "~/bin/eshell"))
 
