@@ -36,8 +36,8 @@
  ffap-machine-p-known 'reject)
 
 ;; disable transparency
-;; (set-frame-parameter (selected-frame) 'alpha '(100 80))
-;; (add-to-list 'default-frame-alist '(alpha 100 80))
+(set-frame-parameter (selected-frame) 'alpha '(95 85))
+(add-to-list 'default-frame-alist '(alpha 95 85))
 
 ;; base
 (require 'init-base)
