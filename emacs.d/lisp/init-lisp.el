@@ -1,6 +1,9 @@
 ;;; init-lisp.el --- lisp modes config
 ;;; Commentary:
 ;;; Code:
+;; elisp mode
+(define-key emacs-lisp-mode-map (kbd "C-c .") 'find-function-at-point)
+
 ;; cl
 (jin/require-package 'slime)
 
