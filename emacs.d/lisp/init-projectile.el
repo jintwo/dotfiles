@@ -6,7 +6,7 @@
 (require 'projectile)
 (setq projectile-completion-system 'grizzl)
 
-(projectile-global-mode)
+(projectile-mode)
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here

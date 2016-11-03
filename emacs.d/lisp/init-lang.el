@@ -5,14 +5,14 @@
 (jin/require-package 'json-reformat 'json-mode)
 (jin/add-auto-mode 'json-mode "\\.json\\'" "\\.avsc\\'")
 
-(defun my-find-file-check-make-large-file-read-only-hook ()
+(defun large-file-hook ()
   "If a file is over a given size, make the buffer read only."
-  (when (> (buffer-size) (* 100 1024))
+  (when (> (buffer-size) (* 300 1024))
     (setq buffer-read-only t)
     (buffer-disable-undo)
     (fundamental-mode)))
 
-(add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
+(add-hook 'find-file-hook 'large-file-hook)
 
 ;; erlang + elixir
 (jin/require-package 'erlang 'elixir-mode 'alchemist)
@@ -69,10 +69,11 @@
 ;; 'toml-mode 'nim-mode 'julia-mode 'dtrace-script-mode
 ;; 'groovy-mode 'gradle-mode 'sml-mode
 (jin/require-package 'yaml-mode 'swift-mode 'protobuf-mode
-                     'web-mode 'elm-mode 'dockerfile-mode)
+                     'web-mode 'elm-mode 'dockerfile-mode 'js2-mode)
 
 (jin/add-auto-mode 'web-mode "\\.html\\'")
 (jin/add-auto-mode 'dtrace-script-mode "\\.d\\'")
+(jin/add-auto-mode 'js2-jsx-mode "\\.js\\'")
 
 ;; indent
 (setq-default

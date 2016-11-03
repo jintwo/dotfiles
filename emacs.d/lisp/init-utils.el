@@ -29,12 +29,11 @@
 ;; rainbow-delimiters
 (jin/require-package 'rainbow-delimiters)
 (add-hook 'prog-mode-hook (lambda ()
-                            (rainbow-delimiters-mode)
-                            (whitespace-mode)))
+                            (rainbow-delimiters-mode)))
 
 ;; yas
-(jin/require-package 'yasnippet)
-(yas-global-mode t)
+;; (jin/require-package 'yasnippet)
+;; (yas-global-mode t)
 
 ;; eshell
 (require 'eshell)
@@ -101,6 +100,20 @@
 
 ;; paradox
 (jin/require-package 'paradox)
+
+;; powerline
+(jin/require-package 'powerline)
+(powerline-default-theme)
+
+;; expand region
+(jin/require-package 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;; use package
+(jin/require-package 'use-package)
+
+;; popups
+(jin/require-package 'popup-imenu)
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

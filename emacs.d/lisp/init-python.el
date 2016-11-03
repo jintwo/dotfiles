@@ -13,6 +13,7 @@
 (define-key python-mode-map (kbd "C-c .") 'elpy-goto-definition)
 (define-key python-mode-map (kbd "C-c ,") 'pop-tag-mark)
 (define-key python-mode-map (kbd "C-c M-j") 'run-python)
+(define-key python-mode-map (kbd "C-c C-j") 'popup-imenu)
 
 (defun annotate-pdb ()
   "Highlight line that contain pdb/ipdb call."

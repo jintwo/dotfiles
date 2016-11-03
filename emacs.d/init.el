@@ -70,6 +70,16 @@
 (when (file-exists-p (format "%s/init-private.el" user-lib-path))
   (require 'init-private))
 
+(defun proj-mode-line ()
+  "Get projectile mode-line for current project."
+  (if (file-remote-p default-directory)
+      " projectile"
+    (if pyvenv-virtual-env-name
+        (format " proj[%s/py:%s]"
+                (projectile-project-name)
+                pyvenv-virtual-env-name)
+      (format " proj[%s]" (projectile-project-name)))))
+
 ;; vars
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -90,14 +100,16 @@
  '(neo-theme (quote ascii))
  '(package-selected-packages
    (quote
-    (racket-mode python-mode markdown-mode smartparens go-projectile gitconfig-mode helm-projectile json-mode evil-vimish-fold restclient elm-mode wakatime-mode gitignore-mode hy-mode dash-at-point zenburn-theme yaml-mode web-mode unicode-whitespace tangotango-theme tabulated-list swift-mode sublime-themes subatomic256-theme subatomic-theme soothe-theme slime-company rich-minority resize-window rainbow-delimiters protobuf-mode pcre2el pastelmac-theme paradox obsidian-theme noctilux-theme neotree naquadah-theme multiple-cursors monokai-theme lua-mode llvm-mode json-reformat jinja2-mode idomenu ibuffer-vc ht heroku-theme helm-ag gruber-darker-theme grizzl graphviz-dot-mode gist flycheck-gometalinter flatui-theme flatland-theme exec-path-from-shell evil-surround evil-nerd-commenter evil-magit evil-leader emamux elpy edts dockerfile-mode direx company-irony company-go company-ghc color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode cider ample-theme alchemist ag afternoon-theme)))
+    (popup-imenu ujelly-theme material-theme use-package expand-region powerline js2-mode racket-mode python-mode markdown-mode smartparens go-projectile gitconfig-mode helm-projectile json-mode evil-vimish-fold restclient elm-mode wakatime-mode gitignore-mode hy-mode dash-at-point zenburn-theme yaml-mode web-mode unicode-whitespace tabulated-list swift-mode sublime-themes subatomic256-theme subatomic-theme soothe-theme slime-company rich-minority resize-window rainbow-delimiters protobuf-mode pcre2el pastelmac-theme paradox obsidian-theme noctilux-theme neotree naquadah-theme multiple-cursors monokai-theme lua-mode llvm-mode json-reformat jinja2-mode idomenu ibuffer-vc ht heroku-theme helm-ag gruber-darker-theme grizzl graphviz-dot-mode gist flycheck-gometalinter flatui-theme flatland-theme exec-path-from-shell evil-surround evil-nerd-commenter evil-magit evil-leader emamux elpy edts dockerfile-mode direx company-irony company-go company-ghc color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode cider ample-theme alchemist ag afternoon-theme)))
  '(paradox-github-token t)
  '(projectile-hg-command "/usr/local/bin/hg locate -0 -I .")
+ '(projectile-mode-line (quote (:eval (proj-mode-line))))
  '(safe-local-variable-values
    (quote
-    ((projectile-project-type . "python")
-     (project-python-venv . "clicktours")
-     (python-venv . "clicktours")
+    ((eval funcall-interactively
+           (quote pyvenv-workon)
+           "clicktours")
+     (projectile-project-type . "python")
      (project-type . "python")
      (eval when
            (fboundp
