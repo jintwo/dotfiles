@@ -39,13 +39,8 @@
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
-(defun global-save-hook ()
-  "Global save hook."
-  (when (not (eq major-mode 'lua-mode))
-    (delete-trailing-whitespace)))
-
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-;; (add-hook 'before-save-hook #'global-save-hook)
+
 (electric-indent-mode +1)
 
 (provide 'init-base)
