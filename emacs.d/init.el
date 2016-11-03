@@ -70,15 +70,12 @@
 (when (file-exists-p (format "%s/init-private.el" user-lib-path))
   (require 'init-private))
 
+;; projectile helper
 (defun proj-mode-line ()
   "Get projectile mode-line for current project."
-  (if (file-remote-p default-directory)
-      " projectile"
-    (if pyvenv-virtual-env-name
-        (format " proj[%s/py:%s]"
-                (projectile-project-name)
-                pyvenv-virtual-env-name)
-      (format " proj[%s]" (projectile-project-name)))))
+  (cond ((file-remote-p default-directory) " projectile")
+        (pyvenv-virtual-env-name (format " proj[%s/py:%s]" (projectile-project-name) pyvenv-virtual-env-name))
+        (t (format " proj[%s]" (projectile-project-name)))))
 
 ;; vars
 (custom-set-variables
