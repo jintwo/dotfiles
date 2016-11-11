@@ -38,7 +38,7 @@
             (define-key racket-mode-map (kbd "C-c M-j") 'racket-run)))
 
 ;; hy
-(jin/require-package 'hy-mode)
+;; (jin/require-package 'hy-mode)
 
 (provide 'init-lisp)
 ;;; init-lisp.el ends here

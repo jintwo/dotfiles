@@ -22,7 +22,7 @@
   "g" 'magit-status)
 
 (jin/require-package 'evil-magit 'evil-surround)
-;; (global-evil-surround-mode 1)
+(global-evil-surround-mode 1)
 
 (defcustom jin/evil-modes
   '(fundamental-mode

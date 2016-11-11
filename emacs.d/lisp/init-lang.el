@@ -20,7 +20,7 @@
 (require 'alchemist)
 
 ;; c/c++
-(jin/require-package 'irony 'cmake-mode)
+(jin/require-package 'irony 'cmake-mode 'company-irony)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)

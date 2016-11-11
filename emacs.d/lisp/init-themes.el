@@ -1,13 +1,14 @@
 ;;; init-themes.el --- color themes config
 ;;; Commentary:
 ;;; Code:
-(jin/require-package 'subatomic-theme 'zenburn-theme 'noctilux-theme
-                     'flatland-theme 'monokai-theme 'solarized-theme
-                     'flatui-theme 'ample-theme 'dracula-theme
-                     'material-theme 'ujelly-theme)
+(jin/require-package 'ujelly-theme 'subatomic-theme 'zenburn-theme
+                     'noctilux-theme 'flatland-theme 'monokai-theme
+                     'solarized-theme 'flatui-theme 'ample-theme
+                     'dracula-theme 'material-theme)
 
+(load-theme 'ujelly-light t) ;; ++ dark+light :)
+;; (load-theme 'ujelly t) ;; ++ dark
 ;; (load-theme 'material t) ;; ++ dark
-(load-theme 'ujelly t) ;; ++ dark
 ;; (load-theme 'subatomic t) ;; ++ dark
 ;; (load-theme 'zenburn t)
 ;; (load-theme 'noctilux t) ;; + dark
