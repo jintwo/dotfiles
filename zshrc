@@ -18,8 +18,6 @@ antigen bundle docker
 antigen bundle kennethreitz/autoenv
 antigen bundle rimraf/k
 antigen bundle zsh-users/zsh-autosuggestions
-
-export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$(brew --prefix)/share/zsh-syntax-highlighting/highlighters
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 antigen theme jintwo/dotfiles zsh/jin-dark
