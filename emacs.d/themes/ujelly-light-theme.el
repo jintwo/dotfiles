@@ -17,7 +17,7 @@
       (ujelly-green-2 "#a8ff60")
       (ujelly-grey-0 "#888888")
       (ujelly-grey-1 "#7f7f7f")
-      (ujelly-grey-2 "#151515")
+      (ujelly-grey-2 "#27353d")
       (ujelly-grey-3 "#1c1c1c")
       (ujelly-grey-4 "#363636")
       (ujelly-grey-5 "#444444")
