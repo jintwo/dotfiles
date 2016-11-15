@@ -5,7 +5,6 @@ fpath=(/usr/local/share/zsh-completions ~/.zsh/completions $fpath)
 
 alias dropbox="cd $HOME/Dropbox"
 alias sandbox="cd $DOC_ROOT/Sandbox"
-alias startmpd="mpd; mpdas -d -c $HOME/.mpdasrc"
 alias emd="emacs --daemon"
 alias emdk="emacsclient -e '(kill-emacs)'"
 alias em="emacsclient -t"
