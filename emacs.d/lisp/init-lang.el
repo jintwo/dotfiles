@@ -49,6 +49,9 @@
 (jin/require-package 'llvm-mode)
 
 ;; js
+(jin/require-package 'js2-mode)
+(jin/add-auto-mode 'js2-jsx-mode "\\.js\\'" "\\.jsx\\'")
+
 ;; (jin/require-package 'tern)
 ;; (add-hook 'js-mode-hook 'tern-mode)
 ;; (push 'company-tern company-backends)
@@ -73,7 +76,6 @@
 
 (jin/add-auto-mode 'web-mode "\\.html\\'")
 (jin/add-auto-mode 'dtrace-script-mode "\\.d\\'")
-(jin/add-auto-mode 'js2-jsx-mode "\\.js\\'")
 
 ;; indent
 (setq-default
