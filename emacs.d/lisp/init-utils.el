@@ -32,8 +32,8 @@
                             (rainbow-delimiters-mode)))
 
 ;; yas
-;; (jin/require-package 'yasnippet)
-;; (yas-global-mode t)
+(jin/require-package 'yasnippet)
+(yas-global-mode t)
 
 ;; eshell
 (require 'eshell)

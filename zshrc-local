@@ -16,6 +16,7 @@ alias dm="docker-machine"
 alias dcp="docker-compose"
 alias dk="docker"
 alias dke="dk exec -it"
+alias dip='dk inspect --format "{{ .NetworkSettings.IPAddress }}"'
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin
 export PATH=~/.cabal/bin:~/.local/bin:$PATH
