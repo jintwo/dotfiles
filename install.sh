@@ -4,7 +4,7 @@ if [ -z $ZSH_BIN ]; then
     echo "ZSH is not installed."
     exit
 fi
-GITHUB_ROOT=~/Github
+GITHUB_ROOT="${GITHUB_ROOT:-~/Github}"
 FILES="zshrc zshrc-local gitconfig gitignore hgrc emacs.d vimrc tmux.conf"
 mkdir -p $GITHUB_ROOT
 cd $GITHUB_ROOT
