@@ -3,27 +3,21 @@
 
 fpath=(/usr/local/share/zsh-completions ~/.zsh/completions $fpath)
 
-alias dropbox="cd $HOME/Dropbox"
-alias sandbox="cd $DOC_ROOT/Sandbox"
 alias emd="emacs --daemon"
 alias emdk="emacsclient -e '(kill-emacs)'"
 alias em="emacsclient -t"
 alias emx="emacsclient -nc"
 alias gpa="gp --all"
-alias gsl="git svn rebase"
-alias gsp="git svn dcommit"
+alias dk="docker"
 alias dm="docker-machine"
 alias dcp="docker-compose"
-alias dk="docker"
 alias dke="dk exec -it"
 alias dip='dk inspect --format "{{ .NetworkSettings.IPAddress }}"'
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin
-export PATH=~/.cabal/bin:~/.local/bin:$PATH
 export VIRTUAL_ENV_DISABLE_PROMPT='Y'
 export EDITOR="vim"
 export TERM="xterm-256color"
-export GOPATH=~/Documents/Sandbox/go
 export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128M"
 
 export LC_ALL=en_US.UTF-8
@@ -34,19 +28,27 @@ if [[ "$platform" == 'Darwin' ]]; then
     export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 fi
 
-# additional path
-export PATH=$PATH:$HOME/bin:$HOME/.cabal/bin:$GOPATH/bin
-
 # virtualenvwrapper
 which virtualenvwrapper.sh 2>&1 > /dev/null && export WORKON_HOME=$HOME/.virtualenvs && source `which virtualenvwrapper.sh`
+
+# docker hack
+export DOCKER_API_VERSION=1.22
+
+# android
+ANDROID_HOME="/usr/local/opt/android-sdk"
+if [ -d $ANDROID_HOME ]; then
+    echo "setting up android-dev"
+    export ANDROID_HOME
+fi
+
+# nvm
+NVM_SCRIPT="/usr/local/opt/nvm/nvm.sh"
+if [ -f $NVM_SCRIPT ]; then
+    export NVM_DIR="$HOME/.nvm"
+    source $NVM_SCRIPT
+fi
 
 # private
 if [ -f ~/.zshrc-private ]; then
     source ~/.zshrc-private
 fi
-
-# docker hack
-export DOCKER_API_VERSION=1.22
-
-# android dev
-export ANDROID_HOME=/usr/local/opt/android-sdk
