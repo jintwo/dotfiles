@@ -89,8 +89,8 @@
 (add-hook 'prog-mode-hook 'annotate)
 
 ;; wakatime
-(jin/require-package 'wakatime-mode)
-(global-wakatime-mode)
+;; (jin/require-package 'wakatime-mode)
+;; (global-wakatime-mode)
 
 ;; restclient
 (jin/require-package 'restclient)

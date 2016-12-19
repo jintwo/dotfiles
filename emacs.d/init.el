@@ -93,7 +93,6 @@
     ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "49b36c626548d200f97144cedb44f0a48020fda221b9e2930dc7d95ef4013eb1" "e5d0ae725917de5ec0839bd89dca9dff92e0c8fb6f7432dd338e8b4d893a6d93" "b34636117b62837b3c0c149260dfebe12c5dad3d1177a758bb41c4b15259ed7e" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "133222702a3c75d16ea9c50743f66b987a7209fb8b964f2c0938a816a83379a0" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(elpy-rpc-python-command "python")
  '(fci-rule-color "#424242")
- '(global-wakatime-mode t)
  '(js-indent-level 2)
  '(magit-use-overlays nil)
  '(markdown-css-paths
@@ -141,7 +140,7 @@
  '(vc-annotate-very-old-color nil)
  '(wakatime-api-key "20ab5613-90c2-4bbf-9278-12e1abc0145a")
  '(wakatime-cli-path "/usr/local/bin/wakatime")
- '(wakatime-python-bin "/usr/local/opt/python/bin/python"))
+ '(wakatime-python-bin "/usr/local/bin/python"))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
