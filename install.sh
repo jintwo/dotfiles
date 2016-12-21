@@ -5,7 +5,7 @@ if [ -z $ZSH_BIN ]; then
     exit
 fi
 GITHUB_ROOT="${GITHUB_ROOT:-~/Github}"
-FILES="zshrc zshrc-local gitconfig gitignore hgrc emacs.d vimrc tmux.conf"
+FILES="zshrc zshrc-local gitconfig gitignore hgrc emacs.d vimrc tmux.conf hammerspoon"
 mkdir -p $GITHUB_ROOT
 cd $GITHUB_ROOT
 mkdir -p ~/.vim/bundle
