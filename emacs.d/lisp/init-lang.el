@@ -45,37 +45,15 @@
 (add-hook 'conf-mode-hook
           (lambda () (setq tab-width 4)))
 
-;; llvm
-(jin/require-package 'llvm-mode)
-
 ;; js
 (jin/require-package 'js2-mode)
 (jin/add-auto-mode 'js2-jsx-mode "\\.js\\'" "\\.jsx\\'")
 
-;; (jin/require-package 'tern)
-;; (add-hook 'js-mode-hook 'tern-mode)
-;; (push 'company-tern company-backends)
-
-;; ;; ruby
-;; (jin/require-package 'robe)
-;; (add-hook 'ruby-mode-hook 'robe-mode)
-;; (push 'company-robe company-backends)
-
-;; other
-;; vendor libs
-;; (require 'crystal-mode)
-;; (require 'ooc-mode)
-;; (require 'flymake-ooc)
-
 ;; disabled:
-;; 'malabar-mode 'tuareg-mode 'merlin 'd-mode 'rust-mode
-;; 'toml-mode 'nim-mode 'julia-mode 'dtrace-script-mode
-;; 'groovy-mode 'gradle-mode 'sml-mode
-(jin/require-package 'yaml-mode 'swift-mode 'protobuf-mode
-                     'web-mode 'elm-mode 'dockerfile-mode 'js2-mode)
+;; 'tuareg-mode 'merlin 'rust-mode 'sml-mode 'elm-mode
+(jin/require-package 'yaml-mode 'swift-mode 'protobuf-mode 'web-mode 'dockerfile-mode)
 
 (jin/add-auto-mode 'web-mode "\\.html\\'")
-(jin/add-auto-mode 'dtrace-script-mode "\\.d\\'")
 
 ;; indent
 (setq-default

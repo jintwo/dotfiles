@@ -7,6 +7,9 @@
 
 (show-smartparens-global-mode t)
 
+(define-key smartparens-mode-map (kbd "C-c s f") 'sp-forward-slurp-sexp)
+(define-key smartparens-mode-map (kbd "C-c s b") 'sp-backward-slurp-sexp)
+
 ;;;;;;;;;;;;;;;;;;
 ;; pair management
 

@@ -60,9 +60,7 @@
 (require 'init-markup)
 (require 'init-python)
 (require 'init-lisp)
-(require 'init-go)
 (require 'init-haskell)
-;; (require 'init-scala)
 (require 'init-lua)
 (require 'init-lang)
 
@@ -101,7 +99,7 @@
  '(neo-theme (quote ascii))
  '(package-selected-packages
    (quote
-    (neotree popup-imenu ujelly-theme material-theme use-package expand-region powerline js2-mode racket-mode python-mode markdown-mode smartparens go-projectile gitconfig-mode helm-projectile json-mode evil-vimish-fold restclient elm-mode wakatime-mode gitignore-mode dash-at-point zenburn-theme yaml-mode web-mode unicode-whitespace tabulated-list swift-mode sublime-themes subatomic-theme soothe-theme slime-company rich-minority resize-window rainbow-delimiters protobuf-mode pcre2el pastelmac-theme paradox obsidian-theme noctilux-theme naquadah-theme multiple-cursors monokai-theme lua-mode llvm-mode json-reformat jinja2-mode idomenu ibuffer-vc ht helm-ag gruber-darker-theme grizzl graphviz-dot-mode gist flycheck-gometalinter flatui-theme flatland-theme exec-path-from-shell evil-surround evil-nerd-commenter evil-magit evil-leader elpy edts dockerfile-mode direx company-irony company-go company-ghc color-theme-sanityinc-solarized cmake-mode cider ample-theme alchemist ag afternoon-theme)))
+    (neotree popup-imenu ujelly-theme material-theme use-package expand-region powerline js2-mode racket-mode python-mode markdown-mode smartparens gitconfig-mode helm-projectile json-mode evil-vimish-fold restclient gitignore-mode dash-at-point zenburn-theme yaml-mode web-mode unicode-whitespace tabulated-list swift-mode sublime-themes subatomic-theme soothe-theme slime-company rich-minority resize-window rainbow-delimiters protobuf-mode pcre2el pastelmac-theme paradox obsidian-theme noctilux-theme naquadah-theme multiple-cursors monokai-theme lua-mode json-reformat jinja2-mode idomenu ibuffer-vc ht helm-ag gruber-darker-theme grizzl graphviz-dot-mode gist flatui-theme flatland-theme exec-path-from-shell evil-surround evil-nerd-commenter evil-magit evil-leader elpy edts dockerfile-mode direx company-irony company-ghc color-theme-sanityinc-solarized cmake-mode cider ample-theme alchemist ag afternoon-theme)))
  '(paradox-github-token t)
  '(projectile-mode-line (quote (:eval (proj-mode-line))))
  '(safe-local-variable-values
@@ -138,9 +136,9 @@
      (340 . "#e7c547")
      (360 . "#b9ca4a"))))
  '(vc-annotate-very-old-color nil)
- '(wakatime-api-key "20ab5613-90c2-4bbf-9278-12e1abc0145a")
- '(wakatime-cli-path "/usr/local/bin/wakatime")
- '(wakatime-python-bin "/usr/local/bin/python"))
+ '(whitespace-style
+   (quote
+    (face trailing tabs spaces lines-tail newline empty indentation space-after-tab::tab space-before-tab::tab space-mark tab-mark))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

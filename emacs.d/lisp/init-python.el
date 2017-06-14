@@ -22,5 +22,10 @@
   (highlight-lines-matching-regexp "i?pdb.set_trace()"))
 (add-hook 'python-mode-hook 'annotate-pdb)
 
+;; fix encoding
+(setenv "LC_CTYPE" "UTF-8")
+(setenv "LC_ALL" "en_US.UTF-8")
+(setenv "LANG" "en_US.UTF-8")
+
 (provide 'init-python)
 ;;; init-python.el ends here
