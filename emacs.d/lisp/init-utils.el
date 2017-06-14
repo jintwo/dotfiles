@@ -45,8 +45,12 @@
 
 ;; exec-path-from-shell
 (jin/require-package 'exec-path-from-shell)
+
+(setq exec-path-from-shell-check-startup-files nil)
+
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
+
 
 ;; neotree
 (jin/require-package 'neotree)

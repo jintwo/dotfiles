@@ -7,7 +7,6 @@
 (jin/add-auto-mode 'jinja2-mode "\\.tmpl\\'")
 
 (elpy-enable)
-(elpy-use-ipython)
 
 (require 'python)
 (define-key python-mode-map (kbd "C-c .") 'elpy-goto-definition)
