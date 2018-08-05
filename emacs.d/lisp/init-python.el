@@ -1,25 +1,36 @@
 ;;; init-python.el --- python mode config
 ;;; Commentary:
 ;;; Code:
-(jin/require-package 'python-mode 'elpy 'jinja2-mode)
+(use-package python-mode
+  :ensure t
+  :mode ("\\fabfile\\'" "\\.py\\'")
+  :config
+  (use-package jinja2-mode
+    :ensure t
+    :mode "\\.tmpl\\'")
+  (use-package elpy
+    :ensure t
+    :commands elpy-enable
+    :bind (:map python-mode-map
+                ("C-c ." . elpy-goto-definition)
+                ("C-c ," . pop-tag-mark)
+                ("C-c M-j" . run-python)
+                ("C-c C-j" . popup-imenu))
+    :config
+    (setq elpy-modules (dolist (elem '(elpy-module-highlight-indentation
+				                       elpy-module-yasnippet))
+			             (remove elem elpy-modules))))
+  (elpy-enable)
+  (require 'smartparens-python)
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (interactive)
+              (add-to-list (make-local-variable 'company-backends) '(elpy-company-backend))
+              (highlight-lines-matching-regexp "import i?pdb")
+              (highlight-lines-matching-regexp "i?pdb.set_trace()")
+              (electric-indent-local-mode -1))))
 
-(jin/add-auto-mode 'python-mode "fabfile")
-(jin/add-auto-mode 'jinja2-mode "\\.tmpl\\'")
 
-(elpy-enable)
-
-(require 'python)
-(define-key python-mode-map (kbd "C-c .") 'elpy-goto-definition)
-(define-key python-mode-map (kbd "C-c ,") 'pop-tag-mark)
-(define-key python-mode-map (kbd "C-c M-j") 'run-python)
-(define-key python-mode-map (kbd "C-c C-j") 'popup-imenu)
-
-(defun annotate-pdb ()
-  "Highlight line that contain pdb/ipdb call."
-  (interactive)
-  (highlight-lines-matching-regexp "import i?pdb")
-  (highlight-lines-matching-regexp "i?pdb.set_trace()"))
-(add-hook 'python-mode-hook 'annotate-pdb)
 
 ;; fix encoding
 (setenv "LC_CTYPE" "UTF-8")

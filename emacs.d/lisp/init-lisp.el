@@ -4,38 +4,42 @@
 ;; elisp mode
 (define-key emacs-lisp-mode-map (kbd "C-c .") 'find-function-at-point)
 
+;; common
+(use-package parinfer :ensure t)
+(use-package paren-face :ensure t)
+
 ;; cl
-(jin/require-package 'slime)
-
-(setq-default
- inferior-lisp-program "sbcl"
- slime-net-coding-system 'utf-8-unix
- slime-protocol-version 'ignore)
-
-(slime-setup '(slime-repl))
+(use-package slime
+  :ensure t
+  :bind ("C-c p" . slime-eval-print-last-expression)
+  :config
+  (setq-default inferior-lisp-program "sbcl"
+                slime-net-coding-system 'utf-8-unix
+                slime-protocol-version 'ignore)
+  (slime-setup '(slime-repl)))
 
 ;; clojure
-(jin/require-package 'clojure-mode 'cider)
+(use-package clojure-mode
+  :ensure t
+  :config
+  (use-package cider
+    :after (clojure-mode company-mode)
+    :config
+    (setq cider-repl-use-clojure-font-lock t
+          cider-eval-result-prefix ";; => ")
+    (add-hook 'cider-repl-mode-hook 'company-mode)
+    (add-hook 'cider-mode-hook 'company-mode))
 
-(require 'cider)
-(setq cider-repl-use-clojure-font-lock t
-      cider-eval-result-prefix ";; => ")
+  (defun clojure-mode-init ()
+    (cider-mode)
+    (parinfer-mode))
 
-(add-hook 'clojure-mode-hook (lambda ()
-                               (cider-mode)
-                               (local-set-key
-                                (kbd "C-c p")
-                                'slime-eval-print-last-expression)))
-(add-hook 'cider-repl-mode-hook 'company-mode)
-(add-hook 'cider-mode-hook 'company-mode)
+  (add-hook 'clojure-mode-hook 'clojure-mode-init))
 
 ;; racket
-(jin/require-package 'racket-mode)
-
-(require 'racket-mode)
-(add-hook 'racket-mode-hook
-          (lambda ()
-            (define-key racket-mode-map (kbd "C-c M-j") 'racket-run)))
+(use-package racket-mode
+  :ensure t
+  :bind ("C-c M-j" . racket-run))
 
 (provide 'init-lisp)
 ;;; init-lisp.el ends here

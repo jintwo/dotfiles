@@ -1,18 +1,10 @@
 ;;; init-ibuffer.el --- ibuffer config
 ;;; Commentary:
 ;;; Code:
-(jin/require-package 'ibuffer-vc)
-
-(require 'ibuffer)
-
-(add-hook 'ibuffer-mode-hook
-  (lambda ()
-    (ibuffer-auto-mode 1)
-    (ibuffer-vc-set-filter-groups-by-vc-root)
-    (unless (eq ibuffer-sorting-mode 'alphabetic)
-      (ibuffer-do-sort-by-alphabetic))))
-
-(setq ibuffer-formats
+(use-package ibuffer-vc
+  :ensure t
+  :init
+  (setq ibuffer-formats
       '((mark modified read-only vc-status-mini " "
               (name 18 18 :left :elide)
               " "
@@ -23,8 +15,14 @@
               filename-and-process))
       ibuffer-show-empty-filter-groups nil
       ibuffer-expert t)
-
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+  :bind ("C-x C-b" . ibuffer)
+  :config
+  (defun ibuffer-init ()
+    (ibuffer-auto-mode 1)
+    (ibuffer-vc-set-filter-groups-by-vc-root)
+    (unless (eq ibuffer-sorting-mode 'alphabetic)
+      (ibuffer-do-sort-by-alphabetic)))
+  (add-hook 'ibuffer-mode-hook 'ibuffer-init))
 
 (provide 'init-ibuffer)
 ;;; init-ibuffer.el ends here

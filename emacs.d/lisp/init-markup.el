@@ -2,13 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 ;; markdown
-(jin/require-package 'markdown-mode)
-
-(evil-leader/set-key-for-mode 'markdown-mode
-  "s" 'markdown-insert-bold)
-
-(jin/add-auto-mode 'markdown-mode "\\.text\\'" "\\.markdown\\'" "\\.md\\'")
-(add-hook 'markdown-mode-hook '(lambda () (setq tab-width 2)))
+(use-package markdown-mode
+  :ensure t
+  :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'"))
 
 (provide 'init-markup)
 ;;; init-markup.el ends here

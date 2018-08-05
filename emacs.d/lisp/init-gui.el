@@ -11,7 +11,7 @@
       use-file-dialog nil
       use-dialog-box nil)
 
-(setq-default line-spacing 0.15)
+(setq-default line-spacing 0.1)
 
 (setq ring-bell-function 'ignore)
 
@@ -27,8 +27,13 @@
   (set-face-attribute 'default nil
                       :family family
                       :height height
-                      :weight 'normal
+                      :weight 'light
                       :width 'normal)
+  ;; fixes for :bold characters
+  (set-face-attribute 'font-lock-string-face nil
+                      :weight 'normal)
+  (set-face-attribute 'font-lock-doc-face nil
+                      :weight 'normal)
   (set-fontset-font "fontset-default" 'unicode-bmp family))
 
 (defun init-font ()
@@ -36,7 +41,6 @@
   (interactive)
   (if (eq system-type 'darwin)
       ;; (jin/set-font "Ubuntu Mono derivative Powerline" 140)
-      ;; (jin/set-font "Anonymous Pro for Powerline" 130)
       ;; (jin/set-font "Consolas" 130)
       ;; (jin/set-font "Consolas for Powerline" 130)
       ;; (jin/set-font "Input Mono" 130)

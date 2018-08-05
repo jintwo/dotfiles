@@ -1,15 +1,13 @@
 ;;; init-utils.el --- additional tools config
 ;;; Commentary:
 ;;; Code:
+
 ;; whitespace
 (require 'whitespace)
 (global-whitespace-mode)
-(setq whitespace-line-column 100)
-(setq whitespace-style '(face empty trailing lines-tail))
-(setq whitespace-global-modes '(not go-mode))
-
-(jin/require-package 'unicode-whitespace)
-(unicode-whitespace-setup 'subdued-faces)
+(setq whitespace-line-column 120
+      whitespace-style '(face empty trailing lines-tail)
+      whitespace-global-modes '(not go-mode))
 
 ;; re-builder
 (require 're-builder)
@@ -20,20 +18,27 @@
 (setq tramp-default-method "ssh")
 
 ;; undo-tree
-(jin/require-package 'undo-tree)
-(global-undo-tree-mode)
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode))
 
 ;; ag
-(jin/require-package 'ag)
+(use-package ag
+  :ensure t)
 
 ;; rainbow-delimiters
-(jin/require-package 'rainbow-delimiters)
-(add-hook 'prog-mode-hook (lambda ()
-                            (rainbow-delimiters-mode)))
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook (lambda ()
+                              (rainbow-delimiters-mode))))
 
 ;; yas
-(jin/require-package 'yasnippet)
-(yas-global-mode t)
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode t))
 
 ;; eshell
 (require 'eshell)
@@ -44,23 +49,20 @@
 (add-hook 'eshell-mode-hook 'eshell-mode-hook-func)
 
 ;; exec-path-from-shell
-(jin/require-package 'exec-path-from-shell)
-
-(setq exec-path-from-shell-check-startup-files nil)
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (setq exec-path-from-shell-check-startup-files nil))
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-
-;; neotree
-(jin/require-package 'neotree)
-(global-set-key (kbd "<f5>") 'neotree-toggle)
-
 ;; multiple-cursors
-(jin/require-package 'multiple-cursors)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)))
 
 ;; linum
 (require 'linum)
@@ -71,13 +73,15 @@
 (setq linum-format " %d ")
 
 ;; dash
-(jin/require-package 'dash-at-point)
-(global-set-key (kbd "C-c d") 'dash-at-point)
-(global-set-key (kbd "C-c e") 'dash-at-point-with-docset)
+(use-package dash-at-point
+  :ensure t
+  :bind (("C-c d" . dash-at-point)
+         ("C-c e" . dash-at-point-with-docset)))
 
 ;; resize-window
-(jin/require-package 'resize-window)
-(global-set-key (kbd "C-c w") 'resize-window)
+(use-package resize-window
+  :ensure t
+  :bind ("C-c w" . resize-window))
 
 ;; aliases
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -93,24 +97,32 @@
 (add-hook 'prog-mode-hook 'annotate)
 
 ;; restclient
-(jin/require-package 'restclient)
+(use-package restclient)
 
 ;; paradox
-(jin/require-package 'paradox)
+(use-package paradox)
 
 ;; powerline
-(jin/require-package 'powerline)
-(powerline-default-theme)
+(use-package powerline
+  :ensure t
+  :config
+  (powerline-default-theme))
 
 ;; expand region
-(jin/require-package 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
 
-;; use package
-(jin/require-package 'use-package)
+;; which key
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
 
-;; popups
-(jin/require-package 'popup-imenu)
+(use-package idle-highlight-mode
+  :ensure t
+  :config
+  (idle-highlight-mode t))
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

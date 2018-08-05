@@ -2,10 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 ;; git
-(jin/require-package 'magit 'gitconfig-mode 'gitignore-mode)
-
-(global-set-key (kbd "C-c C-g") 'magit-status)
-(global-set-key (kbd "C-x C-g") 'gist-buffer-private)
+(use-package magit
+  :ensure t
+  :bind ("C-c C-g" . magit-status)
+  :config
+  (use-package gitconfig-mode)
+  (use-package gitignore-mode))
 
 (provide 'init-vc)
 ;;; init-vc.el ends here

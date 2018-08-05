@@ -1,31 +1,26 @@
 ;;; init-helm.el --- helm config
 ;;; Commentary:
 ;;; Code:
-(jin/require-package 'helm)
-(require 'helm-config)
-(helm-mode 1)
-
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x b") 'helm-mini)
-
-;; helm-projectile
-(jin/require-package 'helm-projectile)
-(helm-projectile-on)
-
-;; vars
-(setq helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match t
-      helm-M-x-fuzzy-match t
-      helm-file-cache-fuzzy-match t)
-
-(jin/require-package 'helm-ag)
-
-;; recentf
-(require 'recentf)
-(recentf-mode 1)
-(setq recentf-max-menu-items 50)
-(global-set-key (kbd "C-x C-r") 'helm-recentf)
+(use-package helm
+  :ensure t
+  :defer 0.1
+  :bind (("M-x" . helm-M-x)
+         ("C-x C-f" . helm-find-files)
+         ("C-x b" . helm-mini)
+         ("C-x C-r" . helm-recentf))
+  :config
+  (use-package helm-projectile
+    :ensure t)
+  (use-package helm-ag
+    :ensure t)
+  (helm-mode 1)
+  (helm-projectile-on)
+  (recentf-mode 1)
+  (setq helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match t
+        helm-M-x-fuzzy-match t
+        helm-file-cache-fuzzy-match t
+        recentf-max-menu-items 50))
 
 (provide 'init-helm)
 ;;; init-helm.el ends here
