@@ -4,6 +4,8 @@
 ;; elisp mode
 (define-key emacs-lisp-mode-map (kbd "C-c .") 'find-function-at-point)
 
+;; (define-key cider-mode-map (kbd "C-c .") 'cider-find-var)
+
 ;; common
 (use-package parinfer :ensure t)
 (use-package paren-face :ensure t)
@@ -11,7 +13,7 @@
 ;; cl
 (use-package slime
   :ensure t
-  :bind ("C-c p" . slime-eval-print-last-expression)
+  :bind-keymap ("C-c p" . slime-eval-print-last-expression)
   :config
   (setq-default inferior-lisp-program "sbcl"
                 slime-net-coding-system 'utf-8-unix
@@ -22,24 +24,23 @@
 (use-package clojure-mode
   :ensure t
   :config
-  (use-package cider
-    :after (clojure-mode company-mode)
-    :config
-    (setq cider-repl-use-clojure-font-lock t
-          cider-eval-result-prefix ";; => ")
-    (add-hook 'cider-repl-mode-hook 'company-mode)
-    (add-hook 'cider-mode-hook 'company-mode))
+  (add-hook 'clojure-mode-hook #'parinfer-mode)
+  (add-hook 'clojure-mode-hook #'paren-face-mode))
 
-  (defun clojure-mode-init ()
-    (cider-mode)
-    (parinfer-mode))
-
-  (add-hook 'clojure-mode-hook 'clojure-mode-init))
+(use-package cider
+  :ensure t
+  :bind (:map clojure-mode-map
+              (("C-c ." . cider-find-var)
+               ("C-c ," . pop-tag-mark)))
+  :config
+  (setq nrepl-log-messages t
+        cider-repl-use-clojure-font-lock t
+        cider-eval-result-prefix ";; => "))
 
 ;; racket
 (use-package racket-mode
   :ensure t
-  :bind ("C-c M-j" . racket-run))
+  :bind-keymap ("C-c M-j" . racket-run))
 
 (provide 'init-lisp)
 ;;; init-lisp.el ends here

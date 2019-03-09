@@ -124,5 +124,16 @@
   :config
   (idle-highlight-mode t))
 
+(use-package wakatime-mode
+  :ensure t
+  :config
+  (global-wakatime-mode))
+
+(use-package origami
+  :ensure t
+  :bind (("<C-tab>" . origami-toggle-node))
+  :config
+  (global-origami-mode))
+
 (provide 'init-utils)
 ;;; init-utils.el ends here

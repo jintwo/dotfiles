@@ -13,7 +13,7 @@
     :bind (("M-;" . evilnc-comment-or-uncomment-lines)
            ("M-:" . evilnc-comment-or-uncomment-to-the-line)))
   (use-package evil-magit
-    :after evil)
+    :after magit)
   (use-package evil-surround
     :after evil
     :init

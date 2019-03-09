@@ -102,7 +102,7 @@
  '(elpy-rpc-python-command "python")
  '(fci-rule-color "#424242")
  '(indent-tabs-mode nil)
- '(js-indent-level 2 t)
+ '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(magit-use-overlays nil)
  '(markdown-css-paths
@@ -112,7 +112,7 @@
  '(nord-comment-brightness 20)
  '(package-selected-packages
    (quote
-    (idle-highlight-mode nordless-theme nova-theme paren-face flycheck-inline which-key cargo flycheck-rust racer rust-mode rust-playground sclang-extensions arjen-grey-theme doom-themes kaolin-themes nord-theme tuareg-mode merlin tuareg parinfer company-sourcekit flycheck-swift popup-imenu ujelly-theme material-theme use-package expand-region powerline js2-mode racket-mode python-mode markdown-mode smartparens gitconfig-mode helm-projectile json-mode evil-vimish-fold restclient gitignore-mode dash-at-point yaml-mode web-mode tabulated-list swift-mode sublime-themes soothe-theme slime-company rich-minority resize-window rainbow-delimiters protobuf-mode pcre2el pastelmac-theme paradox noctilux-theme naquadah-theme multiple-cursors monokai-theme lua-mode json-reformat jinja2-mode idomenu ibuffer-vc ht helm-ag gruber-darker-theme grizzl graphviz-dot-mode gist flatui-theme flatland-theme exec-path-from-shell evil-surround evil-nerd-commenter evil-magit elpy edts dockerfile-mode direx company-irony company-ghc color-theme-sanityinc-solarized cmake-mode cider alchemist ag afternoon-theme)))
+    (tidal origami wakatime-mode idle-highlight-mode nordless-theme nova-theme paren-face flycheck-inline which-key cargo flycheck-rust racer rust-mode rust-playground sclang-extensions arjen-grey-theme doom-themes kaolin-themes nord-theme tuareg-mode merlin tuareg parinfer company-sourcekit flycheck-swift popup-imenu ujelly-theme material-theme use-package expand-region powerline js2-mode racket-mode python-mode markdown-mode smartparens gitconfig-mode helm-projectile json-mode evil-vimish-fold restclient gitignore-mode dash-at-point yaml-mode web-mode tabulated-list swift-mode sublime-themes soothe-theme slime-company rich-minority resize-window rainbow-delimiters protobuf-mode pcre2el pastelmac-theme paradox noctilux-theme naquadah-theme multiple-cursors monokai-theme lua-mode json-reformat jinja2-mode idomenu ibuffer-vc ht helm-ag gruber-darker-theme grizzl graphviz-dot-mode gist flatui-theme flatland-theme exec-path-from-shell evil-surround evil-nerd-commenter evil-magit elpy edts dockerfile-mode direx company-irony company-ghc color-theme-sanityinc-solarized cmake-mode cider alchemist ag afternoon-theme)))
  '(paradox-github-token t)
  '(projectile-keymap-prefix (kbd "C-c p"))
  '(projectile-mode-line (quote (:eval (proj-mode-line))))
@@ -154,6 +154,7 @@
      (340 . "#e7c547")
      (360 . "#b9ca4a"))))
  '(vc-annotate-very-old-color nil)
+ '(wakatime-cli-path "/usr/local/bin/wakatime")
  '(whitespace-style
    (quote
     (face trailing tabs spaces lines-tail newline empty indentation space-after-tab::tab space-before-tab::tab space-mark tab-mark))))
