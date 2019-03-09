@@ -25,3 +25,8 @@ antigen theme jintwo/dotfiles zsh/jin-dark
 antigen apply
 
 source ~/.zshrc-local
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# OPAM configuration
+. /Users/jin/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

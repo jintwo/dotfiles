@@ -31,7 +31,7 @@ set laststatus=2
 set background=dark
 
 syntax enable
-"let g:solarized_termcolors = 256
+" let g:solarized_termcolors = 256
 colorscheme solarized
 
 filetype plugin indent on
