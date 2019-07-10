@@ -7,8 +7,6 @@
   :init (setq js-indent-level 2)
   :mode ("\\.json\\'" "\\.avsc\\'")
   :config
-  (use-package json-reformat
-    :after json-mode)
   (use-package yaml-mode
     :after json-mode))
 
@@ -62,9 +60,6 @@
     :config
     (push 'company-sourcekit company-backends)))
 
-;; disabled:
-;; 'sml-mode 'elm-mode
-
 (use-package rust-mode
   :ensure t
   :config
@@ -96,10 +91,24 @@
     :config
     (add-hook 'caml-mode-hook 'merlin-mode)))
 
+;; lua
+(use-package lua-mode
+  :ensure t
+  :bind (:map lua-mode-map
+              (("C-c C-r" . lua-send-region)
+               ("C-c M-j" . lua-start-process)))
+  :config
+  (setq lua-indent-level 4))
+
 ;; web
 (use-package web-mode
   :ensure t
   :mode "\\.html\\'")
+
+;; markdown
+(use-package markdown-mode
+  :ensure t
+  :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'"))
 
 ;; prolog
 (add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
@@ -117,6 +126,24 @@
 (setq show-paren-delay 0)
 (set-face-background 'show-paren-match (face-background 'default))
 (set-face-attribute 'show-paren-match nil :weight 'ultra-bold :underline t)
+
+;; dumb-jump
+(use-package dumb-jump
+  :ensure t
+  :config
+  (setq dumb-jump-selector 'helm))
+
+(defhydra hydra-dumb-jump (:color blue :columns 3)
+    "Dumb Jump"
+    ("j" dumb-jump-go "Go")
+    ("o" dumb-jump-go-other-window "Other window")
+    ("e" dumb-jump-go-prefer-external "Go external")
+    ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
+    ("i" dumb-jump-go-prompt "Prompt")
+    ("l" dumb-jump-quick-look "Quick look")
+    ("b" dumb-jump-back "Back"))
+
+(global-set-key (kbd "C-c d") 'hydra-dumb-jump/body)
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

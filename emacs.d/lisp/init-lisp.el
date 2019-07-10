@@ -42,5 +42,8 @@
   :ensure t
   :bind-keymap ("C-c M-j" . racket-run))
 
+(use-package geiser
+  :ensure t)
+
 (provide 'init-lisp)
 ;;; init-lisp.el ends here

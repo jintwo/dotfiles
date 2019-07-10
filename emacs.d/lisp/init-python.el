@@ -5,21 +5,15 @@
   :ensure t
   :mode ("\\fabfile\\'" "\\.py\\'")
   :config
-  (use-package jinja2-mode
-    :ensure t
-    :mode "\\.tmpl\\'")
   (use-package elpy
     :ensure t
     :commands elpy-enable
     :bind (:map python-mode-map
-                ("C-c ." . elpy-goto-definition)
-                ("C-c ," . pop-tag-mark)
-                ("C-c M-j" . run-python)
-                ("C-c C-j" . popup-imenu))
+                ("C-c M-j" . run-python))
     :config
     (setq elpy-modules (dolist (elem '(elpy-module-highlight-indentation
-				                       elpy-module-yasnippet))
-			             (remove elem elpy-modules))))
+                                       elpy-module-yasnippet))
+                         (remove elem elpy-modules))))
   (elpy-enable)
   (require 'smartparens-python)
   (add-hook 'python-mode-hook
