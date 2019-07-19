@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (require 'package)
+(require 'misc)
 
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -16,19 +17,15 @@
   (package-install 'use-package))
 
 (require 'use-package)
+
+;; chords
+(use-package use-package-chords
+  :ensure t
+  :config
+  (key-chord-mode t))
+
 (setq use-package-minimum-reported-time 0
       use-package-verbose t)
-
-(defun jin/require-package (pkg &rest packages)
-  "Install package PKG and PACKAGES if not installed."
-  (dolist (p (cons pkg packages))
-          (unless (package-installed-p p)
-            (package-install p))))
-
-;; (defun jin/add-auto-mode (mode &rest patterns)
-;;   "Set MODE for filenames PATTERNS."
-;;   (dolist (pattern patterns)
-;;     (add-to-list 'auto-mode-alist (cons pattern mode))))
 
 (if (eq system-type 'darwin)
     (progn
@@ -43,7 +40,14 @@
 (global-set-key (kbd "C-x <down>") 'windmove-down)
 (global-set-key (kbd "C-x <left>") 'windmove-left)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
+
 (global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+
+(global-set-key (kbd "C-c l") 'join-line)
+(global-set-key (kbd "C-c n") (lambda () (interactive) (join-line 1)))
+
+(global-set-key (kbd "M-f") 'forward-to-word)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 

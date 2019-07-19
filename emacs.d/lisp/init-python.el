@@ -9,6 +9,8 @@
     :ensure t
     :commands elpy-enable
     :bind (:map python-mode-map
+                ("C-c ." . elpy-goto-definition)
+                ("C-c ," . pop-tag-mark)
                 ("C-c M-j" . run-python))
     :config
     (setq elpy-modules (dolist (elem '(elpy-module-highlight-indentation

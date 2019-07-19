@@ -4,10 +4,13 @@
 ;; git
 (use-package magit
   :ensure t
-  :bind ("C-c C-g" . magit-status)
   :config
   (use-package gitconfig-mode)
-  (use-package gitignore-mode))
+  (use-package gitignore-mode)
+  (use-package magit-todos
+    :ensure t
+    :config
+    (magit-todos-mode)))
 
 (provide 'init-vc)
 ;;; init-vc.el ends here

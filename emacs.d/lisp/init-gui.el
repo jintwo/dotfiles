@@ -31,26 +31,16 @@
                       :width 'normal)
   ;; fixes for :bold characters
   (set-face-attribute 'font-lock-string-face nil
-                      :weight 'normal)
+                      :weight 'semi-light)
   (set-face-attribute 'font-lock-doc-face nil
-                      :weight 'normal)
+                      :weight 'semi-light)
   (set-fontset-font "fontset-default" 'unicode-bmp family))
 
 (defun init-font ()
   "Fonts settings."
   (interactive)
   (if (eq system-type 'darwin)
-      ;; (jin/set-font "Ubuntu Mono derivative Powerline" 140)
-      ;; (jin/set-font "Consolas" 130)
-      ;; (jin/set-font "Consolas for Powerline" 130)
-      ;; (jin/set-font "Input Mono" 130)
-      ;; (jin/set-font "Monaco for Powerline" 110)
-      ;; (jin/set-font "Inconsolata LGC" 120)
-      ;; (jin/set-font "Input Mono" 120)
-      ;; (jin/set-font "Code New Roman" 130)
       (jin/set-font "Source Code Pro" 120)
-      ;; (jin/set-font "Anka/Coder Condensed" 130)
-      ;; (jin/set-font "Envy Code R" 130)
     (jin/set-font "Source Code Pro" 110)))
 
 (defun init-gui ()

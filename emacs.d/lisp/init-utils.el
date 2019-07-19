@@ -6,7 +6,7 @@
 (require 'whitespace)
 (global-whitespace-mode)
 (setq whitespace-line-column 120
-      whitespace-style '(face empty trailing lines-tail)
+      whitespace-style '(face trailing tabs lines empty tab-mark)
       whitespace-global-modes '(not go-mode))
 
 ;; re-builder
@@ -81,7 +81,7 @@
 ;; resize-window
 (use-package resize-window
   :ensure t
-  :bind ("C-c w" . resize-window))
+  :chords (("rw" . resize-window)))
 
 ;; aliases
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -103,10 +103,25 @@
 (use-package paradox)
 
 ;; powerline
-(use-package powerline
+;; (use-package powerline
+;;   :ensure t
+;;   :config
+;;   (powerline-default-theme))
+
+(use-package doom-modeline
   :ensure t
+  :hook (after-init . doom-modeline-mode)
   :config
-  (powerline-default-theme))
+  (setq doom-modeline-height 21
+        doom-modeline-bar-width 5
+        doom-modeline-icon t
+        ;; doom-modeline-major-mode-icon nil
+        doom-modeline-major-mode-color-icon t
+        ;; doom-modeline-buffer-state-icon nil
+        doom-modeline-minor-modes nil
+        doom-modeline-vcs-max-length 20
+        doom-modeline-checker-simple-format t
+        doom-modeline-env-enable-python t))
 
 ;; expand region
 (use-package expand-region
@@ -134,6 +149,44 @@
   :bind (("<C-tab>" . origami-toggle-node))
   :config
   (global-origami-mode))
+
+(use-package avy
+  :ensure t
+  :config
+  (avy-setup-default)
+  :chords
+  (("jc" . avy-goto-char)
+   ("jl" . avy-goto-line)))
+
+;; (use-package frog-jump-buffer
+;;   :ensure t)
+
+;; (use-package kubernetes
+;;   :ensure t
+;;   :commands (kubernetes-overview))
+
+(use-package memento-mori
+  :ensure t
+  :config
+  (memento-mori-mode t))
+
+(use-package corral
+  :ensure t
+  :config
+  (defhydra hydra-corral (:columns 4)
+    "Corral"
+    ("(" corral-parentheses-backward "Back")
+    (")" corral-parentheses-forward "Forward")
+    ("[" corral-brackets-backward "Back")
+    ("]" corral-brackets-forward "Forward")
+    ("{" corral-braces-backward "Back")
+    ("}" corral-braces-forward "Forward")
+    ("'" corral-single-quotes-forward "Forward")
+    (";" corral-single-quotes-backward "Backward")
+    ("\"" corral-double-quotes-forward "Forward")
+    (":" corral-double-quotes-backward "Backward")
+    ("." hydra-repeat "Repeat"))
+  (global-set-key (kbd "C-c c") #'hydra-corral/body))
 
 (provide 'init-utils)
 ;;; init-utils.el ends here
