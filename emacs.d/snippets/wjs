@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: wjs
-# key: wjs
-# --
-# write json
-import json
-
-with open('${1:/path/to/file.json}', 'w') as ${2:out}:
-     json.dump(${3:data}, ${2:out})

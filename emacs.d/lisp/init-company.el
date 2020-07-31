@@ -1,10 +1,11 @@
-;;; init-company.el --- company mode config
+;;; init-company.el --- Company completion config
 ;;; Commentary:
 ;;; Code:
 (use-package company
   :ensure t
+  :defer t
   :config
-  (setq company-idle-delay 0.5
+  (setq company-idle-delay 0.3
         company-show-numbers t
         company-tooltip-limit 10
         company-minimum-prefix-length 2
