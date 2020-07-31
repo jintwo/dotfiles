@@ -15,7 +15,9 @@
 (defun haskell-mode-init ()
   "Set haskell style."
   (interactive)
-  (haskell-indentation-mode))
+  (subword-mode t)
+  (haskell-indentation-mode t)
+  (interactive-haskell-mode t))
 
 (add-hook 'haskell-mode-hook 'haskell-mode-init)
 

@@ -11,5 +11,8 @@
   :defer t
   :mode ("\\.ex\\'" "\\.exs\\'"))
 
+(when (featurep 'init-lsp)
+  (add-hook 'elixir-mode-hook #'lsp))
+
 (provide 'init-beam)
 ;;; init-beam.el ends here

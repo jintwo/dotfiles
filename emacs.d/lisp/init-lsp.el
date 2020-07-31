@@ -25,11 +25,5 @@
 
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
-(add-hook 'python-mode-hook #'lsp)
-
-(add-hook 'rust-mode-hook #'lsp)
-
-(add-hook 'elixir-mode-hook #'lsp)
-
 (provide 'init-lsp)
 ;;; init-lsp.el ends here
