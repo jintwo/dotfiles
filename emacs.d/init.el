@@ -37,6 +37,7 @@
 (require 'init-git)
 (require 'init-sp)
 (require 'init-company)
+(require 'init-lsp)
 
 ;; langs
 (require 'init-lisp)
@@ -46,9 +47,6 @@
 (require 'init-haskell)
 (require 'init-ocaml)
 (require 'init-lang)
-
-;; init LSP
-(require 'init-lsp)
 
 ;; utils
 (require 'init-hydra)

@@ -15,5 +15,9 @@
   :config
   (helm-projectile-on))
 
+(use-package projectile-ripgrep
+  :requires projectile
+  :ensure t)
+
 (provide 'init-projectile)
 ;;; init-projectile.el ends here

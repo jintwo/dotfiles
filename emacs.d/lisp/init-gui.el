@@ -17,7 +17,6 @@
 
 (set-language-environment "UTF-8")
 
-
 (defun jin/set-font (family height)
   "Set font FAMILY with HEIGHT."
   (interactive)
@@ -44,6 +43,8 @@
     (toggle-frame-fullscreen)))
 
 (add-hook 'after-init-hook 'init-gui)
+
+(global-hl-line-mode t)
 
 ;; mode-line
 (line-number-mode t)
