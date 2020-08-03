@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-;; TODO: measure startup time ;)
 
 ;;; maybe load site-lisp packages
 ;; (let ((vendor-dir-path (expand-file-name "vendor" user-emacs-directory)))

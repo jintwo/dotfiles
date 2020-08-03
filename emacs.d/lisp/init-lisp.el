@@ -24,6 +24,10 @@
   :ensure t
   :defer t)
 
+;; (use-package racket-mode
+;;   :ensure t
+;;   :defer t)
+
 (define-key emacs-lisp-mode-map (kbd "C-c .") 'find-function-at-point)
 
 (provide 'init-lisp)

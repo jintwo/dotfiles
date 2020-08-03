@@ -83,13 +83,11 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-(use-package paren
-  :ensure t
-  :config
-  (show-paren-mode 1)
-  (setq show-paren-delay 0)
-  (set-face-background 'show-paren-match (face-background 'default))
-  (set-face-attribute 'show-paren-match nil :weight 'ultra-bold :underline t))
+;; paren
+(show-paren-mode t)
+(setq show-paren-delay 0)
+(set-face-background 'show-paren-match (face-background 'default))
+(set-face-attribute 'show-paren-match nil :weight 'ultra-bold :underline t)
 
 ;; comint fix
 (defun comint-shorten-long-lines (text)
