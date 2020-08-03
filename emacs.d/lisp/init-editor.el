@@ -20,9 +20,9 @@
   :ensure t
   :config
   (avy-setup-default)
-  :chords
-  (("jc" . avy-goto-char)
-   ("jl" . avy-goto-line)))
+  (when (fboundp 'key-chord-mode)
+    (key-chord-define-global "jc" 'avy-goto-char)
+    (key-chord-define-global "jl" 'avy-goto-line)))
 
 (use-package corral
   :ensure t)

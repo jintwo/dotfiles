@@ -19,16 +19,5 @@
 (setq use-package-minimum-reported-time 0
       use-package-verbose t)
 
-(use-package paradox
-  :ensure t
-  :defer t
-  :custom
-  (paradox-github-token t))
-
-(use-package use-package-chords
-  :ensure t
-  :config
-  (key-chord-mode t))
-
 (provide 'init-packages)
 ;;; init-packages.el ends here

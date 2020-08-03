@@ -30,28 +30,10 @@
 ;; (use-package fuel
 ;;   :ensure t)
 
-;; js
-(use-package js2-mode
-  :ensure t
-  :defer t
-  :mode (("\\.js\\'" . js2-jsx-mode)
-         ("\\.jsx\\'" . js2-jsx-mode)))
-
-(use-package json-mode
-  :ensure t
-  :defer t
-  :init (setq js-indent-level 2)
-  :mode ("\\.json\\'" "\\.avsc\\'"))
-
+;; markup
 (use-package yaml-mode
   :ensure t
   :defer t)
-
-;; markup
-(use-package web-mode
-  :ensure t
-  :defer t
-  :mode "\\.html\\'")
 
 (use-package markdown-mode
   :ensure t
@@ -66,8 +48,6 @@
 (use-package dockerfile-mode
   :ensure t
   :defer t)
-
-(add-hook 'conf-mode-hook (lambda () (setq tab-width 4)))
 
 ;; prolog
 (add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))

@@ -1,11 +1,9 @@
 ;;; init-utils.el --- additional tools config -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-(use-package ag
-  :ensure t)
-
-(use-package helm-ag
-  :ensure t)
+(use-package helm-rg
+  :ensure t
+  :defer 1)
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))

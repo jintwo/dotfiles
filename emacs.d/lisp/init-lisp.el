@@ -1,10 +1,6 @@
 ;;; init-lisp.el --- lisp modes config
 ;;; Commentary:
 ;;; Code:
-(use-package clojure-mode
-  :ensure t
-  :defer t)
-
 (use-package cider
   :ensure t
   :defer t
@@ -15,14 +11,6 @@
   :custom
   (cider-lein-command "/usr/local/bin/lein"))
 
-(use-package racket-mode
-  :ensure t
-  :defer t)
-
-(use-package geiser
-  :ensure t
-  :defer t)
-
 (use-package slime
   :ensure t
   :defer t
@@ -31,6 +19,10 @@
                 slime-net-coding-system 'utf-8-unix
                 slime-protocol-version 'ignore)
   (slime-setup '(slime-repl)))
+
+(use-package geiser
+  :ensure t
+  :defer t)
 
 (define-key emacs-lisp-mode-map (kbd "C-c .") 'find-function-at-point)
 

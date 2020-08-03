@@ -11,6 +11,8 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
+(setq gc-cons-threshold 50000000)
+
 (load-library "url-handlers")
 
 (setenv "ESHELL" (expand-file-name "~/bin/eshell"))
@@ -25,8 +27,8 @@
 
 ;; base
 (require 'init-packages)
-(require 'init-gui)
 (require 'init-keys)
+(require 'init-gui)
 (require 'init-helm)
 (require 'init-editor)
 (require 'init-ibuffer)

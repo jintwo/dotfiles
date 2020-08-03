@@ -9,15 +9,16 @@
   :custom
   (projectile-sort-order 'recentf))
 
-(use-package helm-projectile
-  :requires projectile
-  :ensure t
-  :config
-  (helm-projectile-on))
-
 (use-package projectile-ripgrep
   :requires projectile
   :ensure t)
+
+(use-package helm-projectile
+  :requires projectile
+  :ensure t
+  :defer 1
+  :config
+  (helm-projectile-on))
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here

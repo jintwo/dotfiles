@@ -1,6 +1,9 @@
 ;;; init-keys.el --- common keyboard shortcuts config
 ;;; Commentary:
 ;;; Code:
+;; enable key chords
+(key-chord-mode t)
+
 ;; emacs-mac bindings
 (setq mac-function-modifier 'hyper
       mac-option-modifier 'meta
@@ -25,7 +28,6 @@
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
-
 
 (provide 'init-keys)
 ;;; init-keys.el ends here

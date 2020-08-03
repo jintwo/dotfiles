@@ -83,7 +83,9 @@
 
 (use-package resize-window
   :ensure t
-  :chords (("rw" . resize-window)))
+  :config
+  (when (fboundp 'key-chord-mode)
+    (key-chord-define-global "rw" 'resize-window)))
 
 (provide 'init-gui)
 ;;; init-gui.el ends here

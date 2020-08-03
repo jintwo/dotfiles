@@ -1,6 +1,10 @@
 ;;; init-python.el --- Python dev config
 ;;; Commentary:
 ;;; Code:
+(use-package pyvenv
+  :ensure t
+  :defer t)
+
 (use-package ein
   :ensure t
   :defer t)

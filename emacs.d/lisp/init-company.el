@@ -3,7 +3,6 @@
 ;;; Code:
 (use-package company
   :ensure t
-  :defer t
   :config
   (setq company-idle-delay 0.3
         company-show-numbers t
