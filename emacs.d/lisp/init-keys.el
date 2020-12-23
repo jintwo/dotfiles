@@ -14,7 +14,6 @@
 
 (global-set-key (kbd "s-k") 'kill-this-buffer)
 
-(global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 
 (global-set-key (kbd "C-c l") 'join-line)

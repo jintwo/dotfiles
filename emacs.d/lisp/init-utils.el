@@ -1,6 +1,10 @@
 ;;; init-utils.el --- additional tools config -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+(use-package helm-ag
+  :ensure t
+  :defer 1)
+
 (use-package helm-rg
   :ensure t
   :defer 1)
@@ -40,6 +44,8 @@
   :bind (("C-c d" . dash-at-point)
          ("C-c e" . dash-at-point-with-docset)))
 
+(use-package vterm
+  :ensure t)
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

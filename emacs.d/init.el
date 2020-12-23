@@ -14,6 +14,7 @@
 
 (load-library "url-handlers")
 
+(set-language-environment "UTF-8")
 (setenv "ESHELL" (expand-file-name "~/bin/eshell"))
 (setenv "LC_CTYPE" "UTF-8")
 (setenv "LC_ALL" "en_US.UTF-8")
@@ -28,10 +29,12 @@
 (require 'init-packages)
 (require 'init-keys)
 (require 'init-gui)
+;; TODO: should try `selectrum' instead of `helm'
 (require 'init-helm)
 (require 'init-editor)
 (require 'init-ibuffer)
 (require 'init-utils)
+(require 'init-org)
 
 ;; dev
 (require 'init-flycheck)

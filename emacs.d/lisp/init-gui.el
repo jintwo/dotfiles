@@ -7,13 +7,16 @@
 (when (fboundp 'set-scroll-bar-mode)
   (set-scroll-bar-mode -1))
 
+(toggle-scroll-bar -1)
+
 (menu-bar-mode -1)
 
 (let ((no-border '(internal-border-width . 0)))
   (add-to-list 'default-frame-alist no-border)
   (add-to-list 'initial-frame-alist no-border))
 
-(setq line-spacing 0.1)
+;; (setq line-spacing 0.15) ;; non-retina
+(setq line-spacing 0.1) ;; retina
 
 (set-language-environment "UTF-8")
 
@@ -36,9 +39,11 @@
   "GUI settings."
   (interactive)
   ;; (jin/set-font "Cascadia Code PL" 120)
-  (jin/set-font "SF Mono" 120)
+  ;; (jin/set-font "SF Mono" 120)
+  ;; (jin/set-font "Iosevka" 140) ;; non-retina
+  (jin/set-font "Iosevka" 120) ;; retina
   ;; (jin/set-font "Source Code Pro" 120)
-  ;; (jin/set-font "Roboto Mono" 120)
+  ;; (jin/set-font "Roboto Mono Light for Powerline" 120)
   (when (eq (window-system) 'mac)
     (toggle-frame-fullscreen)))
 
@@ -67,13 +72,45 @@
         doom-modeline-env-enable-elixir t))
 
 ;; theme
+
 (use-package colorless-themes
   :ensure t)
 
 (use-package nordless-theme
+  :ensure t)
+;;   :config
+;;   (load-theme 'nordless t))
+
+(use-package kaolin-themes
+  :ensure t)
+;;   :config
+;;   (load-theme 'kaolin-mono-light t))
+
+(use-package kaoless-theme
+  :load-path "lisp/themes/")
+
+(use-package circadian
   :ensure t
   :config
-  (load-theme 'nordless t))
+  ;; Jakarta
+  (setq calendar-latitude -6.76665)
+  (setq calendar-longitude 108.305928)
+  ;; Belgorod
+  ;; (setq calendar-latitude 50.596722)
+  ;; (setq calendar-longitude 36.587780)
+  (setq circadian-themes '((:sunrise . kaoless)
+                           (:sunset  . nordless)))
+  (circadian-setup))
+
+(use-package treemacs
+  :ensure t
+  :defer t
+  :bind (:map global-map ("M-0" . treemacs-select-window))
+  :config
+  (progn
+    (setq treemacs-no-png-images t)
+    (treemacs-load-theme "Iconless")
+    (treemacs-resize-icons 11)))
 
 ;; windows
 (use-package ace-window

@@ -38,6 +38,11 @@
   :config
   (idle-highlight-mode t))
 
+(use-package whole-line-or-region
+  :ensure t
+  :config
+  (whole-line-or-region-global-mode t))
+
 ;; annotate todos
 (setq to-highlight '(".*TODO.*" ".*FIXME.*"))
 
@@ -55,12 +60,15 @@
   :init
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
-;; (use-package yasnippet
-;;   :ensure t
-;;   :defer t
-;;   :config
-;;   (yas-global-mode t))
+(use-package yasnippet
+  :ensure t
+  :defer t
+  :config
+  (yas-global-mode t))
 
+(use-package yasnippet-snippets
+  :ensure t
+  :defer t)
 
 (use-package move-dup
   :ensure t

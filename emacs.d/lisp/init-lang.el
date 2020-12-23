@@ -49,6 +49,10 @@
   :ensure t
   :defer t)
 
+(use-package graphviz-dot-mode
+  :ensure t
+  :defer t)
+
 ;; prolog
 (add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
 (add-to-list 'auto-mode-alist '("\\.plt\\'" . prolog-mode))
