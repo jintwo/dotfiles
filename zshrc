@@ -9,24 +9,16 @@ antigen use oh-my-zsh
 
 antigen bundle brew
 antigen bundle git
-antigen bundle lein
-antigen bundle mercurial
-antigen bundle mvn
 antigen bundle osx
 antigen bundle docker
 
-antigen bundle kennethreitz/autoenv
-antigen bundle rimraf/k
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-antigen theme jintwo/dotfiles zsh/jin-dark
+#antigen theme jintwo/dotfiles zsh/jin-dark
+
+antigen theme "${HOME}/Documents/Github/dotfiles/zsh" jin-nord
 
 antigen apply
 
 source ~/.zshrc-local
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# OPAM configuration
-. /Users/jin/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

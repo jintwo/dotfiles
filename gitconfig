@@ -17,14 +17,11 @@
     ds = !git diff | vim
     pf = push --force-with-lease
 [core]
-    editor = vim
     excludesfile = /Users/jin/.gitignore
     quotepath = false
     autocrlf = input
 [push]
     default = current
-[github]
-    user = jintwo
 [filter "lfs"]
     clean = git-lfs clean %f
     smudge = git-lfs smudge %f
