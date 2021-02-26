@@ -2,44 +2,41 @@
 ;;; Commentary:
 ;;; Code:
 (use-package undo-tree
-  :ensure t
+  :defer 1
   :config
   (global-undo-tree-mode))
 
 (use-package multiple-cursors
-  :ensure t
   :bind (("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
 
 (use-package expand-region
-  :ensure t
   :bind ("C-=" . er/expand-region))
 
 (use-package avy
-  :ensure t
+  :defer t
   :config
   (avy-setup-default)
   (when (fboundp 'key-chord-mode)
     (key-chord-define-global "jc" 'avy-goto-char)
     (key-chord-define-global "jl" 'avy-goto-line)))
 
+;; should i use siege mode?
 (use-package corral
-  :ensure t)
+  :defer t)
 
 (use-package highlight-indent-guides
-  :ensure t
   :config
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (setq highlight-indent-guides-method 'character))
 
+;; is LSP suitable to do it?
 (use-package idle-highlight-mode
-  :ensure t
   :config
   (idle-highlight-mode t))
 
 (use-package whole-line-or-region
-  :ensure t
   :config
   (whole-line-or-region-global-mode t))
 
@@ -54,26 +51,26 @@
 
 (add-hook 'prog-mode-hook 'annotate)
 
+;; looks like it doesn't works now
 (use-package rainbow-delimiters
-  :ensure t
   :commands 'rainbow-delimiters-mode
   :init
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
+;; still not using it (should disable/remove?)
 (use-package yasnippet
-  :ensure t
   :defer t
   :config
   (yas-global-mode t))
 
 (use-package yasnippet-snippets
-  :ensure t
   :defer t)
 
 (use-package move-dup
-  :ensure t
-  :bind (("M-<up>" . md-move-lines-up)
-         ("M-<down>" . md-move-lines-down)))
+  :bind (("M-<up>" . move-dup-move-lines-up)
+         ("M-<down>" . move-dup-move-lines-down))
+  :config
+  (global-move-dup-mode))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -107,6 +104,8 @@
       (propertize shortened-text 'font-lock-face 'shadow 'help-echo text))))
 
 (add-hook 'comint-preoutput-filter-functions 'comint-shorten-long-lines)
+
+(global-display-line-numbers-mode)
 
 (provide 'init-editor)
 ;;; init-editor.el ends here

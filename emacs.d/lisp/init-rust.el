@@ -9,13 +9,12 @@
 ;;   (setq rust-format-on-save t))
 
 (use-package rustic
-  :ensure t
   :defer t
   :config
   (setq rustic-format-trigger 'on-save))
 
 (when (featurep 'init-lsp)
-  (add-hook 'rust-mode-hook #'lsp))
+  (add-hook 'rust-mode-hook #'lsp-deferred))
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

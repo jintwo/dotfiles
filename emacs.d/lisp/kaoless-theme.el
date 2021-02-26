@@ -9,13 +9,14 @@
 
 (colorless-themes-make kaoless
                        "#F1F3E9"    ; bg
-                       "#E5E6DE"    ; bg+
+                       "#E8EADA" ;;"#ECEDDE" ;;"#E8E9D1" ;; "#E5E6DE"    ; bg+ ; string background
                        "#DEE0D6"    ; current-line
-                       "#C3C4BF" ;; "#DCDED2"    ; fade
+                       "#C3C4BF" ;; "#DCDED2"    ; fade ; mode-line + popup background selected
 
-                       "#575160" ;; "#534C5B"    ; fg
-                       "#928E93" ;; "#575160"    ; fg+
-                       "#838A70"    ; docs
+                       "#534C5B" ;; "#575160" ;; "#534C5B"    ; fg / default text
+
+                       "#928E93" ;; "#575160"    ; fg+ / popup background unselected
+                       "#5B7C93" ;; "#4A873A" ;; "#377E24" ;; "#6FAA3C" ;; "#838A70"    ; docs / comment -> make _more_ green, steal from orig theme
 
                        "#E76282" ;; "#BF616A"    ; red (e76282)
                        "#D1832E" ;; "#D08770"    ; orange (379045)

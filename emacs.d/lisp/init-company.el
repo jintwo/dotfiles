@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (use-package company
-  :ensure t
+  :defer 1
   :config
   (setq company-idle-delay 0.3
         company-show-numbers t

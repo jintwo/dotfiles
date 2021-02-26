@@ -5,6 +5,14 @@
               tab-width 4
               c-default-style "linux")
 
+;; c-like
+(use-package ccls
+  :defer t
+  :config
+  (add-hook 'c-mode-hook #'lsp-deferred)
+  (add-hook 'c++-mode-hook #'lsp-deferred)
+  (add-hook 'objc-mode-hook #'lsp-deferred))
+
 ;; java
 ;; (use-package lsp-java
 ;;   :ensure t
@@ -14,16 +22,13 @@
 
 ;; swift
 (use-package swift-mode
-  :ensure t
   :defer t)
 
 ;; lua
 (use-package lua-mode
-  :ensure t
   :defer t
-  :bind (:map lua-mode-map
-              (("C-c C-r" . lua-send-region)
-               ("C-c M-j" . lua-start-process)))
+  :bind-keymap (("C-c C-r" . lua-send-region)
+                ("C-c M-j" . lua-start-process))
   :config
   (setq lua-indent-level 4))
 
@@ -32,25 +37,19 @@
 
 ;; markup
 (use-package yaml-mode
-  :ensure t
-  :defer t)
+  :mode ("\\.yaml\\'" "\\.yml\\'"))
 
 (use-package markdown-mode
-  :ensure t
-  :defer t
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'"))
 
 ;; conf
 (use-package protobuf-mode
-  :ensure t
-  :defer t)
+  :mode "\\.proto\\'")
 
 (use-package dockerfile-mode
-  :ensure t
   :defer t)
 
 (use-package graphviz-dot-mode
-  :ensure t
   :defer t)
 
 ;; prolog

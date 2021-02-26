@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (use-package ibuffer-vc
-  :ensure t)
+  :defer t)
 
 (defun ibuffer-set-up-preferred-filters ()
   (ibuffer-vc-set-filter-groups-by-vc-root)

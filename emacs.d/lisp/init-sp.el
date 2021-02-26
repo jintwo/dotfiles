@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 (use-package smartparens
-  :ensure t
   :demand t
   :config
   (progn

@@ -1,51 +1,40 @@
 ;;; init-utils.el --- additional tools config -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-(use-package helm-ag
-  :ensure t
-  :defer 1)
-
-(use-package helm-rg
-  :ensure t
-  :defer 1)
-
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
-  :ensure t
-  :init
-  (setq exec-path-from-shell-check-startup-files nil)
+  :defer 0
   :config
   (exec-path-from-shell-initialize))
 
+(use-package helm-ag
+  :defer t)
+
 (use-package restclient
-  :ensure t
-  :defer t
   :mode ("\\.http\\'"))
 
 (use-package which-key
-  :ensure t
+  :defer 0
+  :diminish which-key-mode
   :config
-  (which-key-mode))
+  (which-key-mode)
+  (setq which-key-idle-delay 1))
 
 (use-package memento-mori
-  :ensure t
+  :defer 1
   :custom
   (memento-mori-birth-date "1987-04-14")
   :config
   (memento-mori-mode t))
 
 (use-package wakatime-mode
-  :ensure t
+  :defer 1
   :config
   (global-wakatime-mode))
 
 (use-package dash-at-point
-  :ensure t
   :bind (("C-c d" . dash-at-point)
          ("C-c e" . dash-at-point-with-docset)))
-
-(use-package vterm
-  :ensure t)
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

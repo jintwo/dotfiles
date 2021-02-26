@@ -12,7 +12,7 @@
 
 (global-set-key (kbd "C-c C-a") 'org-agenda)
 
-(defun jin/org-set-checkbox ()
+(defun j2/org-set-checkbox ()
   "Add checkbox inplace or before selected text."
   (interactive)
   (let ((pos (if (region-active-p) (region-beginning) (point))))
@@ -21,7 +21,7 @@
       (insert "[ ] "))))
 
 (add-hook 'org-mode-hook
-          (lambda () (local-set-key (kbd "C-c x") 'jin/org-set-checkbox)))
+          (lambda () (local-set-key (kbd "C-c x") 'j2/org-set-checkbox)))
 
 (provide 'init-org)
 ;;; init-org.el ends here

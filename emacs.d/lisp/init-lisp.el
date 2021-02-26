@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 (use-package cider
-  :ensure t
   :defer t
   :config
   (setq nrepl-log-messages t
@@ -12,25 +11,18 @@
   (cider-lein-command "/usr/local/bin/lein"))
 
 (use-package sly
-  :ensure t
   :defer t
-  :config
-  (setq-default inferior-lisp-program "sbcl"))
+  :custom
+  (inferior-lisp-program "sbcl"))
 
 (use-package sly-asdf
-  :requires sly
-  :ensure t
-  :defer t)
+  :after sly)
 
 (use-package sly-quicklisp
-  :requires sly
-  :ensure t
-  :defer t)
+  :after sly)
 
 (use-package helm-sly
-  :requires helm
-  :ensure t
-  :defer t)
+  :after sly)
 
 ;; (use-package slime
 ;;   :ensure t
@@ -42,14 +34,11 @@
 ;;   (slime-setup '(slime-repl)))
 
 (use-package geiser
-  :ensure t
   :defer t)
 
 ;; (use-package racket-mode
 ;;   :ensure t
 ;;   :defer t)
-
-(define-key emacs-lisp-mode-map (kbd "C-c .") 'find-function-at-point)
 
 (provide 'init-lisp)
 ;;; init-lisp.el ends here

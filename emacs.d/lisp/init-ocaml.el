@@ -2,24 +2,26 @@
 ;;; Commentary:
 ;;; Code:
 (use-package tuareg
-  :ensure t
-  :defer t
   :mode (("\\.mll\\'" . tuareg-mode)
+         ("\\.ml[ip]?\\'" . tuareg-mode)
+         ("\\.eliomi?\\'" . tuareg-mode)
          ("\\.mly\\'" . tuareg-menhir-mode)))
 
 (use-package utop
-  :ensure t)
+  :after tuareg
+  :config
+  (setq utop-command "opam config exec utop -- -emacs")
+  (add-hook 'tuareg-mode-hook #'utop-minor-mode))
 
 (use-package flycheck-ocaml
-  :ensure t)
+  :after tuareg)
 
 (use-package merlin
-  :ensure t
+  :after (tuareg flycheck-ocaml)
   :config
-  (flycheck-ocaml-setup))
-
-(add-hook 'tuareg-mode-hook #'utop-minor-mode)
-(add-hook 'tuareg-mode-hook #'merlin-mode)
+  (flycheck-ocaml-setup)
+  (setq merlin-error-after-save nil)
+  (add-hook 'tuareg-mode-hook #'merlin-mode))
 
 (add-hook 'tuareg-mode-hook (lambda ()
                               (progn
@@ -30,9 +32,6 @@
 
 (require 'company)
 (add-to-list 'company-backends 'merlin-company-backend)
-
-(setq utop-command "opam config exec utop -- -emacs"
-      merlin-error-after-save nil)
 
 (provide 'init-ocaml)
 ;;; init-ocaml.el ends here

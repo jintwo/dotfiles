@@ -2,15 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 (use-package haskell-mode
-  :ensure t
-  :defer t
-  :init
-  (progn
-    (add-to-list 'exec-path "~/.cabal/bin")
-    (add-to-list 'completion-ignored-extensions ".hi"))
+  :mode ("\\.hs\\'" "\\.lhs\\'")
   :custom
   (haskell-indentation-layout-offset 4)
-  (haskell-indentation-left-offset 4))
+  (haskell-indentation-left-offset 4)
+  :init
+  (add-hook 'haskell-mode-hook #'haksell-mode-init))
 
 (defun haskell-mode-init ()
   "Set haskell style."
@@ -19,12 +16,9 @@
   (haskell-indentation-mode t)
   (interactive-haskell-mode t))
 
-(add-hook 'haskell-mode-hook 'haskell-mode-init)
-
 (use-package tidal
-  :requires haskell-mode
-  :ensure t
-  :defer t)
+  :after haskell-mode
+  :mode ("\\.tidal\\'"))
 
 (provide 'init-haskell)
 ;;; init-haskell.el ends here

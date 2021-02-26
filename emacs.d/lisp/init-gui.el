@@ -17,10 +17,11 @@
 
 ;; (setq line-spacing 0.15) ;; non-retina
 (setq line-spacing 0.1) ;; retina
+(set-fringe-mode 10)
 
 (set-language-environment "UTF-8")
 
-(defun jin/set-font (family height)
+(defun j2/set-font (family height)
   "Set font FAMILY with HEIGHT."
   (interactive)
   (set-face-attribute 'default nil
@@ -38,12 +39,12 @@
 (defun init-gui ()
   "GUI settings."
   (interactive)
-  ;; (jin/set-font "Cascadia Code PL" 120)
-  ;; (jin/set-font "SF Mono" 120)
-  ;; (jin/set-font "Iosevka" 140) ;; non-retina
-  (jin/set-font "Iosevka" 120) ;; retina
-  ;; (jin/set-font "Source Code Pro" 120)
-  ;; (jin/set-font "Roboto Mono Light for Powerline" 120)
+  ;; (j2/set-font "Cascadia Code PL" 120)
+  ;; (j2/set-font "SF Mono" 120)
+  ;; (j2/set-font "Iosevka" 140) ;; non-retina
+  (j2/set-font "Iosevka" 120) ;; retina
+  ;; (j2/set-font "Source Code Pro" 120)
+  ;; (j2/set-font "Roboto Mono Light for Powerline" 120)
   (when (eq (window-system) 'mac)
     (toggle-frame-fullscreen)))
 
@@ -57,7 +58,6 @@
 (size-indication-mode t)
 
 (use-package doom-modeline
-  :ensure t
   :hook (after-init . doom-modeline-mode)
   :config
   (setq doom-modeline-height 20
@@ -72,25 +72,20 @@
         doom-modeline-env-enable-elixir t))
 
 ;; theme
-
-(use-package colorless-themes
-  :ensure t)
+(use-package colorless-themes)
 
 (use-package nordless-theme
-  :ensure t)
-;;   :config
-;;   (load-theme 'nordless t))
+  ;; :config
+  ;; (load-theme 'nordless t)
+  )
 
 (use-package kaolin-themes
-  :ensure t)
-;;   :config
-;;   (load-theme 'kaolin-mono-light t))
-
-(use-package kaoless-theme
-  :load-path "lisp/themes/")
+  ;; :config
+  ;; (load-theme 'kaolin-mono-light t)
+  )
 
 (use-package circadian
-  :ensure t
+  :defer 0
   :config
   ;; Jakarta
   (setq calendar-latitude -6.76665)
@@ -103,23 +98,21 @@
   (circadian-setup))
 
 (use-package treemacs
-  :ensure t
   :defer t
   :bind (:map global-map ("M-0" . treemacs-select-window))
   :config
   (progn
     (setq treemacs-no-png-images t)
-    (treemacs-load-theme "Iconless")
     (treemacs-resize-icons 11)))
 
 ;; windows
 (use-package ace-window
-  :ensure t
+  :defer 1
   :config
   (global-set-key (kbd "M-o") 'ace-window))
 
 (use-package resize-window
-  :ensure t
+  :defer 1
   :config
   (when (fboundp 'key-chord-mode)
     (key-chord-define-global "rw" 'resize-window)))

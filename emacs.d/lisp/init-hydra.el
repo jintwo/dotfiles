@@ -1,8 +1,7 @@
 ;;; init-hydra.el --- hydra config
 ;;; Commentary:
 ;;; Code:
-(use-package hydra
-  :ensure t)
+(use-package hydra)
 
 (defhydra hydra-zoom ()
   "Zoom"

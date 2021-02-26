@@ -2,15 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 (use-package gitconfig-mode
-  :ensure t)
+  :defer t)
 
 (use-package gitignore-mode
-  :ensure t)
+  :defer t)
 
 (use-package magit
-  :ensure t
   :defer t
-  :bind (("C-c C-g" . magit-status)))
+  :bind (("C-c C-g" . magit-status))
+  :custom
+  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1))
 
 (provide 'init-git)
 ;;; init-git.el ends here

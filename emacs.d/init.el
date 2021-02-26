@@ -10,7 +10,9 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(setq gc-cons-threshold 50000000)
+(setq gc-cons-threshold 100000000)
+
+(setq read-process-output-max (* 1024 1024))
 
 (load-library "url-handlers")
 
@@ -25,12 +27,39 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; profiling
+(defun display-startup-time ()
+  "Display Emacs startup time."
+  (message "Emacs loaded in %s with %d garbage collections."
+           (format "%.2f seconds"
+                   (float-time
+                    (time-subtract after-init-time before-init-time)))
+           gcs-done))
+
+(add-hook 'emacs-startup-hook #'display-startup-time)
+;;
+
 ;; base
 (require 'init-packages)
+
+;;---
+;; (setq user-emacs-directory "~/.cache/emacs")
+(use-package no-littering)
+
+;;---
+
 (require 'init-keys)
+
+;; custom themes
+(require 'kaoless-theme)
+
+;; maybe join gui+editor
 (require 'init-gui)
-;; TODO: should try `selectrum' instead of `helm'
 (require 'init-helm)
+;; TODO: should try `selectrum' instead of `helm' or `ivy'
+;; ivy looks nice, but before should setup ivy helm counterparts
+;; feature flags?
+;; (require 'init-ivy)
 (require 'init-editor)
 (require 'init-ibuffer)
 (require 'init-utils)
