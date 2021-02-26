@@ -3,6 +3,9 @@
 ;;; Code:
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+(when (package-installed-p 'gcmh)
+  (gcmh-mode 1))
+
 ;;; maybe load site-lisp packages
 ;; (let ((vendor-dir-path (expand-file-name "vendor" user-emacs-directory)))
 ;;   (when (file-directory-p vendor-dir-path)
@@ -10,11 +13,9 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(setq gc-cons-threshold 100000000)
-
 (setq read-process-output-max (* 1024 1024))
 
-(load-library "url-handlers")
+;; (load-library "url-handlers")
 
 (set-language-environment "UTF-8")
 (setenv "ESHELL" (expand-file-name "~/bin/eshell"))
@@ -70,6 +71,7 @@
 (require 'init-git)
 (require 'init-sp)
 (require 'init-company)
+;; (require 'init-eglot)
 (require 'init-lsp)
 
 ;; langs

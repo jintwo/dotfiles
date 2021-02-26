@@ -27,7 +27,7 @@
          ("M-I" . helm-swoop-back-to-last-point)))
 
 (use-package helm-xref
-  :defer t
+  :defer 0
   :config
   (setq xref-prompt-for-identifier '(not xref-find-definitions
                                          xref-find-definitions-other-window

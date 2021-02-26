@@ -12,5 +12,8 @@
 (when (featurep 'init-lsp)
   (add-hook 'python-mode-hook #'lsp-deferred))
 
+(when (featurep 'init-eglot)
+  (add-hook 'python-mode-hook #'eglot-ensure))
+
 (provide 'init-python)
 ;;; init-python.el ends here

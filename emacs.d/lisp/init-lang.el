@@ -9,9 +9,16 @@
 (use-package ccls
   :defer t
   :config
-  (add-hook 'c-mode-hook #'lsp-deferred)
-  (add-hook 'c++-mode-hook #'lsp-deferred)
-  (add-hook 'objc-mode-hook #'lsp-deferred))
+  (when (featurep 'init-lsp)
+    (progn
+      (add-hook 'c-mode-hook #'lsp-deferred)
+      (add-hook 'c++-mode-hook #'lsp-deferred)
+      (add-hook 'objc-mode-hook #'lsp-deferred)))
+  (when (featurep 'init-eglot)
+      (progn
+        (add-hook 'c-mode-hook #'eglot-ensure)
+        (add-hook 'c++-mode-hook #'eglot-ensure)
+        (add-hook 'objc-mode-hook #'eglot-ensure))))
 
 ;; java
 ;; (use-package lsp-java

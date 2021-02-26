@@ -51,7 +51,6 @@
 
 (add-hook 'prog-mode-hook 'annotate)
 
-;; looks like it doesn't works now
 (use-package rainbow-delimiters
   :commands 'rainbow-delimiters-mode
   :init
@@ -91,8 +90,6 @@
 ;; paren
 (show-paren-mode t)
 (setq show-paren-delay 0)
-(set-face-background 'show-paren-match (face-background 'default))
-(set-face-attribute 'show-paren-match nil :weight 'ultra-bold :underline t)
 
 ;; comint fix
 (defun comint-shorten-long-lines (text)

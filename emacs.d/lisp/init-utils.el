@@ -36,5 +36,7 @@
   :bind (("C-c d" . dash-at-point)
          ("C-c e" . dash-at-point-with-docset)))
 
+(use-package gcmh)
+
 (provide 'init-utils)
 ;;; init-utils.el ends here
