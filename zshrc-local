@@ -3,59 +3,37 @@
 
 fpath=(/usr/local/share/zsh-completions ~/.zsh/completions $fpath)
 
-export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11/bin
-
 alias emd="emacs --daemon"
 alias emdk="emacsclient -e '(kill-emacs)'"
 alias em="emacsclient -t"
 alias emx="emacsclient -nc"
 alias gpa="gp --all"
 
-# docker
-export DOCKER_API_VERSION=1.25
-
-alias dk="docker"
-alias dc="docker-compose"
-alias dm="docker-machine"
-alias dip='dk inspect --format "{{ .NetworkSettings.IPAddress }}"'
-alias dke="dk exec -it"
-alias dkl='dk logs -f --tail=100'
-
-function dkci {
-    local args=($(dk ps | grep $1 | grep ${2:-""} | awk '{print $1 " " $2}'))
-    local comps="$(echo $args | wc -w)"
-    if [[ $comps -ne 2 ]]; then
-        echo "ambigous results. try to specify CONTAINER-ID mask"
-        return;
-    else
-        dk commit ${args[@]}
-    fi
-}
-
-function dcl {
-    dk volume rm $(docker volume ls -qf dangling=true)
-    dk rm $(docker ps -qa --no-trunc --filter "status=exited")
-    dk rmi $(docker images | grep "none" | awk '/ / { print $3 }')
-}
-
 # k8s
-export PATH="${PATH}:${HOME}/.krew/bin"
-alias kc="kubectl"
-alias kcl="kc logs -n production -f --tail=100"
-alias kcgp="kc get pods -o wide --all-namespaces"
-alias kce="kc exec -it -n production"
-alias kcdp="kc delete pod"
+function kc {
+    local ns=${NS:-production}
+    local sp='--'
+    local spi=$@[(ie)$sp]
+    local args=(${@:1:$((spi-1))} -n $ns ${@:$spi})
+    kubectl $args
+}
 
-kcr () {
-    local deploy="$1"
+function kcr () {
+    local resource="$1"
     shift
 
     local patch_str='{"spec": {"template": {"metadata": {"annotations": {"restartTrigger":"'
     patch_str+="$(date)"
     patch_str+='"}}}}}'
 
-    kubectl patch deploy "$deploy" -p "$patch_str" $@
+    kc patch "$resource" -p "$patch_str"
 }
+
+alias kcl="kc logs -f --tail=100"
+alias kce="kc exec -it"
+alias kcdp="kc delete pod"
+alias kcrs="kc rollout status"
+alias kcgp="kc get pods -o wide --all-namespaces"
 
 # common
 export VIRTUAL_ENV_DISABLE_PROMPT='Y'
@@ -76,13 +54,10 @@ export LANG=en_US.UTF-8
 # export PATH=${DEVKITPRO}/tools/bin:$PATH
 
 # python + virtualenvwrapper
-# export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 which virtualenvwrapper.sh 2>&1 > /dev/null && export WORKON_HOME=$HOME/.virtualenvs && source `which virtualenvwrapper.sh`
 
 # langs
-export PATH=$PATH:~/.luarocks/bin
-export PATH=$PATH:~/Documents/Github/elixir-ls/release
 source ~/.ghcup/env
 source ~/.cargo/env
 
@@ -101,7 +76,29 @@ function recode {
     iconv -f $from_encoding -t $to_encoding $filename | sponge $filename
 }
 
-export PATH=$PATH:~/.tools/bin
+alias ls=exa
+alias cat="bat -n --theme Nord"
+
+# tmux
+function create-tmux-session {
+    local session="work"
+    local window="dev"
+    local resurrect_script=$HOME/.tmux/plugins/tmux-resurrect/scripts/restore.sh
+    tmux new-session -s $session -n $window -d
+    tmux run-shell $resurrect_script
+    tmux attach -t $session
+}
+
+function resolve-tmux-window {
+    local session=$(tmux list-sessions | grep attached | cut -d":" -f1)
+    local window=$(tmux list-windows | grep active | cut -d":" -f1)
+    echo "${session}:${window}"
+}
+
+function get-tmux-panes {
+    local window=$(resolve-tmux-window)
+    echo $(tmux list-panes | cut -d":" -f1 | sed "s/^/$window./" | tr "\n" " ")
+}
 
 # private
 if [ -f ~/.zshrc-private ]; then

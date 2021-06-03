@@ -22,7 +22,3 @@ syntax enable
 filetype plugin indent on
 
 let mapleader = ","
-
-nnoremap <leader>ts :tabs<CR>
-nnoremap <leader>tp :tabprevious<CR>
-nnoremap <leader>tn :tabnext<CR>
