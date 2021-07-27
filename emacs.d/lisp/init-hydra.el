@@ -23,24 +23,6 @@
 (global-set-key (kbd "C-c c") 'hydra-flycheck/body)
 
 
-(defhydra hydra-corral (:columns 4)
-  "Corral"
-  ("(" corral-parentheses-backward "Back")
-  (")" corral-parentheses-forward "Forward")
-  ("[" corral-brackets-backward "Back")
-  ("]" corral-brackets-forward "Forward")
-  ("{" corral-braces-backward "Back")
-  ("}" corral-braces-forward "Forward")
-  ("'" corral-single-quotes-forward "Forward")
-  (";" corral-single-quotes-backward "Backward")
-  ("\"" corral-double-quotes-forward "Forward")
-  (":" corral-double-quotes-backward "Backward")
-  ("." hydra-repeat "Repeat")
-  ("q" nil "Quit" :color blue))
-
-(global-set-key (kbd "C-c r") 'hydra-corral/body)
-
-
 (defhydra hydra-smartparens ()
   "Smartparens"
   ("d" sp-down-sexp "Down")

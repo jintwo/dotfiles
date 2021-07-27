@@ -1,4 +1,4 @@
-;;; init-gui.el --- gui config
+;;; init-ui.el --- ui config
 ;;; Commentary:
 ;;; Code:
 (when (fboundp 'tool-bar-mode)
@@ -13,6 +13,8 @@
 
 (blink-cursor-mode 0)
 
+(setq mouse-autoselect-window t)
+
 (let ((no-border '(internal-border-width . 0)))
   (add-to-list 'default-frame-alist no-border)
   (add-to-list 'initial-frame-alist no-border))
@@ -23,34 +25,39 @@
 
 (set-language-environment "UTF-8")
 
-(defun j2/set-font (family height)
-  "Set font FAMILY with HEIGHT."
+(defun j2/next-font-weight (weight)
+  "Get next font WEIGHT."
+  (let* ((weights (mapcar #'(lambda (x) (aref x 1)) font-weight-table))
+         (max-idx (- (length weights) 1))
+         (weight-idx (seq-position weights weight)))
+    (if (and (numberp weight-idx)
+             (< weight-idx max-idx))
+        (seq-elt weights (1+ weight-idx))
+      'normal)))
+
+(defun j2/set-font (family height &optional weight)
+  "Set font FAMILY with given HEIGHT and WEIGHT."
   (interactive)
-  (set-face-attribute 'default nil
-                      :family family
-                      :height height
-                      :weight 'light
-                      :width 'normal)
-  ;; fixes for :bold characters
-  (set-face-attribute 'font-lock-string-face nil
-                      :weight 'semi-light)
-  (set-face-attribute 'font-lock-doc-face nil
-                      :weight 'semi-light)
+  (unless weight (setq weight 'light))
+  (set-face-attribute 'default nil :family family :height height :weight weight :width 'normal)
+  ;; strings + docs should be bold
+  (set-face-attribute 'font-lock-string-face nil :weight (j2/next-font-weight weight))
+  (set-face-attribute 'font-lock-doc-face nil :weight (j2/next-font-weight weight))
   (set-fontset-font "fontset-default" 'unicode-bmp family))
 
-(defun init-gui ()
-  "GUI settings."
+(defun init-ui ()
+  "UI settings."
   (interactive)
-  ;; (j2/set-font "Cascadia Code PL" 120)
-  ;; (j2/set-font "SF Mono" 120)
+  ;; (j2/set-font "Cascadia Code PL" 120 'ultra-light)
+  ;; (j2/set-font "PT Mono" 120 'light)
   ;; (j2/set-font "Iosevka" 140) ;; non-retina
-  (j2/set-font "Iosevka" 120) ;; retina
-  ;; (j2/set-font "Source Code Pro" 120)
-  ;; (j2/set-font "Roboto Mono Light for Powerline" 120)
+  (j2/set-font "Iosevka" 120 'light) ;; retina
+  ;; (j2/set-font "Source Code Pro" 120 'light)
+  ;; (j2/set-font "Roboto Mono" 120 'light)
   (when (eq (window-system) 'mac)
     (toggle-frame-fullscreen)))
 
-(add-hook 'after-init-hook 'init-gui)
+(add-hook 'after-init-hook 'init-ui)
 
 (global-hl-line-mode t)
 
@@ -86,6 +93,9 @@
   ;; (load-theme 'kaolin-mono-light t)
   )
 
+;; (setq nano-theme-light/dark 'light)
+;; (load-theme 'nano t)
+
 (use-package circadian
   :defer 0
   :config
@@ -119,5 +129,14 @@
   (when (fboundp 'key-chord-mode)
     (key-chord-define-global "rw" 'resize-window)))
 
-(provide 'init-gui)
-;;; init-gui.el ends here
+(use-package helpful
+  :defer t
+  :bind (:map global-map (("C-h f" . helpful-callable)
+                          ("C-h v" . helpful-variable)
+                          ("C-h k" . helpful-key)
+                          ("C-h d" . helpful-at-point)
+                          ("C-h F" . helpful-function)
+                          ("C-h C" . helpful-command))))
+
+(provide 'init-ui)
+;;; init-ui.el ends here

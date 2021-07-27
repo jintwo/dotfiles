@@ -13,10 +13,7 @@
   (chuck-port 9191))
 
 (use-package sclang
-  :load-path "vendor/sclang"
-  :config
-  (use-package sclang-extensions
-    :ensure t))
+  :load-path "vendor/sclang")
 
 (provide 'init-vendor)
 ;;; init-vendor.el ends here

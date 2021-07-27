@@ -6,7 +6,10 @@
   :commands (lsp lsp-deffered)
   :config
   (setq lsp-log-io nil
-        lsp-idle-delay 0.5)
+        lsp-idle-delay 0.5
+        lsp-enable-file-watchers t
+        lsp-file-watch-threshold 1000
+        lsp-rust-server 'rust-analyzer)
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package lsp-ui
@@ -17,10 +20,6 @@
   (lsp-ui-peek-enable nil)
   (lsp-ui-sideline-update-mode 'line)
   (lsp-ui-imenu-enable nil))
-
-(use-package company-lsp
-  :after (company lsp-mode)
-  :commands company-lsp)
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here

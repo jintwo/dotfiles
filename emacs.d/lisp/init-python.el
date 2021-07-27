@@ -10,6 +10,7 @@
   :defer t)
 
 (when (featurep 'init-lsp)
+  (use-package lsp-pyright)
   (add-hook 'python-mode-hook #'lsp-deferred))
 
 (when (featurep 'init-eglot)

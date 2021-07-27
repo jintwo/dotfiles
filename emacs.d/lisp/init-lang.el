@@ -33,9 +33,7 @@
 
 ;; lua
 (use-package lua-mode
-  :defer t
-  :bind-keymap (("C-c C-r" . lua-send-region)
-                ("C-c M-j" . lua-start-process))
+  :mode ("\\.lua\\'")
   :config
   (setq lua-indent-level 4))
 
@@ -62,6 +60,17 @@
 ;; prolog
 (add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
 (add-to-list 'auto-mode-alist '("\\.plt\\'" . prolog-mode))
+
+;; golang
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t))
+  ;; (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
+(use-package go-mode
+  :mode ("\\.go\\'")
+  :config
+  (add-hook 'go-mode-hook #'lsp-deferred)
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

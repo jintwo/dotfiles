@@ -7,7 +7,7 @@
   (haskell-indentation-layout-offset 4)
   (haskell-indentation-left-offset 4)
   :init
-  (add-hook 'haskell-mode-hook #'haksell-mode-init))
+  (add-hook 'haskell-mode-hook #'haskell-mode-init))
 
 (defun haskell-mode-init ()
   "Set haskell style."

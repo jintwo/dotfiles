@@ -1,15 +1,17 @@
 ;;; init.el --- simple config -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
 (when (package-installed-p 'gcmh)
   (gcmh-mode 1))
 
 ;;; maybe load site-lisp packages
-;; (let ((vendor-dir-path (expand-file-name "vendor" user-emacs-directory)))
-;;   (when (file-directory-p vendor-dir-path)
-;;     (add-to-list 'load-path vendor-dir-path)))
+(let ((vendor-dir-path (expand-file-name "vendor" user-emacs-directory)))
+  (when (file-directory-p vendor-dir-path)
+    (add-to-list 'load-path vendor-dir-path)))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
@@ -51,13 +53,10 @@
 
 (require 'init-keys)
 
-;; custom themes
-(require 'kaoless-theme)
-
-;; maybe join gui+editor
-(require 'init-gui)
+;; maybe join ui+editor
+(require 'init-ui)
 (require 'init-helm)
-;; TODO: should try `selectrum' instead of `helm' or `ivy'
+;; TODO: should try `selectrum'/`vertico' instead of `helm' or `ivy'
 ;; ivy looks nice, but before should setup ivy helm counterparts
 ;; feature flags?
 ;; (require 'init-ivy)
@@ -88,7 +87,7 @@
 (require 'init-projectile)
 
 ;; custom packages
-;; (require 'init-vendor)
+(require 'init-vendor)
 
 (put 'narrow-to-region 'disabled nil)
 

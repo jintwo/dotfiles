@@ -22,10 +22,6 @@
     (key-chord-define-global "jc" 'avy-goto-char)
     (key-chord-define-global "jl" 'avy-goto-line)))
 
-;; should i use siege mode?
-(use-package corral
-  :defer t)
-
 (use-package highlight-indent-guides
   :config
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
@@ -103,6 +99,9 @@
 (add-hook 'comint-preoutput-filter-functions 'comint-shorten-long-lines)
 
 (global-display-line-numbers-mode)
+
+;; replace current selection with anything
+(delete-selection-mode t)
 
 (provide 'init-editor)
 ;;; init-editor.el ends here

@@ -13,25 +13,12 @@
 (use-package sly
   :defer t
   :custom
-  (inferior-lisp-program "sbcl"))
-
-(use-package sly-asdf
-  :after sly)
-
-(use-package sly-quicklisp
-  :after sly)
+  (inferior-lisp-program "ros -Q run")
+  :config
+  (sly-setup))
 
 (use-package helm-sly
   :after sly)
-
-;; (use-package slime
-;;   :ensure t
-;;   :defer t
-;;   :config
-;;   (setq-default inferior-lisp-program "sbcl"
-;;                 slime-net-coding-system 'utf-8-unix
-;;                 slime-protocol-version 'ignore)
-;;   (slime-setup '(slime-repl)))
 
 (use-package geiser
   :defer t)

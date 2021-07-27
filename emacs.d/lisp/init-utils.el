@@ -3,7 +3,7 @@
 ;;; Code:
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
-  :defer 0
+  :demand t
   :config
   (exec-path-from-shell-initialize))
 
@@ -33,8 +33,9 @@
   (global-wakatime-mode))
 
 (use-package dash-at-point
-  :bind (("C-c d" . dash-at-point)
-         ("C-c e" . dash-at-point-with-docset)))
+  :defer t
+  :bind (("C-c C-d" . dash-at-point)
+         ("C-c C-e" . dash-at-point-with-docset)))
 
 (use-package gcmh)
 

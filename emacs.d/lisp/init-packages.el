@@ -6,9 +6,6 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 
-;; (when (< emacs-major-version 27)
-;;   (package-initialize))
-
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
