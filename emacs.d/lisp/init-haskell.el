@@ -16,6 +16,18 @@
   (haskell-indentation-mode t)
   (interactive-haskell-mode t))
 
+(use-package dante
+  :ensure t
+  :after haskell-mode
+  :commands 'dante-mode
+  :init
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  (add-hook 'haskell-mode-hook 'dante-mode))
+
+(when (featurep 'init-lsp)
+  (use-package lsp-haskell)
+  (add-hook 'haskell-mode-hook #'lsp-deferred))
+
 (use-package tidal
   :after haskell-mode
   :mode ("\\.tidal\\'"))

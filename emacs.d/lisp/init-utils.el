@@ -39,5 +39,9 @@
 
 (use-package gcmh)
 
+;; org-timer
+(add-hook 'org-timer-done-hook (lambda () (message "timer done!")))
+(global-set-key (kbd "C-c t") 'org-timer-set-timer)
+
 (provide 'init-utils)
 ;;; init-utils.el ends here

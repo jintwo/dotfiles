@@ -1,16 +1,10 @@
 ;;; init-ui.el --- ui config
 ;;; Commentary:
 ;;; Code:
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
 
-(when (fboundp 'set-scroll-bar-mode)
-  (set-scroll-bar-mode -1))
-
-(toggle-scroll-bar -1)
-
+(tool-bar-mode -1)
 (menu-bar-mode -1)
-
+(scroll-bar-mode -1)
 (blink-cursor-mode 0)
 
 (setq mouse-autoselect-window t)
@@ -19,8 +13,7 @@
   (add-to-list 'default-frame-alist no-border)
   (add-to-list 'initial-frame-alist no-border))
 
-;; (setq line-spacing 0.15) ;; non-retina
-(setq line-spacing 0.1) ;; retina
+(setq line-spacing 0.15)
 (set-fringe-mode 10)
 
 (set-language-environment "UTF-8")
@@ -35,25 +28,25 @@
         (seq-elt weights (1+ weight-idx))
       'normal)))
 
-(defun j2/set-font (family height &optional weight)
-  "Set font FAMILY with given HEIGHT and WEIGHT."
+(defun j2/set-font (family height &optional weight bold-weight)
+  "Set font FAMILY with given HEIGHT and optional WEIGHT and BOLD-WEIGHT."
   (interactive)
   (unless weight (setq weight 'light))
+  (unless bold-weight (setq bold-weight (j2/next-font-weight weight)))
   (set-face-attribute 'default nil :family family :height height :weight weight :width 'normal)
   ;; strings + docs should be bold
-  (set-face-attribute 'font-lock-string-face nil :weight (j2/next-font-weight weight))
-  (set-face-attribute 'font-lock-doc-face nil :weight (j2/next-font-weight weight))
+  (set-face-attribute 'font-lock-string-face nil :weight bold-weight)
+  (set-face-attribute 'font-lock-doc-face nil :weight bold-weight)
   (set-fontset-font "fontset-default" 'unicode-bmp family))
 
 (defun init-ui ()
   "UI settings."
   (interactive)
-  ;; (j2/set-font "Cascadia Code PL" 120 'ultra-light)
-  ;; (j2/set-font "PT Mono" 120 'light)
-  ;; (j2/set-font "Iosevka" 140) ;; non-retina
-  (j2/set-font "Iosevka" 120 'light) ;; retina
-  ;; (j2/set-font "Source Code Pro" 120 'light)
-  ;; (j2/set-font "Roboto Mono" 120 'light)
+  ;; (j2/set-font "Iosevka" 140) ;; non-retina ;; line-spacing 0.15
+  ;; (j2/set-font "Iosevka" 120 'light) ;; retina ;; line-spacing 0.1
+  (j2/set-font "Iosevka" 120 'semi-light) ;; retina ;; line-spacing 0.1
+    ;; (j2/set-font "Iosevka" 120 'semi-light 'semi-bold) ;; retina ;; line-spacing 0.1
+  ;; (j2/set-font "JetBrains Mono" 120 'extra-light) ;; line-spacing 0.15
   (when (eq (window-system) 'mac)
     (toggle-frame-fullscreen)))
 
@@ -96,18 +89,14 @@
 ;; (setq nano-theme-light/dark 'light)
 ;; (load-theme 'nano t)
 
-(use-package circadian
-  :defer 0
-  :config
-  ;; Jakarta
-  (setq calendar-latitude -6.76665)
-  (setq calendar-longitude 108.305928)
-  ;; Belgorod
-  ;; (setq calendar-latitude 50.596722)
-  ;; (setq calendar-longitude 36.587780)
-  (setq circadian-themes '((:sunrise . kaoless)
-                           (:sunset  . nordless)))
-  (circadian-setup))
+(defun j2/load-theme (appearance)
+  "Load theme, taking current system APPEARANCE into consideration."
+  (mapc #'disable-theme custom-enabled-themes)
+  (pcase appearance
+    ('light (load-theme 'kaoless t))
+    ('dark (load-theme 'nordless t))))
+
+(add-hook 'ns-system-appearance-change-functions #'j2/load-theme)
 
 (use-package treemacs
   :defer t

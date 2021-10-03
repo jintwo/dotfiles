@@ -29,7 +29,14 @@
 
 ;; swift
 (use-package swift-mode
-  :defer t)
+  :defer t
+  :config
+  (add-hook 'swift-mode-hook #'lsp-deferred))
+
+(use-package lsp-sourcekit
+  :after lsp-mode
+  :config
+  (setq lsp-sourcekit-executable (string-trim (shell-command-to-string "xcrun --find sourcekit-lsp"))))
 
 ;; lua
 (use-package lua-mode
@@ -37,8 +44,12 @@
   :config
   (setq lua-indent-level 4))
 
-;; (use-package fuel
-;;   :ensure t)
+(use-package fuel
+  :defer t)
+
+(use-package zig-mode
+  :defer t)
+
 
 ;; markup
 (use-package yaml-mode
@@ -71,6 +82,13 @@
   :config
   (add-hook 'go-mode-hook #'lsp-deferred)
   (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
+
+
+;; supercollider
+(setq exec-path (append exec-path '("/Applications/SuperCollider.app/Contents/MacOS/")))
+(add-to-list 'load-path "/Users/jin/Library/Application Support/SuperCollider/downloaded-quarks/scel/el")
+(require 'sclang)
+
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

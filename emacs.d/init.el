@@ -17,15 +17,13 @@
 
 (setq read-process-output-max (* 1024 1024))
 
-;; (load-library "url-handlers")
-
 (set-language-environment "UTF-8")
 (setenv "ESHELL" (expand-file-name "~/bin/eshell"))
 (setenv "LC_CTYPE" "UTF-8")
 (setenv "LC_ALL" "en_US.UTF-8")
 (setenv "LANG" "en_US.UTF-8")
 
-(setq exec-path (append '("/bin" "/sbin" "/usr/sbin" "/usr/bin" "/usr/local/bin" "/usr/local/sbin" "~/bin/"))
+(setq exec-path (append '("/bin" "/sbin" "/usr/sbin" "/usr/bin" "/usr/local/bin" "/usr/local/sbin" "~/bin/" "~/.ghcup/bin/"))
       backup-directory-alist `(("." . "~/.emacs.d/saves")))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
