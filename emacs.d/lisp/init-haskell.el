@@ -24,8 +24,9 @@
   (add-hook 'haskell-mode-hook 'flycheck-mode)
   (add-hook 'haskell-mode-hook 'dante-mode))
 
-(when (featurep 'init-lsp)
-  (use-package lsp-haskell)
+(use-package lsp-haskell
+  :defer t
+  :config
   (add-hook 'haskell-mode-hook #'lsp-deferred))
 
 (use-package tidal

@@ -5,6 +5,7 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
+(require 'package)
 (when (package-installed-p 'gcmh)
   (gcmh-mode 1))
 
@@ -53,11 +54,10 @@
 
 ;; maybe join ui+editor
 (require 'init-ui)
-(require 'init-helm)
-;; TODO: should try `selectrum'/`vertico' instead of `helm' or `ivy'
-;; ivy looks nice, but before should setup ivy helm counterparts
-;; feature flags?
-;; (require 'init-ivy)
+(require 'init-vertico)
+(require 'init-consult)
+(require 'init-embark)
+
 (require 'init-editor)
 (require 'init-ibuffer)
 (require 'init-utils)
@@ -68,7 +68,6 @@
 (require 'init-git)
 (require 'init-sp)
 (require 'init-company)
-;; (require 'init-eglot)
 (require 'init-lsp)
 
 ;; langs
@@ -82,7 +81,6 @@
 
 ;; utils
 (require 'init-hydra)
-(require 'init-projectile)
 
 ;; custom packages
 (require 'init-vendor)

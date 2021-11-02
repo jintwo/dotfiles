@@ -17,11 +17,9 @@
   "Flycheck errors"
   ("n" #'flycheck-next-error "Next")
   ("p" #'flycheck-previous-error "Previous")
-  ("h" #'helm-flycheck "Helm" :color blue)
   ("q" nil "Quit" :color blue))
 
 (global-set-key (kbd "C-c c") 'hydra-flycheck/body)
-
 
 (defhydra hydra-smartparens ()
   "Smartparens"

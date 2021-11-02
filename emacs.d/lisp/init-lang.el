@@ -3,22 +3,28 @@
 ;;; Code:
 (setq-default indent-tabs-mode nil
               tab-width 4
-              c-default-style "linux")
+              c-default-style "linux"
+              c-basic-offset 4)
 
 ;; c-like
 (use-package ccls
   :defer t
   :config
-  (when (featurep 'init-lsp)
-    (progn
-      (add-hook 'c-mode-hook #'lsp-deferred)
-      (add-hook 'c++-mode-hook #'lsp-deferred)
-      (add-hook 'objc-mode-hook #'lsp-deferred)))
-  (when (featurep 'init-eglot)
-      (progn
-        (add-hook 'c-mode-hook #'eglot-ensure)
-        (add-hook 'c++-mode-hook #'eglot-ensure)
-        (add-hook 'objc-mode-hook #'eglot-ensure))))
+  (progn
+    (add-hook 'c-mode-hook #'lsp-deferred)
+    (add-hook 'c++-mode-hook #'lsp-deferred)
+    (add-hook 'objc-mode-hook #'lsp-deferred)))
+
+(defun clang-format-on-save ()
+  (add-hook 'before-save-hook #'clang-format-buffer nil t))
+
+(use-package clang-format
+  :defer t
+  :config
+  (setq clang-format-style "file")
+  (add-hook 'c-mode-hook #'clang-format-on-save)
+  (add-hook 'c++-mode-hook #'clang-format-on-save)
+  (add-hook 'objc-mode-hook #'clang-format-on-save))
 
 ;; java
 ;; (use-package lsp-java
@@ -49,7 +55,6 @@
 
 (use-package zig-mode
   :defer t)
-
 
 ;; markup
 (use-package yaml-mode
@@ -83,12 +88,8 @@
   (add-hook 'go-mode-hook #'lsp-deferred)
   (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
 
-
-;; supercollider
-(setq exec-path (append exec-path '("/Applications/SuperCollider.app/Contents/MacOS/")))
-(add-to-list 'load-path "/Users/jin/Library/Application Support/SuperCollider/downloaded-quarks/scel/el")
-(require 'sclang)
-
+;; js
+(setq js-indent-level 2)
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

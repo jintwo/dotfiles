@@ -12,11 +12,7 @@
 ;;   :config
 ;;   (setq rustic-format-trigger 'on-save))
 
-(when (featurep 'init-lsp)
-  (add-hook 'rust-mode-hook #'lsp-deferred))
-
-(when (featurep 'init-eglot)
-  (add-hook 'rust-mode-hook #'eglot-ensure))
+(add-hook 'rust-mode-hook #'lsp-deferred)
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

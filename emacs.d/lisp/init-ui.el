@@ -33,7 +33,12 @@
   (interactive)
   (unless weight (setq weight 'light))
   (unless bold-weight (setq bold-weight (j2/next-font-weight weight)))
+  ;; default
   (set-face-attribute 'default nil :family family :height height :weight weight :width 'normal)
+  ;; fixed-pitch
+  (set-face-attribute 'fixed-pitch nil :family family :height height :weight weight :width 'normal)
+  ;; fixed-pitch-serif (w/o serifs)
+  (set-face-attribute 'fixed-pitch-serif nil :family family :height height :weight weight :width 'normal)
   ;; strings + docs should be bold
   (set-face-attribute 'font-lock-string-face nil :weight bold-weight)
   (set-face-attribute 'font-lock-doc-face nil :weight bold-weight)
@@ -126,6 +131,12 @@
                           ("C-h d" . helpful-at-point)
                           ("C-h F" . helpful-function)
                           ("C-h C" . helpful-command))))
+
+;; term
+(use-package eterm-256color
+  :ensure t
+  :config
+  (add-hook 'term-mode-hook #'eterm-256color-mode))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

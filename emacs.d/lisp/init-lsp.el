@@ -10,7 +10,9 @@
         lsp-enable-file-watchers t
         lsp-file-watch-threshold 1000
         lsp-rust-server 'rust-analyzer)
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\]build")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\]_build"))
 
 (use-package lsp-ui
   :commands lsp-ui-mode

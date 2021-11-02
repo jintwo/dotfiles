@@ -17,10 +17,10 @@
   :config
   (sly-setup))
 
-(use-package helm-sly
-  :after sly)
-
 (use-package geiser
+  :defer t)
+
+(use-package janet-mode
   :defer t)
 
 ;; (use-package racket-mode

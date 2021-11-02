@@ -9,12 +9,9 @@
 (use-package ein
   :defer t)
 
-(when (featurep 'init-lsp)
-  (use-package lsp-pyright)
+(use-package lsp-pyright
+  :config
   (add-hook 'python-mode-hook #'lsp-deferred))
-
-(when (featurep 'init-eglot)
-  (add-hook 'python-mode-hook #'eglot-ensure))
 
 (provide 'init-python)
 ;;; init-python.el ends here

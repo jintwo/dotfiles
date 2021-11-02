@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 ;; enable key chords
+(use-package key-chord)
+
 (key-chord-mode t)
 
 ;; emacs-mac bindings
@@ -27,6 +29,14 @@
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
+
+(defun split-term ()
+  (interactive)
+  (let ((window (split-window-below)))
+    (select-window window)
+    (ansi-term "/usr/local/bin/zsh")))
+
+(global-set-key (kbd "C-c C-t") #'split-term)
 
 (provide 'init-keys)
 ;;; init-keys.el ends here

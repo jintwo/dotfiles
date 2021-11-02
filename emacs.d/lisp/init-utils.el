@@ -7,9 +7,6 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package helm-ag
-  :defer t)
-
 (use-package restclient
   :mode ("\\.http\\'"))
 
@@ -30,6 +27,7 @@
 (use-package wakatime-mode
   :defer 1
   :config
+  (setq wakatime-cli-path "/usr/local/bin/wakatime")
   (global-wakatime-mode))
 
 (use-package dash-at-point
