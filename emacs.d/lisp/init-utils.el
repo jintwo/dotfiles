@@ -27,7 +27,7 @@
 (use-package wakatime-mode
   :defer 1
   :config
-  (setq wakatime-cli-path "/usr/local/bin/wakatime")
+  (setq wakatime-cli-path "/usr/local/bin/wakatime-cli")
   (global-wakatime-mode))
 
 (use-package dash-at-point

@@ -103,14 +103,6 @@
 
 (add-hook 'ns-system-appearance-change-functions #'j2/load-theme)
 
-(use-package treemacs
-  :defer t
-  :bind (:map global-map ("M-0" . treemacs-select-window))
-  :config
-  (progn
-    (setq treemacs-no-png-images t)
-    (treemacs-resize-icons 11)))
-
 ;; windows
 (use-package ace-window
   :defer 1
