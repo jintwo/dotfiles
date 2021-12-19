@@ -12,14 +12,14 @@
 
 (global-set-key (kbd "C-c z") 'hydra-zoom/body)
 
+(when (featurep 'init-flycheck)
+  (defhydra hydra-flycheck ()
+    "Flycheck errors"
+    ("n" #'flycheck-next-error "Next")
+    ("p" #'flycheck-previous-error "Previous")
+    ("q" nil "Quit" :color blue))
 
-(defhydra hydra-flycheck ()
-  "Flycheck errors"
-  ("n" #'flycheck-next-error "Next")
-  ("p" #'flycheck-previous-error "Previous")
-  ("q" nil "Quit" :color blue))
-
-(global-set-key (kbd "C-c c") 'hydra-flycheck/body)
+  (global-set-key (kbd "C-c c") 'hydra-flycheck/body))
 
 (defhydra hydra-smartparens ()
   "Smartparens"
@@ -33,7 +33,6 @@
   ("q" nil "Quit" :color blue))
 
 (bind-key "C-M-s" 'hydra-smartparens smartparens-mode-map)
-
 
 (provide 'init-hydra)
 ;;; init-hydra.el ends here

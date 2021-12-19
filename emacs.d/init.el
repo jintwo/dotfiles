@@ -49,7 +49,6 @@
 (use-package no-littering)
 
 ;;---
-
 (require 'init-keys)
 
 ;; maybe join ui+editor
@@ -64,19 +63,14 @@
 (require 'init-org)
 
 ;; dev
-(require 'init-flycheck)
+;; (require 'init-flycheck)
 (require 'init-git)
 (require 'init-sp)
 (require 'init-company)
-(require 'init-lsp)
+;; (require 'init-lsp)
+(require 'init-eglot)
 
 ;; langs
-(require 'init-lisp)
-(require 'init-python)
-(require 'init-rust)
-(require 'init-beam)
-(require 'init-haskell)
-(require 'init-ocaml)
 (require 'init-lang)
 
 ;; utils

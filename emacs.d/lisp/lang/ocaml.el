@@ -1,4 +1,4 @@
-;;; init-ocaml.el --- Ocaml dev config
+;;; ocaml.el --- ocaml config
 ;;; Commentary:
 ;;; Code:
 (use-package tuareg
@@ -13,15 +13,19 @@
   (setq utop-command "opam config exec utop -- -emacs")
   (add-hook 'tuareg-mode-hook #'utop-minor-mode))
 
-(use-package flycheck-ocaml
-  :after tuareg)
+(when (featurep 'init-flycheck)
+  (use-package flycheck-ocaml
+    :after tuareg)
 
-(use-package merlin
-  :after (tuareg flycheck-ocaml)
-  :config
-  (flycheck-ocaml-setup)
-  (setq merlin-error-after-save nil)
-  (add-hook 'tuareg-mode-hook #'merlin-mode))
+  (use-package merlin
+    :after (tuareg flycheck-ocaml)
+    :config
+    (flycheck-ocaml-setup)
+    (setq merlin-error-after-save nil)
+    (add-hook 'tuareg-mode-hook #'merlin-mode)
+
+    (require 'company)
+    (add-to-list 'company-backends 'merlin-company-backend)))
 
 (add-hook 'tuareg-mode-hook (lambda ()
                               (progn
@@ -30,8 +34,5 @@
                                 (setq compile-command
                                       "opam config exec corebuild "))))
 
-(require 'company)
-(add-to-list 'company-backends 'merlin-company-backend)
-
-(provide 'init-ocaml)
-;;; init-ocaml.el ends here
+(provide 'lang/ocaml)
+;;; ocaml.el ends here

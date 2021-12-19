@@ -1,7 +1,6 @@
-;;; init-rust.el --- Rust dev config
+;;; rust.el --- rust config
 ;;; Commentary:
 ;;; Code:
-
 (use-package rust-mode
   :mode ("\\.rs\\'")
   :config
@@ -12,7 +11,11 @@
 ;;   :config
 ;;   (setq rustic-format-trigger 'on-save))
 
-(add-hook 'rust-mode-hook #'lsp-deferred)
+(when (featurep 'init-lsp)
+  (add-hook 'rust-mode-hook #'lsp-deferred))
 
-(provide 'init-rust)
-;;; init-rust.el ends here
+(when (featurep 'init-eglot)
+  (add-hook 'rust-mode-hook #'eglot-ensure))
+
+(provide 'lang/rust)
+;;; rust.el ends here

@@ -4,66 +4,37 @@
 (setq-default indent-tabs-mode nil
               tab-width 4
               c-default-style "linux"
-              c-basic-offset 4)
+              c-basic-offset 4
+              js-indent-level 2)
 
-;; c-like
-(use-package ccls
-  :defer t
-  :config
-  (progn
-    (add-hook 'c-mode-hook #'lsp-deferred)
-    (add-hook 'c++-mode-hook #'lsp-deferred)
-    (add-hook 'objc-mode-hook #'lsp-deferred)))
+(add-to-list 'load-path (expand-file-name "lisp/lang" user-emacs-directory))
 
-(defun clang-format-on-save ()
-  (add-hook 'before-save-hook #'clang-format-buffer nil t))
+(require 'lang/ccc)
+(require 'lang/cl)
+;; (require 'lang/clojure)
+;; (require 'lang/elixir)
+;; (require 'lang/erlang)
+;; (require 'lang/go)
+;; (require 'lang/haskell)
+(require 'lang/janet)
+;; (require 'lang/java)
+(require 'lang/lua)
+;; (require 'lang/ocaml)
+;; (require 'lang/prolog)
+(require 'lang/py)
+(require 'lang/rust)
+(require 'lang/scheme)
+;; (require 'lang/swift)
+;; (require 'lang/zig)
 
-(use-package clang-format
-  :defer t
-  :config
-  (setq clang-format-style "file")
-  (add-hook 'c-mode-hook #'clang-format-on-save)
-  (add-hook 'c++-mode-hook #'clang-format-on-save)
-  (add-hook 'objc-mode-hook #'clang-format-on-save))
 
-;; java
-;; (use-package lsp-java
-;;   :ensure t
-;;   :defer t
-;;   :config
-;;   (add-hook 'java-mode-hook #'lsp))
-
-;; swift
-(use-package swift-mode
-  :defer t
-  :config
-  (add-hook 'swift-mode-hook #'lsp-deferred))
-
-(use-package lsp-sourcekit
-  :after lsp-mode
-  :config
-  (setq lsp-sourcekit-executable (string-trim (shell-command-to-string "xcrun --find sourcekit-lsp"))))
-
-;; lua
-(use-package lua-mode
-  :mode ("\\.lua\\'")
-  :config
-  (setq lua-indent-level 4))
-
-(use-package fuel
-  :defer t)
-
-(use-package zig-mode
-  :defer t)
-
-;; markup
+;; conf/markup
 (use-package yaml-mode
   :mode ("\\.yaml\\'" "\\.yml\\'"))
 
 (use-package markdown-mode
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'"))
 
-;; conf
 (use-package protobuf-mode
   :mode "\\.proto\\'")
 
@@ -72,24 +43,6 @@
 
 (use-package graphviz-dot-mode
   :defer t)
-
-;; prolog
-(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
-(add-to-list 'auto-mode-alist '("\\.plt\\'" . prolog-mode))
-
-;; golang
-(defun lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t))
-  ;; (add-hook 'before-save-hook #'lsp-organize-imports t t))
-
-(use-package go-mode
-  :mode ("\\.go\\'")
-  :config
-  (add-hook 'go-mode-hook #'lsp-deferred)
-  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
-
-;; js
-(setq js-indent-level 2)
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

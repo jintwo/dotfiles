@@ -31,7 +31,7 @@
 (defun j2/set-font (family height &optional weight bold-weight)
   "Set font FAMILY with given HEIGHT and optional WEIGHT and BOLD-WEIGHT."
   (interactive)
-  (unless weight (setq weight 'light))
+  (unless weight (setq weight 'normal))
   (unless bold-weight (setq bold-weight (j2/next-font-weight weight)))
   ;; default
   (set-face-attribute 'default nil :family family :height height :weight weight :width 'normal)
@@ -49,7 +49,7 @@
   (interactive)
   ;; (j2/set-font "Iosevka" 140) ;; non-retina ;; line-spacing 0.15
   ;; (j2/set-font "Iosevka" 120 'light) ;; retina ;; line-spacing 0.1
-  (j2/set-font "Iosevka" 120 'semi-light) ;; retina ;; line-spacing 0.1
+  (j2/set-font "Iosevka" 120 'medium) ;; retina ;; line-spacing 0.1
     ;; (j2/set-font "Iosevka" 120 'semi-light 'semi-bold) ;; retina ;; line-spacing 0.1
   ;; (j2/set-font "JetBrains Mono" 120 'extra-light) ;; line-spacing 0.15
   (when (eq (window-system) 'mac)

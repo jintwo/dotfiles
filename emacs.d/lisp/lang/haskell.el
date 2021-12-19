@@ -1,4 +1,4 @@
-;;; init-haskell.el --- Haskell dev config
+;;; haskell.el --- haskell config
 ;;; Commentary:
 ;;; Code:
 (use-package haskell-mode
@@ -16,22 +16,18 @@
   (haskell-indentation-mode t)
   (interactive-haskell-mode t))
 
-(use-package dante
-  :ensure t
-  :after haskell-mode
-  :commands 'dante-mode
-  :init
-  (add-hook 'haskell-mode-hook 'flycheck-mode)
-  (add-hook 'haskell-mode-hook 'dante-mode))
+(when (featurep 'init-lsp)
+  (use-package lsp-haskell
+    :defer t
+    :config
+    (add-hook 'haskell-mode-hook #'lsp-deferred)))
 
-(use-package lsp-haskell
-  :defer t
-  :config
-  (add-hook 'haskell-mode-hook #'lsp-deferred))
+(when (featurep 'init-eglot)
+  (add-hook 'haskell-mode-hook #'eglot-ensure))
 
 (use-package tidal
   :after haskell-mode
   :mode ("\\.tidal\\'"))
 
-(provide 'init-haskell)
-;;; init-haskell.el ends here
+(provide 'lang/haskell)
+;;; haskell.el ends here
