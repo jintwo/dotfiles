@@ -79,6 +79,8 @@
         doom-modeline-env-enable-elixir t))
 
 ;; theme
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
+
 (use-package colorless-themes)
 
 (use-package nordless-theme

@@ -3,7 +3,6 @@
 ;;; Code:
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
 (require 'package)
 (when (package-installed-p 'gcmh)
@@ -24,8 +23,7 @@
 (setenv "LC_ALL" "en_US.UTF-8")
 (setenv "LANG" "en_US.UTF-8")
 
-(setq exec-path (append '("/bin" "/sbin" "/usr/sbin" "/usr/bin" "/usr/local/bin" "/usr/local/sbin" "~/bin/" "~/.ghcup/bin/"))
-      backup-directory-alist `(("." . "~/.emacs.d/saves")))
+(setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
