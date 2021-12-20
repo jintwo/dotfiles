@@ -1,4 +1,4 @@
-;;; ocaml.el --- ocaml config
+;;; ocaml-config.el --- ocaml config
 ;;; Commentary:
 ;;; Code:
 (use-package tuareg
@@ -34,5 +34,5 @@
                                 (setq compile-command
                                       "opam config exec corebuild "))))
 
-(provide 'lang/ocaml)
-;;; ocaml.el ends here
+(provide 'ocaml-config)
+;;; ocaml-config.el ends here

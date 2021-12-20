@@ -1,4 +1,4 @@
-;;; swift.el --- swift config
+;;; swift-config.el --- swift config
 ;;; Commentary:
 ;;; Code:
 (use-package swift-mode
@@ -13,5 +13,5 @@
     (setq lsp-sourcekit-executable (string-trim (shell-command-to-string "xcrun --find sourcekit-lsp")))
     (add-hook 'swift-mode-hook #'lsp-deferred)))
 
-(provide 'lang/swift)
-;;; swift.el ends here
+(provide 'swift-config)
+;;; swift-config.el ends here

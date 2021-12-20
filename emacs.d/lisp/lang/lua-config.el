@@ -1,4 +1,4 @@
-;;; lua.el --- lua config
+;;; lua-config.el --- lua config
 ;;; Commentary:
 ;;; Code:
 (use-package lua-mode
@@ -6,5 +6,5 @@
   :config
   (setq lua-indent-level 4))
 
-(provide 'lang/lua)
-;;; lua.el ends here
+(provide 'lua-config)
+;;; lua-config.el ends here

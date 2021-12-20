@@ -1,4 +1,4 @@
-;;; cl.el --- CL config
+;;; cl-config.el --- CL config
 ;;; Commentary:
 ;;; Code:
 (use-package sly
@@ -8,5 +8,5 @@
   :config
   (sly-setup))
 
-(provide 'lang/cl)
-;;; cl.el ends here
+(provide 'cl-config)
+;;; cl-config.el ends here

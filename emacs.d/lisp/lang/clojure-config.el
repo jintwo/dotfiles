@@ -1,4 +1,4 @@
-;;; clojure.el --- clojure config
+;;; clojure-config.el --- clojure config
 ;;; Commentary:
 ;;; Code:
 (use-package cider
@@ -10,5 +10,5 @@
   :custom
   (cider-lein-command "/usr/local/bin/lein"))
 
-(provide 'lang/clojure)
-;;; clojure.el ends here
+(provide 'clojure-config)
+;;; clojure-config.el ends here

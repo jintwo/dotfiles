@@ -1,4 +1,4 @@
-;;; haskell.el --- haskell config
+;;; haskell-config.el --- haskell config
 ;;; Commentary:
 ;;; Code:
 (use-package haskell-mode
@@ -29,5 +29,5 @@
   :after haskell-mode
   :mode ("\\.tidal\\'"))
 
-(provide 'lang/haskell)
-;;; haskell.el ends here
+(provide 'haskell-config)
+;;; haskell-config.el ends here

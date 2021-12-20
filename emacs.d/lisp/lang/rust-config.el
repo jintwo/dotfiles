@@ -1,4 +1,4 @@
-;;; rust.el --- rust config
+;;; rust-config.el --- rust config
 ;;; Commentary:
 ;;; Code:
 (use-package rust-mode
@@ -15,7 +15,9 @@
   (add-hook 'rust-mode-hook #'lsp-deferred))
 
 (when (featurep 'init-eglot)
+  ;; (add-to-list 'eglot-server-programs
+  ;;            `(rust-mode . ("rust-analyzer")))
   (add-hook 'rust-mode-hook #'eglot-ensure))
 
-(provide 'lang/rust)
-;;; rust.el ends here
+(provide 'rust-config)
+;;; rust-config.el ends here

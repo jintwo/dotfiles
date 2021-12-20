@@ -1,4 +1,4 @@
-;;; elixir.el --- elixir config
+;;; elixir-config.el --- elixir config
 ;;; Commentary:
 ;;; Code:
 (use-package elixir-mode
@@ -10,5 +10,5 @@
 (when (featurep 'init-eglot)
   (add-hook 'elixir-home-hook #'eglot-ensure))
 
-(provide 'lang/elixir)
-;;; elixir.el ends here
+(provide 'elixir-config)
+;;; elixir-config.el ends here

@@ -1,4 +1,4 @@
-;;; ccc.el --- c/c++/obj-c config
+;;; ccc-config.el --- c/c++/obj-c config
 ;;; Commentary:
 ;;; Code:
 (defun add-c-modes-hook (function)
@@ -25,5 +25,5 @@
   (setq clang-format-style "file")
   (add-c-modes-hook #'clang-format-on-save))
 
-(provide 'lang/ccc)
-;;; ccc.el ends here
+(provide 'ccc-config)
+;;; ccc-config.el ends here

@@ -1,4 +1,4 @@
-;;; go.el --- go config
+;;; go-config.el --- go config
 ;;; Commentary:
 ;;; Code:
 (use-package go-mode
@@ -15,5 +15,5 @@
 (when (featurep 'init-eglot)
   (add-hook 'go-mode-hook #'eglot-ensure))
 
-(provide 'lang/go)
-;;; go.el ends here
+(provide 'go-config)
+;;; go-config.el ends here

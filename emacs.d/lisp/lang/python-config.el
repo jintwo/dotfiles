@@ -1,4 +1,4 @@
-;;; py.el --- python config
+;;; python-config.el --- python config
 ;;; Commentary:
 ;;; Code:
 (use-package pyvenv
@@ -17,5 +17,5 @@
 (when (featurep 'init-eglot)
   (add-hook 'python-mode-hook #'eglot-ensure))
 
-(provide 'lang/py)
-;;; py.el ends here
+(provide 'python-config)
+;;; python-config.el ends here

@@ -1,4 +1,4 @@
-;;; java.el --- java config
+;;; java-config.el --- java config
 ;;; Commentary:
 ;;; Code:
 (when (featurep 'init-lsp)
@@ -10,5 +10,5 @@
 (when (featurep 'init-eglot)
   (add-hook 'java-mode-hook #'eglot-ensure))
 
-(provide 'lang/java)
-;;; java.el ends here
+(provide 'java-config)
+;;; java-config.el ends here

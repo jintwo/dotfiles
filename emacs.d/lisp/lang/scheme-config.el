@@ -1,4 +1,4 @@
-;;; scheme.el --- scheme config
+;;; scheme-config.el --- scheme config
 ;;; Commentary:
 ;;; Code:
 (use-package geiser
@@ -8,5 +8,5 @@
 ;;   :ensure t
 ;;   :defer t)
 
-(provide 'lang/scheme)
-;;; scheme.el ends here
+(provide 'scheme-config)
+;;; scheme-config.el ends here
