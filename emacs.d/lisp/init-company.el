@@ -1,6 +1,7 @@
 ;;; init-company.el --- Company completion config
 ;;; Commentary:
 ;;; Code:
+
 (use-package company
   :defer 1
   :bind ("M-<tab>" . company-complete)

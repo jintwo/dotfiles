@@ -64,7 +64,9 @@
 ;; (require 'init-flycheck)
 (require 'init-git)
 (require 'init-sp)
-(require 'init-company)
+;; (require 'init-company)
+(require 'init-corfu)
+
 ;; (require 'init-lsp)
 (require 'init-eglot)
 
@@ -77,6 +79,7 @@
 ;; custom packages
 (require 'init-vendor)
 
+;; -------
 (put 'narrow-to-region 'disabled nil)
 
 (when (file-exists-p custom-file)

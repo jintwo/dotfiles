@@ -9,6 +9,10 @@
 (use-package ein
   :defer t)
 
+(use-package python-mls
+  :config
+  (python-mls-setup))
+
 (when (featurep 'init-lsp)
   (use-package lsp-pyright
     :config
