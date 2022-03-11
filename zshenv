@@ -23,10 +23,10 @@ addpath "/usr/X11/bin"
 
 # installed tools
 addpath "$HOME/.krew/bin"
-addpath "$HOME/.luarocks/bin"
-addpath "$HOME/.go/bin"
+#addpath "$HOME/.luarocks/bin"
+#addpath "$HOME/.go/bin"
 addpath "$HOME/.cargo/bin"
-addpath "$HOME/.cabal/bin"
+#addpath "$HOME/.cabal/bin"
 
 # elixir-ls
-addpath "$HOME/Documents/Github/elixir-ls/release"
+#addpath "$HOME/Documents/Github/elixir-ls/release"

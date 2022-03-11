@@ -30,7 +30,7 @@
 ;; is LSP suitable to do it?
 (use-package idle-highlight-mode
   :config
-  (idle-highlight-mode t))
+  (add-hook 'prog-mode-hook (lambda () (idle-highlight-mode t))))
 
 (use-package whole-line-or-region
   :config

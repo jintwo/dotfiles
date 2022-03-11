@@ -1,8 +1,6 @@
 # -*- mode: sh -*-
 # vim: set ft=sh:
 
-fpath=(/usr/local/share/zsh-completions ~/.zsh/completions $fpath)
-
 alias emd="emacs --daemon"
 alias emdk="emacsclient -e '(kill-emacs)'"
 alias em="emacsclient -t"
@@ -58,8 +56,12 @@ VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 which virtualenvwrapper.sh 2>&1 > /dev/null && export WORKON_HOME=$HOME/.virtualenvs && source `which virtualenvwrapper.sh`
 
 # langs
-source ~/.ghcup/env
 source ~/.cargo/env
+# eval $(opam env)
+# source ~/.ghcup/env
+
+# c
+export SDKROOT="`xcrun --show-sdk-path`"
 
 # csound
 export DYLD_FRAMEWORK_PATH="$DYLD_FRAMEWORK_PATH:/usr/local/opt/csound/Frameworks"
@@ -70,19 +72,55 @@ function recode {
         echo "invalid file name\nusage: $0 file-name [cp1251 [utf8]]"
         return;
     fi
-    local filename=$1
+    local in_filename=$1
+    if [ -z $2 ]; then
+        local out_filename=$1
+    else
+        local out_filename=$2
+    fi
     local from_encoding=${2:=cp1251}
     local to_encoding=${3:=utf8}
-    iconv -f $from_encoding -t $to_encoding $filename | sponge $filename
+    iconv -f $from_encoding -t $to_encoding $in_filename | sponge $out_filename
 }
 
+function jsonf {
+    if [ -z $1 ]; then
+        echo "invalid file name\nusage: $0 file-name"
+        return;
+    fi
+    local in_filename=$1
+    if [ -z $2 ]; then
+        local out_filename=$1
+    else
+        local out_filename=$2
+    fi
+    cat $in_filename | json_pp | sponge $out_filename
+}
+
+function xmlf {
+    if [ -z $1 ]; then
+        echo "invalid file name\nusage: $0 file-name"
+        return;
+    fi
+    local in_filename=$1
+    if [ -z $2 ]; then
+        local out_filename=$1
+    else
+        local out_filename=$2
+    fi
+    cat $in_filename | xmllint --noenc --format --encode utf-8 - | sponge $out_filename
+}
+
+export BAT_THEME=Nord
+export LESS=-RS
+
 alias ls=exa
-alias cat="bat -n --theme Nord"
+alias cat="bat -n"
 
 # tmux
 function create-tmux-session {
-    local session="work"
-    local window="dev"
+    local session="home"
+    local window="h0"
     local resurrect_script=$HOME/.tmux/plugins/tmux-resurrect/scripts/restore.sh
     tmux new-session -s $session -n $window -d
     tmux run-shell $resurrect_script

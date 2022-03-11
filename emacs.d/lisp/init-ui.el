@@ -91,6 +91,8 @@
 (use-package kaolin-themes
   ;; :config
   ;; (load-theme 'kaolin-mono-light t)
+  ;; (load-theme 'kaoless-new t)
+  ;; (load-theme 'kaoless t)
   )
 
 ;; (setq nano-theme-light/dark 'light)
@@ -100,8 +102,9 @@
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
-    ('light (load-theme 'kaoless t))
-    ('dark (load-theme 'nordless t))))
+    ('light (load-theme 'kaoless-new t))
+    ('dark (load-theme 'nordless t)))
+  )
 
 (add-hook 'ns-system-appearance-change-functions #'j2/load-theme)
 
