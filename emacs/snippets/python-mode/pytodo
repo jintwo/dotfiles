@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: pytodo
+# key: /td
+# --
+
+# TODO: ${1:Comment}

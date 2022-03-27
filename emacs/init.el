@@ -75,6 +75,7 @@
 
 ;; utils
 (require 'init-hydra)
+(require 'init-elfeed)
 
 ;; custom packages
 (require 'init-vendor)

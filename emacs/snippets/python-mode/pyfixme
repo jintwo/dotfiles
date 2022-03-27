@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: pyfixme
+# key: /fm
+# --
+
+# FIXME: ${1:Comment}
