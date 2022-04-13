@@ -59,7 +59,13 @@ ZSH_THEME_VIRTUAL_ENV_SUFFIX="$RESET_COLORS"
 
 function virtualenv_info() {
     #[ $VIRTUAL_ENV ] && echo '['$ZSH_THEME_VIRTUAL_ENV_PREFIX`basename $VIRTUAL_ENV`'] '$ZSH_THEME_VIRTUAL_ENV_SUFFIX
-    [ $VIRTUAL_ENV ] && echo $ZSH_THEME_VIRTUAL_ENV_PREFIX`basename $VIRTUAL_ENV`'] '$ZSH_THEME_VIRTUAL_ENV_SUFFIX
+    if [ -z $VIRTUAL_ENV ]; then
+        return
+    fi
+    venv_basedir=$(dirname $VIRTUAL_ENV | rev | cut -f1 -d"/" | rev)
+    venv_name=$(basename $VIRTUAL_ENV)
+    venv="$venv_basedir/$venv_name"
+    [ $VIRTUAL_ENV ] && echo $ZSH_THEME_VIRTUAL_ENV_PREFIX$venv'] '$ZSH_THEME_VIRTUAL_ENV_SUFFIX
 }
 
 PROMPT="

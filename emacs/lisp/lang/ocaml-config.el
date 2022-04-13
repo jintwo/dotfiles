@@ -27,12 +27,11 @@
     (require 'company)
     (add-to-list 'company-backends 'merlin-company-backend)))
 
-(add-hook 'tuareg-mode-hook (lambda ()
-                              (progn
-                                (define-key tuareg-mode-map (kbd "C-c C-s")
-                                  'utop)
-                                (setq compile-command
-                                      "opam config exec corebuild "))))
+(add-hook 'tuareg-mode-hook
+          (lambda ()
+            (progn
+              (keymap-set tuareg-mode-map "C-c C-s" 'utop)
+              (setq compile-command "opam config exec corebuild "))))
 
 (provide 'ocaml-config)
 ;;; ocaml-config.el ends here

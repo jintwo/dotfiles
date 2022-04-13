@@ -10,7 +10,7 @@
 ;; (when (fboundp 'key-chord-mode)
 ;;   (key-chord-define-global "ot" 'org-agenga))
 
-(global-set-key (kbd "C-c C-a") 'org-agenda)
+(keymap-global-set "C-c C-a" 'org-agenda)
 
 (defun j2/org-set-checkbox ()
   "Add checkbox inplace or before selected text."
@@ -21,7 +21,7 @@
       (insert "[ ] "))))
 
 (add-hook 'org-mode-hook
-          (lambda () (local-set-key (kbd "C-c x") 'j2/org-set-checkbox)))
+          (lambda () (keymap-local-set "C-c x" 'j2/org-set-checkbox)))
 
 (provide 'init-org)
 ;;; init-org.el ends here

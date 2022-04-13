@@ -1,10 +1,13 @@
 [user]
     name = Eugeny Volobuev
     email = qulert@gmail.com
-[color]
-    ui = auto
+
 [credential]
     helper = osxkeychain
+
+[color]
+    ui = auto
+
 [alias]
     ci = commit
     st = status --short
@@ -15,33 +18,57 @@
     out = !git log origin/master..
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     ds = !git diff | vim
+    dft = difftool
     pf = push --force-with-lease
+
 [core]
     excludesfile = /Users/jin/.gitignore
     quotepath = false
     autocrlf = input
+    pager = delta
+
 [push]
     default = current
+
+[pull]
+    rebase = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    line-numbers = true
+    side-by-side = true
+    decorations = true
+    whitespace-error-style = 22 reverse
+
 [filter "lfs"]
     clean = git-lfs clean %f
     smudge = git-lfs smudge %f
     required = true
+
 [magit]
     hideCampaign = true
+
+[diff]
+    colorMoved = default
+    tool = difftastic
+[difftool]
+    prompt = false
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
+
 [merge]
-    tool = ediff
     conflictstyle = diff3
+    tool = ediff
 [mergetool "ediff"]
     cmd = emacs --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
+
 [pager]
     diff = delta
     log = delta
     reflog = delta
     show = delta
-[interactive]
-    diffFilter = delta --color-only
-[delta]
-    features = side-by-side line-numbers decorations
-    whitespace-error-style = 22 reverse
-[pull]
-    rebase = true
+    difftool = true
+

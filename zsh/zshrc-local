@@ -51,10 +51,6 @@ export LANG=en_US.UTF-8
 # export DEVKITPPC=${DEVKITPRO}/devkitPPC
 # export PATH=${DEVKITPRO}/tools/bin:$PATH
 
-# python + virtualenvwrapper
-VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-which virtualenvwrapper.sh 2>&1 > /dev/null && export WORKON_HOME=$HOME/.virtualenvs && source `which virtualenvwrapper.sh`
-
 # langs
 if [ -d ~/.cargo ]; then
     source ~/.cargo/env
@@ -118,6 +114,7 @@ export LESS=-RS
 
 alias ls=exa
 alias cat="bat -n"
+eval "$(zoxide init --cmd j zsh)"
 
 # tmux
 function create-tmux-session {

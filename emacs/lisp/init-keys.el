@@ -12,31 +12,31 @@
       mac-command-modifier 'super)
 
 ;; keys
-(global-set-key [kp-delete] 'delete-char)
 
-(global-set-key (kbd "s-k") 'kill-this-buffer)
+(keymap-global-set "s-k" 'kill-this-buffer)
 
-(global-set-key (kbd "M-z") 'zap-up-to-char)
+(keymap-global-set "M-z" 'zap-up-to-char)
 
-(global-set-key (kbd "C-c l") 'join-line)
-(global-set-key (kbd "C-c n") (lambda () (interactive) (join-line 1)))
+(keymap-global-set "C-c l" 'join-line)
 
-(global-set-key (kbd "M-f") 'forward-to-word)
+(keymap-global-set "C-c n" (lambda () (interactive) (join-line 1)))
 
-(global-set-key (kbd "M-/") 'hippie-expand)
+(keymap-global-set "M-f" 'forward-to-word)
 
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
+(keymap-global-set "M-/" 'hippie-expand)
+
+(keymap-global-set "C-s" 'isearch-forward-regexp)
+(keymap-global-set "C-r" 'isearch-backward-regexp)
+(keymap-global-set "C-M-s" 'isearch-forward)
+(keymap-global-set "C-M-r" 'isearch-backward)
 
 (defun split-term ()
   (interactive)
   (let ((window (split-window-below)))
     (select-window window)
-    (ansi-term "/usr/local/bin/zsh")))
+    (ansi-term "/bin/zsh")))
 
-(global-set-key (kbd "C-c C-t") #'split-term)
+(keymap-global-set "C-c C-t" #'split-term)
 
 (provide 'init-keys)
 ;;; init-keys.el ends here

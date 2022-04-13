@@ -10,7 +10,7 @@
   ("0" (text-scale-adjust 0) "Reset")
   ("q" nil "Quit" :color blue))
 
-(global-set-key (kbd "C-c z") 'hydra-zoom/body)
+(keymap-global-set "C-c z" 'hydra-zoom/body)
 
 (when (featurep 'init-flycheck)
   (defhydra hydra-flycheck ()
@@ -19,7 +19,7 @@
     ("p" #'flycheck-previous-error "Previous")
     ("q" nil "Quit" :color blue))
 
-  (global-set-key (kbd "C-c c") 'hydra-flycheck/body))
+  (keymap-global-set "C-c c" 'hydra-flycheck/body))
 
 (defhydra hydra-smartparens ()
   "Smartparens"

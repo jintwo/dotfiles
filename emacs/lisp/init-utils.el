@@ -24,12 +24,6 @@
   :config
   (memento-mori-mode t))
 
-(use-package wakatime-mode
-  :defer 1
-  :config
-  (setq wakatime-cli-path "/usr/local/bin/wakatime-cli")
-  (global-wakatime-mode))
-
 (use-package dash-at-point
   :defer t
   :bind (("C-c C-d" . dash-at-point)
@@ -39,7 +33,7 @@
 
 ;; org-timer
 (add-hook 'org-timer-done-hook (lambda () (message "timer done!")))
-(global-set-key (kbd "C-c t") 'org-timer-set-timer)
+(keymap-global-set "C-c t" 'org-timer-set-timer)
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

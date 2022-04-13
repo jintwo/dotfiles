@@ -8,6 +8,7 @@
 (when (package-installed-p 'gcmh)
   (gcmh-mode 1))
 
+
 ;;; maybe load site-lisp packages
 (let ((vendor-dir-path (expand-file-name "vendor" user-emacs-directory)))
   (when (file-directory-p vendor-dir-path)
@@ -25,7 +26,12 @@
 
 (setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+(setq use-short-answers 1
+      kill-buffer-delete-auto-save-files 1)
+
+(setq ring-bell-function 'pulse-momentary-highlight-one-line)
+
+;; (context-menu-mode 1)
 
 ;; profiling
 (defun display-startup-time ()
