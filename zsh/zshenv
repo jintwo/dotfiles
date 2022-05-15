@@ -6,27 +6,23 @@ function addpath {
 
 export PATH=""
 
-# custom tools
-addpath "$HOME/.tools/bin"
-
 # kinda system paths
-addpath "/opt/local/bin"
-addpath "/opt/local/sbin"
-addpath "/usr/local/opt/ruby/bin"
-addpath "/usr/local/bin"
-addpath "/usr/local/sbin"
 addpath "/bin"
 addpath "/sbin"
 addpath "/usr/bin"
 addpath "/usr/sbin"
 addpath "/usr/X11/bin"
+addpath "/opt/local/bin"
+addpath "/opt/local/sbin"
+addpath "/usr/local/opt/ruby/bin"
+addpath "/usr/local/bin"
+addpath "/usr/local/sbin"
+
+# custom tools
+addpath "$HOME/.tools/bin"
 
 # installed tools
-addpath "$HOME/.krew/bin"
-#addpath "$HOME/.luarocks/bin"
-#addpath "$HOME/.go/bin"
+# addpath "$HOME/.luarocks/bin"
+# addpath "$HOME/.go/bin"
 addpath "$HOME/.cargo/bin"
-#addpath "$HOME/.cabal/bin"
-
-# elixir-ls
-#addpath "$HOME/Documents/Github/elixir-ls/release"
+# addpath "$HOME/.cabal/bin"

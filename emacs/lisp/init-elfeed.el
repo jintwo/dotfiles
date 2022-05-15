@@ -57,6 +57,7 @@
         ("http://notes.eatonphil.com/rss.xml" dev)
         ("http://planet.clojure.in/atom.xml" dev clojure lisp)
         ("https://verdagon.dev/rss.xml" dev lang gamedev)
+        ("https://danluu.com/atom.xml" dev blog)
         ;; dev/swift
         ("https://swiftbysundell.com/rss" swift dev)
         ("https://theswiftdev.com/rss.xml" swift dev)

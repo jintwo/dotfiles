@@ -8,7 +8,6 @@
 (when (package-installed-p 'gcmh)
   (gcmh-mode 1))
 
-
 ;;; maybe load site-lisp packages
 (let ((vendor-dir-path (expand-file-name "vendor" user-emacs-directory)))
   (when (file-directory-p vendor-dir-path)

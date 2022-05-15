@@ -121,5 +121,19 @@
   ;; (setq consult-project-root-function (lambda () (locate-dominating-file "." ".git")))
 )
 
+;; consult goodies?
+(use-package consult-project-extra
+  :defer t)
+
+;; only after eglot
+(use-package consult-eglot
+  :after eglot
+  :defer t)
+
+;; only after org-roam
+(use-package consult-org-roam
+  :after org-roam
+  :defer t)
+
 (provide 'init-consult)
 ;;; init-consult.el ends here

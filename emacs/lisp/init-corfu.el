@@ -3,6 +3,7 @@
 ;;; Code:
 
 (use-package corfu
+  :ensure t
   ;; TAB-and-Go customizations
   :custom
   (corfu-cycle t)             ;; Enable cycling for `corfu-next/previous'
@@ -17,7 +18,7 @@
         ([backtab] . corfu-previous))
 
   :init
-  (corfu-global-mode))
+  (global-corfu-mode))
 
 (provide 'init-corfu)
 ;;; init-corfu.el ends here

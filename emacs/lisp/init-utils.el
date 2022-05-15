@@ -24,10 +24,7 @@
   :config
   (memento-mori-mode t))
 
-(use-package dash-at-point
-  :defer t
-  :bind (("C-c C-d" . dash-at-point)
-         ("C-c C-e" . dash-at-point-with-docset)))
+;; TODO: add consult-dash + dash-docs
 
 (use-package gcmh)
 

@@ -11,6 +11,9 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
 
+(use-package iedit
+  :ensure t)
+
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 

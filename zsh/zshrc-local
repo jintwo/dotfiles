@@ -12,11 +12,18 @@ function kc {
     local ns=${NS:-production}
     local sp='--'
     local spi=$@[(ie)$sp]
-    local args=(${@:1:$((spi-1))} -n $ns ${@:$spi})
+    if [[ $ns == "*" ]]; then
+        local args=(${@:1:$((spi-1))} --all-namespaces)
+    elif [[ $ns == "-" ]]; then
+        local args=(${@:1:$((spi-1))})
+    else
+        local args=(${@:1:$((spi-1))} -n $ns ${@:$spi})
+    fi
+    echo "-> $args"
     kubectl $args
 }
 
-function kcr () {
+function kr () {
     local resource="$1"
     shift
 
@@ -27,11 +34,19 @@ function kcr () {
     kc patch "$resource" -p "$patch_str"
 }
 
-alias kcl="kc logs -f --tail=100"
-alias kce="kc exec -it"
-alias kcdp="kc delete pod"
-alias kcrs="kc rollout status"
-alias kcgp="kc get pods -o wide --all-namespaces"
+alias kd="kc describe"
+alias ke="kc exec -it"
+alias kg="kc get"
+alias kgpa="kc get pods -o wide"
+alias kl="kc logs -f --tail=100"
+
+function kgpn {
+    if [[ -z $1 ]]; then
+        echo "must specify node-name"
+        exit
+    fi
+    kc get pods -o wide --field-selector "spec.nodeName==$1"
+}
 
 # common
 export VIRTUAL_ENV_DISABLE_PROMPT='Y'
