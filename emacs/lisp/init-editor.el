@@ -90,17 +90,6 @@
 (show-paren-mode t)
 (setq show-paren-delay 0)
 
-;; comint fix
-(defun comint-shorten-long-lines (text)
-  "Shorten TEXT line to 80 symbols."
-  (let* ((regexp "^\\(.\\{80\\}\\).*?\\(\"?\\)$")
-         (shortened-text (replace-regexp-in-string regexp "\\1\\2" text)))
-    (if (string= shortened-text text)
-        text
-      (propertize shortened-text 'font-lock-face 'shadow 'help-echo text))))
-
-(add-hook 'comint-preoutput-filter-functions 'comint-shorten-long-lines)
-
 (global-display-line-numbers-mode)
 
 ;; replace current selection with anything

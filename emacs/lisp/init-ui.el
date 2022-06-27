@@ -13,9 +13,6 @@
   (add-to-list 'default-frame-alist no-border)
   (add-to-list 'initial-frame-alist no-border))
 
-(setq line-spacing 0.15)
-(set-fringe-mode 10)
-
 (set-language-environment "UTF-8")
 
 (defun j2/next-font-weight (weight)
@@ -47,11 +44,7 @@
 (defun init-ui ()
   "UI settings."
   (interactive)
-  ;; (j2/set-font "Iosevka" 140) ;; non-retina ;; line-spacing 0.15
-  ;; (j2/set-font "Iosevka" 120 'light) ;; retina ;; line-spacing 0.1
-  (j2/set-font "Iosevka" 120 'medium) ;; retina ;; line-spacing 0.1
-    ;; (j2/set-font "Iosevka" 120 'semi-light 'semi-bold) ;; retina ;; line-spacing 0.1
-  ;; (j2/set-font "JetBrains Mono" 120 'extra-light) ;; line-spacing 0.15
+  (j2/set-font "Iosevka" 120 'medium)
   (when (eq (window-system) 'mac)
     (toggle-frame-fullscreen)))
 

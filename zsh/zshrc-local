@@ -1,10 +1,13 @@
 # -*- mode: sh -*-
 # vim: set ft=sh:
 
+# emacs stuff
 alias emd="emacs --daemon"
 alias emdk="emacsclient -e '(kill-emacs)'"
 alias em="emacsclient -t"
 alias emx="emacsclient -nc"
+
+# git
 alias gpa="gp --all"
 
 # k8s

@@ -14,7 +14,7 @@
 ;; (require 'clojure-config)
 ;; (require 'elixir-config)
 ;; (require 'erlang-config)
-;; (require 'go-config)
+(require 'go-config)
 ;; (require 'haskell-config)
 (require 'janet-config)
 ;; (require 'java-config)

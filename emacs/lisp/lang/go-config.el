@@ -2,7 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 (use-package go-mode
-  :mode ("\\.go\\'"))
+  :mode ("\\.go\\'")
+  :config
+  (setenv "GOPATH" (expand-file-name "~/Documents/dev/golang/go")))
 
 (when (featurep 'init-lsp)
   (defun lsp-go-install-save-hooks ()

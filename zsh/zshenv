@@ -23,6 +23,7 @@ addpath "$HOME/.tools/bin"
 
 # installed tools
 # addpath "$HOME/.luarocks/bin"
-# addpath "$HOME/.go/bin"
+export GOPATH="$HOME/Documents/dev/golang/go"
+addpath "$GOPATH/bin"
 addpath "$HOME/.cargo/bin"
 # addpath "$HOME/.cabal/bin"
