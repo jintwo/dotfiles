@@ -95,5 +95,16 @@
 ;; replace current selection with anything
 (delete-selection-mode t)
 
+;; custom (TODO: move to init-prog.el)
+(defun j2/current-location ()  ;; stolen from http://mbork.pl/2022-06-20_Copying_the_current_location
+  "Show the current location and put it into the kill ring.
+Use the filename relative to the current VC root directory."
+  (interactive)
+  (let* ((file-name (file-relative-name buffer-file-name (vc-root-dir)))
+	 (line-number (line-number-at-pos nil t))
+	 (location (format "%s:%s" file-name line-number)))
+    (kill-new location)
+    (message location)))
+
 (provide 'init-editor)
 ;;; init-editor.el ends here

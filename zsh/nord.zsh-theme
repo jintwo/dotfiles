@@ -30,9 +30,9 @@ gray5=241
 gray6=244
 gray7=245
 gray8=247
-gray9=250
+gray9=#bcbcbc
 gray10=252
-lightyellow=223
+lightyellow=#ffdfaf
 
 RESET_BG=%k
 RESET_FG=%f
@@ -42,18 +42,9 @@ GIT_DIRTY_COLOR=%F{133}
 GIT_CLEAN_COLOR=%F{118}
 GIT_PROMPT_INFO=%F{012}
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%F{$lightyellow}[git:"
-ZSH_THEME_GIT_PROMPT_SUFFIX="$GIT_PROMPT_INFO%F{$lightyellow}] "
+ZSH_THEME_GIT_PROMPT_PREFIX=$'%F{$lightyellow}[git:'
+ZSH_THEME_GIT_PROMPT_SUFFIX="${GIT_PROMPT_INFO}%F{$lightyellow}] "
 
-#ZSH_THEME_GIT_PROMPT_PREFIX="%F{$brightestorange}[git:"
-#ZSH_THEME_GIT_PROMPT_SUFFIX="$GIT_PROMPT_INFO%F{$brightestorange}] "
-
-
-#ZSH_THEME_GIT_PROMPT_PREFIX="%F{$gray8}[git:"
-#ZSH_THEME_GIT_PROMPT_SUFFIX="$GIT_PROMPT_INFO%F{$gray8}] "
-
-
-#ZSH_THEME_VIRTUAL_ENV_PREFIX="%F{$gray8}py:"
 ZSH_THEME_VIRTUAL_ENV_PREFIX="%F{$gray9}[py:"
 ZSH_THEME_VIRTUAL_ENV_SUFFIX="$RESET_COLORS"
 
@@ -69,6 +60,6 @@ function virtualenv_info() {
 }
 
 PROMPT="
-$RESET_COLORS%F{4}%n@%m%F{7}:$RESET_COLORS%F{2}%~$RESET_COLORS "$'$(git_prompt_info)'"%F{8}%%$RESET_COLORS "
+$RESET_COLORS%F{#81a1c1}%n@%m%F{#c0c0c0}:$RESET_COLORS%F{#a3be8c}%~$RESET_COLORS $(git_prompt_info)%F{#888888}%%$RESET_COLORS "
 
-RPROMPT=$'$(virtualenv_info)'
+RPROMPT="%F{#555555}$(virtualenv_info)$RESET_COLORS"

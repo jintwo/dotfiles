@@ -14,14 +14,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
+  TERM: alacritty-direct
 
 window:
   # Window dimensions (changes require restart)
@@ -453,10 +453,13 @@ live_config_reload: true
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - -i
+    - "create-tmux-session"
 
 # Startup directory
 #
@@ -773,6 +776,10 @@ key_bindings:
   - { key: F, mods: Alt|Shift, chars: "\x1BF" }
   - { key: V, mods: Alt,       chars: "\x1Bv" }
   - { key: V, mods: Alt|Shift, chars: "\x1BV" }
+  - { key: X, mods: Alt,       chars: "\x1Bx" }
+  - { key: X, mods: Alt|Shift, chars: "\x1BX" }
+  - { key: W, mods: Alt,       chars: "\x1Bw" }
+  - { key: W, mods: Alt|Shift, chars: "\x1BW" }
 
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }

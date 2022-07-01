@@ -20,5 +20,10 @@
   :init
   (global-corfu-mode))
 
+(use-package corfu-terminal
+  :ensure t
+  :config
+  (corfu-terminal-mode +1))
+
 (provide 'init-corfu)
 ;;; init-corfu.el ends here

@@ -4,8 +4,9 @@
 # emacs stuff
 alias emd="emacs --daemon"
 alias emdk="emacsclient -e '(kill-emacs)'"
-alias em="emacsclient -t"
-alias emx="emacsclient -nc"
+alias em="emacsclient -ta ''"
+alias emx="emacsclient -nca ''"
+alias v="TERM=alacritty vim"
 
 # git
 alias gpa="gp --all"
@@ -53,9 +54,9 @@ function kgpn {
 
 # common
 export VIRTUAL_ENV_DISABLE_PROMPT='Y'
-export EDITOR="vim"
+export EDITOR="emacsclient -ta ''"
 
-export TERM="xterm-256color"
+export TERM="alacritty-direct"
 
 export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128M"
 

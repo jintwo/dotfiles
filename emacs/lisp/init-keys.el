@@ -38,5 +38,7 @@
 
 (keymap-global-set "C-c C-t" #'split-term)
 
+(keymap-global-set "C-c C-l" #'j2/current-location)
+
 (provide 'init-keys)
 ;;; init-keys.el ends here
