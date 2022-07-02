@@ -2,11 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 
+;; stolen from https://stackoverflow.com/questions/24956521/how-can-i-hide-the-menu-bar-from-a-specific-frame-in-emacs
+(defun contextual-menubar (&optional frame)
+  "Display the menubar in FRAME (default: selected frame) if on a
+    graphical display, but hide it if in terminal."
+  (interactive)
+  (set-frame-parameter frame 'menu-bar-lines 0))
+(add-hook 'after-make-frame-functions 'contextual-menubar)
+
 (tool-bar-mode -1)
-(menu-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode 0)
 
+(setq visible-cursor nil)
 (setq mouse-autoselect-window t)
 
 (let ((no-border '(internal-border-width . 0)))
@@ -96,8 +104,7 @@
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
     ('light (load-theme 'kaoless-new t))
-    ('dark (load-theme 'nordless t)))
-  )
+    ('dark (load-theme 'nordless t))))
 
 (add-hook 'ns-system-appearance-change-functions #'j2/load-theme)
 

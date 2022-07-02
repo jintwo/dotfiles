@@ -71,6 +71,7 @@
 (require 'init-ibuffer)
 (require 'init-utils)
 (require 'init-org)
+(require 'init-mail)
 
 ;; dev
 ;; (require 'init-flycheck)
@@ -92,11 +93,15 @@
 ;; custom packages
 (require 'init-vendor)
 
+;; private
+(require 'init-private)
+
 ;; -------
 (put 'narrow-to-region 'disabled nil)
 
 (when (file-exists-p custom-file)
   (load custom-file))
+
 
 (provide 'init)
 ;;; init.el ends here

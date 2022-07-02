@@ -53,3 +53,6 @@ eln-cache/
 irony/
 transient/
 var/
+
+init-mail.el
+init-private.el

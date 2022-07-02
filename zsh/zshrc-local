@@ -1,6 +1,9 @@
 # -*- mode: sh -*-
 # vim: set ft=sh:
 
+# zsh
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#8a8a8a,bg=underline" 
+
 # emacs stuff
 alias emd="emacs --daemon"
 alias emdk="emacsclient -e '(kill-emacs)'"
