@@ -5,11 +5,16 @@
 
 (setq org-log-done t)
 
-(setq org-agenda-files (list "~/Documents/Clicktours/tasks.org"))
+(setq org-directory "~/Documents/org")
+(setq org-agenda-files (list "inbox.org"))
 
 ;; (when (fboundp 'key-chord-mode)
 ;;   (key-chord-define-global "ot" 'org-agenga))
 
+(setq org-capture-templates
+      `(("i" "Inbox" entry (file "inbox.org") ,(concat "* TODO %?\n" "/Entered on/ %U"))))
+
+(keymap-global-set "C-c c" 'org-capture)
 (keymap-global-set "C-c C-a" 'org-agenda)
 
 (defun j2/org-set-checkbox ()

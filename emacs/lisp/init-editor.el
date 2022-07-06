@@ -89,6 +89,7 @@
 ;; paren
 (show-paren-mode t)
 (setq show-paren-delay 0)
+(customize-set-variable 'show-paren-match '((t (:inverse-video t :weight bold))))
 
 (global-display-line-numbers-mode)
 

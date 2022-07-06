@@ -16,12 +16,6 @@
   (haskell-indentation-mode t)
   (interactive-haskell-mode t))
 
-(when (featurep 'init-lsp)
-  (use-package lsp-haskell
-    :defer t
-    :config
-    (add-hook 'haskell-mode-hook #'lsp-deferred)))
-
 (when (featurep 'init-eglot)
   (add-hook 'haskell-mode-hook #'eglot-ensure))
 

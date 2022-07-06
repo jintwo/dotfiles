@@ -11,5 +11,14 @@
   (sly-setup)
   (sly-symbol-completion-mode -1))
 
+(use-package sly-asdf
+  :defer t)
+
+(use-package sly-quicklisp
+  :defer t)
+
+(use-package sly-repl-ansi-color
+  :defer t)
+
 (provide 'cl-config)
 ;;; cl-config.el ends here

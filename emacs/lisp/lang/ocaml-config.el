@@ -1,37 +1,25 @@
 ;;; ocaml-config.el --- ocaml config
 ;;; Commentary:
 ;;; Code:
+
+;;; TODO: consider moving to simple (probably) caml-mode
 (use-package tuareg
   :mode (("\\.mll\\'" . tuareg-mode)
          ("\\.ml[ip]?\\'" . tuareg-mode)
          ("\\.eliomi?\\'" . tuareg-mode)
          ("\\.mly\\'" . tuareg-menhir-mode)))
 
-(use-package utop
-  :after tuareg
+(use-package merlin
+  :defer t
   :config
-  (setq utop-command "opam config exec utop -- -emacs")
-  (add-hook 'tuareg-mode-hook #'utop-minor-mode))
+  (setq merlin-error-after-save nil)
+  (add-hook 'tuareg-mode-hook #'merlin-mode)
+  (add-hook 'caml-mode-hook #'merlin-mode))
 
-(when (featurep 'init-flycheck)
-  (use-package flycheck-ocaml
-    :after tuareg)
-
-  (use-package merlin
-    :after (tuareg flycheck-ocaml)
-    :config
-    (flycheck-ocaml-setup)
-    (setq merlin-error-after-save nil)
-    (add-hook 'tuareg-mode-hook #'merlin-mode)
-
-    (require 'company)
-    (add-to-list 'company-backends 'merlin-company-backend)))
-
-(add-hook 'tuareg-mode-hook
-          (lambda ()
-            (progn
-              (keymap-set tuareg-mode-map "C-c C-s" 'utop)
-              (setq compile-command "opam config exec corebuild "))))
+(when (featurep 'init-eglot)
+  (put 'tuareg-mode 'eglot-language-id "ocaml")
+  (put 'tuareg-opam-mode 'eglot-language-id "ocaml")
+  (put 'merlin-mode 'eglot-language-id "ocaml"))
 
 (provide 'ocaml-config)
 ;;; ocaml-config.el ends here

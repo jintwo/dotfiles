@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 (use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
   :demand t
   :config
   (exec-path-from-shell-initialize))

@@ -18,12 +18,10 @@
         ("https://www.kvraudio.com/rss/kvr_news_top.rss" sound news synth)
         ;; music/releases
         ("http://post-trash.com/news?format=RSS" music releases)
-        ("http://slowdivescorner.blogspot.com/feeds/posts/default" music releases)
         ("https://www.rarelyunable.com/feed/" music releases)
         ("http://fuckedbynoise.blogspot.com/feeds/posts/default?alt=rss" music releases)
         ("https://theanswerisinthebeat.net/feed/" music releases)
-        ("http://thequietus.com/feed" music news releases)
-        ("https://sadwave.com/feed/" music releases)
+        ("http://thequietus.com/feed" art music news)
         ;; dev
         ("http://lucumr.pocoo.org/feed.atom" dev)
         ("https://tylerxhobbs.com/essays?format=rss" dev)
@@ -57,6 +55,7 @@
         ("https://danluu.com/atom.xml" dev blog)
         ("https://daringfireball.net/feeds/main" dev blog)
         ("https://macowners.club/index.xml" dev macos)
+        ("https://blog.suborbital.dev/rss.xml" dev wasm)
         ;; dev/game
         ("https://niklasriewald.com/feed/" dev gamedev)
         ("https://verdagon.dev/rss.xml" dev gamedev lang)

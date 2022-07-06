@@ -51,6 +51,10 @@
 (add-hook 'emacs-startup-hook #'display-startup-time)
 ;;
 
+(when (featurep 'native-compile)
+  (setq native-comp-async-report-warnings-errors nil)
+  (setq native-comp-deferred-compilation t))
+
 ;; base
 (require 'init-packages)
 
@@ -63,24 +67,16 @@
 
 ;; maybe join ui+editor
 (require 'init-ui)
-(require 'init-vertico)
-(require 'init-consult)
-(require 'init-embark)
-
 (require 'init-editor)
+(require 'init-completion)
 (require 'init-ibuffer)
 (require 'init-utils)
 (require 'init-org)
 (require 'init-mail)
 
 ;; dev
-;; (require 'init-flycheck)
 (require 'init-git)
 (require 'init-sp)
-;; (require 'init-company)
-(require 'init-corfu)
-
-;; (require 'init-lsp)
 (require 'init-eglot)
 
 ;; langs
@@ -101,7 +97,6 @@
 
 (when (file-exists-p custom-file)
   (load custom-file))
-
 
 (provide 'init)
 ;;; init.el ends here

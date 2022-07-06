@@ -2,13 +2,13 @@
 # vim: set ft=sh:
 
 # zsh
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#8a8a8a,bg=underline" 
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#8a8a8a,bg=underline"
 
 # emacs stuff
 alias emd="emacs --daemon"
 alias emdk="emacsclient -e '(kill-emacs)'"
-alias em="emacsclient -ta ''"
-alias emx="emacsclient -nca ''"
+alias e="emacsclient -ta ''"
+alias ex="emacsclient -nca ''"
 alias v="TERM=alacritty vim"
 
 # git
@@ -74,10 +74,13 @@ export LANG=en_US.UTF-8
 # export PATH=${DEVKITPRO}/tools/bin:$PATH
 
 # langs
+# rust
 if [ -d ~/.cargo ]; then
     source ~/.cargo/env
 fi
-# eval $(opam env)
+# ocaml
+[[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+# haskell
 # source ~/.ghcup/env
 
 # c

@@ -1,6 +1,14 @@
-;;; init-consult.el --- consult config
+;;; init-completion.el --- completion config
 ;;; Commentary:
 ;;; Code:
+(use-package cape
+  :defer t
+  :init
+  (require 'cape)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
 ;; Example configuration for Consult
 (use-package consult
@@ -135,5 +143,91 @@
   :after org-roam
   :defer t)
 
-(provide 'init-consult)
-;;; init-consult.el ends here
+(use-package corfu
+  :ensure t
+  ;; TAB-and-Go customizations
+  :custom
+  (corfu-cycle t)             ;; Enable cycling for `corfu-next/previous'
+  (corfu-preselect-first nil) ;; Disable candidate preselection
+
+  ;; Use TAB for cycling, default is `corfu-complete'.
+  :bind
+  (:map corfu-map
+        ("TAB" . corfu-next)
+        ([tab] . corfu-next)
+        ("S-TAB" . corfu-previous)
+        ([backtab] . corfu-previous))
+
+  :init
+  (global-corfu-mode))
+
+(use-package corfu-terminal
+  :ensure t
+  :config
+  (corfu-terminal-mode +1))
+
+(use-package embark
+  :ensure t
+
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ;; ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+  :init
+
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :ensure t
+  :after (embark consult)
+  :demand t ; only necessary if you have the hook below
+  ;; if you want to have consult previews as you move around an
+  ;; auto-updating embark collect buffer
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+;; Enable richer annotations using the Marginalia package
+(use-package marginalia
+  ;; Either bind `marginalia-cycle` globally or only in the minibuffer
+  :bind (("M-A" . marginalia-cycle)
+         :map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+
+  ;; The :init configuration is always executed (Not lazy!)
+  :init
+
+  ;; Must be in the :init section of use-package such that the mode gets
+  ;; enabled right away. Note that this forces loading the package.
+  (marginalia-mode))
+
+(use-package orderless
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package vertico
+  :init
+  (vertico-mode))
+
+(use-package savehist
+  :init
+  (savehist-mode))
+
+(provide 'init-completion)
+;;; init-completion.el ends here

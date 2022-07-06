@@ -7,12 +7,6 @@
                   objc-mode-hook))
     (add-hook mode function)))
 
-(when (featurep 'init-lsp)
-  (use-package ccls
-    :defer t
-    :config
-    (add-c-modes-hook #'lsp-deferred)))
-
 (when (featurep 'init-eglot)
   (add-c-modes-hook #'eglot-ensure))
 
