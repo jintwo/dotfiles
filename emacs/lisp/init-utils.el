@@ -31,5 +31,12 @@
 (add-hook 'org-timer-done-hook (lambda () (message "timer done!")))
 (keymap-global-set "C-c t" 'org-timer-set-timer)
 
+;; project
+(customize-set-variable 'project-switch-commands
+                        '((project-find-file "Find file" nil)
+                          (consult-ripgrep "Ripgrep" ?r)
+                          (project-dired "Dired" nil)
+                          (magit-status "Magit" ?m)
+                          (project-eshell "Eshell" nil)))
 (provide 'init-utils)
 ;;; init-utils.el ends here
