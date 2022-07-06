@@ -26,9 +26,16 @@
     (key-chord-define-global "jl" 'avy-goto-line)))
 
 (use-package highlight-indent-guides
+  :defer t
+  :init
+  (highlight-indent-guides-auto-set-faces)
   :config
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  (setq highlight-indent-guides-method 'character))
+  (setq highlight-indent-guides-method 'character
+        highlight-indent-guides-auto-odd-face-perc 45
+        highlight-indent-guides-auto-even-face-perc 45
+        highlight-indent-guides-auto-character-face-perc 60))
+
 
 ;; is LSP suitable to do it?
 (use-package idle-highlight-mode

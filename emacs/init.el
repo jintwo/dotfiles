@@ -58,6 +58,22 @@
 ;; base
 (require 'init-packages)
 
+;;
+;; Do not saves duplicates in kill-ring
+(customize-set-variable 'kill-do-not-save-duplicates t)
+
+;; Make scrolling less stuttered
+(setq auto-window-vscroll nil)
+(customize-set-variable 'fast-but-imprecise-scrolling t)
+(customize-set-variable 'scroll-conservatively 101)
+(customize-set-variable 'scroll-margin 0)
+(customize-set-variable 'scroll-preserve-screen-position t)
+
+;; Better support for files with long lines
+(setq-default bidi-paragraph-direction 'left-to-right)
+(setq-default bidi-inhibit-bpa t)
+(global-so-long-mode 1)
+
 ;;---
 ;; (setq user-emacs-directory "~/.cache/emacs")
 (use-package no-littering)
