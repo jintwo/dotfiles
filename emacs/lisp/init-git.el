@@ -10,5 +10,9 @@
 (use-package git-modes
   :defer t)
 
+(use-package magit-delta
+  :defer t
+  :hook (magit-mode . magit-delta-mode))
+
 (provide 'init-git)
 ;;; init-git.el ends here

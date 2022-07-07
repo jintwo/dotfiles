@@ -53,5 +53,10 @@
   (use-package consult-org-roam
     :ensure t))
 
+;; use following package as inspiration ;)
+(use-package toc-org
+  :defer t
+  :hook (org-mode-hook . toc-org-mode))
+
 (provide 'init-org)
 ;;; init-org.el ends here

@@ -132,8 +132,7 @@
 ;; term
 (use-package eterm-256color
   :ensure t
-  :config
-  (add-hook 'term-mode-hook #'eterm-256color-mode))
+  :hook (term-mode . eterm-256color-mode))
 
 (when (featurep 'ns)
   (defun ns-raise-emacs ()

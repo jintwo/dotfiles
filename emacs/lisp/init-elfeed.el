@@ -4,6 +4,8 @@
 (use-package elfeed
   :defer t)
 
+(customize-set-value 'elfeed-show-entry-switch #'pop-to-buffer)
+
 (setq elfeed-feeds
       '(;; sound/music
         ("https://feeds.feedburner.com/SonicstatecomNews" sound news)
@@ -87,6 +89,14 @@
         ("http://perito-burrito.com/feed" travel blog)
         ;; books
         ("http://gorky.media/feed/" blog books)))
+
+;; TODO: tame popups using shackle.el https://depp.brause.cc/shackle/
+;; OR: https://github.com/karthink/popper
+;;     https://github.com/emacsorphanage/popwin
+(use-package shackle
+  :ensure t)
+
+(setq shackle-rules '(("\\`\\*elfeed.*?\\*\\'" :regexp t :popup t :align 'below :size 0.7)))
 
 (provide 'init-elfeed)
 ;;; init-elfeed.el ends here

@@ -26,21 +26,17 @@
     (key-chord-define-global "jl" 'avy-goto-line)))
 
 (use-package highlight-indent-guides
-  :defer t
+  :hook ((prog-mode conf-mode yaml-mode) . highlight-indent-guides-mode)
   :init
   (highlight-indent-guides-auto-set-faces)
   :config
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (setq highlight-indent-guides-method 'character
         highlight-indent-guides-auto-odd-face-perc 45
         highlight-indent-guides-auto-even-face-perc 45
         highlight-indent-guides-auto-character-face-perc 60))
 
-
-;; is LSP suitable to do it?
 (use-package idle-highlight-mode
-  :config
-  (add-hook 'prog-mode-hook (lambda () (idle-highlight-mode t))))
+  :hook (prog-mode . idle-highlight-mode))
 
 (use-package whole-line-or-region
   :config
@@ -49,18 +45,17 @@
 ;; annotate todos
 (setq to-highlight '(".*TODO.*" ".*FIXME.*"))
 
-(defun annotate ()
+(defun j2/annotate-todos ()
   "Annotate TODOs in 'prog-mode' buffer."
   (interactive)
   (dolist (text to-highlight)
     (highlight-lines-matching-regexp text)))
 
-(add-hook 'prog-mode-hook 'annotate)
+(add-hook 'prog-mode-hook #'j2/annotate-todos)
 
 (use-package rainbow-delimiters
-  :commands 'rainbow-delimiters-mode
-  :init
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+  :defer t
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; still not using it (should disable/remove?)
 (use-package yasnippet
@@ -96,7 +91,9 @@
 ;; paren
 (show-paren-mode t)
 (setq show-paren-delay 0)
-(set-face-attribute 'show-paren-match nil :inverse-video t)
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (set-face-attribute 'show-paren-match nil :inverse-video t)))
 
 (global-display-line-numbers-mode)
 

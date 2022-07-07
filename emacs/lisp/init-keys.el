@@ -30,13 +30,13 @@
 (keymap-global-set "C-M-s" 'isearch-forward)
 (keymap-global-set "C-M-r" 'isearch-backward)
 
-(defun split-term ()
+(defun j2/split-term ()
   (interactive)
   (let ((window (split-window-below)))
     (select-window window)
     (ansi-term "/bin/zsh")))
 
-(keymap-global-set "C-c C-t" #'split-term)
+(keymap-global-set "C-c C-t" #'j2/split-term)
 
 (keymap-global-set "C-c C-l" #'j2/current-location)
 

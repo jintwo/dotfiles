@@ -18,7 +18,7 @@
 (setq read-process-output-max (* 1024 1024))
 
 (set-language-environment "UTF-8")
-(setenv "ESHELL" (expand-file-name "/usr/local/bin/fish"))
+(setenv "ESHELL" (expand-file-name "/bin/zsh"))
 (setenv "LC_CTYPE" "UTF-8")
 (setenv "LC_ALL" "en_US.UTF-8")
 (setenv "LANG" "en_US.UTF-8")

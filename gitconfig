@@ -36,11 +36,17 @@
 [interactive]
     diffFilter = delta --color-only
 
+[add.interactive]
+    useBuiltin = false
+
 [delta]
-    navigate = true
-    line-numbers = true
+    # navigate = true
+    # line-numbers = true
     side-by-side = true
-    decorations = true
+    # decorations = true
+    relative-paths = true
+    # syntax-theme = none
+    hunk-header-style = line-number syntax
     whitespace-error-style = 22 reverse
 
 [filter "lfs"]
@@ -71,4 +77,3 @@
     reflog = delta
     show = delta
     difftool = true
-

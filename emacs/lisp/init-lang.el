@@ -39,7 +39,10 @@
 
 ;; conf/markup
 (use-package jsonian
-  :ensure t)
+  :ensure nil
+  :after so-long
+  :custom
+  (jsonian-no-so-long-mode))
 
 (use-package yaml-mode
   :mode ("\\.yaml\\'" "\\.yml\\'"))
