@@ -12,7 +12,10 @@
 
 (use-package magit-delta
   :defer t
-  :hook (magit-mode . magit-delta-mode))
+  :hook (magit-mode . magit-delta-mode)
+  :config
+  (setq magit-delta-default-light-theme "Solarized (light)"
+        magit-delta-default-dark-theme "Nord"))
 
 (provide 'init-git)
 ;;; init-git.el ends here
