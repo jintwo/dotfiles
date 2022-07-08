@@ -1,9 +1,0 @@
-[submodule "emacs.d/vendor/emacs-crystal-mode"]
-	path = emacs.d/vendor/emacs-crystal-mode
-	url = https://github.com/jpellerin/emacs-crystal-mode.git
-[submodule "emacs.d/vendor/ooc-mode"]
-	path = emacs.d/vendor/ooc-mode
-	url = https://github.com/nixeagle/ooc-mode.git
-[submodule "emacs.d/vendor/perlbrew-mini.el"]
-	path = emacs.d/vendor/perlbrew-mini.el
-	url = https://github.com/dams/perlbrew-mini.el.git
