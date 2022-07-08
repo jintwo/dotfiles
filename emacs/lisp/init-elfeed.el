@@ -94,7 +94,9 @@
 ;; OR: https://github.com/karthink/popper
 ;;     https://github.com/emacsorphanage/popwin
 (use-package shackle
-  :ensure t)
+  :ensure t
+  :init
+  (shackle-mode))
 
 (setq shackle-rules '(("\\`\\*elfeed.*?\\*\\'" :regexp t :popup t :align 'below :size 0.7)))
 
