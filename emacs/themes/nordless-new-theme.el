@@ -57,7 +57,7 @@
 
 (nordless-new-with-color-variables
   (custom-theme-set-faces
-   'kaoless-new
+   'nordless-new
    `(default ((t (:background ,bg :foreground ,fg))))
    `(cursor ((t (:background ,fg+ :foreground ,bg+))))
    `(mode-line ((t (:background ,current-line :box (:color ,fade :line-width (0 . 1))))))
