@@ -16,5 +16,8 @@
 (when (featurep 'init-eglot)
   (add-hook 'python-mode-hook #'eglot-ensure))
 
+(use-package hy-mode
+  :mode ("\\.hy\\'"))
+
 (provide 'python-config)
 ;;; python-config.el ends here

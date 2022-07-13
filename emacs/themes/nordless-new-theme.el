@@ -1,32 +1,61 @@
-;;; kaoless-new-theme.el --- custom themes
+;;; nordless-new-theme.el --- A mostly colorless version of nord-theme
+
+;; Copyright (C) 2018-2020 Thomas Letan
+;;
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+;; Author: Thomas Letan <lthms@soap.coffee>
+;; URL: https://git.sr.ht/~lthms/colorless-themes.el
+;; Package-Version: 20201222.1627
+;; Package-Commit: c1ed1e12541cf05cc6c558d23c089c07e10b54d7
+;; Version: 0.2
+;; Package-Requires: ((colorless-themes "0.2"))
+;; License: GPL-3
+;; Keywords: faces theme
+
 ;;; Commentary:
+;; This file has been automatically generated from a template of the
+;; colorless themes project.
+
 ;;; Code:
+
 ;; -*- lexical-binding: t -*-
 
-(deftheme kaoless-new "kaolin light colorless (new)")
+(deftheme nordless-new "A mostly colorless version of nord-theme (new)")
 
 (eval-and-compile
-  (defconst kaoless-new-theme-colors-alist
-    '((bg . "#f5f6f5")
-      (bg+ . "#F1F3E9")
-      (current-line . "#E5E6DE")
-      (fade . "#C3C4BF")
-      (fg . "#4E4757")
-      (fg+ . "#ca6036")
-      (docs . "#5B7C93")
-      (red . "#cd5c60")
-      (warning . "#C5882C")
-      (yellow . "#d1832e")
-      (green . "#4D8B5B"))))
+  (defconst nordless-new-theme-colors-alist
+    '((bg . "#2E3440")
+      (bg+ . "#3B4252")
+      (current-line . "#434C5E")
+      (fade . "#4C566A")
+      (fg . "#D8DEE9")
+      (fg+ . "#E5E9F0")
+      (docs . "#88C0D0")
+      (red . "#BF616A")
+      (warning . "#D08770")
+      (yellow . "#EBCB8B")
+      (green . "#A3BE8C"))))
 
-(defmacro kaoless-new-with-color-variables (&rest body)
+(defmacro nordless-new-with-color-variables (&rest body)
   (declare (indent 0))
   `(let (,@(mapcar (lambda (cons)
 		     (list (car cons) (cdr cons)))
-		   kaoless-new-theme-colors-alist))
+		   nordless-new-theme-colors-alist))
      ,@body))
 
-(kaoless-new-with-color-variables
+(nordless-new-with-color-variables
   (custom-theme-set-faces
    'kaoless-new
    `(default ((t (:background ,bg :foreground ,fg))))
@@ -246,12 +275,12 @@
    `(centaur-tabs-active-bar-face ((t (:background ,docs))))
    `(focus-unfocused ((t (:foreground ,fade))))))
 
-(provide-theme 'kaoless-new)
+(provide-theme 'nordless-new)
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide 'kaoless-new-theme)
-;;; kaoless-new-theme.el ends here
+(provide 'nordless-new-theme)
+;;; nordless-new-theme.el ends here

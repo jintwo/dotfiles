@@ -27,15 +27,19 @@
 
 (use-package gcmh)
 
-;; org-timer
-(add-hook 'org-timer-done-hook (lambda () (message "timer done!")))
-(keymap-global-set "C-c t" 'org-timer-set-timer)
-
 ;; project
 (customize-set-variable 'project-switch-commands '((project-find-file "Find file")
                                                    (consult-ripgrep "Ripgrep" ?r)
                                                    (project-dired "Dired")
                                                    (magit-status "Magit" ?m)
+
                                                    (project-eshell "Eshell")))
+
+(defun j2/split-term ()
+  (interactive)
+  (let ((window (split-window-below)))
+    (select-window window)
+    (ansi-term "/bin/zsh")))
+
 (provide 'init-utils)
 ;;; init-utils.el ends here

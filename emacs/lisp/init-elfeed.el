@@ -2,9 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 (use-package elfeed
-  :defer t)
-
-(customize-set-value 'elfeed-show-entry-switch #'pop-to-buffer)
+  :defer t
+  :bind (:map global-map (("C-c f" . elfeed)))
+  :custom
+  (elfeed-show-entry-switch #'j2/elfeed-display-buffer)
+  (elfeed-show-entry-delete #'j2/elfeed-delete-buffer)
+  (elfeed-search-remain-on-entry t))
 
 (setq elfeed-feeds
       '(;; sound/music
@@ -90,15 +93,20 @@
         ;; books
         ("http://gorky.media/feed/" blog books)))
 
-;; TODO: tame popups using shackle.el https://depp.brause.cc/shackle/
-;; OR: https://github.com/karthink/popper
-;;     https://github.com/emacsorphanage/popwin
-(use-package shackle
-  :ensure t
-  :init
-  (shackle-mode))
+(defun j2/elfeed-display-buffer (buf &optional act)
+  (popwin:popup-buffer buf
+                       :position 'bottom
+                       :width 0.7
+                       :height 0.7
+                       :stick t
+                       :dedicated t
+                       :noselect nil))
 
-(setq shackle-rules '(("\\`\\*elfeed.*?\\*\\'" :regexp t :popup t :align 'below :size 0.7)))
+(defun j2/elfeed-delete-buffer ()
+  (let* ((buf (get-buffer "elfeed-entry*"))
+         (window (get-buffer-window buf)))
+    (kill-buffer buf)
+    (delete-window window)))
 
 (provide 'init-elfeed)
 ;;; init-elfeed.el ends here

@@ -1,8 +1,7 @@
 # -*- mode: sh -*-
-# vim: set ft=sh:
 
 # zsh
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#8a8a8a,bg=underline"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 
 # emacs stuff
 alias emd="emacs --daemon"
@@ -13,6 +12,9 @@ alias v="TERM=alacritty vim"
 
 # git
 alias gpa="gp --all"
+
+# tilde
+alias tilde="TERM=xterm-16color ssh jintwo@tilde.club"
 
 # k8s
 function kc {
@@ -137,7 +139,8 @@ function xmlf {
 export BAT_THEME=Nord
 export LESS=-RS
 
-alias ls=exa
+alias l="exa -Flah"
+alias ls="exa -1"
 alias cat="bat -n"
 eval "$(zoxide init --cmd j zsh)"
 

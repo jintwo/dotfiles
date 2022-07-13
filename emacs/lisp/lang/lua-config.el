@@ -6,5 +6,8 @@
   :config
   (setq lua-indent-level 4))
 
+(use-package fennel-mode
+  :mode ("\\.fnl\\'"))
+
 (provide 'lua-config)
 ;;; lua-config.el ends here

@@ -2,20 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 (require 'org)
+(require 'f)
 
-(setq org-log-done t)
+(setq org-log-done t
+      org-directory "~/Documents/org"
+      base-org-agenda-files (list "inbox.org" "tasks.org")
+      org-roam-root-file "root.org"
+      org-capture-templates `(("i" "Inbox" entry (file "inbox.org") ,(concat "* %?\n" "/Entered on/ %U"))
+                              ("t" "Tasks" entry (file "tasks.org") ,(concat "* TODO %?\n" "/Entered on/ %U"))))
 
-(setq org-directory "~/Documents/org")
-(setq org-agenda-files (list "inbox.org"))
-
-;; (when (fboundp 'key-chord-mode)
-;;   (key-chord-define-global "ot" 'org-agenga))
-
-(setq org-capture-templates
-      `(("i" "Inbox" entry (file "inbox.org") ,(concat "* TODO %?\n" "/Entered on/ %U"))))
-
-(keymap-global-set "C-c c" 'org-capture)
-(keymap-global-set "C-c C-a" 'org-agenda)
+(defun j2/jump-to-org-index ()
+  (interactive)
+  (find-file (f-join org-directory org-roam-root-file)))
 
 (defun j2/org-set-checkbox ()
   "Add checkbox inplace or before selected text."
@@ -25,13 +23,19 @@
       (goto-char pos)
       (insert "[ ] "))))
 
+(defun j2/org-roam-update-agenda-files (&rest _)
+  (let ((node-files (mapcar #'org-roam-node-file (org-roam-node-list))))
+    (setq org-agenda-files (append base-org-agenda-files node-files))))
+
+(advice-add 'org-agenda :before #'j2/org-roam-update-agenda-files)
+
 (add-hook 'org-mode-hook
           (lambda () (keymap-local-set "C-c x" 'j2/org-set-checkbox)))
 
 (use-package org-roam
   :ensure t
   :custom
-  (org-roam-directory (file-truename "~/Documents/org"))
+  (org-roam-directory (f-join org-directory "roam"))
   :bind (:map org-mode-map
               ("C-c r l" . org-roam-buffer-toggle)
               ("C-c r f" . org-roam-node-find)
@@ -54,9 +58,24 @@
     :ensure t))
 
 ;; use following package as inspiration ;)
-(use-package toc-org
+;; (use-package toc-org
+;;   :defer t
+;;   :hook (org-mode-hook . toc-org-mode))
+
+;; utils
+(use-package yequake
   :defer t
-  :hook (org-mode-hook . toc-org-mode))
+  :custom
+  (yequake-frames '(("org-capture"
+                     (buffer-fns . (yequake-org-capture))
+                     (width . 0.4)
+                     (height . 0.25)
+                     (alpha . 0.9)
+                     (frame-parameters . ((skip-taskbar . t)
+                                          (sticky . t)))))))
+
+; org-timer
+(add-hook 'org-timer-done-hook (lambda () (message "timer done!")))
 
 (provide 'init-org)
 ;;; init-org.el ends here

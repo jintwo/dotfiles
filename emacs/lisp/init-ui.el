@@ -49,14 +49,14 @@
   (set-face-attribute 'font-lock-doc-face nil :weight bold-weight)
   (set-fontset-font "fontset-default" 'unicode-bmp family))
 
-(defun init-ui ()
+(defun j2/init-ui ()
   "UI settings."
   (interactive)
   (j2/set-font "Iosevka" 120 'medium)
   (when (eq (window-system) 'mac)
     (toggle-frame-fullscreen)))
 
-(add-hook 'after-init-hook 'init-ui)
+(add-hook 'after-init-hook #'j2/init-ui)
 
 (global-hl-line-mode t)
 
@@ -82,43 +82,23 @@
 ;; theme
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
-(use-package colorless-themes)
-
-(use-package nordless-theme
-  ;; :config
-  ;; (load-theme 'nordless t)
-  )
-
-(use-package kaolin-themes
-  ;; :config
-  ;; (load-theme 'kaolin-mono-light t)
-  ;; (load-theme 'kaoless-new t)
-  ;; (load-theme 'kaoless t)
-  )
-
-;; (setq nano-theme-light/dark 'light)
-;; (load-theme 'nano t)
-
 (defun j2/load-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
     ('light (load-theme 'kaoless-new t))
-    ('dark (load-theme 'nordless t))))
+    ('dark (load-theme 'nordless-new t))))
 
 (add-hook 'ns-system-appearance-change-functions #'j2/load-theme)
 
 ;; windows
 (use-package ace-window
-  :defer 1
-  :config
-  (keymap-global-set "M-o" 'ace-window))
+  :defer t
+  :bind (:map global-map (("M-o" . ace-window))))
 
 (use-package resize-window
-  :defer 1
-  :config
-  (when (fboundp 'key-chord-mode)
-    (key-chord-define-global "rw" 'resize-window)))
+  :defer t
+  :bind (:map global-map (("C-c r w" . resize-window))))
 
 (use-package helpful
   :defer t

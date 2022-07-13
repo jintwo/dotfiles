@@ -20,10 +20,7 @@
 (use-package avy
   :defer t
   :config
-  (avy-setup-default)
-  (when (fboundp 'key-chord-mode)
-    (key-chord-define-global "jc" 'avy-goto-char)
-    (key-chord-define-global "jl" 'avy-goto-line)))
+  (avy-setup-default))
 
 (use-package highlight-indent-guides
   :hook ((prog-mode conf-mode yaml-mode) . highlight-indent-guides-mode)

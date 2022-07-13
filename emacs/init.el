@@ -78,9 +78,6 @@
 ;; (setq user-emacs-directory "~/.cache/emacs")
 (use-package no-littering)
 
-;;---
-(require 'init-keys)
-
 ;; maybe join ui+editor
 (require 'init-ui)
 (require 'init-editor)
@@ -104,6 +101,9 @@
 
 ;; custom packages
 (require 'init-vendor)
+
+;; shortcuts
+(require 'init-keys)
 
 ;; private
 (require 'init-private)

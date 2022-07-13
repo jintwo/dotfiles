@@ -7,7 +7,6 @@
   (inferior-lisp-program "sbcl")
   ;; (inferior-lisp-program "ros -Q run")
   :config
-  (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (sly-setup)
   (sly-symbol-completion-mode -1))
 
