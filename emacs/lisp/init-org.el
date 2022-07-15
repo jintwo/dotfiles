@@ -6,8 +6,12 @@
 
 (setq org-log-done t
       org-directory "~/Documents/org"
-      base-org-agenda-files (list "inbox.org" "tasks.org")
+      base-org-agenda-files (list "inbox.org" "tasks.org" "job.org")
       org-roam-root-file "root.org"
+      org-todo-keywords '((sequence "TODO(t)" "WAITING" "|" "ABANDONDED(b)" "DONE(d)"))
+      org-highest-priority ?A
+      org-lowest-priority ?C
+      org-default-priority ?A
       org-capture-templates `(("i" "Inbox" entry (file "inbox.org") ,(concat "* %?\n" "/Entered on/ %U"))
                               ("t" "Tasks" entry (file "tasks.org") ,(concat "* TODO %?\n" "/Entered on/ %U"))))
 
@@ -74,8 +78,13 @@
                      (frame-parameters . ((skip-taskbar . t)
                                           (sticky . t)))))))
 
-; org-timer
+;; org-timer
 (add-hook 'org-timer-done-hook (lambda () (message "timer done!")))
+
+;; org-checklist
+(use-package org-contrib
+  :config
+  (require 'org-checklist))
 
 (provide 'init-org)
 ;;; init-org.el ends here

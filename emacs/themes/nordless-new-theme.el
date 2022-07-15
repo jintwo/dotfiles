@@ -273,7 +273,9 @@
    `(centaur-tabs-selected ((t (:background ,bg :foreground ,fg))))
    `(centaur-tabs-selected-modified ((t (:background ,bg :foreground ,fg))))
    `(centaur-tabs-active-bar-face ((t (:background ,docs))))
-   `(focus-unfocused ((t (:foreground ,fade))))))
+   `(focus-unfocused ((t (:foreground ,fade))))
+   `(corfu-border ((t (:background ,fade))))
+   `(corfu-default ((t (:background ,current-line))))))
 
 (provide-theme 'nordless-new)
 
