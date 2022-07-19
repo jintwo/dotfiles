@@ -33,6 +33,7 @@
 (keymap-global-set "C-c c" #'org-capture)
 (keymap-global-set "C-c a" #'org-agenda)
 (keymap-global-set "C-c t" #'org-timer-set-timer)
+(keymap-global-set "C-c r f" #'org-roam-node-find)
 
 (provide 'init-keys)
 ;;; init-keys.el ends here
