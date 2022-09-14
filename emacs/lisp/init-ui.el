@@ -65,19 +65,17 @@
 (column-number-mode t)
 (size-indication-mode t)
 
+
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
   :config
   (setq doom-modeline-height 20
         doom-modeline-bar-width 3
         doom-modeline-icon nil
-        doom-modeline-minor-modes nil
-        doom-modeline-checker-simple-format t
         doom-modeline-vcs-max-length 30
         doom-modeline-lsp nil
         doom-modeline-env-enable-python t
-        doom-modeline-env-enable-rust t
-        doom-modeline-env-enable-elixir t))
+        doom-modeline-env-enable-rust t))
 
 ;; theme
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
@@ -114,18 +112,20 @@
   :ensure t
   :hook (term-mode . eterm-256color-mode))
 
-(when (featurep 'ns)
-  (defun ns-raise-emacs ()
-    "Raise Emacs."
-    (ns-do-applescript "tell application \"Emacs\" to activate"))
-  (defun ns-raise-emacs-with-frame (frame)
-    "Raise Emacs and select the provided frame."
-    (with-selected-frame frame
-      (when (display-graphic-p)
-        (ns-raise-emacs))))
-  (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame)
-  (when (display-graphic-p)
-    (ns-raise-emacs)))
+(when (and (boundp 'server-process)
+	   (memq (process-status server-process) '(connect listen open run)))
+  (when (featurep 'ns)
+    (defun ns-raise-emacs ()
+      "Raise Emacs."
+      (ns-do-applescript "tell application \"Emacs\" to activate"))
+    (defun ns-raise-emacs-with-frame (frame)
+      "Raise Emacs and select the provided frame."
+      (with-selected-frame frame
+	(when (display-graphic-p)
+          (ns-raise-emacs))))
+    (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame)
+    (when (display-graphic-p)
+      (ns-raise-emacs))))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

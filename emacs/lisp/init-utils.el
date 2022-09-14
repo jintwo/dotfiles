@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (use-package exec-path-from-shell
-  :demand t
+  :ensure t
   :config
   (exec-path-from-shell-initialize))
 
@@ -40,6 +40,12 @@
   (let ((window (split-window-below)))
     (select-window window)
     (ansi-term "/bin/zsh")))
+
+(use-package reveal-in-folder
+  :defer 1)
+
+(use-package transmission
+  :defer 1)
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

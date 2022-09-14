@@ -18,6 +18,11 @@ alias tilde="TERM=xterm-16color ssh jintwo@tilde.club"
 
 # k8s
 function kc {
+    # ensure ktun
+    ktun status > /dev/null
+    if [[ ! $? -eq 0 ]]; then
+        ktun start
+    fi
     local ns=${NS:-production}
     local sp='--'
     local spi=$@[(ie)$sp]

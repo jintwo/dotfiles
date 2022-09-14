@@ -57,6 +57,7 @@ yabai -m rule --add app="^Emacs$" title!="^org-capture$" space=^1
 yabai -m rule --add app="^Alacritty$" space=^2
 yabai -m rule --add app="^Orion$" space=^3
 yabai -m rule --add app="^Xcode$" space=^4
+yabai -m rule --add app="^Dash$" space=^4
 yabai -m rule --add app="^Live$" space=^5
 yabai -m rule --add app="^Spotify$" space=^6
 

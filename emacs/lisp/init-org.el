@@ -2,18 +2,26 @@
 ;;; Commentary:
 ;;; Code:
 (require 'org)
+(require 'org-agenda)
 (require 'f)
+
+;;
+;; base-org-agenda-files (list "inbox.org" "job.org" "cal.org")
+(setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
 
 (setq org-log-done t
       org-directory "~/Documents/org"
-      base-org-agenda-files (list "inbox.org" "tasks.org" "job.org")
       org-roam-root-file "root.org"
-      org-todo-keywords '((sequence "TODO(t)" "WAITING" "|" "ABANDONDED(b)" "DONE(d)"))
+      org-todo-keywords '((sequence "TODO(t)" "WIP" "WAITING" "|" "ABANDONDED(b)" "DONE(d)"))
       org-highest-priority ?A
       org-lowest-priority ?C
       org-default-priority ?A
-      org-capture-templates `(("i" "Inbox" entry (file "inbox.org") ,(concat "* %?\n" "/Entered on/ %U"))
-                              ("t" "Tasks" entry (file "tasks.org") ,(concat "* TODO %?\n" "/Entered on/ %U"))))
+      org-capture-templates `(("i" "Inbox" entry (file "inbox.org") ,(concat "* %?\n" "/Entered on/ %U"))))
+
+;; setup calendar
+(setq gnus-icalendar-org-capture-file (f-join org-directory "cal.org")
+      gnus-icalendar-org-capture-headline '("Calendar"))
+(gnus-icalendar-org-setup)
 
 (defun j2/jump-to-org-index ()
   (interactive)
@@ -102,6 +110,9 @@
               (org-remove-inline-images)
               (org-present-show-cursor)
               (org-present-read-write))))
+
+(use-package ob-restclient
+  :defer t)
 
 (provide 'init-org)
 ;;; init-org.el ends here

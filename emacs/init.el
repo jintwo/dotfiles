@@ -76,7 +76,7 @@
 
 ;;---
 ;; (setq user-emacs-directory "~/.cache/emacs")
-(use-package no-littering)
+;; (use-package no-littering)
 
 ;; maybe join ui+editor
 (require 'init-ui)

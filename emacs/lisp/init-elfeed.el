@@ -44,6 +44,7 @@
         ("https://scripter.co/posts/atom.xml" dev lisp emacs)
         ("http://wasmweekly.news/feed.xml" dev wasm)
         ("http://planet.lisp.org/rss20.xml" dev lisp)
+        ("https://stevelosh.com/rss.xml" dev lisp gamedev)
         ("http://alan.petitepomme.net/cwn/cwn.rss" dev)
         ("http://jvns.ca/atom.xml" dev blog)
         ("http://pointersgonewild.com/feed/" dev blog)

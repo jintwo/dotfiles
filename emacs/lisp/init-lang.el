@@ -35,7 +35,7 @@
 (require 'scheme-config)
 ;; (require 'swift-config)
 ;; (require 'zig-config)
-
+(require 'sc-config)
 
 ;; conf/markup
 (use-package jsonian

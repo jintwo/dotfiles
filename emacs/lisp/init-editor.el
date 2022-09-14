@@ -14,6 +14,9 @@
 (use-package iedit
   :ensure t)
 
+(use-package wgrep
+  :ensure t)
+
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
@@ -92,7 +95,7 @@
           (lambda ()
             (set-face-attribute 'show-paren-match nil :inverse-video t)))
 
-(global-display-line-numbers-mode)
+(add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode t)))
 
 ;; replace current selection with anything
 (delete-selection-mode t)
