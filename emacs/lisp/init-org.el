@@ -4,10 +4,7 @@
 (require 'org)
 (require 'org-agenda)
 (require 'f)
-
-;;
-;; base-org-agenda-files (list "inbox.org" "job.org" "cal.org")
-(setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
+(require 's)
 
 (setq org-log-done t
       org-directory "~/Documents/org"
@@ -18,7 +15,12 @@
       org-default-priority ?A
       org-capture-templates `(("i" "Inbox" entry (file "inbox.org") ,(concat "* %?\n" "/Entered on/ %U"))))
 
+;; agenda
+;; base-org-agenda-files (list "inbox.org" "job.org" "cal.org")
+(setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
+
 ;; setup calendar
+(require 'gnus-icalendar)
 (setq gnus-icalendar-org-capture-file (f-join org-directory "cal.org")
       gnus-icalendar-org-capture-headline '("Calendar"))
 (gnus-icalendar-org-setup)
