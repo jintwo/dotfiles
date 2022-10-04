@@ -1,12 +1,6 @@
 ;;; init-keys.el --- common keyboard shortcuts config
 ;;; Commentary:
 ;;; Code:
-;; enable key chords
-(use-package key-chord
-  :defer t
-  :config
-  (key-chord-mode t))
-
 ;; emacs-mac bindings
 (setq mac-function-modifier 'hyper
       mac-option-modifier 'meta
@@ -28,12 +22,11 @@
 (keymap-global-set "C-c C-t" #'j2/split-term)
 (keymap-global-set "C-c C-l" #'j2/current-location)
 
-;; org
-(keymap-global-set "C-c i" #'j2/jump-to-org-index)
-(keymap-global-set "C-c c" #'org-capture)
-(keymap-global-set "C-c a" #'org-agenda)
-(keymap-global-set "C-c t" #'org-timer-set-timer)
-(keymap-global-set "C-c r f" #'org-roam-node-find)
+;; org (TODO: move it somewhere to init-org.el)
+(keymap-global-set "C-c o i" #'j2/jump-to-org-index)
+(keymap-global-set "C-c o c" #'org-capture)
+(keymap-global-set "C-c o a" #'org-agenda)
+(keymap-global-set "C-c o t" #'org-timer-set-timer)
 
 (provide 'init-keys)
 ;;; init-keys.el ends here

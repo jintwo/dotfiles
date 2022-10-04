@@ -28,13 +28,15 @@
 (use-package gcmh)
 
 ;; project
-(customize-set-variable 'project-switch-commands '((project-find-file "Find file")
-                                                   (consult-ripgrep "Ripgrep" ?r)
-                                                   (project-dired "Dired")
-                                                   (magit-status "Magit" ?m)
-
-                                                   (project-eshell "Eshell")))
-
+(use-package project
+  :init
+  (keymap-global-set "s-p" project-prefix-map)
+  :custom
+  (project-switch-commands '((project-find-file "Find file")
+                             (consult-ripgrep "Ripgrep" ?r)
+                             (project-dired "Dired")
+                             (magit-status "Magit" ?m)
+                             (project-eshell "Eshell"))))
 (defun j2/split-term ()
   (interactive)
   (let ((window (split-window-below)))
@@ -45,7 +47,11 @@
   :defer 1)
 
 (use-package transmission
-  :defer 1)
+  :defer 1
+  :bind (:map global-map (("s-t" . transmission))))
+
+(use-package osc
+  :ensure t)
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

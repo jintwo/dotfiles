@@ -6,8 +6,6 @@
               c-default-style "linux"
               c-basic-offset 4)
 
-(add-to-list 'load-path (expand-file-name "lisp/lang" user-emacs-directory))
-
 ;; utils
 (use-package tree-sitter
   :defer t)
@@ -17,6 +15,8 @@
 
 (use-package tree-sitter-indent
   :defer t)
+
+(add-to-list 'load-path (expand-file-name "lisp/lang" user-emacs-directory))
 
 (require 'ccc-config)
 (require 'cl-config)

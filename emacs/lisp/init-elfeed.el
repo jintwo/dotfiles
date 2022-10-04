@@ -3,7 +3,7 @@
 ;;; Code:
 (use-package elfeed
   :defer t
-  :bind (:map global-map (("C-c f" . elfeed)))
+  :bind (:map global-map (("s-f" . elfeed)))
   :custom
   (elfeed-show-entry-switch #'j2/elfeed-display-buffer)
   (elfeed-show-entry-delete #'j2/elfeed-delete-buffer)
@@ -42,6 +42,7 @@
         ("https://atsushieno.github.io/feed.xml" dev audio)
         ("https://www.masteringemacs.org/feed" dev lisp emacs)
         ("https://scripter.co/posts/atom.xml" dev lisp emacs)
+        ("https://olddeuteronomy.github.io/index.xml" dev lisp emacs)
         ("http://wasmweekly.news/feed.xml" dev wasm)
         ("http://planet.lisp.org/rss20.xml" dev lisp)
         ("https://stevelosh.com/rss.xml" dev lisp gamedev)

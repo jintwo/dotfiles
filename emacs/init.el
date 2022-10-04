@@ -1,7 +1,6 @@
 ;;; init.el --- simple config -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (require 'package)
@@ -74,10 +73,6 @@
 (setq-default bidi-inhibit-bpa t)
 (global-so-long-mode 1)
 
-;;---
-;; (setq user-emacs-directory "~/.cache/emacs")
-;; (use-package no-littering)
-
 ;; maybe join ui+editor
 (require 'init-ui)
 (require 'init-editor)
@@ -96,7 +91,6 @@
 (require 'init-lang)
 
 ;; utils
-(require 'init-hydra)
 (require 'init-elfeed)
 
 ;; custom packages
@@ -107,6 +101,10 @@
 
 ;; private
 (require 'init-private)
+
+;; shits
+(setq user-emacs-directory "~/.cache/emacs")
+(use-package no-littering)
 
 ;; -------
 (put 'narrow-to-region 'disabled nil)

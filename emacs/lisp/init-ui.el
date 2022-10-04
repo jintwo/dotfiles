@@ -96,7 +96,9 @@
 
 (use-package resize-window
   :defer t
-  :bind (:map global-map (("C-c r w" . resize-window))))
+  :bind (:map global-map (("s-w" . resize-window))))
+
+(winner-mode t)
 
 (use-package helpful
   :defer t
@@ -106,6 +108,7 @@
                           ("C-h d" . helpful-at-point)
                           ("C-h F" . helpful-function)
                           ("C-h C" . helpful-command))))
+
 
 ;; term
 (use-package eterm-256color
