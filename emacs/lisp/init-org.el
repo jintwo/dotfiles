@@ -37,12 +37,6 @@
       (goto-char pos)
       (insert "[ ] "))))
 
-(defun j2/org-roam-update-agenda-files (&rest _)
-  (let ((node-files (mapcar #'org-roam-node-file (org-roam-node-list))))
-    (setq org-agenda-files (append base-org-agenda-files node-files))))
-
-(advice-add 'org-agenda :before #'j2/org-roam-update-agenda-files)
-
 (add-hook 'org-mode-hook
           (lambda () (keymap-local-set "C-c x" 'j2/org-set-checkbox)))
 
@@ -66,6 +60,12 @@
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
+
+(defun j2/org-roam-update-agenda-files (&rest _)
+  (let ((node-files (org-roam-list-files)))
+    (setq org-agenda-files (append base-org-agenda-files node-files))))
+
+(advice-add 'org-agenda :before #'j2/org-roam-update-agenda-files)
 
 (when (featurep 'init-consult)
   (use-package consult-org-roam

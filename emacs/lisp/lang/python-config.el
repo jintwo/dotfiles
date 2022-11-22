@@ -19,5 +19,16 @@
 (use-package hy-mode
   :mode ("\\.hy\\'"))
 
+
+;; python-mode templates
+(when (featurep 'tempo)
+
+  (tempo-define-template "py-write-json"
+                         '("with open(\"" (p "File: " file) "\", \"a+\") as outf:" > n
+                           > "json.dump(" (p "Variable: " var) ", outf)"))
+
+  (tempo-define-template "py-log-json"
+                         '("logger.debug(json.dumps(" (p "Variable: " var) "))" > n)))
+
 (provide 'python-config)
 ;;; python-config.el ends here

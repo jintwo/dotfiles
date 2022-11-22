@@ -46,6 +46,9 @@
 (use-package reveal-in-folder
   :defer 1)
 
+(use-package dwim-shell-command
+  :defer 1)
+
 (use-package transmission
   :defer 1
   :bind (:map global-map (("s-t" . transmission))))

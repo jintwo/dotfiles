@@ -8,7 +8,9 @@
 
 ;; utils
 (use-package tree-sitter
-  :defer t)
+  :defer t
+  :config
+  (global-tree-sitter-mode))
 
 (use-package tree-sitter-langs
   :defer t)
@@ -27,6 +29,7 @@
 ;; (require 'haskell-config)
 (require 'janet-config)
 ;; (require 'java-config)
+(require 'js-config)
 (require 'lua-config)
 (require 'ocaml-config)
 ;; (require 'prolog-config)
@@ -34,15 +37,22 @@
 (require 'rust-config)
 (require 'scheme-config)
 ;; (require 'swift-config)
-;; (require 'zig-config)
+(require 'zig-config)
 (require 'sc-config)
 
 ;; conf/markup
-(use-package jsonian
-  :ensure nil
-  :after so-long
-  :custom
-  (jsonian-no-so-long-mode))
+;; (use-package jsonian
+;;   :ensure nil
+;;   :after so-long
+;;   :custom
+;;   (jsonian-no-so-long-mode))
+
+(use-package json-mode
+  :mode ("\\.json")
+  :config
+  (add-hook 'json-mode-hook
+            (lambda ()
+              (setq indent-tabs-mode nil))))
 
 (use-package yaml-mode
   :mode ("\\.yaml\\'" "\\.yml\\'"))

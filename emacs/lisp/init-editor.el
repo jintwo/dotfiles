@@ -27,8 +27,6 @@
 
 (use-package highlight-indent-guides
   :hook ((prog-mode conf-mode yaml-mode) . highlight-indent-guides-mode)
-  :init
-  (highlight-indent-guides-auto-set-faces)
   :config
   (setq highlight-indent-guides-method 'character
         highlight-indent-guides-auto-odd-face-perc 45
@@ -57,20 +55,9 @@
   :defer t
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; still not using it (should disable/remove?)
-(use-package yasnippet
-  :defer t
-  :config
-  (yas-global-mode t))
-
-(use-package yasnippet-snippets
-  :defer t)
-
 (use-package move-dup
-  :bind (("M-<up>" . move-dup-move-lines-up)
-         ("M-<down>" . move-dup-move-lines-down))
-  :config
-  (global-move-dup-mode))
+  :defer t
+  :hook (prog-mode . move-dup-mode))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -110,6 +97,15 @@ Use the filename relative to the current VC root directory."
 	 (location (format "%s:%s" file-name line-number)))
     (kill-new location)
     (message location)))
+
+(use-package persistent-scratch
+  :ensure t
+  :config
+  (persistent-scratch-setup-default))
+
+(use-package tempo
+  :config
+  (setq tempo-interactive t))
 
 (provide 'init-editor)
 ;;; init-editor.el ends here

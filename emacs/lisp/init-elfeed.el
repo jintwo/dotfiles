@@ -28,6 +28,7 @@
         ("https://theanswerisinthebeat.net/feed/" music releases)
         ("http://thequietus.com/feed" art music news)
         ;; dev
+        ("https://borretti.me/feed.xml" dev)
         ("http://lucumr.pocoo.org/feed.atom" dev)
         ("https://tylerxhobbs.com/essays?format=rss" dev)
         ("http://feeds.feedburner.com/OfficialDBlog" dev dlang)
@@ -37,12 +38,9 @@
         ("http://theorangeduck.com/feeds/pages" dev gamedev blog)
         ("http://nikhilism.com/index.xml" dev)
         ("http://www.theerlangelist.com/feeds/posts/default" dev erlang)
-        ("http://feeds.feedburner.com/sachac" dev lisp emacs)
+        ("https://xenodium.com/rss.xml" dev lisp emacs)
         ("http://blog.demofox.org/feed/" dev)
         ("https://atsushieno.github.io/feed.xml" dev audio)
-        ("https://www.masteringemacs.org/feed" dev lisp emacs)
-        ("https://scripter.co/posts/atom.xml" dev lisp emacs)
-        ("https://olddeuteronomy.github.io/index.xml" dev lisp emacs)
         ("http://wasmweekly.news/feed.xml" dev wasm)
         ("http://planet.lisp.org/rss20.xml" dev lisp)
         ("https://stevelosh.com/rss.xml" dev lisp gamedev)
@@ -63,6 +61,12 @@
         ("https://daringfireball.net/feeds/main" dev blog)
         ("https://macowners.club/index.xml" dev macos)
         ("https://blog.suborbital.dev/rss.xml" dev wasm)
+        ;; dev/emacs
+        ("https://planet.emacslife.com/atom.xml" dev emacs)
+        ("http://feeds.feedburner.com/sachac" dev lisp emacs)
+        ("https://www.masteringemacs.org/feed" dev lisp emacs)
+        ("https://scripter.co/posts/atom.xml" dev lisp emacs)
+        ("https://olddeuteronomy.github.io/index.xml" dev lisp emacs)
         ;; dev/game
         ("https://niklasriewald.com/feed/" dev gamedev)
         ("https://verdagon.dev/rss.xml" dev gamedev lang)
@@ -70,6 +74,7 @@
         ;; dev/rust
         ("https://blog.yoshuawuyts.com/rss.xml" dev rust)
         ("http://this-week-in-rust.org/atom.xml" dev rust)
+        ("https://fasterthanli.me/index.xml" dev rust)
         ;; dev/swift
         ("https://swiftbysundell.com/rss" dev swift)
         ("https://theswiftdev.com/rss.xml" dev swift)
@@ -109,6 +114,12 @@
          (window (get-buffer-window buf)))
     (kill-buffer buf)
     (delete-window window)))
+
+;; db-hack
+(define-advice elfeed-search--header (:around (oldfun &rest args))
+  (if elfeed-db
+      (apply oldfun args)
+    "No database loaded yet"))
 
 (provide 'init-elfeed)
 ;;; init-elfeed.el ends here
