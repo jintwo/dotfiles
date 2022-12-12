@@ -27,6 +27,10 @@
 
 (use-package gcmh)
 
+(defun j2/magit-current-project ()
+  (interactive)
+  (magit-status (project-root (project-current t))))
+
 ;; project
 (use-package project
   :init
@@ -35,7 +39,7 @@
   (project-switch-commands '((project-find-file "Find file")
                              (consult-ripgrep "Ripgrep" ?r)
                              (project-dired "Dired")
-                             (magit-status "Magit" ?m)
+                             (j2/magit-current-project "Magit" ?m)
                              (project-eshell "Eshell"))))
 (defun j2/split-term ()
   (interactive)

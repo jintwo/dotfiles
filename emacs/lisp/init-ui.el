@@ -17,6 +17,10 @@
 (setq visible-cursor nil)
 (setq mouse-autoselect-window t)
 
+;; smooth scroll >= 29
+(pixel-scroll-precision-mode 1)
+(setq pixel-scroll-precision-large-scroll-height 35.0)
+
 (let ((no-border '(internal-border-width . 0)))
   (add-to-list 'default-frame-alist no-border)
   (add-to-list 'initial-frame-alist no-border))

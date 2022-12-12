@@ -107,5 +107,7 @@ Use the filename relative to the current VC root directory."
   :config
   (setq tempo-interactive t))
 
+(setq compilation-scroll-output t)
+
 (provide 'init-editor)
 ;;; init-editor.el ends here

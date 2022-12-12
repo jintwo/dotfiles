@@ -14,11 +14,14 @@
   (python-mls-setup))
 
 (when (featurep 'init-eglot)
-  (add-hook 'python-mode-hook #'eglot-ensure))
+  (add-hook 'python-mode-hook
+            (lambda () (when (project-current) (eglot-ensure)))))
 
 (use-package hy-mode
   :mode ("\\.hy\\'"))
 
+(use-package python-black
+  :defer t)
 
 ;; python-mode templates
 (when (featurep 'tempo)
@@ -28,7 +31,12 @@
                            > "json.dump(" (p "Variable: " var) ", outf)"))
 
   (tempo-define-template "py-log-json"
-                         '("logger.debug(json.dumps(" (p "Variable: " var) "))" > n)))
+                         '("logger.debug(json.dumps(" (p "Variable: " var) "))" > n))
+
+  (tempo-define-template "py-log-pformat"
+                         '(> "from pprint import pformat" n
+                           > "logger.debug('" (p "Prefix: " pfx) " %s', "
+                           "pformat(" (p "Variable: " var) "))" n)))
 
 (provide 'python-config)
 ;;; python-config.el ends here
