@@ -6,9 +6,6 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package restclient
-  :mode ("\\.http\\'"))
-
 (use-package which-key
   :defer 0
   :diminish which-key-mode
@@ -56,6 +53,10 @@
 (use-package transmission
   :defer 1
   :bind (:map global-map (("s-t" . transmission))))
+
+(use-package elpher
+  :defer 1
+  :bind (:map global-map (("s-e" . elpher))))
 
 (use-package osc
   :ensure t)

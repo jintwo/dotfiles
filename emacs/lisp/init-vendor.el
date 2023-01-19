@@ -12,5 +12,11 @@
 ;;   (chuck-exec "/usr/local/bin/chuck")
 ;;   (chuck-port 9191))
 
+(use-package clipr-mode
+  :load-path "vendor/clipr-mode"
+  :bind (:map global-map (("s-c" . clipr-show)))
+  :custom
+  (clipr-config-path "/Users/jin/Documents/dev/macos/clipr/config.toml"))
+
 (provide 'init-vendor)
 ;;; init-vendor.el ends here

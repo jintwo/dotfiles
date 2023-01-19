@@ -13,9 +13,13 @@
   :config
   (python-mls-setup))
 
+(when (featurep 'tree-sitter-hl)
+  (add-hook 'python-mode-hook #'tree-sitter-hl-mode))
+
 (when (featurep 'init-eglot)
   (add-hook 'python-mode-hook
-            (lambda () (when (project-current) (eglot-ensure)))))
+            (lambda ()
+              (when (project-current) (eglot-ensure)))))
 
 (use-package hy-mode
   :mode ("\\.hy\\'"))

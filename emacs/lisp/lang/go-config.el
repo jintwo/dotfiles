@@ -6,6 +6,9 @@
   :config
   (setenv "GOPATH" (expand-file-name "~/Documents/dev/golang/go")))
 
+(when (featurep 'tree-sitter-hl)
+  (add-hook 'go-mode-hook #'tree-sitter-hl-mode))
+
 (when (featurep 'init-eglot)
   (add-hook 'go-mode-hook #'eglot-ensure))
 

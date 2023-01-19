@@ -25,7 +25,8 @@
 (setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
 
 (setq use-short-answers 1
-      kill-buffer-delete-auto-save-files 1)
+      kill-buffer-delete-auto-save-files 1
+      calendar-week-start-day 1)
 
 (setq ring-bell-function 'pulse-momentary-highlight-one-line)
 

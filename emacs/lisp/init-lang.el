@@ -6,17 +6,24 @@
               c-default-style "linux"
               c-basic-offset 4)
 
-;; utils
+;; tree-sitter stuff
 (use-package tree-sitter
-  :defer t
+  :ensure t
   :config
   (global-tree-sitter-mode))
 
 (use-package tree-sitter-langs
-  :defer t)
+  :ensure t)
 
 (use-package tree-sitter-indent
   :defer t)
+
+(unless (package-installed-p 'ts-fold)
+  (package-vc-install "https://www.github.com/emacs-tree-sitter/ts-fold"))
+
+(when (package-installed-p 'ts-fold)
+  (require 'ts-fold)
+  (add-hook 'tree-sitter-after-on-hook #'ts-fold-indicators-mode))
 
 (add-to-list 'load-path (expand-file-name "lisp/lang" user-emacs-directory))
 
@@ -36,7 +43,7 @@
 (require 'python-config)
 (require 'rust-config)
 (require 'scheme-config)
-;; (require 'swift-config)
+(require 'swift-config)
 (require 'zig-config)
 (require 'sc-config)
 
@@ -52,6 +59,7 @@
   :config
   (add-hook 'json-mode-hook
             (lambda ()
+              (tree-sitter-hl-mode)
               (setq indent-tabs-mode nil))))
 
 (use-package yaml-mode

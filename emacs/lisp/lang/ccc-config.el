@@ -7,6 +7,9 @@
                   objc-mode-hook))
     (add-hook mode function)))
 
+(when (featurep 'tree-sitter-hl)
+  (add-c-modes-hook #'tree-sitter-hl-mode))
+
 (when (featurep 'init-eglot)
   (add-c-modes-hook #'eglot-ensure))
 

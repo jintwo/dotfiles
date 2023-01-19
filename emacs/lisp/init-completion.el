@@ -1,6 +1,11 @@
 ;;; init-completion.el --- completion config
 ;;; Commentary:
 ;;; Code:
+(setq completion-auto-help 'visible
+      completion-auto-select t
+      completions-header-format nil
+      completion-show-help nil)
+
 (use-package cape
   :defer t
   :init

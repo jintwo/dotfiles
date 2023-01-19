@@ -63,7 +63,14 @@
 
 (electric-indent-mode +1)
 
+;; (setq-default truncate-lines t)
 (global-visual-line-mode t)
+
+(when (executable-find "rg")
+  (setq grep-program "rg"))
+
+(when (executable-find "fd")
+  (setq find-program "fd"))
 
 ;; recentf
 (add-hook 'after-init-hook 'recentf-mode)

@@ -13,10 +13,10 @@
       org-highest-priority ?A
       org-lowest-priority ?C
       org-default-priority ?A
-      org-capture-templates `(("i" "Inbox" entry (file "inbox.org") ,(concat "* %?\n" "/Entered on/ %U"))))
+      org-capture-templates `(("i" "Inbox" entry (file "inbox.org") ,(concat "* %?\n" "/Entered on/ %U")))
+      org-src-preserve-indentation t)
 
 ;; agenda
-;; base-org-agenda-files (list "inbox.org" "job.org" "cal.org")
 (setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
 
 ;; setup calendar
@@ -38,7 +38,11 @@
       (insert "[ ] "))))
 
 (add-hook 'org-mode-hook
-          (lambda () (keymap-local-set "C-c x" 'j2/org-set-checkbox)))
+          (lambda ()
+            (progn
+              (keymap-local-set "C-c x" 'j2/org-set-checkbox)
+              (display-line-numbers-mode t)
+              (highlight-indent-guides-mode t))))
 
 (use-package org-roam
   :ensure t
@@ -112,9 +116,6 @@
               (org-remove-inline-images)
               (org-present-show-cursor)
               (org-present-read-write))))
-
-(use-package ob-restclient
-  :defer t)
 
 (provide 'init-org)
 ;;; init-org.el ends here

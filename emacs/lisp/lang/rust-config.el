@@ -6,6 +6,9 @@
   :config
   (setq rust-format-on-save t))
 
+(when (featurep 'tree-sitter-hl)
+  (add-hook 'rust-mode-hook #'tree-sitter-hl-mode))
+
 (when (featurep 'init-eglot)
   (add-hook 'rust-mode-hook #'eglot-ensure))
 
