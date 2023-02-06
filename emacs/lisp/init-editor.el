@@ -41,13 +41,14 @@
   (whole-line-or-region-global-mode t))
 
 ;; annotate todos
+(global-hi-lock-mode t)
 (setq to-highlight '(".*TODO.*" ".*FIXME.*"))
 
 (defun j2/annotate-todos ()
   "Annotate TODOs in 'prog-mode' buffer."
   (interactive)
   (dolist (text to-highlight)
-    (highlight-lines-matching-regexp text)))
+    (hi-lock-line-face-buffer text)))
 
 (add-hook 'prog-mode-hook #'j2/annotate-todos)
 

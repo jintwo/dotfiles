@@ -18,12 +18,15 @@
 (use-package tree-sitter-indent
   :defer t)
 
-(unless (package-installed-p 'ts-fold)
-  (package-vc-install "https://www.github.com/emacs-tree-sitter/ts-fold"))
+;; ts-fold is broken now
+;; (unless (package-installed-p 'ts-fold)
+;;   (package-vc-install "https://www.github.com/emacs-tree-sitter/ts-fold"))
 
-(when (package-installed-p 'ts-fold)
-  (require 'ts-fold)
-  (add-hook 'tree-sitter-after-on-hook #'ts-fold-indicators-mode))
+;; (when (package-installed-p 'ts-fold)
+;;   (require 'ts-fold)
+;;   (global-ts-fold-mode t)
+;;   (keymap-global-set "C-<tab>" #'ts-fold-toggle)
+;;   )
 
 (add-to-list 'load-path (expand-file-name "lisp/lang" user-emacs-directory))
 
@@ -60,7 +63,9 @@
   (add-hook 'json-mode-hook
             (lambda ()
               (tree-sitter-hl-mode)
-              (setq indent-tabs-mode nil))))
+              (setq js-indent-level 2)
+              (setq indent-tabs-mode nil)
+              (setq json-encoding-default-indentation "  "))))
 
 (use-package yaml-mode
   :mode ("\\.yaml\\'" "\\.yml\\'"))

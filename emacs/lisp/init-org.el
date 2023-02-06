@@ -9,12 +9,19 @@
 (setq org-log-done t
       org-directory "~/Documents/org"
       org-roam-root-file "root.org"
-      org-todo-keywords '((sequence "TODO(t)" "WIP" "WAITING" "|" "ABANDONDED(b)" "DONE(d)"))
+      org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "|" "WAITING(g)" "DONE(d)"))
       org-highest-priority ?A
       org-lowest-priority ?C
       org-default-priority ?A
-      org-capture-templates `(("i" "Inbox" entry (file "inbox.org") ,(concat "* %?\n" "/Entered on/ %U")))
-      org-src-preserve-indentation t)
+      org-capture-templates `(("i" "Inbox")
+                              ("it" "TODO" entry (file+headline "inbox.org" "Tasks") ,(concat "** TODO %?\n"))
+                              ("il" "Link" item (file+headline "inbox.org" "Links") ,(concat "- %?\n"))
+                              ("j" "Job")
+                              ("jt" "TODO" entry (file+headline "job.org" "Tasks") ,(concat "** TODO %?\n")))
+      org-src-preserve-indentation t
+      org-startup-indented t
+      org-refile-use-outline-path t
+      org-outline-path-complete-in-steps t)
 
 ;; agenda
 (setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
