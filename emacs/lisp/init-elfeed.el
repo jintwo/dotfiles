@@ -5,28 +5,28 @@
   :defer 1
   :bind (:map global-map (("s-f" . elfeed)))
   :custom
-  (elfeed-show-entry-switch #'j2/elfeed-display-buffer)
-  (elfeed-show-entry-delete #'j2/elfeed-delete-buffer)
+  ;; (elfeed-show-entry-switch #'j2/elfeed-display-buffer)
+  ;; (elfeed-show-entry-delete #'j2/elfeed-delete-buffer)
   (elfeed-search-remain-on-entry t))
 
 ;; deps ;)
-(use-package popwin
-  :ensure t)
+;; (use-package popwin
+;;   :ensure t)
 
-(defun j2/elfeed-display-buffer (buf &optional act)
-  (popwin:popup-buffer buf
-                       :position 'bottom
-                       :width 0.7
-                       :height 0.7
-                       :stick t
-                       :dedicated t
-                       :noselect nil))
+;; (defun j2/elfeed-display-buffer (buf &optional act)
+;;   (popwin:popup-buffer buf
+;;                        :position 'bottom
+;;                        :width 0.7
+;;                        :height 0.7
+;;                        :stick t
+;;                        :dedicated t
+;;                        :noselect nil))
 
-(defun j2/elfeed-delete-buffer ()
-  (let* ((buf (get-buffer "elfeed-entry*"))
-         (window (get-buffer-window buf)))
-    (kill-buffer buf)
-    (delete-window window)))
+;; (defun j2/elfeed-delete-buffer ()
+;;   (let* ((buf (get-buffer "elfeed-entry*"))
+;;          (window (get-buffer-window buf)))
+;;     (kill-buffer buf)
+;;     (delete-window window)))
 
 (use-package elfeed-tube
   :ensure t

@@ -7,8 +7,11 @@
 (use-package geiser-guile
   :defer t)
 
-(use-package geiser-racket
-  :defer t)
+(use-package racket-mode
+  :defer t
+  :config
+  (require 'racket-xp)
+  (add-hook 'racket-mode-hook #'racket-xp-mode))
 
 (provide 'scheme-config)
 ;;; scheme-config.el ends here

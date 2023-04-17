@@ -9,7 +9,7 @@
 (setq org-log-done t
       org-directory "~/Documents/org"
       org-roam-root-file "root.org"
-      org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "|" "WAITING(g)" "DONE(d)"))
+      org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "WAITING(g)" "|" "DONE(d)"))
       org-highest-priority ?A
       org-lowest-priority ?C
       org-default-priority ?A
@@ -21,10 +21,12 @@
       org-src-preserve-indentation t
       org-startup-indented t
       org-refile-use-outline-path t
-      org-outline-path-complete-in-steps t)
+      org-outline-path-complete-in-steps t
+      org-refile-targets '((org-agenda-files :maxlevel . 3)))
 
 ;; agenda
 (setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
+(setq org-agenda-files base-org-agenda-files)
 
 ;; setup calendar
 (require 'gnus-icalendar)
@@ -123,6 +125,28 @@
               (org-remove-inline-images)
               (org-present-show-cursor)
               (org-present-read-write))))
+
+;; org-babel
+;; following part stolen from https://isamert.net/2022/01/04/dealing-with-apis-jsons-and-databases-in-org-mode.html
+(defun org-babel-execute:json (body params)
+  (let ((jq (cdr (assoc :jq params)))
+        (node (cdr (assoc :node params))))
+    (cond (jq
+           (with-temp-buffer
+             ;; Insert the JSON into the temp buffer
+             (insert body)
+             ;; Run jq command on the whole buffer, and replace the buffer
+             ;; contents with the result returned from jq
+             (shell-command-on-region (point-min) (point-max) (format "jq -r \"%s\"" jq) nil 't)
+             ;; Return the contents of the temp buffer as the result
+             (buffer-string)))
+          (node
+           (with-temp-buffer
+             (insert (format "const it = %s;" body))
+             (insert node)
+             (shell-command-on-region (point-min) (point-max) "node -p" nil 't)
+             (buffer-string)))
+          (t body))))
 
 (provide 'init-org)
 ;;; init-org.el ends here

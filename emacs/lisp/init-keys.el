@@ -27,6 +27,7 @@
 (keymap-global-set "C-c o c" #'org-capture)
 (keymap-global-set "C-c o a" #'org-agenda)
 (keymap-global-set "C-c o t" #'org-timer-set-timer)
+(keymap-global-set "C-c o s" #'org-store-link)
 
 (provide 'init-keys)
 ;;; init-keys.el ends here

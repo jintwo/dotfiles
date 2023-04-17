@@ -6,6 +6,10 @@
               c-default-style "linux"
               c-basic-offset 4)
 
+;; quickrun
+(use-package quickrun
+  :ensure t)
+
 ;; tree-sitter stuff
 (use-package tree-sitter
   :ensure t
@@ -81,6 +85,8 @@
 
 (use-package graphviz-dot-mode
   :defer t)
+
+(add-to-list 'auto-mode-alist '("\\.tpl\\'" . prog-mode))
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

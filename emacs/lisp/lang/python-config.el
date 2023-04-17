@@ -10,8 +10,8 @@
   :defer t)
 
 (use-package python-mls
-  :config
-  (python-mls-setup))
+  :hook
+  (inferior-python-mode . python-mls-mode))
 
 (when (featurep 'tree-sitter-hl)
   (add-hook 'python-mode-hook #'tree-sitter-hl-mode))
@@ -26,6 +26,14 @@
 
 (use-package python-black
   :defer t)
+
+(add-to-list 'auto-mode-alist '("\\.jinja2\\'" . prog-mode))
+
+;; (setq python-shell-interpreter "ipython"
+;;       python-shell-interpreter-args "--simple-prompt"
+;;       python-shell-prompt-detect-failure-warning nil
+;;       python-shell-completion-native-disabled-interpreters '("ipython" "python3" "python")
+;;       python-indent-offset 4)
 
 ;; python-mode templates
 (when (featurep 'tempo)
