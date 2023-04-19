@@ -53,6 +53,7 @@
 (require 'swift-config)
 (require 'zig-config)
 (require 'sc-config)
+(require 'csound-config)
 
 ;; conf/markup
 ;; (use-package jsonian
