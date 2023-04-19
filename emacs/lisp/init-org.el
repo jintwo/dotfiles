@@ -8,7 +8,7 @@
 
 (setq org-log-done t
       org-directory "~/Documents/org"
-      org-roam-root-file "root.org"
+      org-roam-root-file "index.org"
       org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "WAITING(g)" "|" "DONE(d)"))
       org-highest-priority ?A
       org-lowest-priority ?C

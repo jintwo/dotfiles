@@ -30,13 +30,9 @@
 
 (let ((no-border '(internal-border-width . 0)))
   (add-to-list 'default-frame-alist no-border)
-  (add-to-list 'default-frame-alist '(alpha-background . 90))
+  (add-to-list 'default-frame-alist '(alpha . 95))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'initial-frame-alist no-border))
-
-;; looks like it doesn't work on macOS
-;; (set-frame-parameter nil 'alpha-background 90)
-;; (add-to-list 'default-frame-alist '(alpha-background . 90))
 
 (set-language-environment "UTF-8")
 
