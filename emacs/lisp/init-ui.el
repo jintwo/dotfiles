@@ -16,10 +16,6 @@
 
 ;; maybe one day i will decide to use tabs ;)
 ;; (tab-bar-mode t)
-;; or
-;; (use-package centaur-tabs
-;;   :demand
-;;   :config (centaur-tabs-mode t))
 
 (setq visible-cursor nil)
 (setq mouse-autoselect-window t)

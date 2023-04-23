@@ -36,7 +36,7 @@
 
 (require 'ccc-config)
 (require 'cl-config)
-;; (require 'clojure-config)
+(require 'clojure-config)
 ;; (require 'elixir-config)
 ;; (require 'erlang-config)
 (require 'go-config)

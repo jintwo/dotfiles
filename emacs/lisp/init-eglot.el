@@ -5,7 +5,8 @@
   :defer t
   :bind (:map prog-mode-map (("s-r" . eglot-rename)))
   :custom
-  (eglot-ignored-server-capabilities '(:hoverProvider))) ;; optionally :signatureHelpProvider
+  (eglot-ignored-server-capabilities '(:hoverProvider
+                                       :inlayHintProvider))) ;; optionally :signatureHelpProvider
 
 (when (and (featurep 'eglot) (featurep 'consult-eglot))
   (add-hook 'prog-mode-hook
