@@ -3,11 +3,14 @@
 # zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 
+# brew
+export HOMEBREW_NO_INSTALL_FROM_API=1
+
 # emacs stuff
-alias emd="emacs --daemon"
-alias emdk="emacsclient -e '(kill-emacs)'"
-alias e="emacsclient -ta ''"
-alias ex="emacsclient -nca ''"
+alias med="emacs --daemon"
+alias medk="emacsclient -e '(kill-emacs)'"
+alias me="emacsclient -ta ''"
+alias mex="emacsclient -nca ''"
 alias v="TERM=alacritty vim"
 
 # git
@@ -16,12 +19,24 @@ alias gpa="gp --all"
 # tilde
 alias tilde="TERM=xterm-16color ssh jintwo@tilde.club"
 
+# brew
+alias b="brew"
+
+# clipr
+CLIPR_CLI="/Users/jin/Documents/dev/macos/clipr/target/release/clipr-cli"
+CLIPR_CONFIG="/Users/jin/Documents/dev/macos/clipr/config.toml"
+
+alias c="$CLIPR_CLI -c $CLIPR_CONFIG"
+
 # k8s
 function kc {
-    # ensure ktun
-    ktun status > /dev/null
-    if [[ ! $? -eq 0 ]]; then
-        ktun start
+    if [[ -z $NOTUN ]]; then
+        # ensure ktun
+        local tun=${TUN:-kube-m1}
+        ktun status $tun > /dev/null
+        if [[ ! $? -eq 0 ]]; then
+            ktun start $tun
+        fi
     fi
     local ns=${NS:-production}
     local sp='--'
@@ -51,6 +66,7 @@ function kr () {
 alias kd="kc describe"
 alias ke="kc exec -it"
 alias kg="kc get"
+alias kgp="kc get pods"
 alias kgpa="kc get pods -o wide"
 alias kl="kc logs -f --tail=100"
 
@@ -62,12 +78,13 @@ function kgpn {
     kc get pods -o wide --field-selector "spec.nodeName==$1"
 }
 
+function kesh {
+    kc exec -it $@ -- bash
+}
+
 # common
 export VIRTUAL_ENV_DISABLE_PROMPT='Y'
 export EDITOR="emacsclient -ta ''"
-
-export TERM="alacritty-direct"
-
 export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128M"
 
 export LC_ALL=en_US.UTF-8
