@@ -3,14 +3,11 @@
 ;;; Code:
 (use-package go-mode
   :mode ("\\.go\\'")
+  :init
+  (add-hook 'go-mode-hook #'j2/project-eglot-ensure)
+  (add-hook 'go-ts-mode-hook #'j2/project-eglot-ensure)
   :config
   (setenv "GOPATH" (expand-file-name "~/Documents/dev/golang/go")))
-
-(when (featurep 'tree-sitter-hl)
-  (add-hook 'go-mode-hook #'tree-sitter-hl-mode))
-
-(when (featurep 'init-eglot)
-  (add-hook 'go-mode-hook #'eglot-ensure))
 
 (provide 'go-config)
 ;;; go-config.el ends here

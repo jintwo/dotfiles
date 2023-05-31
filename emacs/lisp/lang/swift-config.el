@@ -2,10 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 (use-package swift-mode
-  :defer t)
-
-(when (featurep 'init-eglot)
-  (add-hook 'swift-mode-hook #'eglot-ensure))
+  :defer t
+  :init
+  (add-hook 'swift-mode-hook #'j2/project-eglot-ensure))
 
 (provide 'swift-config)
 ;;; swift-config.el ends here

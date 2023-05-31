@@ -4,6 +4,8 @@
 (use-package undo-tree
   :defer 1
   :config
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+  (setq undo-tree-enable-undo-in-region nil)
   (global-undo-tree-mode))
 
 (use-package multiple-cursors
@@ -59,8 +61,6 @@
 (use-package move-dup
   :defer t
   :hook (prog-mode . move-dup-mode))
-
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (electric-indent-mode +1)
 

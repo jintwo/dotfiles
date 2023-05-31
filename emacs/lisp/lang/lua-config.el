@@ -3,8 +3,8 @@
 ;;; Code:
 (use-package lua-mode
   :mode ("\\.lua\\'")
-  :config
-  (setq lua-indent-level 4))
+  :custom
+  (lua-indent-level 4))
 
 (use-package fennel-mode
   :mode ("\\.fnl\\'"))

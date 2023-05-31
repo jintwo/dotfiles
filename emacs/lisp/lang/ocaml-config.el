@@ -1,7 +1,6 @@
 ;;; ocaml-config.el --- ocaml config
 ;;; Commentary:
 ;;; Code:
-
 ;;; TODO: consider moving to simple (probably) caml-mode
 (use-package tuareg
   :mode (("\\.mll\\'" . tuareg-mode)

@@ -14,7 +14,7 @@
 
 (use-package clipr-mode
   :load-path "vendor/clipr-mode"
-  :bind (:map global-map (("s-c" . clipr-show)))
+  :bind (:map global-map (("C-c c" . clipr-show)))
   :custom
   (clipr-config-path "/Users/jin/Documents/dev/macos/clipr/config.toml"))
 

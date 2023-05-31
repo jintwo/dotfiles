@@ -128,9 +128,7 @@
 (use-package consult-project-extra
   :defer t)
 
-;; only after eglot
 (use-package consult-eglot
-  :after eglot
   :defer t)
 
 ;; only after org-roam

@@ -1,6 +1,11 @@
 ;;; python-config.el --- python config
 ;;; Commentary:
 ;;; Code:
+(use-package python
+  :init
+  (add-hook 'python-mode-hook #'j2/project-eglot-ensure)
+  (add-hook 'python-ts-mode-hook #'j2/project-eglot-ensure))
+
 (use-package pyvenv
   :defer t
   :config
@@ -12,14 +17,6 @@
 (use-package python-mls
   :hook
   (inferior-python-mode . python-mls-mode))
-
-(when (featurep 'tree-sitter-hl)
-  (add-hook 'python-mode-hook #'tree-sitter-hl-mode))
-
-(when (featurep 'init-eglot)
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (when (project-current) (eglot-ensure)))))
 
 (use-package hy-mode
   :mode ("\\.hy\\'"))

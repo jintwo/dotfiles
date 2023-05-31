@@ -1,7 +1,6 @@
 ;;; sc-config.el --- supercollider config
 ;;; Commentary:
 ;;; Code:
-
 ;; add sclang to $PATH
 (setq exec-path (append exec-path '("/Applications/SuperCollider.app/Contents/MacOS/")))
 

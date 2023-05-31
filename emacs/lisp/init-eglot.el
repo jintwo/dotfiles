@@ -2,15 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 (use-package eglot
-  :defer t
   :bind (:map prog-mode-map (("s-r" . eglot-rename)))
-  :custom
-  (eglot-ignored-server-capabilities '(:hoverProvider
-                                       :inlayHintProvider))) ;; optionally :signatureHelpProvider
+  :config
+  (setq eglot-ignored-server-capabilities '(:hoverProvider
+                                            :inlayHintProvider))) ;; optionally :signatureHelpProvider
 
-(when (and (featurep 'eglot) (featurep 'consult-eglot))
+(when (featurep 'consult-eglot)
   (add-hook 'prog-mode-hook
             (lambda () (keymap-local-set "s-j" 'consult-eglot-symbols))))
+
+(defun j2/project-eglot-ensure ()
+  (interactive)
+  (when (project-current)
+    (eglot-ensure)))
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

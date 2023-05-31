@@ -3,12 +3,12 @@
 ;;; Code:
 (require 'org)
 (require 'org-agenda)
+(require 'org-id)
 (require 'f)
 (require 's)
 
 (setq org-log-done t
       org-directory "~/Documents/org"
-      org-roam-root-file "index.org"
       org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "WAITING(g)" "|" "DONE(d)"))
       org-highest-priority ?A
       org-lowest-priority ?C
@@ -22,7 +22,11 @@
       org-startup-indented t
       org-refile-use-outline-path t
       org-outline-path-complete-in-steps t
-      org-refile-targets '((org-agenda-files :maxlevel . 3)))
+      org-refile-targets '((org-agenda-files :maxlevel . 3))
+      org-babel-load-languages '((shell . t)
+                                 (python . t)
+                                 (emacs-lisp . t))
+      org-index-file "index.org")
 
 ;; agenda
 (setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
@@ -36,7 +40,7 @@
 
 (defun j2/jump-to-org-index ()
   (interactive)
-  (find-file (f-join org-directory org-roam-root-file)))
+  (find-file (f-join org-directory org-index-file)))
 
 (defun j2/org-set-checkbox ()
   "Add checkbox inplace or before selected text."
@@ -57,6 +61,8 @@
   :ensure t
   :custom
   (org-roam-directory (f-join org-directory "roam"))
+  (org-roam-root-file "index.org")
+  (org-roam-completion-everywhere t)
   :bind (:map org-mode-map
               ("C-c r l" . org-roam-buffer-toggle)
               ("C-c r f" . org-roam-node-find)

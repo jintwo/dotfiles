@@ -10,28 +10,70 @@
 (use-package quickrun
   :ensure t)
 
-;; tree-sitter stuff
-(use-package tree-sitter
-  :ensure t
-  :config
-  (global-tree-sitter-mode))
+;; tree sitter stuff ;)
+(setq treesit-language-source-alist
+   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+     (css "https://github.com/tree-sitter/tree-sitter-css")
+     ;; (clojure "https://github.com/sogaiu/tree-sitter-clojure")
+     ;; (commonlisp "https://github.com/theHamsta/tree-sitter-commonlisp")
+     (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+     (cmake "https://github.com/uyha/tree-sitter-cmake")
+     ;; (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+     ;; (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
+     (go "https://github.com/tree-sitter/tree-sitter-go")
+     ;; (html "https://github.com/tree-sitter/tree-sitter-html")
+     (java "https://github.com/tree-sitter/tree-sitter-java")
+     (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+     (json "https://github.com/tree-sitter/tree-sitter-json")
+     ;; (julia "https://github.com/tree-sitter/tree-sitter-julia")
+     ;; (lua "https://github.com/Azganoth/tree-sitter-lua")
+     ;; (make "https://github.com/alemuller/tree-sitter-make")
+     ;; (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+     ;; (protobuf "https://github.com/mitchellh/tree-sitter-proto")
+     (python "https://github.com/tree-sitter/tree-sitter-python")
+     (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
+     (rust "https://github.com/tree-sitter/tree-sitter-rust")
+     (toml "https://github.com/tree-sitter/tree-sitter-toml")
+     (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+     (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+     (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+     ;; (zig "https://github.com/maxxnino/tree-sitter-zig")
+     ))
 
-(use-package tree-sitter-langs
-  :ensure t)
+(setq major-mode-remap-alist
+      '((bash-mode . bash-ts-mode)
+        (css-mode . css-ts-mode)
+        ;; (clojure-mode . clojure-ts-mode)
+        ;; (common-lisp-mode . commonlisp-ts-mode)
+        (c-mode . c-ts-mode)
+        (c++-mode . c++-ts-mode)
+        (cmake-mode . cmake-ts-mode)
+        ;; (emacs-lisp-mode . elisp-ts-mode)
+        ;; (elixir-mode . elixir-ts-mode)
+        (go-mode . go-ts-mode)
+        ;; (html-mode . html-ts-mode)
+        (java-mode . java-ts-mode)
+        (js2-mode . js-ts-mode)
+        (js-json-mode . json-ts-mode)
+        (json-mode . json-ts-mode)
+        ;; (julia-mode . julia-ts-mode)
+        ;; (lua-mode . lua-ts-mode)
+        ;; (makefile-mode . makefile-ts-mode)
+        ;; (markdown-mode . markdown-ts-mode)
+        ;; (protobuf-mode . protobuf-ts-mode)
+        (python-mode . python-ts-mode)
+        (ruby-mode . ruby-ts-mode)
+        (rust-mode . rust-ts-mode)
+        (conf-toml-mode . toml-ts-mode)
+        (typescript-mode . typescript-ts-mode)
+        (yaml-mode . yaml-ts-mode)
+        ;; (zig-mode . zig-ts-mode)
+        ))
 
-(use-package tree-sitter-indent
-  :defer t)
+;; TODO: schedule grammars update
+;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
-;; ts-fold is broken now
-;; (unless (package-installed-p 'ts-fold)
-;;   (package-vc-install "https://www.github.com/emacs-tree-sitter/ts-fold"))
-
-;; (when (package-installed-p 'ts-fold)
-;;   (require 'ts-fold)
-;;   (global-ts-fold-mode t)
-;;   (keymap-global-set "C-<tab>" #'ts-fold-toggle)
-;;   )
-
+;; languages
 (add-to-list 'load-path (expand-file-name "lisp/lang" user-emacs-directory))
 
 (require 'ccc-config)
@@ -62,15 +104,16 @@
 ;;   :custom
 ;;   (jsonian-no-so-long-mode))
 
+(defun j2/init-json-mode ()
+  (setq js-indent-level 2)
+  (setq indent-tabs-mode nil)
+  (setq json-encoding-default-indentation "  "))
+
 (use-package json-mode
   :mode ("\\.json")
   :config
-  (add-hook 'json-mode-hook
-            (lambda ()
-              (tree-sitter-hl-mode)
-              (setq js-indent-level 2)
-              (setq indent-tabs-mode nil)
-              (setq json-encoding-default-indentation "  "))))
+  (add-hook 'json-mode-hook #'j2/init-json-mode)
+  (add-hook 'json-ts-mode-hook #'j2/init-json-mode))
 
 (use-package yaml-mode
   :mode ("\\.yaml\\'" "\\.yml\\'"))

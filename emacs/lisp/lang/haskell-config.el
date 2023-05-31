@@ -7,7 +7,8 @@
   (haskell-indentation-layout-offset 4)
   (haskell-indentation-left-offset 4)
   :init
-  (add-hook 'haskell-mode-hook #'haskell-mode-init))
+  (add-hook 'haskell-mode-hook #'haskell-mode-init)
+  (add-hook 'haskell-mode-hook #'j2/project-eglot-ensure))
 
 (defun haskell-mode-init ()
   "Set haskell style."
@@ -15,9 +16,6 @@
   (subword-mode t)
   (haskell-indentation-mode t)
   (interactive-haskell-mode t))
-
-(when (featurep 'init-eglot)
-  (add-hook 'haskell-mode-hook #'eglot-ensure))
 
 (use-package tidal
   :after haskell-mode
