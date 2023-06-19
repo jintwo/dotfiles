@@ -102,10 +102,15 @@ export LANG=en_US.UTF-8
 if [ -d ~/.cargo ]; then
     source ~/.cargo/env
 fi
+
 # ocaml
 [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
 # haskell
 # source ~/.ghcup/env
+
+# wasm
+source "/Users/jin/.wasmedge/env"
 
 # c
 export SDKROOT="`xcrun --show-sdk-path`"

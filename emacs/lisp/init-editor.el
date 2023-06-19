@@ -42,6 +42,8 @@
   :config
   (whole-line-or-region-global-mode t))
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; annotate todos
 (global-hi-lock-mode t)
 (setq to-highlight '(".*TODO.*" ".*FIXME.*"))
@@ -90,6 +92,7 @@
           (lambda ()
             (set-face-attribute 'show-paren-match nil :inverse-video t)))
 
+;; line numbers
 (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode t)))
 
 ;; replace current selection with anything

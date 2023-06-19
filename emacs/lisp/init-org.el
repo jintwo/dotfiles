@@ -133,6 +133,8 @@
               (org-present-read-write))))
 
 ;; org-babel
+(org-babel-do-load-languages 'org-babel-load-languages '((shell . t)))
+
 ;; following part stolen from https://isamert.net/2022/01/04/dealing-with-apis-jsons-and-databases-in-org-mode.html
 (defun org-babel-execute:json (body params)
   (let ((jq (cdr (assoc :jq params)))

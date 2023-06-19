@@ -9,9 +9,8 @@
 
 (use-package racket-mode
   :defer t
-  :init
-  (require 'racket-xp)
-  (add-hook 'racket-mode-hook #'racket-xp-mode))
+  :init (require 'racket-xp)
+  :hook (racket-mode-hook . racket-xp-mode))
 
 (provide 'scheme-config)
 ;;; scheme-config.el ends here

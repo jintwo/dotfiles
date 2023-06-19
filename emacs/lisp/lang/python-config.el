@@ -2,21 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 (use-package python
-  :init
-  (add-hook 'python-mode-hook #'j2/project-eglot-ensure)
-  (add-hook 'python-ts-mode-hook #'j2/project-eglot-ensure))
+  :hook ((python-mode-hook python-ts-mode-hook) . j2/project-eglot-ensure))
 
 (use-package pyvenv
   :defer t
   :config
   (pyvenv-mode 1))
 
-(use-package ein
-  :defer t)
-
 (use-package python-mls
-  :hook
-  (inferior-python-mode . python-mls-mode))
+  :hook (inferior-python-mode . python-mls-mode))
+
+(use-package jupyter
+  :defer t)
 
 (use-package hy-mode
   :mode ("\\.hy\\'"))

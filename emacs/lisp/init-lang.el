@@ -111,9 +111,7 @@
 
 (use-package json-mode
   :mode ("\\.json")
-  :config
-  (add-hook 'json-mode-hook #'j2/init-json-mode)
-  (add-hook 'json-ts-mode-hook #'j2/init-json-mode))
+  :hook ((json-mode-hook json-ts-mode-hook) . j2/init-json-mode))
 
 (use-package yaml-mode
   :mode ("\\.yaml\\'" "\\.yml\\'"))
