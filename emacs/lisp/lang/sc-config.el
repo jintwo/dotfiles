@@ -1,13 +1,15 @@
 ;;; sc-config.el --- supercollider config
 ;;; Commentary:
 ;;; Code:
-;; add sclang to $PATH
-(setq exec-path (append exec-path '("/Applications/SuperCollider.app/Contents/MacOS/")))
+(defconst sclang-path "/Applications/SuperCollider.app/Contents/MacOS")
+(defconst scel-path (f-join (getenv "HOME") "Library/Application Support/SuperCollider/downloaded-quarks/scel/el"))
 
-;; load provided library
-(add-to-list 'load-path (f-join (getenv "HOME")
-                                "Library/Application Support/SuperCollider/downloaded-quarks/scel/el"))
-(require 'sclang)
+(when (file-directory-p sc-app)
+  ;; add sclang to $PATH
+  (add-to-list 'exec-path sclang-path)
+  ;; load provided library
+  (add-to-list 'load-path scel-path)
+  (require 'sclang))
 
 (provide 'sc-config)
 ;;; sc-config.el ends here
