@@ -51,9 +51,9 @@
 (add-hook 'emacs-startup-hook #'display-startup-time)
 ;;
 
-(when (featurep 'native-compile)
-  (setq native-comp-async-report-warnings-errors nil)
-  (setq native-comp-deferred-compilation t))
+;; native comp
+(setq native-comp-async-report-warnings-errors nil)
+(setq native-comp-deferred-compilation t)
 
 ;; base
 (require 'init-packages)
@@ -81,7 +81,6 @@
 (require 'init-ibuffer)
 (require 'init-utils)
 (require 'init-org)
-(require 'init-mail)
 
 ;; dev
 (require 'init-git)
@@ -92,7 +91,11 @@
 (require 'init-lang)
 
 ;; utils
+;; feeds
 (require 'init-elfeed)
+;; mail
+(when (file-exists-p (expand-file-name "init-mail.el" user-emacs-directory))
+  (require 'init-mail))
 
 ;; custom packages
 (require 'init-vendor)
@@ -101,7 +104,8 @@
 (require 'init-keys)
 
 ;; private
-(require 'init-private)
+(when (file-exists-p (expand-file-name "init-private.el" user-emacs-directory))
+  (require 'init-private))
 
 ;; shits
 (setq user-emacs-directory "~/.cache/emacs")
