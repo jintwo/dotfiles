@@ -4,7 +4,7 @@
 (defconst sclang-path "/Applications/SuperCollider.app/Contents/MacOS")
 (defconst scel-path (f-join (getenv "HOME") "Library/Application Support/SuperCollider/downloaded-quarks/scel/el"))
 
-(when (file-directory-p sc-app)
+(when (file-directory-p sclang-path)
   ;; add sclang to $PATH
   (add-to-list 'exec-path sclang-path)
   ;; load provided library
