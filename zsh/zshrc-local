@@ -6,9 +6,13 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 # brew
 if [ -d "/opt/homebrew" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+    export HOMEBREW_NO_INSTALL_FROM_API=1
+    alias b="brew"
+elif [ -d "/usr/local/Homebrew" ]; then
+    eval "$(/usr/local/Homebrew/bin/brew shellenv)"
+    export HOMEBREW_NO_INSTALL_FROM_API=1
+    alias b="brew"
 fi
-export HOMEBREW_NO_INSTALL_FROM_API=1
-alias b="brew"
 
 # emacs stuff
 alias med="emacs --daemon"
@@ -28,60 +32,6 @@ CLIPR_CLI="/Users/jin/Documents/dev/macos/clipr/target/release/clipr-cli"
 CLIPR_CONFIG="/Users/jin/Documents/dev/macos/clipr/config.toml"
 
 alias c="$CLIPR_CLI -c $CLIPR_CONFIG"
-
-# k8s
-function kc {
-    if [[ -z $NOTUN ]]; then
-        # ensure ktun
-        local tun=${TUN:-kube-m1}
-        ktun status $tun > /dev/null
-        if [[ ! $? -eq 0 ]]; then
-            ktun start $tun
-        fi
-    fi
-    local ns=${NS:-production}
-    local sp='--'
-    local spi=$@[(ie)$sp]
-    if [[ $ns == "*" ]]; then
-        local args=(${@:1:$((spi-1))} --all-namespaces)
-    elif [[ $ns == "-" ]]; then
-        local args=(${@:1:$((spi-1))})
-    else
-        local args=(${@:1:$((spi-1))} -n $ns ${@:$spi})
-    fi
-    echo "-> $args"
-    kubectl $args
-}
-
-function kr () {
-    local resource="$1"
-    shift
-
-    local patch_str='{"spec": {"template": {"metadata": {"annotations": {"restartTrigger":"'
-    patch_str+="$(date)"
-    patch_str+='"}}}}}'
-
-    kc patch "$resource" -p "$patch_str"
-}
-
-alias kd="kc describe"
-alias ke="kc exec -it"
-alias kg="kc get"
-alias kgp="kc get pods"
-alias kgpa="kc get pods -o wide"
-alias kl="kc logs -f --tail=100"
-
-function kgpn {
-    if [[ -z $1 ]]; then
-        echo "must specify node-name"
-        exit
-    fi
-    kc get pods -o wide --field-selector "spec.nodeName==$1"
-}
-
-function kesh {
-    kc exec -it $@ -- bash
-}
 
 # common
 export VIRTUAL_ENV_DISABLE_PROMPT='Y'

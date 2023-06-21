@@ -15,7 +15,6 @@ brew install difftastic
 brew install zoxide
 brew install fd
 brew install jq
-brew install reattach-to-user-namespace
 brew install tmux
 brew install moreutils
 brew install bitwarden-cli
@@ -45,21 +44,14 @@ brew install homebrew/cask/caffeine
 brew install homebrew/cask/onyx
 brew install transmission-cli  # should also install homebrew/service tools
 
-
 # social
-brew install homebrew/cask/slack
 brew install homebrew/cask/discord
 brew install homebrew/cask/skype
 brew install homebrew/cask/telegram
 brew install homebrew/cask/whatsapp
 brew install homebrew/cask/signal
-brew install homebrew/cask/zoom
-brew install homebrew/cask/microsoft-teams
 
 # vms
-brew install homebrew/cask/virtualbox
-brew install homebrew/cask/virtualbox-extension-pack
-brew install homebrew/cask/vagrant
 brew install qemu
 brew install cdrtools
 
@@ -119,6 +111,9 @@ brew install homebrew/cask-fonts/font-iosevka
 # job related
 brew install kubernetes-cli
 brew install helm
-brew install chromedriver
-brew install google-chrome
-brew install firefox-nightly
+brew install homebrew/cask/chromedriver
+brew install homebrew/cask/google-chrome
+brew install homebrew/cask/firefox-nightly
+brew install homebrew/cask/slack
+brew install homebrew/cask/zoom
+brew install homebrew/cask/microsoft-teams
