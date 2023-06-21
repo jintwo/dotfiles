@@ -94,7 +94,7 @@
 ;; feeds
 (require 'init-elfeed)
 ;; mail
-(when (file-exists-p (expand-file-name "init-mail.el" user-emacs-directory))
+(when (file-exists-p (expand-file-name "lisp/init-mail.el" user-emacs-directory))
   (require 'init-mail))
 
 ;; custom packages
@@ -104,7 +104,7 @@
 (require 'init-keys)
 
 ;; private
-(when (file-exists-p (expand-file-name "init-private.el" user-emacs-directory))
+(when (file-exists-p (expand-file-name "lisp/init-private.el" user-emacs-directory))
   (require 'init-private))
 
 ;; shits
