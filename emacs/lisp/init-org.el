@@ -8,7 +8,7 @@
 (require 's)
 
 (setq org-log-done t
-      org-directory "~/Documents/org"
+      org-directory "~/Dropbox/Org"
       org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "WAITING(g)" "|" "DONE(d)"))
       org-highest-priority ?A
       org-lowest-priority ?C
