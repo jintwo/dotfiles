@@ -41,7 +41,7 @@
     hideCampaign = true
 
 [diff]
-	external = difft
+	external = difft --syntax-highlight off --display side-by-side-show-both
 
 [merge]
     conflictstyle = diff3
