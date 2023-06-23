@@ -61,7 +61,7 @@
 (defun j2/init-ui ()
   "UI settings."
   (interactive)
-  (j2/set-font "Iosevka" 120 'medium)
+  (j2/set-font "Iosevka" 120 'regular 'bold)
   (when (eq (window-system) 'mac)
     (toggle-frame-fullscreen)))
 
