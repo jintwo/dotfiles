@@ -10,7 +10,6 @@ brew install bat
 brew install exa
 brew install dog
 brew install ripgrep
-brew install git-delta
 brew install difftastic
 brew install zoxide
 brew install fd
@@ -46,7 +45,6 @@ brew install transmission-cli  # should also install homebrew/service tools
 
 # social
 brew install homebrew/cask/discord
-brew install homebrew/cask/skype
 brew install homebrew/cask/telegram
 brew install homebrew/cask/whatsapp
 brew install homebrew/cask/signal
@@ -114,6 +112,8 @@ brew install helm
 brew install homebrew/cask/chromedriver
 brew install homebrew/cask/google-chrome
 brew install homebrew/cask/firefox-nightly
+brew install homebrew/cask/microsoft-teams
+brew install homebrew/cask/skype
 brew install homebrew/cask/slack
 brew install homebrew/cask/zoom
-brew install homebrew/cask/microsoft-teams
+mas-install "be focused pro"

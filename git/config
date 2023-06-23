@@ -18,65 +18,34 @@
     out = !git log origin/master..
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     ds = !git diff | vim
-    dft = difftool
     pf = push --force-with-lease
 
 [core]
-    excludesfile = /Users/jin/.gitignore
+    excludesfile = ~/.gitignore
     quotepath = false
     autocrlf = input
-    pager = delta
 
 [push]
     default = current
 
-[rebase]
-    autoStash = true
-
 [pull]
     rebase = true
 
-[interactive]
-    diffFilter = delta --color-only
+[rebase]
+    autoStash = true
 
 [add.interactive]
     useBuiltin = false
-
-[delta]
-    # navigate = true
-    # line-numbers = true
-    side-by-side = true
-    # decorations = true
-    relative-paths = true
-    # syntax-theme = none
-    hunk-header-style = line-number syntax
-    whitespace-error-style = 22 reverse
-
-[filter "lfs"]
-    clean = git-lfs clean %f
-    smudge = git-lfs smudge %f
-    required = true
 
 [magit]
     hideCampaign = true
 
 [diff]
-    colorMoved = default
-    tool = difftastic
-[difftool]
-    prompt = false
-[difftool "difftastic"]
-    cmd = difft "$LOCAL" "$REMOTE"
+	external = difft
 
 [merge]
     conflictstyle = diff3
     tool = ediff
+
 [mergetool "ediff"]
     cmd = emacs --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
-
-[pager]
-    diff = delta
-    log = delta
-    reflog = delta
-    show = delta
-    difftool = true
