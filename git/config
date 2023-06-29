@@ -17,7 +17,6 @@
     in = !git log ..origin/master
     out = !git log origin/master..
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    ds = !git diff | vim
     pf = push --force-with-lease
 
 [core]
