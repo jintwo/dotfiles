@@ -36,8 +36,8 @@ brew install homebrew/cask/tunnelblick
 mas-install wireguard
 # brew install homebrew/cask/bitwarden  # browser extension not supported
 mas-install bitwarden
-brew install homebrew/cask/maestral
 brew install homebrew/cask/dropshare  # use b2 buckets
+brew install homebrew/cask/syncthing
 brew install homebrew/cask/deepl
 brew install homebrew/cask/caffeine
 brew install homebrew/cask/onyx
