@@ -119,6 +119,7 @@ brew "tcl-tk"
 ## cpp
 brew "boost"
 brew "cmake"
+brew "fmt"
 
 ## common-lisp
 brew "sbcl"
