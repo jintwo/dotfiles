@@ -3,8 +3,8 @@
 ;;; Code:
 (use-package haskell-mode
   :mode ("\\.hs\\'" "\\.lhs\\'")
-  :hook ((haskell-mode-hook . haskell-mode-init)
-         (haskell-mode-hook . j2/project-eglot-ensure))
+  :hook ((haskell-mode . haskell-mode-init)
+         (haskell-mode . j2/project-eglot-ensure))
   :custom
   (haskell-indentation-layout-offset 4)
   (haskell-indentation-left-offset 4))

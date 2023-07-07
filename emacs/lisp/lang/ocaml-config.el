@@ -10,7 +10,7 @@
 
 (use-package merlin
   :defer t
-  :hook ((tuareg-mode-hook caml-mode-hook) . merlin-mode)
+  :hook ((tuareg-mode caml-mode) . merlin-mode)
   :config (setq merlin-error-after-save nil))
 
 (let ((opam-share (ignore-errors (car (process-lines "opam" "var" "share")))))

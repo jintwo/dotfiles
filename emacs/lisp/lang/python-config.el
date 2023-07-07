@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (use-package python
-  :hook ((python-mode-hook python-ts-mode-hook) . j2/project-eglot-ensure))
+  :hook ((python-mode python-ts-mode) . j2/project-eglot-ensure))
 
 (use-package pyvenv
   :defer t

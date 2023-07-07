@@ -3,7 +3,7 @@
 ;;; Code:
 (use-package go-mode
   :mode ("\\.go\\'")
-  :hook ((go-mode-hook go-ts-mode-hook) . j2/project-eglot-ensure)
+  :hook ((go-mode go-ts-mode) . j2/project-eglot-ensure)
   :config (setenv "GOPATH" (expand-file-name "~/Documents/dev/golang/go")))
 
 (provide 'go-config)

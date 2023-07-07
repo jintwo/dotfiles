@@ -3,11 +3,11 @@
 ;;; Code:
 (use-package js2-mode
   :ensure t
-  :hook ((js-mode-hook js-ts-mode-hook) . j2/project-eglot-ensure))
+  :hook ((js-mode js-ts-mode) . j2/project-eglot-ensure))
 
 (use-package typescript-mode
   :ensure t
-  :hook ((typescript-mode-hook typescript-ts-mode-hook tsx-ts-mode-hook) . j2/project-eglot-ensure)
+  :hook ((typescript-mode typescript-ts-mode tsx-ts-mode) . j2/project-eglot-ensure)
   :custom (typescript-indent-level 2))
 
 ;; deno
