@@ -76,11 +76,13 @@
   (setq find-program "fd"))
 
 ;; recentf
-(add-hook 'after-init-hook 'recentf-mode)
-(setq-default recentf-max-saved-items 1000
-              recentf-exclude `("/tmp/" "/ssh:" ,(concat package-user-dir "/.*-autoloads\\.el\\'"))
-              recentf-max-menu-items 50
-              recentf-mode t)
+(use-package recentf
+  :ensure t
+  :config
+  (recentf-mode 1)
+  (setq-default recentf-max-saved-items 1000
+                recentf-exclude `("/tmp/" "/ssh:" ,(concat package-user-dir "/.*-autoloads\\.el\\'"))
+                recentf-max-menu-items 50))
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
