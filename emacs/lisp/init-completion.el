@@ -129,12 +129,17 @@
   :defer t)
 
 (use-package consult-eglot
-  :defer t)
+  :ensure t)
 
-;; only after org-roam
 (use-package consult-org-roam
+  :ensure t
   :after org-roam
-  :defer t)
+  :init
+  (require 'consult-org-roam)
+  (consult-org-roam-mode 1)
+  :custom
+  ;; Use `ripgrep' for searching with `consult-org-roam-search'
+  (consult-org-roam-grep-func #'consult-ripgrep))
 
 (use-package corfu
   :ensure t

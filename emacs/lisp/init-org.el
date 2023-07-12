@@ -86,10 +86,6 @@
 
 (advice-add 'org-agenda :before #'j2/org-roam-update-agenda-files)
 
-(when (featurep 'init-consult)
-  (use-package consult-org-roam
-    :ensure t))
-
 ;; use following package as inspiration ;)
 ;; (use-package toc-org
 ;;   :defer t

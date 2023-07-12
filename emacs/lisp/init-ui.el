@@ -26,7 +26,7 @@
 
 (let ((no-border '(internal-border-width . 0)))
   (add-to-list 'default-frame-alist no-border)
-  (add-to-list 'default-frame-alist '(alpha . 95))
+  ;; (add-to-list 'default-frame-alist '(alpha . 95))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'initial-frame-alist no-border))
 
