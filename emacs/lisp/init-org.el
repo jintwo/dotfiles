@@ -26,7 +26,8 @@
       org-babel-load-languages '((shell . t)
                                  (python . t)
                                  (emacs-lisp . t))
-      org-index-file "index.org")
+      org-index-file "index.org"
+      org-image-actual-width nil)
 
 ;; agenda
 (setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
@@ -129,7 +130,8 @@
               (org-present-read-write))))
 
 ;; org-babel
-(org-babel-do-load-languages 'org-babel-load-languages '((shell . t)))
+(org-babel-do-load-languages 'org-babel-load-languages '((shell . t)
+                                                         (python . t)))
 
 ;; following part stolen from https://isamert.net/2022/01/04/dealing-with-apis-jsons-and-databases-in-org-mode.html
 (defun org-babel-execute:json (body params)

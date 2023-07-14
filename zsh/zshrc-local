@@ -26,7 +26,7 @@ alias gpa="gp --all"
 alias tilde="TERM=xterm-16color ssh jintwo@tilde.club"
 
 # clipr
-CLIPR_CLI="/Users/jin/Documents/dev/macos/clipr/target/release/clipr-cli"
+CLIPR_CLI="/Users/jin/Documents/dev/macos/clipr/target/debug/clipr-cli"
 CLIPR_CONFIG="/Users/jin/Documents/dev/macos/clipr/config.toml"
 
 alias c="$CLIPR_CLI -c $CLIPR_CONFIG"
