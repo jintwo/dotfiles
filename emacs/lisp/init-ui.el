@@ -101,7 +101,7 @@
 ;; windows
 (use-package ace-window
   :defer t
-  :bind (:map global-map (("M-o" . ace-window))))
+  :bind (:map global-map (("s-o" . ace-window))))
 
 (use-package resize-window
   :defer t

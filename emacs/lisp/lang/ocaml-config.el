@@ -24,10 +24,9 @@
     ;; Use opam switch to lookup ocamlmerlin binary
     (setq merlin-command 'opam)))
 
-(when (featurep 'init-eglot)
-  (put 'tuareg-mode 'eglot-language-id "ocaml")
-  (put 'tuareg-opam-mode 'eglot-language-id "ocaml")
-  (put 'merlin-mode 'eglot-language-id "ocaml"))
+(put 'tuareg-mode 'eglot-language-id "ocaml")
+(put 'tuareg-opam-mode 'eglot-language-id "ocaml")
+(put 'merlin-mode 'eglot-language-id "ocaml"))
 
 (provide 'ocaml-config)
 ;;; ocaml-config.el ends here

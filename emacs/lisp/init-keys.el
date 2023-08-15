@@ -28,6 +28,8 @@
 (keymap-global-set "C-c o a" #'org-agenda)
 (keymap-global-set "C-c o t" #'org-timer-set-timer)
 (keymap-global-set "C-c o s" #'org-store-link)
+(keymap-global-set "C-c o l" #'org-insert-link)
+(keymap-global-set "C-c o f" #'org-roam-node-find)
 
 (provide 'init-keys)
 ;;; init-keys.el ends here

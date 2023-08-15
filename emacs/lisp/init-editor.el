@@ -24,6 +24,7 @@
 
 (use-package avy
   :defer t
+  :bind ("s-l" . avy-goto-line)
   :config
   (avy-setup-default))
 

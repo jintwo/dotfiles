@@ -122,6 +122,9 @@
 (use-package protobuf-mode
   :mode "\\.proto\\'")
 
+(use-package capnp-mode
+  :mode "\\.capnp\\'")
+
 (use-package dockerfile-mode
   :defer t)
 
