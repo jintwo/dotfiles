@@ -12,5 +12,8 @@
   :init (require 'racket-xp)
   :hook (racket-mode . racket-xp-mode))
 
+(use-package sicp
+  :defer t)
+
 (provide 'scheme-config)
 ;;; scheme-config.el ends here

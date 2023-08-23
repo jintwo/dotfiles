@@ -29,6 +29,9 @@
 ;;       python-shell-completion-native-disabled-interpreters '("ipython" "python3" "python")
 ;;       python-indent-offset 4)
 
+(use-package flymake-ruff
+  :hook ((python-mode python-ts-mode) . flymake-ruff-load))
+
 ;; python-mode templates
 (when (featurep 'tempo)
 
