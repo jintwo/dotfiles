@@ -32,6 +32,12 @@
 (use-package flymake-ruff
   :hook ((python-mode python-ts-mode) . flymake-ruff-load))
 
+(unless (package-installed-p 'flymake-mypy)
+  (package-vc-install "https://github.com/jintwo/flymake-mypy"))
+
+(use-package flymake-mypy
+  :hook ((python-mode python-ts-mode) . flymake-mypy-enable))
+
 ;; python-mode templates
 ;; TODO: expand abbrev?
 ;; TODO: add debugger snip

@@ -10,6 +10,15 @@
 (use-package quickrun
   :ensure t)
 
+;; dumb-jump
+(use-package dumb-jump
+  :ensure t
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read
+        dumb-jump-prefer-searcher 'rg
+        dumb-jump-selector 'completing-read))
+
 ;; tree sitter stuff ;)
 (setq treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
