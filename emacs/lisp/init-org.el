@@ -1,11 +1,16 @@
 ;;; init-org.el --- org mode config
 ;;; Commentary:
 ;;; Code:
-(require 'org)
-(require 'org-agenda)
-(require 'org-id)
+
+;; (require 'org)
+;; (require 'org-agenda)
+;; (require 'org-id)
+
 (require 'f)
 (require 's)
+
+(use-package org
+  :defer t)
 
 (setq org-log-done t
       org-directory "~/Sync/Org"

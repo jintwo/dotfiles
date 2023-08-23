@@ -33,6 +33,8 @@
   :hook ((python-mode python-ts-mode) . flymake-ruff-load))
 
 ;; python-mode templates
+;; TODO: expand abbrev?
+;; TODO: add debugger snip
 (when (featurep 'tempo)
 
   (tempo-define-template "py-write-json"
