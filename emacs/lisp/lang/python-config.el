@@ -32,11 +32,12 @@
 (use-package flymake-ruff
   :hook ((python-mode python-ts-mode) . flymake-ruff-load))
 
-(unless (package-installed-p 'flymake-mypy)
-  (package-vc-install "https://github.com/jintwo/flymake-mypy"))
+;; (unless (package-installed-p 'flymake-mypy)
+;;   (package-vc-install "https://github.com/jintwo/flymake-mypy"))
 
-(use-package flymake-mypy
-  :hook ((python-mode python-ts-mode) . flymake-mypy-enable))
+(require 'flymake-mypy)
+(add-hook 'python-mode-hook #'flymake-mypy-load)
+(add-hook 'python-ts-mode-hook #'flymake-mypy-load)
 
 ;; python-mode templates
 ;; TODO: expand abbrev?
