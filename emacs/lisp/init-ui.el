@@ -24,11 +24,11 @@
 (pixel-scroll-precision-mode 1)
 (setq pixel-scroll-precision-large-scroll-height 35.0)
 
-(let ((no-border '(internal-border-width . 0)))
+(let ((no-border '(internal-border-width . 5)))
+  (add-to-list 'initial-frame-alist no-border)
   (add-to-list 'default-frame-alist no-border)
-  ;; (add-to-list 'default-frame-alist '(alpha . 95))
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'initial-frame-alist no-border))
+  (add-to-list 'default-frame-alist '(undecorated-round . t))
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
 (set-language-environment "UTF-8")
 
