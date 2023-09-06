@@ -1,12 +1,12 @@
 ;;; init-editor --- editor config -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-(use-package undo-tree
-  :defer 1
-  :config
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
-  (setq undo-tree-enable-undo-in-region nil)
-  (global-undo-tree-mode))
+(use-package vundo
+  :ensure t
+  :bind ("C-x u" . vundo)
+  :custom
+  (vundo-roll-back-on-quit nil)
+  (vundo--window-max-height 10))
 
 (use-package multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
