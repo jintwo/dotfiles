@@ -164,6 +164,7 @@
         ([tab] . corfu-next)
         ("S-TAB" . corfu-previous)
         ([backtab] . corfu-previous)
+        ([remap completion-at-point] . corfu-complete)
         ("M-q" . corfu-quick-jump))
 
   :config
@@ -183,13 +184,9 @@
   (corfu-terminal-mode +1))
 
 (use-package cape
-  :defer t
-  :init
-  (require 'cape)
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
+  :ensure t
+  :config
+  (setq completion-at-point-functions '(cape-file cape-dabbrev)))
 
 (use-package kind-icon
   :ensure t

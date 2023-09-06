@@ -9,11 +9,9 @@ tap "homebrew/services"
 # -- cli utils
 brew "bat"  # cat
 brew "exa"  # ls
-brew "dog"  # dig
 brew "ripgrep"  # grep
 brew "difftastic"  # diff
 brew "zoxide"  # cd
-brew "fd"  # find
 brew "jq"
 brew "tmux"
 brew "moreutils"

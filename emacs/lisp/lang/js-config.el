@@ -11,19 +11,20 @@
   :custom (typescript-indent-level 2))
 
 ;; deno
-(require 'eglot)
-(add-to-list 'eglot-server-programs
-             '((js-ts-mode js-mode typescript-ts-mode typescript-mode)
-               . (eglot-deno "deno" "lsp")))
+;; TODO: try deno-ts-mode
+;; (require 'eglot)
+;; (add-to-list 'eglot-server-programs
+;;              '((js-ts-mode js-mode typescript-ts-mode typescript-mode)
+;;                . (eglot-deno "deno" "lsp")))
 
-(defclass eglot-deno (eglot-lsp-server) ()
-  :documentation "A custom class for deno lsp.")
+;; (defclass eglot-deno (eglot-lsp-server) ()
+;;   :documentation "A custom class for deno lsp.")
 
-(cl-defmethod eglot-initialization-options ((server eglot-deno))
-  "Passes through required deno initialization options"
-  (list :enable t
-        :lint t
-        (make-symbol "deno.suggest.imports.hosts") (list (make-symbol "https://deno.land") t)))
+;; (cl-defmethod eglot-initialization-options ((server eglot-deno))
+;;   "Passes through required deno initialization options"
+;;   (list :enable t
+;;         :lint t
+;;         (make-symbol "deno.suggest.imports.hosts") (list (make-symbol "https://deno.land") t)))
 
 (provide 'js-config)
 ;;; js-config.el ends here

@@ -19,7 +19,7 @@ addpath "/usr/X11/bin"
 addpath "$HOME/.tools/bin"
 
 # installed tools
-# addpath "$HOME/.luarocks/bin"
+addpath "$HOME/.luarocks/bin"
 export GOPATH="$HOME/Documents/dev/golang/go"
 addpath "$GOPATH/bin"
 addpath "$HOME/.cargo/bin"

@@ -28,5 +28,6 @@
 (put 'tuareg-opam-mode 'eglot-language-id "ocaml")
 (put 'merlin-mode 'eglot-language-id "ocaml")
 
+;; TODO: try ocaml-ts-mode
 (provide 'ocaml-config)
 ;;; ocaml-config.el ends here
