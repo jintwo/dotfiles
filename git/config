@@ -17,7 +17,8 @@
     in = !git log ..origin/master
     out = !git log origin/master..
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    pf = push --force-with-lease
+	pf = push --force-with-lease
+	dft = difftool
 
 [core]
     excludesfile = ~/.gitignore
@@ -40,7 +41,16 @@
     hideCampaign = true
 
 [diff]
-	external = difft --syntax-highlight off --display side-by-side-show-both
+	tool = difftastic
+
+[difftool]
+	prompt = false
+
+[difftool "difftastic"]
+	cmd = difft --syntax-highlight off --display side-by-side-show-both "$LOCAL" "$REMOTE"
+
+[pager]
+	difftool = true
 
 [merge]
     conflictstyle = diff3

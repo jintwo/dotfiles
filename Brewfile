@@ -8,7 +8,7 @@ tap "homebrew/services"
 
 # -- cli utils
 brew "bat"  # cat
-brew "exa"  # ls
+brew "eza"  # ls
 brew "ripgrep"  # grep
 brew "difftastic"  # diff
 brew "zoxide"  # cd

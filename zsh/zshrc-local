@@ -113,8 +113,8 @@ function xmlf {
 export BAT_THEME=Nord
 export LESS=-RS
 
-alias l="exa -Flah"
-alias ls="exa -1"
+alias l="eza -Flah"
+alias ls="eza -1"
 alias cat="bat -n"
 eval "$(zoxide init --cmd j zsh)"
 

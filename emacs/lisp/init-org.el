@@ -2,15 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (require 'org)
-;; (require 'org-agenda)
-;; (require 'org-id)
 
 (require 'f)
 (require 's)
 
 (use-package org
-  :defer t)
+  :ensure t
+  :config
+  (require 'org)
+  (require 'org-agenda)
+  (require 'org-id))
 
 (setq org-log-done t
       org-directory "~/Sync/Org"

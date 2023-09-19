@@ -17,6 +17,8 @@
 (keymap-global-set "C-r" #'isearch-backward-regexp)
 (keymap-global-set "C-M-s" #'isearch-forward)
 (keymap-global-set "C-M-r" #'isearch-backward)
+(keymap-global-set "C-x n" #'flymake-goto-next-error)
+(keymap-global-set "C-x p" #'flymake-goto-prev-error)
 
 ;; utils
 (keymap-global-set "C-c C-t" #'j2/split-term)
