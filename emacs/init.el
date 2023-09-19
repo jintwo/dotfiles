@@ -1,6 +1,8 @@
 ;;; init.el --- simple config -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+(use-package no-littering)
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (require 'package)
@@ -107,11 +109,6 @@
 (when (file-exists-p (expand-file-name "lisp/init-private.el" user-emacs-directory))
   (require 'init-private))
 
-;; shits
-(setq user-emacs-directory "~/.cache/emacs")
-(use-package no-littering)
-
-;; -------
 (put 'narrow-to-region 'disabled nil)
 
 (when (file-exists-p custom-file)
