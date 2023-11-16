@@ -3,8 +3,8 @@ env:
 
 window:
   padding:
-    x: 1
-    y: 1
+    x: 5
+    y: 5
 
   decorations: buttonless
   dynamic_title: false
