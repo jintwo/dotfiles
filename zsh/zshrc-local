@@ -139,6 +139,8 @@ function get-tmux-panes {
     echo $(tmux list-panes | cut -d":" -f1 | sed "s/^/$window./" | tr "\n" " ")
 }
 
+[ -n "$EAT_SHELL_INTEGRATION_DIR" ] && source "$EAT_SHELL_INTEGRATION_DIR/zsh"
+
 # private
 if [ -f ~/.zshrc-private ]; then
     source ~/.zshrc-private

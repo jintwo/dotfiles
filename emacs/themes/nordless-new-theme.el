@@ -42,11 +42,12 @@
       (fade . "#4C566A")
       (fg . "#D8DEE9")
       (fg+ . "#E5E9F0")
-      (docs . "#88C0D0")
+      (docs . "#88C0D0") ;; cyan
       (red . "#BF616A")
       (warning . "#D08770")
       (yellow . "#EBCB8B")
-      (green . "#A3BE8C"))))
+      (green . "#A3BE8C")
+      (blue . "#81A1C1"))))
 
 (defmacro nordless-new-with-color-variables (&rest body)
   (declare (indent 0))
@@ -244,7 +245,13 @@
    `(corfu-default ((t (:background ,current-line))))
    `(tab-bar ((t (:inherit mode-line-inactive))))
    `(tab-bar-tab ((t (:inherit mode-line :weight bold))))
-   `(tab-bar-tab-inactive ((t (:inherit mode-line-inactive))))))
+   `(tab-bar-tab-inactive ((t (:inherit mode-line-inactive))))
+   `(eat-term-color-1 ((t (:foreground ,red)))) ;; red
+   `(eat-term-color-2 ((t (:foreground ,green))))  ;; green
+   `(eat-term-color-3 ((t (:foreground ,yellow)))) ;; yellow
+   `(eat-term-color-4 ((t (:foreground ,blue)))) ;; blue
+   `(eat-term-color-6 ((t (:foreground ,docs)))) ;; cyan
+   `(eat-term-color-7 ((t (:foreground ,fade)))))) ;; ~white
 
 (provide-theme 'nordless-new)
 

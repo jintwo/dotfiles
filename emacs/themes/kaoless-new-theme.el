@@ -7,17 +7,18 @@
 
 (eval-and-compile
   (defconst kaoless-new-theme-colors-alist
-    '((bg . "#f5f6f5")
+    '((bg . "#F5F6F5")
       (bg+ . "#F1F3E9")
       (current-line . "#E5E6DE")
       (fade . "#C3C4BF")
       (fg . "#4E4757")
-      (fg+ . "#ca6036")
+      (fg+ . "#CA6036")
       (docs . "#5B7C93")
-      (red . "#cd5c60")
+      (red . "#CD5C60")
       (warning . "#C5882C")
-      (yellow . "#d1832e")
-      (green . "#4D8B5B"))))
+      (yellow . "#D1832E")
+      (green . "#4D8B5B")
+      (blue . "#81A1C1"))))
 
 (defmacro kaoless-new-with-color-variables (&rest body)
   (declare (indent 0))
@@ -205,7 +206,13 @@
    `(corfu-default ((t (:background ,current-line))))
    `(tab-bar ((t (:inherit mode-line))))
    `(tab-bar-tab ((t (:inherit mode-line :foreground ,fg))))
-   `(tab-bar-inactive ((t (:inherit mode-line-inactive :foreground ,fg+))))))
+   `(tab-bar-inactive ((t (:inherit mode-line-inactive :foreground ,fg+))))
+   `(eat-term-color-1 ((t (:foreground ,red)))) ;; red
+   `(eat-term-color-2 ((t (:foreground ,green))))  ;; green
+   `(eat-term-color-3 ((t (:foreground ,yellow)))) ;; yellow
+   `(eat-term-color-4 ((t (:foreground ,blue)))) ;; blue
+   `(eat-term-color-6 ((t (:foreground ,docs)))) ;; cyan
+   `(eat-term-color-7 ((t (:foreground ,fade)))))) ;; ~white
 
 (provide-theme 'kaoless-new)
 

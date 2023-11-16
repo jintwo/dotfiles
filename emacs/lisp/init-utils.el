@@ -61,5 +61,12 @@
 (use-package osc
   :ensure t)
 
+(use-package eat
+  :ensure t
+  :config
+  (setq eat-term-name "eat-mono")
+  (add-hook 'eshell-load-hook #'eat-eshell-mode)
+  (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
+
 (provide 'init-utils)
 ;;; init-utils.el ends here
