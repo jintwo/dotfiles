@@ -140,6 +140,15 @@
 (use-package graphviz-dot-mode
   :defer t)
 
+(use-package plantuml-mode
+  :defer t
+  :config
+  (let ((plantuml-prefix (string-trim-right (shell-command-to-string "/opt/homebrew/bin/brew --prefix plantuml"))))
+    (setq plantuml-jar-path (concat plantuml-prefix "/libexec/plantuml.jar")
+          plantuml-default-exec-mode 'executable
+          org-plantuml-executable-path (concat plantuml-prefix "/bin/plantuml")
+          org-plantuml-exec-mode 'plantuml)))
+
 (add-to-list 'auto-mode-alist '("\\.tpl\\'" . prog-mode))
 
 (provide 'init-lang)

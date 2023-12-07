@@ -118,7 +118,6 @@
                           ("C-h F" . helpful-function)
                           ("C-h C" . helpful-command))))
 
-
 ;; term
 (use-package eterm-256color
   :ensure t
@@ -138,6 +137,8 @@
     (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame)
     (when (display-graphic-p)
       (ns-raise-emacs))))
+
+(setq switch-to-buffer-obey-display-actions t)
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

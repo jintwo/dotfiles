@@ -135,9 +135,14 @@
               (org-present-show-cursor)
               (org-present-read-write))))
 
+;; plantuml
+(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+
 ;; org-babel
 (org-babel-do-load-languages 'org-babel-load-languages '((shell . t)
-                                                         (python . t)))
+                                                         (python . t)
+                                                         (plantuml . t)))
+
 
 ;; following part stolen from https://isamert.net/2022/01/04/dealing-with-apis-jsons-and-databases-in-org-mode.html
 (defun org-babel-execute:json (body params)
