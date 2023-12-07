@@ -48,7 +48,6 @@ cask "font-iosevka"
 cask "hammerspoon"
 
 ## vpn
-cask "tunnelblick"
 mas "WireGuard", id: 1451685025
 
 ## sync
