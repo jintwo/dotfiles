@@ -1,9 +1,9 @@
-;;; kaoless-new-theme.el --- custom themes
+;;; kaoless-theme.el --- kaolin colorless theme
 ;;; Commentary:
 ;;; Code:
 ;; -*- lexical-binding: t -*-
 
-(deftheme kaoless-new "kaolin light colorless (new)")
+(deftheme kaoless-new "kaolin colorless")
 
 (eval-and-compile
   (defconst kaoless-new-theme-colors-alist
@@ -13,7 +13,7 @@
       (fade . "#C3C4BF")
       (fg . "#4E4757")
       (fg+ . "#CA6036")
-      (docs . "#5B7C93")
+      (docs . "#5B7C93") ;; cyan
       (red . "#CD5C60")
       (warning . "#C5882C")
       (yellow . "#D1832E")
@@ -204,9 +204,6 @@
    `(focus-unfocused ((t (:foreground ,fade))))
    `(corfu-border ((t (:background ,fade))))
    `(corfu-default ((t (:background ,current-line))))
-   `(tab-bar ((t (:inherit mode-line))))
-   `(tab-bar-tab ((t (:inherit mode-line :foreground ,fg))))
-   `(tab-bar-inactive ((t (:inherit mode-line-inactive :foreground ,fg+))))
    `(eat-term-color-1 ((t (:foreground ,red)))) ;; red
    `(eat-term-color-2 ((t (:foreground ,green))))  ;; green
    `(eat-term-color-3 ((t (:foreground ,yellow)))) ;; yellow

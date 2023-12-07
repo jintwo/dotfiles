@@ -19,6 +19,11 @@
         dumb-jump-prefer-searcher 'rg
         dumb-jump-selector 'completing-read))
 
+(use-package eros
+  :ensure t
+  :config
+  (eros-mode 1))
+
 ;; tree sitter stuff ;)
 (setq treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")

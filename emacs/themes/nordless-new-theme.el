@@ -1,38 +1,9 @@
-;;; nordless-new-theme.el --- A mostly colorless version of nord-theme
-
-;; Copyright (C) 2018-2020 Thomas Letan
-;;
-;; This program is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; You should have received a copy of the GNU General Public License
-;; along with this program. If not, see <https://www.gnu.org/licenses/>.
-
-;; Author: Thomas Letan <lthms@soap.coffee>
-;; URL: https://git.sr.ht/~lthms/colorless-themes.el
-;; Package-Version: 20201222.1627
-;; Package-Commit: c1ed1e12541cf05cc6c558d23c089c07e10b54d7
-;; Version: 0.2
-;; Package-Requires: ((colorless-themes "0.2"))
-;; License: GPL-3
-;; Keywords: faces theme
-
+;;; nordless-new-theme.el --- nord colorless theme
 ;;; Commentary:
-;; This file has been automatically generated from a template of the
-;; colorless themes project.
-
 ;;; Code:
-
 ;; -*- lexical-binding: t -*-
 
-(deftheme nordless-new "A mostly colorless version of nord-theme (new)")
+(deftheme nordless-new "nord colorless")
 
 (eval-and-compile
   (defconst nordless-new-theme-colors-alist
@@ -212,16 +183,6 @@
    `(font-latex-sectioning-3-face ((t ())))
    `(font-latex-sectioning-4-face ((t ())))
    `(font-latex-sectioning-5-face ((t ())))
-   `(helm-header ((t (:background ,bg+))))
-   `(helm-source-header ((t (:background ,bg+))))
-   `(helm-match ((t (:weight bold))))
-   `(helm-grep-match ((t (:weight bold))))
-   `(helm-candidate-number ((t ())))
-   `(helm-grep-running ((t ())))
-   `(helm-selection ((t (:background ,fg :foreground ,bg))))
-   `(helm-ff-prefix ((t ())))
-   `(helm-ff-directory ((t (:weight bold))))
-   `(helm-ff-dotted-directory ((t (:weight bold))))
    `(variable-pitch ((t ())))
    `(highlight ((t (:background ,fade))))
    `(compilation-warning ((t (:weight bold :underline t))))
@@ -243,9 +204,6 @@
    `(focus-unfocused ((t (:foreground ,fade))))
    `(corfu-border ((t (:background ,fade))))
    `(corfu-default ((t (:background ,current-line))))
-   `(tab-bar ((t (:inherit mode-line-inactive))))
-   `(tab-bar-tab ((t (:inherit mode-line :weight bold))))
-   `(tab-bar-tab-inactive ((t (:inherit mode-line-inactive))))
    `(eat-term-color-1 ((t (:foreground ,red)))) ;; red
    `(eat-term-color-2 ((t (:foreground ,green))))  ;; green
    `(eat-term-color-3 ((t (:foreground ,yellow)))) ;; yellow
