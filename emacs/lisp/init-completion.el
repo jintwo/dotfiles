@@ -183,6 +183,13 @@
   :config
   (corfu-terminal-mode +1))
 
+(use-package corfu-candidate-overlay
+  :ensure t
+  :config
+  (corfu-candidate-overlay-mode +1)
+  (global-set-key (kbd "C-<tab>") 'completion-at-point)
+  (global-set-key (kbd "C-S-<tab>") 'corfu-candidate-overlay-complete-at-point))
+
 (use-package cape
   :ensure t
   :config
