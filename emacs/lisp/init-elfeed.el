@@ -41,9 +41,9 @@
 (use-package elfeed-org
   :ensure t
   :after elfeed
-  :custom
-  (rmh-elfeed-org-files (list (f-join org-directory "feeds.org")))
   :config
+  (require 'org-roam)
+  (setq rmh-elfeed-org-files (list (org-roam-node-file (org-roam-node-from-title-or-alias "feeds"))))
   (require 'elfeed-org)
   (elfeed-org))
 

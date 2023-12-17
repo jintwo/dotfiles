@@ -109,8 +109,6 @@
 (when (file-exists-p (expand-file-name "lisp/init-private.el" user-emacs-directory))
   (require 'init-private))
 
-(put 'narrow-to-region 'disabled nil)
-
 (when (file-exists-p custom-file)
   (load custom-file))
 
