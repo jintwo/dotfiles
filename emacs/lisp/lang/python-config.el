@@ -23,11 +23,14 @@
 
 (add-to-list 'auto-mode-alist '("\\.jinja2\\'" . prog-mode))
 
-;; (setq python-shell-interpreter "ipython"
-;;       python-shell-interpreter-args "--simple-prompt"
-;;       python-shell-prompt-detect-failure-warning nil
-;;       python-shell-completion-native-disabled-interpreters '("ipython" "python3" "python")
-;;       python-indent-offset 4)
+(setq python-shell-interpreter "python"
+      python-shell-interpreter-args "-i"
+      ;; python-shell-interpreter "ipython"
+      ;; python-shell-interpreter-args "--simple-prompt"
+      python-shell-prompt-detect-failure-warning nil
+      python-shell-completion-native-disabled-interpreters '("ipython" "python3" "python")
+      python-indent-offset 4)
+
 
 (use-package flymake-ruff
   :hook ((python-mode python-ts-mode) . flymake-ruff-load))
