@@ -19,11 +19,9 @@
       org-highest-priority ?A
       org-lowest-priority ?C
       org-default-priority ?A
-      org-capture-templates `(("i" "Inbox")
-                              ("it" "TODO" entry (file+headline "inbox.org" "Tasks") ,(concat "** TODO %?\n"))
-                              ("il" "Link" item (file+headline "inbox.org" "Links") ,(concat "- %?\n"))
-                              ("j" "Job")
-                              ("jt" "TODO" entry (file+headline "job.org" "Tasks") ,(concat "** TODO %?\n")))
+      org-capture-templates `(("t" "TODO" entry (file+headline "inbox.org" "Tasks") "** TODO %?\n")
+                              ("l" "Link" item (file+headline "inbox.org" "Links") "- %?\n")
+                              ("n" "Note" entry (file+headline "inbox.org" "Notes") "** %?\nEntered on %U\n  %i\n  %a"))
       org-src-preserve-indentation t
       org-startup-indented t
       org-refile-use-outline-path t

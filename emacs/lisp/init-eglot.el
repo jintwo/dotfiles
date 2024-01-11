@@ -13,8 +13,7 @@
 
 
 (defun manually-activate-flymake ()
-  ;; ???
-  ;; (add-hook 'flymake-diagnostic-functions #'eglot-flymake-backend nil t)
+  (add-hook 'flymake-diagnostic-functions #'eglot-flymake-backend nil t)
   (flymake-mode t))
 
 (when (featurep 'consult-eglot)
