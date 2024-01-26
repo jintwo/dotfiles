@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "http://jorgenschaefer.github.io/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("org" . "https://jorgenschaefer.github.io/packages/") t)
 
 (require 'use-package)
 (setq use-package-always-ensure t

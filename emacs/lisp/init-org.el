@@ -116,31 +116,17 @@
   :config
   (require 'org-checklist))
 
-;; org-present
-;; TODO: configure me!
-(use-package org-present
-  :config
-  (add-hook 'org-present-mode-hook
-            (lambda ()
-              (org-present-big)
-              (org-display-inline-images)
-              (org-present-hide-cursor)
-              (org-present-read-only)))
-  (add-hook 'org-present-mode-quit-hook
-            (lambda ()
-              (org-present-small)
-              (org-remove-inline-images)
-              (org-present-show-cursor)
-              (org-present-read-write))))
-
 ;; plantuml
 (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+
+;; org-re-reveal
+(use-package org-re-reveal
+  :ensure t)
 
 ;; org-babel
 (org-babel-do-load-languages 'org-babel-load-languages '((shell . t)
                                                          (python . t)
                                                          (plantuml . t)))
-
 
 ;; following part stolen from https://isamert.net/2022/01/04/dealing-with-apis-jsons-and-databases-in-org-mode.html
 (defun org-babel-execute:json (body params)
