@@ -1,8 +1,6 @@
 ;;; init-org.el --- org mode config
 ;;; Commentary:
 ;;; Code:
-
-
 (require 'f)
 (require 's)
 
@@ -31,7 +29,8 @@
                                  (python . t)
                                  (emacs-lisp . t))
       org-index-file "index.org"
-      org-image-actual-width nil)
+      org-image-actual-width nil
+      org-insert-heading-respect-content t)
 
 ;; agenda
 (setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
@@ -110,6 +109,10 @@
 
 ;; org-timer
 (add-hook 'org-timer-done-hook (lambda () (message "timer done!")))
+
+;; export articles web->org
+(use-package org-web-tools
+  :ensure t)
 
 ;; org-checklist
 (use-package org-contrib

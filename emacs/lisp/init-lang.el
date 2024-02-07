@@ -6,6 +6,9 @@
               c-default-style "linux"
               c-basic-offset 4)
 
+;; pretty helpful
+(which-function-mode)
+
 ;; quickrun
 (use-package quickrun
   :ensure t)
