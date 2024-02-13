@@ -141,6 +141,7 @@ cask "godot"
 ## daw
 cask "ableton-live-suite"
 cask "bitwig-studio"
+cask "reaper"
 # Renoise
 # Tracktion Waveform
 
@@ -172,7 +173,6 @@ cask "audacity"
 
 # -- graphics
 cask "blender"
-cask "sketch"
 # Aseprite
 
 
