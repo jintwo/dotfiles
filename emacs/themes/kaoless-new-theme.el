@@ -209,7 +209,8 @@
    `(eat-term-color-3 ((t (:foreground ,yellow)))) ;; yellow
    `(eat-term-color-4 ((t (:foreground ,blue)))) ;; blue
    `(eat-term-color-6 ((t (:foreground ,docs)))) ;; cyan
-   `(eat-term-color-7 ((t (:foreground ,fade)))))) ;; ~white
+   `(eat-term-color-7 ((t (:foreground ,fade)))) ;; ~white
+   `(which-func ((t ())))))
 
 (provide-theme 'kaoless-new)
 
