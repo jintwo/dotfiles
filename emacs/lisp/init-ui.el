@@ -74,15 +74,15 @@
 (column-number-mode t)
 (size-indication-mode t)
 
-
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
   :config
   (setq doom-modeline-height 20
         doom-modeline-bar-width 3
         doom-modeline-icon nil
-        doom-modeline-vcs-max-length 30
         doom-modeline-lsp nil
+        doom-modeline-mu4e t
+        doom-modeline-vcs-max-length 30
         doom-modeline-env-enable-python t
         doom-modeline-env-enable-rust t))
 

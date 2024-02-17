@@ -210,7 +210,9 @@
    `(eat-term-color-4 ((t (:foreground ,blue)))) ;; blue
    `(eat-term-color-6 ((t (:foreground ,docs)))) ;; cyan
    `(eat-term-color-7 ((t (:foreground ,fade)))) ;; ~white
-   `(which-func ((t ())))))
+   `(which-func ((t ())))
+   `(jupyter-repl-input-prompt ((t (:foreground ,green))))
+   `(jupyter-repl-output-prompt ((t (:foreground ,red))))))
 
 (provide-theme 'kaoless-new)
 

@@ -31,30 +31,12 @@
       python-shell-completion-native-disabled-interpreters '("ipython" "python3" "python")
       python-indent-offset 4)
 
-
 (use-package flymake-ruff
   :hook ((python-mode python-ts-mode) . flymake-ruff-load))
 
 (require 'flymake-mypy)
 (add-hook 'python-mode-hook #'flymake-mypy-load)
 (add-hook 'python-ts-mode-hook #'flymake-mypy-load)
-
-;; python-mode templates
-;; TODO: expand abbrev?
-;; TODO: add debugger snip
-(when (featurep 'tempo)
-
-  (tempo-define-template "py-write-json"
-                         '("with open(\"" (p "File: " file) "\", \"a+\") as outf:" > n
-                           > "json.dump(" (p "Variable: " var) ", outf)"))
-
-  (tempo-define-template "py-log-json"
-                         '("logger.debug(json.dumps(" (p "Variable: " var) "))" > n))
-
-  (tempo-define-template "py-log-pformat"
-                         '(> "from pprint import pformat" n
-                           > "logger.debug('" (p "Prefix: " pfx) " %s', "
-                           "pformat(" (p "Variable: " var) "))" n)))
 
 (provide 'python-config)
 ;;; python-config.el ends here
