@@ -24,3 +24,6 @@ export GOPATH="$HOME/Documents/dev/golang/go"
 addpath "$GOPATH/bin"
 addpath "$HOME/.cargo/bin"
 # addpath "$HOME/.cabal/bin"
+
+# postgres
+addpath "$HOMEBREW_PREFIX/opt/postgresql@16/bin"

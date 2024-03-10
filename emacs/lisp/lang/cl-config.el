@@ -4,7 +4,7 @@
 (use-package sly
   :defer t
   :custom
-  (inferior-lisp-program "sbcl")
+  (inferior-lisp-program "ros -Q run")
   ;; (inferior-lisp-program "ccl64")
   ;; (inferior-lisp-program "ros -Q run")
   :config

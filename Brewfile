@@ -121,6 +121,7 @@ brew "fmt"
 ## common-lisp
 brew "sbcl"
 brew "clozure-cl"
+brew "ros"
 
 ## scheme
 brew "chicken"

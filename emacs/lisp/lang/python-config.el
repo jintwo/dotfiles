@@ -28,7 +28,8 @@
       ;; python-shell-interpreter "ipython"
       ;; python-shell-interpreter-args "--simple-prompt"
       python-shell-prompt-detect-failure-warning nil
-      python-shell-completion-native-disabled-interpreters '("ipython" "python3" "python")
+      ;; python-shell-completion-native-disabled-interpreters '("ipython" "python3" "python")
+      python-shell-completion-native-enable nil
       python-indent-offset 4)
 
 (use-package flymake-ruff

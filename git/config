@@ -42,6 +42,8 @@
 
 [diff]
 	tool = difftastic
+	colormoved = "default"
+	colormovedws = "allow-indentation-change"
 
 [difftool]
 	prompt = false
@@ -58,3 +60,8 @@
 
 [mergetool "ediff"]
     cmd = emacs --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
