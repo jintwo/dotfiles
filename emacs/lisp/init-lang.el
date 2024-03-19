@@ -113,6 +113,7 @@
 (require 'zig-config)
 (require 'sc-config)
 (require 'csound-config)
+(require 'r-config)
 
 ;; conf/markup
 ;; (use-package jsonian
