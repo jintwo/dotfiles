@@ -29,11 +29,10 @@
 ;;     (delete-window window)))
 
 (use-package elfeed-tube
-  :ensure t
   :after elfeed
-  :bind (:map elfeed-search-mode-map (("d" . j2/elfeed-tube-download-entry)))
   :config
-  (elfeed-tube-setup))
+  (elfeed-tube-setup)
+  (bind-key "d" #'j2/elfeed-tube-download-entry 'elfeed-search-mode-map))
 
 (use-package elfeed-tube-mpv
   :ensure t
