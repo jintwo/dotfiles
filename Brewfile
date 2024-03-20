@@ -44,7 +44,7 @@ cask "font-iosevka"
 
 
 # -- utils
-# cask "alacritty"
+cask "alacritty"
 cask "hammerspoon"
 
 ## vpn
@@ -57,7 +57,6 @@ cask "dropshare"
 cask "syncthing"
 
 brew "transmission-cli", restart_service: true
-cask "brave-browser"
 cask "deepl"
 # Orion browser
 
@@ -75,7 +74,6 @@ cask "djview"
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 
-cask "spotify"
 cask "steam"
 
 cask "onyx"
@@ -156,6 +154,7 @@ brew "faust"
 cask "supercollider"
 
 ## utils
+cask "audio-hijack"
 cask "loopback"
 cask "blackhole-16ch"
 cask "sysex-librarian"
@@ -183,16 +182,16 @@ brew "kubernetes-cli"
 brew "helm"
 
 ## browser
-cask "chromedriver"
-cask "google-chrome"
-cask "firefox-nightly"
+cask "firefox"
 
 ## comms
-cask "microsoft-teams"
 cask "skype"
 cask "slack"
 brew "slack-cli"
-cask "zoom"
+
+## dev tools
+cask "r"
+cask "rstudio"
 
 cask "rar"
 mas "Be Focused Pro: Pomodoro Timer", id: 961632517
