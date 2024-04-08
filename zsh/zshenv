@@ -27,3 +27,8 @@ addpath "$HOME/.cargo/bin"
 
 # postgres
 addpath "$HOMEBREW_PREFIX/opt/postgresql@16/bin"
+# llvm
+addpath "$HOMEBREW_PREFIX/opt/llvm/bin"
+# zig
+addpath "$HOME/Documents/dev/zig/zig/build/stage3/bin"
+addpath "$HOME/Documents/dev/zig/zls/zig-out/bin"
