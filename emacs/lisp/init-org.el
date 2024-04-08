@@ -11,20 +11,25 @@
   (require 'org-agenda)
   (require 'org-id))
 
+
 (setq org-log-done t
       org-directory "~/Sync/Org"
       org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "WAITING(g)" "|" "DONE(d)"))
       org-highest-priority ?A
       org-lowest-priority ?C
       org-default-priority ?A
-      org-capture-templates `(("t" "TODO" entry (file+headline "inbox.org" "Tasks") "** TODO %?\n")
-                              ("l" "Link" item (file+headline "inbox.org" "Links") "- %?\n")
-                              ("n" "Note" entry (file+headline "inbox.org" "Notes") "** %?\nEntered on %U\n  %i\n  %a"))
+;; TODO add job/task capture template with backlink
+      org-capture-templates `(("t" "TODO" entry (file+headline "inbox.org" "Tasks")
+                               "** TODO %?\n")
+                              ("l" "Link" item (file+headline "inbox.org" "Links")
+                               "- %?\n")
+                              ("n" "Note" entry (file+datetree "roam/20240408204237-notes.org")
+                               "** %?\nEntered on %U\n"))
       org-src-preserve-indentation t
       org-startup-indented t
-      org-refile-use-outline-path t
-      org-outline-path-complete-in-steps t
-      org-refile-targets '((org-agenda-files :maxlevel . 3))
+      org-outline-path-complete-in-steps nil
+      org-refile-targets '((org-agenda-files :maxlevel . 5))
+      org-refile-use-outline-path 'file
       org-babel-load-languages '((shell . t)
                                  (python . t)
                                  (emacs-lisp . t))

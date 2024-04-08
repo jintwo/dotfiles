@@ -54,7 +54,7 @@
      (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
      (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-     ;; (zig "https://github.com/maxxnino/tree-sitter-zig")
+     (zig "https://github.com/maxxnino/tree-sitter-zig")
      ))
 
 (setq major-mode-remap-alist
