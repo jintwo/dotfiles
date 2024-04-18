@@ -2,12 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 (use-package smartparens
-  :defer 1
+  :ensure t
+  :init
+  (smartparens-global-mode)
   :config
   (require 'smartparens-config)
-  (smartparens-global-mode 1)
-  :custom
-  (sp-base-key-bindings 'sp))
+  (sp-use-smartparens-bindings))
 
 (provide 'init-sp)
 ;;; init-sp.el ends here

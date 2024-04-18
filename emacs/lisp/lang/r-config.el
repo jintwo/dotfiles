@@ -2,7 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 (use-package ess
-  :ensure t)
+  :ensure t
+  :config
+  (setq ess-style 'DEFAULT))
 
 (use-package ess-view-data
   :after ess

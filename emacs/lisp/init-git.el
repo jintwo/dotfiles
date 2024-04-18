@@ -3,8 +3,8 @@
 ;;; Code:
 (use-package magit
   :defer t
-  :bind (:map global-map (("s-g" . magit-status)))
   :custom
+  (magit-define-global-key-bindings 'recommended)
   (magit-refresh-status-buffer nil)
   (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1))
 

@@ -100,12 +100,9 @@
 
 ;; windows
 (use-package ace-window
-  :defer t
-  :bind (:map global-map (("s-o" . ace-window))))
-
-(use-package resize-window
-  :defer t
-  :bind (:map global-map (("s-w" . resize-window))))
+  :ensure t
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
 (winner-mode t)
 

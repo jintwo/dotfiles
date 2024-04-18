@@ -30,8 +30,6 @@
 
 ;; project
 (use-package project
-  :init
-  (keymap-global-set "s-p" project-prefix-map)
   :custom
   (project-switch-commands '((project-find-file "Find file")
                              (consult-ripgrep "Ripgrep" ?r)
