@@ -59,14 +59,19 @@
   (set-face-attribute 'font-lock-doc-face nil :weight bold-weight)
   (set-fontset-font "fontset-default" 'unicode-bmp family))
 
+(defun j2/init-ui-mac-daemon ()
+  (j2/set-font "Iosevka" 120 'regular 'bold)
+  (toggle-frame-fullscreen))
+
+(defun j2/init-ui-linux ()
+  (j2/set-font "Iosevka" 100 'regular 'bold))
+
 (defun j2/init-ui ()
   "UI settings."
   (interactive)
-  (j2/set-font "Iosevka" (if (eq (window-system) 'mac) 120 100) 'regular 'bold)
-  (when (eq (window-system) 'mac)
-    (toggle-frame-fullscreen)))
-
-(add-hook 'after-init-hook #'j2/init-ui)
+  (cond
+   ((null initial-window-system) (j2/init-ui-mac-daemon))
+   (t (j2/init-ui-linux))))
 
 (global-hl-line-mode t)
 
@@ -97,17 +102,22 @@
     ('light (load-theme 'kaoless-new t))
     ('dark (load-theme 'nordless-new t))))
 
-(if (eq (window-system) 'x)
-    (use-package auto-dark
-      :ensure t
-      :config
-      (setq auto-dark-dark-theme 'nordless-new
-            auto-dark-light-theme 'kaoless-new
-            auto-dark-polling-interval-seconds 5)
-      (auto-dark-mode t)))
+(defun j2/init-appearance-mac-daemon ()
+  (add-hook 'ns-system-appearance-change-functions #'j2/load-theme))
 
-(if (eq (window-system) 'mac)
-    (add-hook 'ns-system-appearance-change-functions #'j2/load-theme))
+(defun j2/init-appearance-linux ()
+  (use-package auto-dark
+    :ensure t
+    :config
+    (setq auto-dark-dark-theme 'nordless-new
+          auto-dark-light-theme 'kaoless-new
+          auto-dark-polling-interval-seconds 5)
+    (auto-dark-mode t)))
+
+(defun j2/init-appearance ()
+  (cond
+   ((null initial-window-system) (j2/init-appearance-mac-daemon))
+   (t (j2/init-appearance-linux))))
 
 ;; windows
 (use-package ace-window
@@ -147,6 +157,10 @@
       (ns-raise-emacs))))
 
 (setq switch-to-buffer-obey-display-actions t)
+
+(add-hook 'after-init-hook (lambda ()
+                             (j2/init-ui)
+                             (j2/init-appearance)))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here
