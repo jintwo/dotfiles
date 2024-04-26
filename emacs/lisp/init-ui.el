@@ -10,6 +10,7 @@
   (set-frame-parameter frame 'menu-bar-lines 0))
 (add-hook 'after-make-frame-functions 'contextual-menubar)
 
+(menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode 0)
@@ -61,7 +62,7 @@
 (defun j2/init-ui ()
   "UI settings."
   (interactive)
-  (j2/set-font "Iosevka" 120 'regular 'bold)
+  (j2/set-font "Iosevka" (if (eq (window-system) 'mac) 120 100) 'regular 'bold)
   (when (eq (window-system) 'mac)
     (toggle-frame-fullscreen)))
 
@@ -96,7 +97,17 @@
     ('light (load-theme 'kaoless-new t))
     ('dark (load-theme 'nordless-new t))))
 
-(add-hook 'ns-system-appearance-change-functions #'j2/load-theme)
+(if (eq (window-system) 'x)
+    (use-package auto-dark
+      :ensure t
+      :config
+      (setq auto-dark-dark-theme 'nordless-new
+            auto-dark-light-theme 'kaoless-new
+            auto-dark-polling-interval-seconds 5)
+      (auto-dark-mode t)))
+
+(if (eq (window-system) 'mac)
+    (add-hook 'ns-system-appearance-change-functions #'j2/load-theme))
 
 ;; windows
 (use-package ace-window
