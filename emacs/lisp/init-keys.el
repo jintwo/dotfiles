@@ -24,7 +24,7 @@
 
 ;; ace-window
 (when (featurep 'ace-window)
-  (keymap-global-set "M-o" #'ace-window))
+  (keymap-global-set "C-x o" #'ace-window))
 
 ;; utils
 (keymap-global-set "C-c C-t" #'j2/split-term)

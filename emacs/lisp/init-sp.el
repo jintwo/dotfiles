@@ -3,8 +3,7 @@
 ;;; Code:
 (use-package smartparens
   :ensure t
-  :init
-  (smartparens-global-mode)
+  :hook (prog-mode text-mode markdown-mode)
   :config
   (require 'smartparens-config)
   (sp-use-smartparens-bindings))
