@@ -34,7 +34,7 @@ alias c="$CLIPR_CLI -c $CLIPR_CONFIG"
 # common
 export VIRTUAL_ENV_DISABLE_PROMPT='Y'
 export EDITOR="${HOMEBREW_PREFIX}/bin/emacsclient -ta ''"
-export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128M"
+export MAVEN_OPTS="-Xmx512m -XX:MaxMetaspaceSize=128M"
 
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
