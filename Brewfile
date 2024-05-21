@@ -167,13 +167,14 @@ cask "audacity"
 # Audiomodern Riffer
 # Vital
 # Kilohearts Phase Plant
-# Arturia software center
-# NI native access
+cask "arturia-software-center"
+cask "native-access"
 # Plugin Alliance installation manager
 
 # -- graphics
 cask "blender"
 # Aseprite
+cask "affinity-designer"
 
 
 # -- job related
