@@ -11,5 +11,7 @@
 (use-package git-modes
   :defer t)
 
+(setq dired-vc-rename-file t)
+
 (provide 'init-git)
 ;;; init-git.el ends here

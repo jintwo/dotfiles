@@ -69,6 +69,7 @@
 
 ;; (setq-default truncate-lines t)
 (global-visual-line-mode t)
+(global-subword-mode t)
 
 (when (executable-find "rg")
   (setq grep-program "rg"))
