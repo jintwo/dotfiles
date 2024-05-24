@@ -7,9 +7,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 if [ -d "/opt/homebrew" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
     alias b="brew"
-elif [ -d "/usr/local/Homebrew" ]; then
-    eval "$(/usr/local/Homebrew/bin/brew shellenv)"
-    alias b="brew"
 fi
 
 # emacs stuff
@@ -63,12 +60,12 @@ export LANG=en_US.UTF-8
 export SDKROOT="`xcrun --show-sdk-path`"
 
 # csound
-export DYLD_FRAMEWORK_PATH="$DYLD_FRAMEWORK_PATH:/usr/local/opt/csound/Frameworks"
+export DYLD_FRAMEWORK_PATH="$DYLD_FRAMEWORK_PATH:/opt/homebrew/opt/csound/Frameworks"
 
 # guile-hoot
-export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
-export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
-export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
+export GUILE_LOAD_PATH="/opt/homebrew/share/guile/site/3.0"
+export GUILE_LOAD_COMPILED_PATH="/opt/homebrew/lib/guile/3.0/site-ccache"
+export GUILE_SYSTEM_EXTENSIONS_PATH="/opt/homebrew/lib/guile/3.0/extensions"
 
 # utils
 function recode {
