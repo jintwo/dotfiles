@@ -112,7 +112,7 @@ function xmlf {
     cat $in_filename | xmllint --noenc --format --encode utf-8 - | sponge $out_filename
 }
 
-export BAT_THEME=Nord
+export BAT_THEME=ansi
 export LESS=-RS
 
 alias l="eza -F -lah"

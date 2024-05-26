@@ -1,62 +1,9 @@
+import = ["~/Documents/dotfiles/alacritty/kaoless-theme.toml"]
+
 live_config_reload = true
 
 [colors]
-draw_bold_text_with_bright_colors = true
-
-[colors.primary]
-background = "#F5F6F5" # emacs(bg)
-foreground = "#4E4757" # emacs(fg)
-dim_foreground = "#A5ABB6" # ????
-
-[colors.cursor]
-cursor = "#CD5C60" # emacs(red)
-text = "#F5F6F5" # emacs(bg)
-
-[colors.normal]
-black = "#F1F3E9" # emacs(bg+)
-blue = "#81A1C1" # emacs(blue)
-cyan = "#5B7C93" # emacs(docs)
-green = "#4D8B5B" # emacs(green)
-magenta = "#B48EAD" # ????
-red = "#CD5C60" # emacs(red)
-white = "#CA6036" # emacs(fg+)
-yellow = "#D1832E" # emacs(yellow)
-
-[colors.bright]
-black = "#C3C4BF" # emacs(fade)
-blue = "#81A1C1" # emacs(blue)
-cyan = "#8FBCBB" # ????
-green = "#4D8B5B" # emacs(green)
-magenta = "#B48EAD" # ????
-red = "#CD5C60" # emacs(red)
-white = "#ECEFF4" # ????
-yellow = "#D1832E" # emacs(yellow)
-
-[colors.dim]
-black = "#373E4D" # ????
-blue = "#68809A" # ????
-cyan = "#6D96A5" # ????
-green = "#4D8B5B" # emacs(green)
-magenta = "#8C738C" # ????
-red = "#94545D" # ????
-white = "#AEB3BB" # ????
-yellow = "#B29E75" # ????
-
-# [colors.search.footer_bar]
-# background = "#434c5e"
-# foreground = "#d8dee9"
-
-[colors.search.matches]
-background = "#5B7C93" # emacs(docs)
-foreground = "CellBackground"
-
-[colors.selection]
-background = "#C3C4BF" # emacs(fade)
-text = "CellForeground"
-
-[colors.vi_mode_cursor]
-cursor = "#4E4757" # emacs(fg)
-text = "#F5F6F5" # emacs(bg)
+draw_bold_text_with_bright_colors = false
 
 [cursor.style]
 blinking = "Off"
