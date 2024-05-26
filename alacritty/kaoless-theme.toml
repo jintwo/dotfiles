@@ -1,3 +1,4 @@
+# kaoless theme
 [colors.primary]
 background = "#F5F6F5" # emacs(bg)
 foreground = "#4E4757" # emacs(fg)

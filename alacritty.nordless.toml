@@ -1,6 +1,6 @@
-import = ["~/Documents/dotfiles/alacritty/nordless-theme.toml"]
-
 live_config_reload = true
+
+import = ["~/Documents/dotfiles/alacritty/nordless-theme.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = false
