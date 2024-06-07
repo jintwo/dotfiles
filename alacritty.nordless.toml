@@ -20,11 +20,11 @@ TERM = "alacritty-direct"
 size = 12
 
 [font.bold]
-family = "Iosevka Term"
+family = "Iosevka"
 style = "Bold"
 
 [font.normal]
-family = "Iosevka Term"
+family = "Iosevka"
 style = "Regular"
 
 [[keyboard.bindings]]

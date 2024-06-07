@@ -60,11 +60,11 @@
   (set-fontset-font "fontset-default" 'unicode-bmp family))
 
 (defun j2/init-ui-mac-daemon ()
-  (j2/set-font "Iosevka" 120 'regular 'bold)
+  (j2/set-font "Iosevka" 120 'medium 'bold)
   (toggle-frame-fullscreen))
 
 (defun j2/init-ui-linux ()
-  (j2/set-font "Iosevka" 100 'regular 'bold))
+  (j2/set-font "Iosevka" 100 'medium 'bold))
 
 (defun j2/init-ui ()
   "UI settings."
