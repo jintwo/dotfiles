@@ -213,7 +213,13 @@
    `(eat-term-faint ((t (:weight normal))))
    `(which-func ((t ())))
    `(jupyter-repl-input-prompt ((t (:foreground ,green))))
-   `(jupyter-repl-output-prompt ((t (:foreground ,red))))))
+   `(jupyter-repl-output-prompt ((t (:foreground ,red))))
+   `(tab-bar ((t (:background ,current-line :foreground ,fg+ :box (:line-width 3 :color ,current-line :style nil)))))
+   `(tab-bar-tab-inactive ((t (:background ,current-line :foreground ,fg+ :box (:line-width 3 :color ,current-line :style nil)))))
+   `(tab-bar-tab ((t (:background ,bg :foreground ,fg :box (:line-width 3 :color ,bg :style nil)))))
+   `(tab-bar-tab-ungrouped ((t (:background ,current-line :foreground ,fg+ :box (:line-width 3 :color ,current-line :style nil)))))
+   `(tab-bar-tab-group-inactive ((t (:background ,current-line :foreground ,fg+ :box (:line-width 3 :color ,current-line :style nil)))))
+   `(tab-bar-tab-group-current ((t (:background ,current-line :foreground ,fg :box (:line-width 3 :color ,current-line :style nil)))))))
 
 (provide-theme 'nordless-new)
 

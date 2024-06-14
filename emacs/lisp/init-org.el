@@ -12,6 +12,7 @@
   (require 'org-id))
 
 
+
 (setq org-log-done t
       org-directory "~/Sync/Org"
       org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "WAITING(g)" "|" "DONE(d)"))
@@ -40,6 +41,9 @@
 ;; agenda
 (setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
 (setq org-agenda-files base-org-agenda-files)
+(customize-set-variable 'org-agenda-remove-tags t)
+(customize-set-variable 'org-agenda-prefix-format " %-24c %?-14t% s")
+(customize-set-variable 'org-agenda-todo-keyword-format "%-10s")
 
 ;; setup calendar
 (require 'gnus-icalendar)

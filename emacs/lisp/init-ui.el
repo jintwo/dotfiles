@@ -15,8 +15,33 @@
 (scroll-bar-mode -1)
 (blink-cursor-mode 0)
 
-;; maybe one day i will decide to use tabs ;)
-;; (tab-bar-mode t)
+;; --- tabs ---
+(defun j2/tab-bar-tab-name-format (tab i)
+  (let ((current-p (eq (car tab) 'current-tab)))
+    (propertize
+     (concat " "
+             (if tab-bar-tab-hints (format "%d " i) "")
+             (alist-get 'name tab)
+             (or (and tab-bar-close-button-show
+                      (not (eq tab-bar-close-button-show
+                               (if current-p 'non-selected 'selected)))
+                      tab-bar-close-button)
+                 "")
+             " ")
+     'face (funcall tab-bar-tab-face-function tab))))
+
+;; stolen from https://www.gonsie.com/blorg/tab-bar.html and vim-tab-bar (https://github.com/jamescherti/vim-tab-bar.el)
+(setq tab-bar-show t
+      tab-bar-close-button-show nil
+      tab-bar-new-tab-choice "*scratch*"
+      tab-bar-tab-hints nil
+      tab-bar-format '(tab-bar-format-tabs tab-bar-separator)
+      tab-bar-auto-width nil
+      tab-bar-separator "\u200B"
+      tab-bar-tab-name-format-function #'j2/tab-bar-tab-name-format)
+
+(tab-bar-mode t)
+;; --- tabs section ends here ---
 
 (setq visible-cursor nil)
 (setq mouse-autoselect-window t)
@@ -64,7 +89,7 @@
   (toggle-frame-fullscreen))
 
 (defun j2/init-ui-linux ()
-  (j2/set-font "Iosevka" 100 'medium 'bold))
+  (j2/set-font "Iosevka" 90 'medium 'bold))
 
 (defun j2/init-ui ()
   "UI settings."
@@ -123,7 +148,27 @@
 (use-package ace-window
   :ensure t
   :config
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+        aw-dispatch-always t
+        aw-dispatch-alist
+        '((?0 aw-delete-window "Delete Window")
+          (?m aw-swap-window "Swap Windows")
+          (?M aw-move-window "Move Window")
+          (?c aw-copy-window "Copy Window")
+          (?J aw-switch-buffer-in-window "Select Buffer")
+          (?n aw-flip-window)
+          (?u aw-switch-buffer-other-window "Switch Buffer Other Window")
+          (?e aw-execute-command-other-window "Execute Command Other Window")
+          (?F aw-split-window-fair "Split Fair Window")
+          (?2 aw-split-window-vert "Split Vert Window")
+          (?3 aw-split-window-horz "Split Horz Window")
+          (?o delete-other-windows "Delete Other Windows")
+          (?T aw-transpose-frame "Transpose Frame")
+          ;; ?i ?r ?t are used by hyperbole.el
+          (?? aw-show-dispatch-help))
+        aw-minibuffer-flag t
+        aw-ignore-current nil)
+  :bind (("M-o" . ace-window)))
 
 (winner-mode t)
 

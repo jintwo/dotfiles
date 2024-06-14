@@ -7,12 +7,13 @@
       mac-command-modifier 'super)
 
 ;; editor
-(keymap-global-set "s-k" #'kill-this-buffer)
 (keymap-global-set "M-z" #'zap-up-to-char)
 (keymap-global-set "C-c l" #'join-line)
 (keymap-global-set "C-c n" (lambda () (interactive) (join-line 1)))
 (keymap-global-set "M-f" #'forward-to-word)
+
 (keymap-global-set "M-/" #'hippie-expand)
+
 (keymap-global-set "C-s" #'isearch-forward-regexp)
 (keymap-global-set "C-r" #'isearch-backward-regexp)
 (keymap-global-set "C-M-s" #'isearch-forward)
@@ -22,12 +23,7 @@
 (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
 (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
 
-;; ace-window
-(when (featurep 'ace-window)
-  (keymap-global-set "C-x o" #'ace-window))
-
 ;; utils
-(keymap-global-set "C-c C-t" #'j2/split-term)
 (keymap-global-set "C-c C-l" #'j2/current-location)
 
 ;; org (TODO: move it somewhere to init-org.el)

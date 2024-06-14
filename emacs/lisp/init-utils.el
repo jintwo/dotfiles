@@ -36,11 +36,6 @@
                              (project-dired "Dired")
                              (j2/magit-current-project "Magit" ?m)
                              (eat-project-other-window "Eat" ?e))))
-(defun j2/split-term ()
-  (interactive)
-  (let ((window (split-window-below)))
-    (select-window window)
-    (ansi-term "/bin/zsh")))
 
 (use-package reveal-in-folder
   :defer 1)
