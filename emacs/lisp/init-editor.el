@@ -30,6 +30,7 @@
 
 (use-package highlight-indent-guides
   :hook ((prog-mode conf-mode yaml-mode) . highlight-indent-guides-mode)
+  :delight
   :config
   (setq highlight-indent-guides-method 'character
         highlight-indent-guides-auto-odd-face-perc 45
@@ -40,13 +41,18 @@
   :hook (prog-mode . idle-highlight-mode))
 
 (use-package whole-line-or-region
+  :delight whole-line-or-region-local-mode
   :config
   (whole-line-or-region-global-mode t))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; annotate todos
-(global-hi-lock-mode t)
+(use-package hi-lock
+  :delight
+  :config
+  (global-hi-lock-mode t))
+
 (setq to-highlight '(".*TODO.*" ".*FIXME.*"))
 
 (defun j2/annotate-todos ()
@@ -63,13 +69,25 @@
 
 (use-package move-dup
   :defer t
+  :delight
   :hook (prog-mode . move-dup-mode))
 
 (electric-indent-mode +1)
 
+(use-package emacs
+  :delight
+  (visual-line-mode))
+
+(use-package eldoc
+  :delight)
+
 ;; (setq-default truncate-lines t)
 (global-visual-line-mode t)
-(global-subword-mode t)
+
+(use-package subword
+  :delight
+  :config
+  (global-subword-mode t))
 
 (when (executable-find "rg")
   (setq grep-program "rg"))
@@ -123,6 +141,27 @@ Use the filename relative to the current VC root directory."
   (setq tempo-interactive t))
 
 (setq compilation-scroll-output t)
+
+(use-package activities
+  :init
+  (activities-mode)
+  (activities-tabs-mode)
+  ;; Prevent `edebug' default bindings from interfering.
+  (setq edebug-inhibit-emacs-lisp-mode-bindings t)
+
+  :bind
+  (("C-x C-a C-n" . activities-new)
+   ("C-x C-a C-d" . activities-define)
+   ("C-x C-a C-a" . activities-resume)
+   ("C-x C-a C-s" . activities-suspend)
+   ("C-x C-a C-k" . activities-kill)
+   ("C-x C-a RET" . activities-switch)
+   ("C-x C-a b" . activities-switch-buffer)
+   ("C-x C-a g" . activities-revert)
+   ("C-x C-a l" . activities-list)))
+
+(use-package autorevert
+  :delight auto-revert-mode)
 
 (provide 'init-editor)
 ;;; init-editor.el ends here

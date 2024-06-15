@@ -32,8 +32,8 @@
    'kaoless-new
    `(default ((t (:background ,bg :foreground ,fg))))
    `(cursor ((t (:background ,fg+ :foreground ,bg+))))
-   `(mode-line ((t (:background ,current-line :box (:color ,fade :line-width (0 . 1))))))
-   `(mode-line-inactive ((t (:box (:color ,fade :line-width (0 . 1))))))
+   `(mode-line ((t (:background ,current-line :underline (:color ,fade :position 0) :overline ,fade :box (:color ,current-line :line-width (3 . 3))))))
+   `(mode-line-inactive ((t (:underline (:color ,fade :position 0) :overline ,fade :box (:color ,bg :line-width (3 . 3))))))
    `(fill-column-indicator ((t (:foreground ,fade))))
    `(isearch ((t (:weight bold :background ,green :foreground ,bg))))
    `(lazy-highlight ((t (:weight bold :background ,current-line :foreground ,green))))

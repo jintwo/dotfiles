@@ -105,18 +105,6 @@
 (column-number-mode t)
 (size-indication-mode t)
 
-(use-package doom-modeline
-  :hook (after-init . doom-modeline-mode)
-  :config
-  (setq doom-modeline-height 20
-        doom-modeline-bar-width 3
-        doom-modeline-icon nil
-        doom-modeline-lsp nil
-        doom-modeline-mu4e t
-        doom-modeline-vcs-max-length 30
-        doom-modeline-env-enable-python t
-        doom-modeline-env-enable-rust t))
-
 ;; theme
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
@@ -206,6 +194,15 @@
 (add-hook 'after-init-hook (lambda ()
                              (j2/init-ui)
                              (j2/init-appearance)))
+
+
+;; disable accidential zoom-in/out (https://lmno.lol/alvaro/hey-mouse-dont-mess-with-my-emacs-font-size)
+(global-set-key (kbd "<pinch>") 'ignore)
+(global-set-key (kbd "<C-wheel-up>") 'ignore)
+(global-set-key (kbd "<C-wheel-down>") 'ignore)
+
+(use-package delight
+  :ensure t)
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

@@ -8,7 +8,7 @@
 
 (use-package which-key
   :defer 0
-  :diminish which-key-mode
+  :delight
   :config
   (which-key-mode)
   (setq which-key-idle-delay 1))
@@ -22,7 +22,8 @@
 
 ;; TODO: add consult-dash + dash-docs
 
-(use-package gcmh)
+(use-package gcmh
+  :delight)
 
 (defun j2/magit-current-project ()
   (interactive)

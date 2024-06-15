@@ -11,8 +11,6 @@
   (require 'org-agenda)
   (require 'org-id))
 
-
-
 (setq org-log-done t
       org-directory "~/Sync/Org"
       org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "WAITING(g)" "|" "DONE(d)"))

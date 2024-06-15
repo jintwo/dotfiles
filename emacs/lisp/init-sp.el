@@ -3,6 +3,7 @@
 ;;; Code:
 (use-package smartparens
   :ensure t
+  :delight
   :hook (prog-mode text-mode markdown-mode)
   :config
   (require 'smartparens-config)

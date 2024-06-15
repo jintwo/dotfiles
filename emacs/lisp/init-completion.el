@@ -6,6 +6,7 @@
       completion-show-help nil
       completions-header-format nil)
 
+;; --- consult section ---
 ;; Example configuration for Consult
 (use-package consult
   ;; Replace bindings. Lazily loaded due by `use-package'.
@@ -34,7 +35,7 @@
          ("M-g g" . consult-goto-line)             ;; orig. goto-line
          ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
          ;; ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
-         ;; ("M-g m" . consult-mark)
+         ("M-g m" . consult-mark)
          ;; ("M-g k" . consult-global-mark)
          ("M-g i" . consult-imenu)
          ;; ("M-g I" . consult-imenu-multi)
@@ -133,6 +134,7 @@
 
 (use-package consult-org-roam
   :ensure t
+  :delight
   :after org-roam
   :init
   (require 'consult-org-roam)
@@ -140,6 +142,33 @@
   :custom
   ;; Use `ripgrep' for searching with `consult-org-roam-search'
   (consult-org-roam-grep-func #'consult-ripgrep))
+
+;; stolen from https://takeonrules.com/2024/06/08/adding-a-consult-function-for-visualizing-xref/
+(defvar consult--xref-history nil
+  "History for the `consult-recent-xref' results.")
+
+(defun consult-recent-xref (&optional markers)
+  "Jump to a marker in MARKERS list (defaults to `xref--history'.
+
+The command supports preview of the currently selected marker position.
+The symbol at point is added to the future history."
+  (interactive)
+  (consult--read
+    (consult--global-mark-candidates
+      (or markers (flatten-list xref--history)))
+    :prompt "Go to Xref: "
+    :annotate (consult--line-prefix)
+    :category 'consult-location
+    :sort nil
+    :require-match t
+    :lookup #'consult--lookup-location
+    :history '(:input consult--xref-history)
+    :add-history (thing-at-point 'symbol)
+    :state (consult--jump-state)))
+
+(global-set-key (kbd "M-g x") #'consult-recent-xref)
+
+;; --- consult section ends here ---
 
 (use-package corfu
   :ensure t
