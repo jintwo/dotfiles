@@ -78,6 +78,7 @@
 
 ;; maybe join ui+editor
 (require 'init-ui)
+(require 'init-modeline)
 (require 'init-editor)
 (require 'init-completion)
 (require 'init-ibuffer)

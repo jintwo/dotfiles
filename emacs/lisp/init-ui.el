@@ -103,7 +103,7 @@
 ;; mode-line
 (line-number-mode t)
 (column-number-mode t)
-(size-indication-mode t)
+(setq size-indication-mode nil)
 
 ;; theme
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
@@ -200,6 +200,9 @@
 (global-set-key (kbd "<pinch>") 'ignore)
 (global-set-key (kbd "<C-wheel-up>") 'ignore)
 (global-set-key (kbd "<C-wheel-down>") 'ignore)
+
+;; disable suspend-frame
+(global-set-key (kbd "C-z") 'ignore)
 
 (use-package delight
   :ensure t)

@@ -104,7 +104,7 @@
 
 ;; utils
 (use-package yequake
-  :defer t
+  :ensure t
   :custom
   (yequake-frames '(("org-capture"
                      (buffer-fns . (yequake-org-capture))
