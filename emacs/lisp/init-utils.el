@@ -67,5 +67,7 @@
   (setq ediff-window-setup-function 'ediff-setup-windows-plain
         ediff-split-window-function 'split-window-horizontally))
 
+(setq delete-by-moving-to-trash t)
+
 (provide 'init-utils)
 ;;; init-utils.el ends here

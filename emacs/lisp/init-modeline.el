@@ -18,7 +18,6 @@
 
 ;; --- segments ---
 ;; left
-
 ;;  project
 (defun j2/modeline--project ()
   (if (project-current)
@@ -55,7 +54,7 @@
 
 ;;  modified
 (defun j2/modeline--buffer-modified ()
-  (if (and buffer-file-name (buffer-modified-p)) " (modified) " ""))
+  (if (and buffer-file-name (buffer-modified-p)) " (modified)" ""))
 
 (defvar-local j2/modeline-buffer-modified
     '(:eval (propertize (j2/modeline--buffer-modified) 'face 'diff-changed)))
@@ -86,13 +85,13 @@
 (put 'j2/modeline-vcs 'risky-local-variable t)
 
 ;; right
+;;  mode-line-misc-info
+
 ;;  position
 (defvar-local j2/modeline-position
-    " %4l:%2c ")
+    "%4l:%2c")
 
 (put 'j2/modeline-position 'risky-local-variable t)
-
-;;  mode-line-misc-info
 ;; --- segments ends here ---
 
 (setq-default mode-line-format
@@ -107,8 +106,8 @@
                     j2/modeline-vcs))
                   (format-mode-line
                    (list
-                    j2/modeline-position
-                    mode-line-misc-info))))))
+                    mode-line-misc-info
+                    j2/modeline-position))))))
 
 ;; weird shit. calculate moon phase
 ;; (lunar-phase 0)
