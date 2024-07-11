@@ -9,49 +9,72 @@
   :config
   (require 'org)
   (require 'org-agenda)
-  (require 'org-id))
+  (require 'org-id)
 
-(setq org-log-done t
-      org-directory "~/Sync/Org"
-      org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "WAITING(g)" "|" "DONE(d)"))
-      org-highest-priority ?A
-      org-lowest-priority ?C
-      org-default-priority ?A
-;; TODO add job/task capture template with backlink
-      org-capture-templates `(("t" "TODO" entry (file+headline "inbox.org" "Tasks")
-                               "** TODO %?\n")
-                              ("l" "Link" item (file+headline "inbox.org" "Links")
-                               "- %?\n")
-                              ("n" "Note" entry (file+datetree "roam/20240408204237-notes.org")
-                               "** %?\nEntered on %U\n"))
-      org-src-preserve-indentation t
-      org-startup-indented t
-      org-outline-path-complete-in-steps nil
-      org-refile-targets '((org-agenda-files :maxlevel . 5))
-      org-refile-use-outline-path 'file
-      org-babel-load-languages '((shell . t)
-                                 (python . t)
-                                 (emacs-lisp . t))
-      org-index-file "index.org"
-      org-image-actual-width nil
-      org-insert-heading-respect-content t)
+  (setq org-log-done t
+        org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "WAITING(g)" "|" "DONE(d)"))
+        org-highest-priority ?A
+        org-lowest-priority ?C
+        org-default-priority ?A
+        ;; TODO split into main/job
+        ;; TODO add job/task capture template with backlink
+        org-capture-templates `(("t" "TODO" entry (file+headline "inbox.org" "Tasks")
+                                 "** TODO %?\n")
+                                ("l" "Link" item (file+headline "inbox.org" "Links")
+                                 "- %?\n")
+                                ("n" "Note" entry (file+datetree "notes/index.org")
+                                 "** %?\nEntered on %U\n"))
+        org-src-preserve-indentation t
+        org-startup-indented t
+        org-outline-path-complete-in-steps nil
+        org-refile-targets '((org-agenda-files :maxlevel . 5))
+        org-refile-use-outline-path 'file
+        org-babel-load-languages '((shell . t)
+                                   (python . t)
+                                   (emacs-lisp . t))
+        org-directory "~/Sync/Org"
+        org-index-file "index.org"
+        org-job-index-file "job/index.org"
+        org-calendar-file "calendar.org"
+        org-notes-index-file "notes/index.org"
+        org-image-actual-width nil
+        org-insert-heading-respect-content t
+        org-agenda-files
+        (append
+         (f-files org-directory (lambda (f) (s-ends-with? "org" f))) ;; root
+         (list (f-join org-directory org-job-index-file)) ;; job/index
+         (f-files (f-join org-directory "roam") (lambda (f) (s-ends-with? "org" f)))))) ;; all roam stuff
 
-;; agenda
-(setq base-org-agenda-files (f-files org-directory (lambda (f) (s-ends-with? "org" f))))
-(setq org-agenda-files base-org-agenda-files)
 (customize-set-variable 'org-agenda-remove-tags t)
-(customize-set-variable 'org-agenda-prefix-format " %-24c %?-14t% s")
+(customize-set-variable 'org-agenda-prefix-format "%-24c %?-14t% s")
 (customize-set-variable 'org-agenda-todo-keyword-format "%-10s")
+
+(transient-define-prefix j2/org-jump ()
+  "Prefix to jump to org doc not included in roam"
+  ["Main"
+   ("i" "Index"
+    (lambda ()
+      (interactive)
+      (find-file (f-join org-directory org-index-file))))
+   ("c" "Calendar"
+    (lambda ()
+      (interactive)
+      (find-file (f-join org-directory org-calendar-file))))
+   ("n" "Notes"
+    (lambda ()
+      (interactive)
+      (find-file (f-join org-directory org-notes-index-file))))]
+  ["Job"
+   ("j" "Tasks"
+    (lambda ()
+      (interactive)
+      (find-file (f-join org-directory org-job-index-file))))])
 
 ;; setup calendar
 (require 'gnus-icalendar)
-(setq gnus-icalendar-org-capture-file (f-join org-directory "cal.org")
+(setq gnus-icalendar-org-capture-file (f-join org-directory org-calendar-file)
       gnus-icalendar-org-capture-headline '("Calendar"))
 (gnus-icalendar-org-setup)
-
-(defun j2/jump-to-org-index ()
-  (interactive)
-  (find-file (f-join org-directory org-index-file)))
 
 (defun j2/org-set-checkbox ()
   "Add checkbox inplace or before selected text."
@@ -91,11 +114,11 @@
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
 
-(defun j2/org-roam-update-agenda-files (&rest _)
-  (let ((node-files (org-roam-list-files)))
-    (setq org-agenda-files (append base-org-agenda-files node-files))))
+;; (defun j2/org-roam-update-agenda-files (&rest _)
+;;   (let ((node-files (org-roam-list-files)))
+;;     (setq org-agenda-files (append base-org-agenda-files node-files))))
 
-(advice-add 'org-agenda :before #'j2/org-roam-update-agenda-files)
+;; (advice-add 'org-agenda :before #'j2/org-roam-update-agenda-files)
 
 ;; use following package as inspiration ;)
 ;; (use-package toc-org
@@ -132,6 +155,20 @@
 ;; org-re-reveal
 (use-package org-re-reveal
   :ensure t)
+
+(use-package dslide
+  :ensure t
+  :config
+  (setq dslide-breadcrumb-separator " > ")
+  (when (not (package-installed-p 'master-of-ceremonies))
+    (package-vc-install
+     '(master-of-ceremonies
+       :url "https://github.com/positron-solutions/master-of-ceremonies.git")))
+  (require 'master-of-ceremonies)
+  (require 'dslide)
+  (add-hook 'dslide-start-hook (lambda ()
+                                 (mc-hide-cursor-mode t)
+                                 (text-scale-adjust 5))))
 
 ;; org-babel
 (org-babel-do-load-languages 'org-babel-load-languages '((shell . t)

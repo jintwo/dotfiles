@@ -60,7 +60,12 @@
   :config
   (setq eat-term-name "eat-mono")
   (add-hook 'eshell-load-hook #'eat-eshell-mode)
-  (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
+  (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+  ;; allow ace-window
+  (require 'eat)
+  (push '[?\e ?o] eat-semi-char-non-bound-keys)
+  (eat-update-semi-char-mode-map)
+  (eat-reload))
 
 (use-package ediff
   :config

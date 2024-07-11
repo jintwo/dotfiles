@@ -93,7 +93,6 @@
 
 (put 'j2/modeline-position 'risky-local-variable t)
 ;; --- segments ends here ---
-
 (setq-default mode-line-format
               '((:eval
                  (mode-line-render
@@ -107,7 +106,10 @@
                   (format-mode-line
                    (list
                     mode-line-misc-info
-                    j2/modeline-position))))))
+                    j2/modeline-position
+                    " "
+                    mode-line-percent-position
+                    "%%"))))))
 
 ;; weird shit. calculate moon phase
 ;; (lunar-phase 0)

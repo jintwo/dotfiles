@@ -12,7 +12,8 @@
       (current-line . "#434C5E")
       (fade . "#4C566A")
       (fg . "#D8DEE9")
-      (fg+ . "#E5E9F0")
+      ;; (fg+ . "#E5E9F0") ;; original
+      (fg+ . "#ECEFF4")
       (docs . "#88C0D0") ;; cyan
       (red . "#BF616A")
       (warning . "#D08770")

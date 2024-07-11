@@ -29,7 +29,7 @@
   (keymap-global-set "<remap> <project-shell>" 'eat-project))
 
 ;; org (TODO: move it somewhere to init-org.el)
-(keymap-global-set "C-c o i" #'j2/jump-to-org-index)
+(keymap-global-set "C-c o j" #'j2/org-jump)
 (keymap-global-set "C-c o c" #'org-capture)
 (keymap-global-set "C-c o a" #'org-agenda)
 (keymap-global-set "C-c o t" #'org-timer-set-timer)
