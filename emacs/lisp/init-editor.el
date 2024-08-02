@@ -13,6 +13,16 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
 
+(use-package symbol-overlay
+  :ensure t
+  :bind (("M-i" . symbol-overlay-put)
+         ("M-n" . symbol-overlay-switch-forward)
+         ("M-p" . symbol-overlay-switch-backward)
+         ("<f7>" . symbol-overlay-mode)
+         ("<f8>" . symbol-overlay-remove-all))
+  :config
+  (symbol-overlay-mode t))
+
 (use-package iedit
   :ensure t)
 
@@ -28,6 +38,13 @@
   :config
   (avy-setup-default))
 
+(use-package display-fill-column-indicator
+  :ensure t
+  :custom
+  (fill-column 120)
+  :config
+  (global-display-fill-column-indicator-mode t))
+
 (use-package highlight-indent-guides
   :hook ((prog-mode conf-mode yaml-mode) . highlight-indent-guides-mode)
   :delight
@@ -37,31 +54,12 @@
         highlight-indent-guides-auto-even-face-perc 45
         highlight-indent-guides-auto-character-face-perc 60))
 
-(use-package idle-highlight-mode
-  :hook (prog-mode . idle-highlight-mode))
-
 (use-package whole-line-or-region
   :delight whole-line-or-region-local-mode
   :config
   (whole-line-or-region-global-mode t))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; annotate todos
-(use-package hi-lock
-  :delight
-  :config
-  (global-hi-lock-mode t))
-
-(setq to-highlight '(".*TODO.*" ".*FIXME.*"))
-
-(defun j2/annotate-todos ()
-  "Annotate TODOs in 'prog-mode' buffer."
-  (interactive)
-  (dolist (text to-highlight)
-    (hi-lock-line-face-buffer text)))
-
-(add-hook 'prog-mode-hook #'j2/annotate-todos)
 
 (use-package rainbow-delimiters
   :defer t
@@ -72,7 +70,9 @@
   :delight
   :hook (prog-mode . move-dup-mode))
 
-(electric-indent-mode +1)
+(use-package electric
+  :config
+  (electric-indent-mode t))
 
 (use-package emacs
   :delight

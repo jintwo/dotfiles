@@ -7,6 +7,8 @@
   :config
   (setq eglot-ignored-server-capabilities '(:hoverProvider
                                             :inlayHintProvider
+                                            :codeLensProvider
+                                            :documentHighlightProvider
                                             ;; optionally :signatureHelpProvider
                                             ))
   (add-to-list 'eglot-stay-out-of 'flymake))

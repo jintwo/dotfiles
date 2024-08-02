@@ -153,8 +153,9 @@
 (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 
 ;; org-re-reveal
-(use-package org-re-reveal
-  :ensure t)
+;; disabled for now in favor of dslide
+;; (use-package org-re-reveal
+;;   :ensure t)
 
 (use-package dslide
   :ensure t
