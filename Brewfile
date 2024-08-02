@@ -187,8 +187,7 @@ cask "firefox"
 
 ## comms
 cask "skype"
-cask "slack"
-brew "slack-cli"
+cask "mattermost"
 
 ## dev tools
 cask "r"
