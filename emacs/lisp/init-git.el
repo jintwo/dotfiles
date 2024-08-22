@@ -13,5 +13,8 @@
 
 (setq dired-vc-rename-file t)
 
+;; stop asking about symlinks
+(setq vc-follow-symlinks t)
+
 (provide 'init-git)
 ;;; init-git.el ends here
