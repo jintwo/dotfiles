@@ -1,6 +1,9 @@
 ;;; init-editor --- editor config -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+
+;; (setq undo-outer-limit 24000000)
+
 (use-package vundo
   :ensure t
   :bind ("C-x u" . vundo)

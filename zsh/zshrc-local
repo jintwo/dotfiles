@@ -4,9 +4,11 @@
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 
 # brew
-if [ -d "/opt/homebrew" ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    alias b="brew"
+if [[ $OSTYPE == darwin* ]]; then
+    if [ -d "/opt/homebrew" ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        alias b="brew"
+    fi
 fi
 
 # emacs stuff
@@ -23,14 +25,20 @@ alias gpa="gp --all"
 alias tilde="TERM=xterm-16color ssh jintwo@tilde.club"
 
 # clipr
-CLIPR_CLI="/Users/jin/Documents/dev/macos/clipr/target/debug/clipr-cli"
-CLIPR_CONFIG="/Users/jin/Documents/dev/macos/clipr/config.toml"
-
-alias c="$CLIPR_CLI -c $CLIPR_CONFIG"
+if [[ $OSTYPE == darwin* ]]; then
+    CLIPR_CLI="$HOME/Documents/dev/macos/clipr/target/debug/clipr-cli"
+    CLIPR_CONFIG="$HOME/Documents/dev/macos/clipr/config.toml"
+    alias c="$CLIPR_CLI -c $CLIPR_CONFIG"
+fi
 
 # common
 export VIRTUAL_ENV_DISABLE_PROMPT='Y'
-export EDITOR="${HOMEBREW_PREFIX}/bin/emacsclient -ta ''"
+
+if [[ $OSTYPE == darwin* ]]; then
+    export EDITOR="${HOMEBREW_PREFIX}/bin/emacsclient -ta ''"
+else
+    export EDITOR="emacsclient -ta ''"
+fi
 export MAVEN_OPTS="-Xmx512m -XX:MaxMetaspaceSize=128M"
 
 export LC_ALL=en_US.UTF-8
@@ -57,15 +65,21 @@ export LANG=en_US.UTF-8
 [ -f ~/.wasmedge/env ] && source ~/.wasmedge/env
 
 # c
-export SDKROOT="`xcrun --show-sdk-path`"
+if [[ $OSTYPE == darwin* ]]; then
+    export SDKROOT="`xcrun --show-sdk-path`"
+fi
 
 # csound
-export DYLD_FRAMEWORK_PATH="$DYLD_FRAMEWORK_PATH:/opt/homebrew/opt/csound/Frameworks"
+if [[ $OSTYPE == darwin* ]]; then
+    export DYLD_FRAMEWORK_PATH="$DYLD_FRAMEWORK_PATH:/opt/homebrew/opt/csound/Frameworks"
+fi
 
 # guile-hoot
-export GUILE_LOAD_PATH="/opt/homebrew/share/guile/site/3.0"
-export GUILE_LOAD_COMPILED_PATH="/opt/homebrew/lib/guile/3.0/site-ccache"
-export GUILE_SYSTEM_EXTENSIONS_PATH="/opt/homebrew/lib/guile/3.0/extensions"
+if [[ $OSTYPE == darwin* ]]; then
+    export GUILE_LOAD_PATH="/opt/homebrew/share/guile/site/3.0"
+    export GUILE_LOAD_COMPILED_PATH="/opt/homebrew/lib/guile/3.0/site-ccache"
+    export GUILE_SYSTEM_EXTENSIONS_PATH="/opt/homebrew/lib/guile/3.0/extensions"
+fi
 
 # utils
 function recode {
@@ -122,12 +136,7 @@ eval "$(zoxide init --cmd j zsh)"
 
 # tmux
 function create-tmux-session {
-    local session="home"
-    local window="h0"
-    local resurrect_script=$HOME/.tmux/plugins/tmux-resurrect/scripts/restore.sh
-    tmux new-session -s $session -n $window -d
-    tmux run-shell $resurrect_script
-    tmux attach -t $session
+    tmuxp load $HOME/.tmux.session.yaml
 }
 
 function resolve-tmux-window {

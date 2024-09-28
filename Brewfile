@@ -14,6 +14,7 @@ brew "difftastic"  # diff
 brew "zoxide"  # cd
 brew "jq"
 brew "tmux"
+brew "tmuxp"
 brew "moreutils"
 brew "curl"
 brew "openssh"

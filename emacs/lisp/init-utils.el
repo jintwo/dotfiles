@@ -74,5 +74,9 @@
 
 (setq delete-by-moving-to-trash t)
 
+;; TODO: ebook tools
+;; calibredb
+;; nov
+
 (provide 'init-utils)
 ;;; init-utils.el ends here

@@ -160,5 +160,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.tpl\\'" . prog-mode))
 
+(use-package sqlite-mode-extras
+  :ensure t
+  :hook ((sqlite-mode . sqlite-extras-minor-mode)))
+
 (provide 'init-lang)
 ;;; init-lang.el ends here

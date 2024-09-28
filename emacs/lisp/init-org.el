@@ -33,6 +33,7 @@
                                    (python . t)
                                    (emacs-lisp . t))
         org-directory "~/Sync/Org"
+        org-inbox-file "inbox.org"
         org-index-file "index.org"
         org-job-index-file "job/index.org"
         org-calendar-file "calendar.org"
@@ -56,6 +57,10 @@
     (lambda ()
       (interactive)
       (find-file (f-join org-directory org-index-file))))
+   ("b" "INBOX"
+    (lambda ()
+      (interactive)
+      (find-file (f-join org-directory org-inbox-file))))
    ("c" "Calendar"
     (lambda ()
       (interactive)

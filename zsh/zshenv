@@ -32,3 +32,5 @@ addpath "$HOMEBREW_PREFIX/opt/llvm/bin"
 # zig
 addpath "$HOME/Documents/dev/zig/zig/build/stage3/bin"
 addpath "$HOME/Documents/dev/zig/zls/zig-out/bin"
+# rust
+addpath "$HOMEBREW_PREFIX/opt/rustup/bin"

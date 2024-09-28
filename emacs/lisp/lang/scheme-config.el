@@ -12,6 +12,9 @@
   :after geiser
   :defer t)
 
+(use-package geiser-overlay
+  :after geiser)
+
 (when (featurep 'geiser)
   (defun geiser-repl-switch-to-current-module ()
     "Switch to running Geiser REPL and try to enter a module associated with current buffer."
