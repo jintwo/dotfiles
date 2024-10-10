@@ -1,0 +1,14 @@
+session_name: home
+windows:
+  - window_name: h/free
+    layout: even-vertical
+    start_directory: "~/Documents"
+    panes: [null]
+  - window_name: h/dev1
+    layout: even-vertical
+    start_directory: "~/Documents/dev"
+    panes: [null]
+  - window_name: h/dev2
+    layout: even-vertical
+    start_directory: "~/Documents/dev"
+    panes: [null]

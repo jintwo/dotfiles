@@ -1,36 +1,53 @@
 # -*- mode: sh -*-
 
-function addpath {
-  export PATH="$PATH:$1"
+function append-path {
+    export PATH="$PATH:$1"
+}
+
+function prepend-path {
+    export PATH="$1:$PATH"
 }
 
 export PATH=""
 
 # kinda system paths
-addpath "/bin"
-addpath "/sbin"
-addpath "/usr/bin"
-addpath "/usr/sbin"
-addpath "/usr/local/bin"
-addpath "/usr/local/sbin"
-addpath "/usr/X11/bin"
+append-path "/bin"
+append-path "/sbin"
+append-path "/usr/bin"
+append-path "/usr/sbin"
+append-path "/usr/local/bin"
+append-path "/usr/local/sbin"
+append-path "/usr/X11/bin"
 
 # custom tools
-addpath "$HOME/.tools/bin"
+append-path "$HOME/.tools/bin"
 
 # installed tools
-addpath "$HOME/.luarocks/bin"
+# X11
+append-path "/opt/X11/bin"
+# lua
+append-path "$HOME/.luarocks/bin"
+# golang
 export GOPATH="$HOME/Documents/dev/golang/go"
-addpath "$GOPATH/bin"
-addpath "$HOME/.cargo/bin"
-# addpath "$HOME/.cabal/bin"
-
-# postgres
-addpath "$HOMEBREW_PREFIX/opt/postgresql@16/bin"
-# llvm
-addpath "$HOMEBREW_PREFIX/opt/llvm/bin"
-# zig
-addpath "$HOME/Documents/dev/zig/zig/build/stage3/bin"
-addpath "$HOME/Documents/dev/zig/zls/zig-out/bin"
+append-path "$GOPATH/bin"
 # rust
-addpath "$HOMEBREW_PREFIX/opt/rustup/bin"
+append-path "$HOME/.cargo/bin"
+# ocaml
+append-path "$HOME/.opam/default/bin"
+# hakell
+# append-path "$HOME/.cabal/bin"
+
+# homebrew
+prepend-path "$HOMEBREW_PREFIX/bin"
+prepend-path "$HOMEBREW_PREFIX/sbin"
+# postgres
+append-path "$HOMEBREW_PREFIX/opt/postgresql@16/bin"
+# llvm
+append-path "$HOMEBREW_PREFIX/opt/llvm/bin"
+# zig
+append-path "$HOME/Documents/dev/zig/zig/build/stage3/bin"
+append-path "$HOME/Documents/dev/zig/zls/zig-out/bin"
+# rust
+append-path "$HOMEBREW_PREFIX/opt/rustup/bin"
+# java
+prepend-path "$HOMEBREW_PREFIX/opt/openjdk/bin"

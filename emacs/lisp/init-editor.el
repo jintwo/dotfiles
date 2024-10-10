@@ -41,6 +41,10 @@
   :config
   (avy-setup-default))
 
+(use-package casual-avy
+  :ensure t
+  :bind ("M-g v" . casual-avy-tmenu))
+
 (use-package display-fill-column-indicator
   :ensure t
   :custom

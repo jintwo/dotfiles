@@ -26,8 +26,8 @@ alias tilde="TERM=xterm-16color ssh jintwo@tilde.club"
 
 # clipr
 if [[ $OSTYPE == darwin* ]]; then
-    CLIPR_CLI="$HOME/Documents/dev/macos/clipr/target/debug/clipr-cli"
-    CLIPR_CONFIG="$HOME/Documents/dev/macos/clipr/config.toml"
+    CLIPR_CLI="$HOME/Documents/dev/projects/clipr/target/debug/clipr-cli"
+    CLIPR_CONFIG="$HOME/Documents/dev/projects/clipr/config.toml"
     alias c="$CLIPR_CLI -c $CLIPR_CONFIG"
 fi
 
@@ -136,7 +136,7 @@ eval "$(zoxide init --cmd j zsh)"
 
 # tmux
 function create-tmux-session {
-    tmuxp load $HOME/.tmux.session.yaml
+    tmuxp load $HOME/.tmux.home.yaml $HOME/.tmux.work.yaml
 }
 
 function resolve-tmux-window {
