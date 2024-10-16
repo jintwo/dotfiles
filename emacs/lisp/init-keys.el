@@ -21,12 +21,14 @@
 (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
 (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
 
+(define-key prog-mode-map (kbd "C-c t") 'treesit-fold-toggle)
+
 ;; utils
 (keymap-global-set "C-c C-l" #'j2/current-location)
 
 ;; project
 (when (featurep 'eat)
-  (keymap-global-set "<remap> <project-shell>" 'eat-project))
+  (keymap-global-set "<remap> <project-shell>" 'eat-project-other-window))
 
 ;; org (TODO: move it somewhere to init-org.el)
 (keymap-global-set "C-c o j" #'j2/org-jump)

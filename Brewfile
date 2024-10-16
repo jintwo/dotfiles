@@ -45,8 +45,13 @@ cask "font-iosevka"
 
 
 # -- utils
+cask "displaybuddy"  # monitor
+cask "steermouse"  # trackball
+cask "karabiner-elements"  # keyboard
 cask "alacritty"
 cask "hammerspoon"
+tap "koekeishiya/formulae"
+cask "yabai"
 
 ## vpn
 mas "WireGuard", id: 1451685025
@@ -125,8 +130,9 @@ brew "ros"
 ## scheme
 brew "chicken"
 brew "gambit-scheme"
-brew "guile"
 brew "minimal-racket"
+tap "aconchillo/guile"  # with guile-hoot
+brew "guile"
 
 ## wasm
 brew "emscripten"
