@@ -49,6 +49,7 @@
 ;; smooth scroll >= 29
 (pixel-scroll-precision-mode 1)
 (setq pixel-scroll-precision-large-scroll-height 35.0)
+(setq frame-resize-pixelwise t)
 
 (let ((no-border '(internal-border-width . 5)))
   (add-to-list 'initial-frame-alist no-border)

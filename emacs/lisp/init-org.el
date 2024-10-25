@@ -50,6 +50,7 @@
 (customize-set-variable 'org-agenda-prefix-format "%-24c %?-14t% s")
 (customize-set-variable 'org-agenda-todo-keyword-format "%-10s")
 
+(require 'transient)
 (transient-define-prefix j2/org-jump ()
   "Prefix to jump to org doc not included in roam"
   ["Main"

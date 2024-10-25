@@ -7,7 +7,7 @@
   (nrepl-log-messages t)
   (cider-repl-use-clojure-font-lock t)
   (cider-eval-result-prefix ";; => ")
-  (cider-lein-command "/usr/local/bin/lein"))
+  (cider-lein-command "/opt/homebrew/bin/lein"))
 
 (provide 'clojure-config)
 ;;; clojure-config.el ends here

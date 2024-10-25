@@ -29,6 +29,30 @@
   (interactive)
   (magit-status (project-root (project-current t))))
 
+(use-package activities
+  :init
+  (activities-mode)
+  (activities-tabs-mode)
+  ;; Prevent `edebug' default bindings from interfering.
+  (setq edebug-inhibit-emacs-lisp-mode-bindings t)
+
+  :bind
+  (("C-x C-a C-n" . activities-new)
+   ("C-x C-a C-d" . activities-define)
+   ("C-x C-a C-a" . activities-resume)
+   ("C-x C-a C-s" . activities-suspend)
+   ("C-x C-a C-k" . activities-kill)
+   ("C-x C-a RET" . activities-switch)
+   ("C-x C-a b" . activities-switch-buffer)
+   ("C-x C-a g" . activities-revert)
+   ("C-x C-a l" . activities-list)))
+
+(defun j2/new-activity-for-current-project ()
+  (interactive)
+  (let ((project (project-current t)))
+    (activities-new (project-name project))
+    (dired (project-root project))))
+
 ;; project
 (use-package project
   :custom
@@ -36,7 +60,8 @@
                              (consult-ripgrep "Ripgrep" ?r)
                              (project-dired "Dired")
                              (j2/magit-current-project "Magit" ?m)
-                             (eat-project-other-window "Eat" ?e))))
+                             (eat-project-other-window "Eat" ?e)
+                             (j2/new-activity-for-current-project "New activity" ?a))))
 
 (use-package reveal-in-folder
   :defer 1)
@@ -65,7 +90,17 @@
   (require 'eat)
   (push '[?\e ?o] eat-semi-char-non-bound-keys)
   (eat-update-semi-char-mode-map)
-  (eat-reload))
+  (eat-reload)
+
+  (defun j2/eat--1-advice (&rest args)
+    (let* ((real-args (car args))
+           (program (car real-args))
+           (arg (cadr real-args)))
+      (fset 'display-buffer-fn (caddr real-args))
+      (let ((display-func (lambda (buffer) (display-buffer-fn buffer #'display-buffer-below-selected))))
+        (list program arg display-func))))
+
+  (advice-add 'eat--1 :filter-args #'j2/eat--1-advice))
 
 (use-package ediff
   :config

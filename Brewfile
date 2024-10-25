@@ -26,7 +26,7 @@ brew "mas"  # mac app store
 
 # -- emacs
 tap "d12frosted/emacs-plus"
-brew "d12frosted/emacs-plus/emacs-plus@29", args: ["with-imagemagick",
+brew "d12frosted/emacs-plus/emacs-plus@30", args: ["with-imagemagick",
                                                    "with-native-comp",
                                                    "with-no-frame-refocus",
                                                    "with-poll",
@@ -48,8 +48,10 @@ cask "font-iosevka"
 cask "displaybuddy"  # monitor
 cask "steermouse"  # trackball
 cask "karabiner-elements"  # keyboard
+mas "Keymapp", id: 6472865291
 cask "alacritty"
 cask "hammerspoon"
+cask "menuwhere"
 tap "koekeishiya/formulae"
 cask "yabai"
 
