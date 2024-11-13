@@ -53,7 +53,7 @@ export LANG=en_US.UTF-8
 
 # langs
 # rust
-[ -d ~/.cargo ] && source ~/.cargo/env
+[ -f ~/.cargo/env ] && source ~/.cargo/env
 
 # ocaml
 [ -f ~/.opam/opam-init/init.zsh ] && source ~/.opam/opam-init/init.zsh
@@ -136,7 +136,7 @@ eval "$(zoxide init --cmd j zsh)"
 
 # tmux
 function create-tmux-session {
-    tmuxp load $HOME/.tmux.home.yaml $HOME/.tmux.work.yaml
+    tmuxp load $(ls $HOME/.tmux.*.yaml | awk '{print $1}')
 }
 
 function resolve-tmux-window {
@@ -151,6 +151,9 @@ function get-tmux-panes {
 }
 
 [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && source "$EAT_SHELL_INTEGRATION_DIR/zsh"
+
+# linux stuff
+export QT_QPA_PLATFORMTHEME=qt6ct
 
 # private
 if [ -f ~/.zshrc-private ]; then

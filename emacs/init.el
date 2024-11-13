@@ -59,6 +59,8 @@
 
 ;; base
 (require 'init-packages)
+(when (eq system-type 'gnu/linux)
+  (require 'init-linux))
 
 ;;
 ;; Do not saves duplicates in kill-ring

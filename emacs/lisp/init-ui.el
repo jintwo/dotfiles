@@ -90,12 +90,13 @@
   (toggle-frame-fullscreen))
 
 (defun j2/init-ui-linux ()
-  (j2/set-font "Iosevka" 90 'medium 'bold))
+  (j2/set-font "Iosevka" 120 'medium 'bold))
 
 (defun j2/init-ui ()
   "UI settings."
   (interactive)
   (cond
+   ((eq system-type 'gnu/linux) (j2/init-ui-linux))
    ((null initial-window-system) (j2/init-ui-mac-daemon))
    (t (j2/init-ui-linux))))
 
@@ -130,6 +131,7 @@
 
 (defun j2/init-appearance ()
   (cond
+   ((eq system-type 'gnu/linux) (j2/init-appearance-linux))
    ((null initial-window-system) (j2/init-appearance-mac-daemon))
    (t (j2/init-appearance-linux))))
 
