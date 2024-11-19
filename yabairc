@@ -1,0 +1,69 @@
+#!/usr/bin/env sh
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# config
+# yabai -m config external_bar all:35:0
+yabai -m config layout float
+
+yabai -m config top_padding    4
+yabai -m config bottom_padding 4
+yabai -m config left_padding   4
+yabai -m config right_padding  4
+yabai -m config window_gap     4
+
+yabai -m config window_placement first_child
+yabai -m config auto_balance off
+yabai -m config split_ratio 0.6
+yabai -m config split_type vertical
+yabai -m config window_shadow float
+
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.95
+yabai -m config window_opacity        on
+
+yabai -m config focus_follows_mouse autoraise
+yabai -m config mouse_follows_focus on
+
+#
+# setup spaces
+#
+for id in $(yabai -m query --spaces | jq '.[].index | select(. > 7)'); do
+  yabai -m space --destroy $id
+done
+
+function setup_space {
+  local idx="$1"
+  local name="$2"
+  local layout="$3"
+  local space=
+
+  space=$(yabai -m query --spaces --space "$idx")
+  if [ -z "$space" ]; then
+    yabai -m space --create
+  fi
+
+  yabai -m space "$idx" --label "$name" --layout "$layout"
+}
+
+setup_space 1 emacs bsp
+yabai -m rule --add app="^Emacs$" title!="^org-capture$" space=^1
+yabai -m rule --add app="^Emacs$" title="^org-capture$" manage=off
+yabai -m rule --add app="^alacritty$" space=^1
+
+setup_space 2 wwwork bsp
+yabai -m rule --add app="^Firefox$" space=^2
+
+setup_space 3 wcomm float
+yabai -m rule --add app="^(Telegram|Mattermost)$" space=^3
+
+setup_space 4 freeweb bsp
+yabai -m rule --add app="^Safari$" space=^4
+
+setup_space 5 freecomm float
+yabai -m rule --add app="^(WhatsApp|Discord|Messages)$" space=^5
+
+yabai -m rule --add app="^(Finder|Music|VLC|System Settings|Preferences|Calendar|Dash)$" manage=off
+
+echo "yabai configuration loaded.."

@@ -32,17 +32,13 @@ brew "d12frosted/emacs-plus/emacs-plus@30", args: ["with-imagemagick",
                                                    "with-poll",
                                                    "with-savchenkovaleriy-big-sur-icon"]
 
-
 # -- mail
 brew "mu"
 brew "msmtp"
 brew "isync", restart_service: true
 
-
 # -- fonts
-tap "homebrew/cask-fonts"
 cask "font-iosevka"
-
 
 # -- utils
 cask "displaybuddy"  # monitor
@@ -66,7 +62,6 @@ cask "syncthing"
 
 brew "transmission-cli", restart_service: true
 cask "deepl"
-# Orion browser
 
 ## video
 cask "vlc"
@@ -82,11 +77,11 @@ cask "djview"
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 
-cask "steam"
-
 cask "onyx"
 cask "appcleaner"
 
+# -- games
+cask "steam"
 
 # -- social
 cask "discord"
@@ -116,6 +111,7 @@ brew "node"
 brew "julia"
 brew "lua"
 brew "luajit"
+brew "luarocks"
 brew "tcl-tk"
 # pharo
 

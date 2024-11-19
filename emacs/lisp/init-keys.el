@@ -24,7 +24,7 @@
 (define-key prog-mode-map (kbd "C-c t") 'treesit-fold-toggle)
 
 ;; utils
-(keymap-global-set "C-c C-l" #'j2/current-location)
+(keymap-global-set "C-c l" #'j2/current-location)
 (keymap-global-set "s-k" #'kill-current-buffer)
 
 ;; project
