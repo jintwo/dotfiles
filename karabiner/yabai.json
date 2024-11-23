@@ -1,0 +1,61 @@
+{
+    "description": "Yabai shortcuts",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "left_arrow",
+                "modifiers": { "mandatory": ["right_command", "left_shift"] }
+            },
+            "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus prev" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "right_arrow",
+                "modifiers": { "mandatory": ["right_command", "left_shift"] }
+            },
+            "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m space --focus next" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "f",
+                "modifiers": { "mandatory": ["right_command", "left_shift"] }
+            },
+            "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --toggle float" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "right_arrow",
+                "modifiers": { "mandatory": ["left_command", "left_control"] }
+            },
+            "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap east" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "left_arrow",
+                "modifiers": { "mandatory": ["left_command", "left_control"] }
+            },
+            "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --swap west" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "right_arrow",
+                "modifiers": { "mandatory": ["left_command"] }
+            },
+            "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "left_arrow",
+                "modifiers": { "mandatory": ["left_command"] }
+            },
+            "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus west" }],
+            "type": "basic"
+        }
+    ]
+}

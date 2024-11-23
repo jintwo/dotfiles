@@ -23,6 +23,9 @@
 
 (define-key prog-mode-map (kbd "C-c t") 'treesit-fold-toggle)
 
+(when (featurep 'devdocs)
+  (keymap-global-set "C-h D" #'devdocs-lookup))
+
 ;; utils
 (keymap-global-set "C-c l" #'j2/current-location)
 (keymap-global-set "s-k" #'kill-current-buffer)

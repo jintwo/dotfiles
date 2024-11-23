@@ -18,10 +18,12 @@
         org-default-priority ?A
         ;; TODO split into main/job
         ;; TODO add job/task capture template with backlink
-        org-capture-templates `(("t" "TODO" entry (file+headline "inbox.org" "Tasks")
+        org-capture-templates `(("h" "TODO.home" entry (file+headline "inbox.org" "Tasks")
                                  "** TODO %?\n")
                                 ("l" "Link" item (file+headline "inbox.org" "Links")
                                  "- %?\n")
+                                ("j" "TODO.job" entry (file+headline "job/index.org" "Inbox")
+                                 "** TODO %?\n")
                                 ("n" "Note" entry (file+datetree "notes/index.org")
                                  "** %?\nEntered on %U\n"))
         org-src-preserve-indentation t

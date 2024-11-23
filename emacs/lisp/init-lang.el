@@ -9,6 +9,10 @@
 ;; pretty helpful
 (which-function-mode)
 
+;; docs
+(use-package devdocs
+  :ensure t)
+
 ;; quickrun
 (use-package quickrun
   :ensure t)
