@@ -1,0 +1,7 @@
+[Unit]
+Description=XRemap
+[Service]
+Restart=always
+ExecStart=/home/jin/.cargo/bin/xremap /home/jin/Documents/dotfiles/xremap.yml --watch=config
+[Install]
+WantedBy=default.target

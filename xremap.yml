@@ -1,0 +1,27 @@
+keymap:
+  - name: Epiphany
+    application:
+      only: org.gnome.Epiphany
+    remap:
+      Super-a: C-a
+      Super-x: C-x
+      Super-c: C-c
+      Super-v: C-v
+      Super-l: C-l
+      Super-t: C-t
+      Super-w: C-w
+      Super-f: C-f
+  - name: Alacritty
+    application:
+      only: Alacritty
+    remap:
+      Super-x: C-Shift-x
+      Super-c: C-Shift-c
+      Super-v: C-Shift-v
+  - name: CUA
+    application:
+      not: emacs
+    remap:
+      Super-x: C-x
+      Super-c: C-c
+      Super-v: C-v

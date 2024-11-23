@@ -2,9 +2,6 @@
     name = Eugeny Volobuev
     email = qulert@gmail.com
 
-[credential]
-    helper = osxkeychain
-
 [color]
     ui = auto
 
