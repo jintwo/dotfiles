@@ -1,0 +1,26 @@
+[font]
+size = 12
+
+[font.bold]
+family = "Iosevka"
+style = "Bold"
+
+[font.normal]
+family = "Iosevka"
+style = "Medium"
+
+[window]
+decorations = "buttonless"
+dynamic_title = false
+option_as_alt = "Both"
+
+[window.padding]
+x = 5
+y = 5
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[colors]
+draw_bold_text_with_bright_colors = false
