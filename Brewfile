@@ -46,7 +46,6 @@ cask "steermouse"  # trackball
 cask "karabiner-elements"  # keyboard
 mas "Keymapp", id: 6472865291
 cask "alacritty"
-cask "hammerspoon"
 cask "menuwhere"
 tap "koekeishiya/formulae"
 cask "yabai"
@@ -180,6 +179,7 @@ cask "native-access"
 cask "blender"
 # Aseprite
 cask "affinity-designer"
+cask "affinity-photo"
 
 
 # -- job related

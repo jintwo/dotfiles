@@ -64,6 +64,6 @@ yabai -m rule --add app="^Safari$" space=^4
 setup_space 5 freecomm float
 yabai -m rule --add app="^(WhatsApp|Discord|Messages)$" space=^5
 
-yabai -m rule --add app="^(Finder|Music|VLC|System Settings|Preferences|Calendar|Dash)$" manage=off
+yabai -m rule --add app="^(Finder|Music|VLC|System Settings|Preferences|Calendar|Dash|AppCleaner)$" manage=off
 
 echo "yabai configuration loaded.."

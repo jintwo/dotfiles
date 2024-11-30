@@ -43,6 +43,14 @@
         },
         {
             "from": {
+                "key_code": "up_arrow",
+                "modifiers": { "mandatory": ["left_command", "left_control"] }
+            },
+            "to": [{ "shell_command": "/bin/zsh ~/Documents/dotfiles/yabai/scripts/maximize.sh" }],
+            "type": "basic"
+        },
+        {
+            "from": {
                 "key_code": "right_arrow",
                 "modifiers": { "mandatory": ["left_command"] }
             },
