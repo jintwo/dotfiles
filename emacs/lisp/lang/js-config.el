@@ -10,6 +10,9 @@
   :hook ((typescript-mode typescript-ts-mode tsx-ts-mode) . j2/project-eglot-ensure)
   :custom (typescript-indent-level 2))
 
+(use-package svelte-mode
+  :ensure t)
+
 ;; deno
 ;; TODO: try deno-ts-mode
 ;; (require 'eglot)

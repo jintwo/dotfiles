@@ -134,16 +134,39 @@
 ;;   :hook (org-mode-hook . toc-org-mode))
 
 ;; utils
-(use-package yequake
-  :ensure t
-  :custom
-  (yequake-frames '(("org-capture"
-                     (buffer-fns . (yequake-org-capture))
-                     (width . 0.4)
-                     (height . 0.25)
-                     (alpha . 0.9)
-                     (frame-parameters . ((skip-taskbar . t)
-                                          (sticky . t)))))))
+;; stolen from: https://localauthor.github.io/posts/popup-frames/
+(defun popup-frame-delete (&rest _)
+  "Kill selected frame if it has parameter `popup-frame'."
+  (when (frame-parameter nil 'popup-frame)
+    (delete-frame)))
+
+(defmacro popup-frame-define (command title &optional delete-frame)
+  "Define interactive function to call COMMAND in frame with TITLE."
+  `(defun ,(intern (format "popup-frame-%s" command)) ()
+     (interactive)
+     (let* ((display-buffer-alist '(("")
+                                    (display-buffer-full-frame)))
+            (frame (make-frame
+                    '((title . ,title)
+                      (name . ,title)
+                      (window-system . ns)
+                      (skip-taskbar . t)
+                      (sticky . t)
+                      (popup-frame . t)))))
+       (select-frame frame)
+       (switch-to-buffer " popup-frame-hidden-buffer")
+       (condition-case nil
+           (progn
+             (call-interactively ',command)
+             (delete-other-windows))
+         (error
+          (delete-frame frame))))))
+
+(popup-frame-define clipr-show "clipr-show")
+(add-hook 'clipr-finalize-hook #'popup-frame-delete)
+
+(popup-frame-define org-capture "org-capture")
+(add-hook 'org-capture-after-finalize-hook #'popup-frame-delete)
 
 ;; org-timer
 (add-hook 'org-timer-done-hook (lambda () (message "timer done!")))

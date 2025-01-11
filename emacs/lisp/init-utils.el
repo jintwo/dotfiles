@@ -113,5 +113,12 @@
 ;; calibredb
 ;; nov
 
+(use-package buffer-terminator
+  :ensure t
+  :custom
+  (buffer-terminator-verbose nil)
+  :config
+  (buffer-terminator-mode 1))
+
 (provide 'init-utils)
 ;;; init-utils.el ends here

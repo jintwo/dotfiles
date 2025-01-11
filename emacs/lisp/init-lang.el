@@ -135,8 +135,13 @@
   :mode ("\\.json")
   :hook ((json-mode json-ts-mode) . j2/init-json-mode))
 
+(defun j2/init-yaml-mode ()
+  (display-line-numbers-mode t)
+  (define-key yaml-ts-mode-map (kbd "C-c t") 'treesit-fold-toggle))
+
 (use-package yaml-mode
-  :mode ("\\.yaml\\'" "\\.yml\\'"))
+  :mode ("\\.yaml\\'" "\\.yml\\'")
+  :hook ((yaml-mode yaml-ts-mode) . j2/init-yaml-mode))
 
 (use-package markdown-mode
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'"))

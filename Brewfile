@@ -61,6 +61,7 @@ cask "syncthing"
 
 brew "transmission-cli", restart_service: true
 cask "deepl"
+mas "Notability", id: 360593530
 
 ## video
 cask "vlc"
@@ -77,7 +78,7 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 
 cask "onyx"
-cask "appcleaner"
+cask "pearcleaner"
 
 # -- games
 cask "steam"
