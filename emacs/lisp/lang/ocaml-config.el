@@ -22,11 +22,19 @@
     (add-hook 'tuareg-mode-hook 'merlin-mode t)
     (add-hook 'caml-mode-hook 'merlin-mode t)
     ;; Use opam switch to lookup ocamlmerlin binary
-    (setq merlin-command 'opam)))
+    (setq merlin-command "~/.opam/default/bin/ocamlmerlin")))
 
 (put 'tuareg-mode 'eglot-language-id "ocaml")
 (put 'tuareg-opam-mode 'eglot-language-id "ocaml")
 (put 'merlin-mode 'eglot-language-id "ocaml")
+
+(use-package opam-switch-mode
+  :ensure t
+  :hook
+  ((coq-mode tuareg-mode) . opam-switch-mode))
+
+(use-package dune
+  :ensure t)
 
 ;; TODO: try ocaml-ts-mode
 (provide 'ocaml-config)

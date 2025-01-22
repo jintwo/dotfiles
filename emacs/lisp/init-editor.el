@@ -53,7 +53,7 @@
   (global-display-fill-column-indicator-mode t))
 
 (use-package highlight-indent-guides
-  :hook ((prog-mode conf-mode yaml-mode) . highlight-indent-guides-mode)
+  :hook ((prog-mode conf-mode yaml-mode yaml-ts-mode) . highlight-indent-guides-mode)
   :delight
   :config
   (setq highlight-indent-guides-method 'character
