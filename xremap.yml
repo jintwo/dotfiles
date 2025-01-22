@@ -2,6 +2,7 @@ keymap:
   - name: Epiphany
     application:
       only: org.gnome.Epiphany
+    exact_match: true
     remap:
       Super-a: C-a
       Super-x: C-x
@@ -11,6 +12,27 @@ keymap:
       Super-t: C-t
       Super-w: C-w
       Super-f: C-f
+      Super-r: C-r
+      Super-Equal: C-Equal
+      Super-Minus: C-Minus
+      Super-0: C-0
+  - name: Firefox
+    application:
+      only: firefox
+    exact_match: true
+    remap:
+      Super-a: C-a
+      Super-x: C-x
+      Super-c: C-c
+      Super-v: C-v
+      Super-l: C-l
+      Super-t: C-t
+      Super-w: C-f4
+      Super-f: C-f
+      Super-r: C-r
+      Super-Equal: C-Equal
+      Super-Minus: C-Minus
+      Super-0: C-0
   - name: Alacritty
     application:
       only: Alacritty
