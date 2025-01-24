@@ -6,7 +6,8 @@
   :mode (("\\.mll\\'" . tuareg-mode)
          ("\\.ml[ip]?\\'" . tuareg-mode)
          ("\\.eliomi?\\'" . tuareg-mode)
-         ("\\.mly\\'" . tuareg-menhir-mode)))
+         ("\\.mly\\'" . tuareg-menhir-mode))
+  :hook (tuareg-mode . j2/project-eglot-ensure))
 
 (use-package merlin
   :defer t
@@ -22,7 +23,8 @@
     (add-hook 'tuareg-mode-hook 'merlin-mode t)
     (add-hook 'caml-mode-hook 'merlin-mode t)
     ;; Use opam switch to lookup ocamlmerlin binary
-    (setq merlin-command "~/.opam/default/bin/ocamlmerlin")))
+    (setq merlin-command "~/.opam/default/bin/ocamlmerlin")
+    (require 'ocp-indent)))
 
 (put 'tuareg-mode 'eglot-language-id "ocaml")
 (put 'tuareg-opam-mode 'eglot-language-id "ocaml")
@@ -35,6 +37,12 @@
 
 (use-package dune
   :ensure t)
+
+(use-package utop
+  :ensure t
+  :hook (tuareg-mode . utop-minor-mode)
+  :config
+  (setq utop-command "opam exec -- dune utop . -- -emacs"))
 
 ;; TODO: try ocaml-ts-mode
 (provide 'ocaml-config)

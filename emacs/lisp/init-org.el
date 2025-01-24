@@ -12,41 +12,48 @@
   (require 'org-id)
 
   (setq org-log-done t
-        org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "WAITING(g)" "|" "DONE(d)"))
-        org-highest-priority ?A
-        org-lowest-priority ?C
-        org-default-priority ?A
-        ;; TODO split into main/job
-        ;; TODO add job/task capture template with backlink
-        org-capture-templates `(("h" "TODO.home" entry (file+headline "inbox.org" "Tasks")
-                                 "** TODO %?\n")
-                                ("l" "Link" item (file+headline "inbox.org" "Links")
-                                 "- %?\n")
-                                ("j" "TODO.job" entry (file+headline "job/index.org" "Inbox")
-                                 "** TODO %?\n")
-                                ("n" "Note" entry (file+datetree "notes/index.org")
-                                 "** %?\nEntered on %U\n"))
         org-src-preserve-indentation t
         org-startup-indented t
         org-outline-path-complete-in-steps nil
-        org-refile-targets '((org-agenda-files :maxlevel . 5))
-        org-refile-use-outline-path 'file
+        org-image-actual-width nil
+        org-insert-heading-respect-content t
+
         org-babel-load-languages '((shell . t)
                                    (python . t)
                                    (emacs-lisp . t))
+
+        org-todo-keywords '((sequence "TODO(t)" "WIP(w!)" "WAIT(g!)" "|" "DONE(d!)" "CANCEL(c!)"))
+
+        org-highest-priority ?A
+        org-lowest-priority ?C
+        org-default-priority ?A
+
         org-directory "~/Sync/Org"
         org-inbox-file "inbox.org"
         org-index-file "index.org"
-        org-job-index-file "job/index.org"
         org-calendar-file "calendar.org"
-        org-notes-index-file "notes/index.org"
-        org-image-actual-width nil
-        org-insert-heading-respect-content t
+        org-job-index-file "job/job.org"
+        org-notes-index-file "notes/notes.org"
+
         org-agenda-files
         (append
          (f-files org-directory (lambda (f) (s-ends-with? "org" f))) ;; root
          (list (f-join org-directory org-job-index-file)) ;; job/index
-         (f-files (f-join org-directory "roam") (lambda (f) (s-ends-with? "org" f)))))) ;; all roam stuff
+         (f-files (f-join org-directory "roam") (lambda (f) (s-ends-with? "org" f)))) ;; all roam stuff
+
+        org-refile-targets '((org-agenda-files :maxlevel . 6))
+        org-refile-use-outline-path 'file)
+
+  ;; TODO split into main/job
+  ;; TODO add job/task capture template with backlink
+  (setq org-capture-templates `(("h" "TODO.home" entry (file+headline ,org-inbox-file "Tasks")
+                                 "** TODO %?\n")
+                                ("l" "Link" item (file+headline ,org-inbox-file "Links")
+                                 "- %?\n")
+                                ("j" "TODO.job" entry (file+headline ,org-job-index-file "Inbox")
+                                 "** TODO %?\n")
+                                ("n" "Note" entry (file+datetree ,org-notes-index-file)
+                                 "** %?\nEntered on %U\n"))))
 
 (customize-set-variable 'org-agenda-remove-tags t)
 (customize-set-variable 'org-agenda-prefix-format "%-24c %?-14t% s")
