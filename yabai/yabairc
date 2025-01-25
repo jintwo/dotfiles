@@ -65,6 +65,8 @@ yabai -m rule --add app="^Safari$" space=^5
 setup_space 6 freecomm float
 yabai -m rule --add app="^(WhatsApp|Discord|Messages)$" space=^6
 
+setup_space 7 freeapp float
+
 yabai -m rule --add app="^(Finder|Music|Podcasts|TV|VLC|System Settings|Preferences|Calendar|Dash|AppCleaner|Weather)$" manage=off
 
 yabai -m signal --add event=window_created app="Emacs" action="~/.yabai/emacs-window-handler.sh"

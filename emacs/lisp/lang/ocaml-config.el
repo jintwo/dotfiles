@@ -3,10 +3,8 @@
 ;;; Code:
 ;;; TODO: consider moving to simple (probably) caml-mode
 (use-package tuareg
-  :mode (("\\.mll\\'" . tuareg-mode)
-         ("\\.ml[ip]?\\'" . tuareg-mode)
-         ("\\.eliomi?\\'" . tuareg-mode)
-         ("\\.mly\\'" . tuareg-menhir-mode))
+  :mode (((rx ".(mll|ml[ip]?|eliomi?)" eos) . tuareg-mode)
+         ((rx ".mly" eos) . tuareg-menhir-mode))
   :hook (tuareg-mode . j2/project-eglot-ensure))
 
 (use-package merlin

@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (use-package elixir-mode
-  :mode ("\\.ex\\'" "\\.exs\\'")
+  :mode (rx ".exs?" eos)
   :hook (elixir-mode . j2/project-eglot-ensure))
 
 (provide 'elixir-config)

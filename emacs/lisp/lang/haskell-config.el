@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (use-package haskell-mode
-  :mode ("\\.hs\\'" "\\.lhs\\'")
+  :mode (rx ".l?hs" eos)
   :hook ((haskell-mode . haskell-mode-init)
          (haskell-mode . j2/project-eglot-ensure))
   :custom
@@ -17,7 +17,7 @@
 
 (use-package tidal
   :after haskell-mode
-  :mode ("\\.tidal\\'"))
+  :mode (rx ".tidal" eos))
 
 (provide 'haskell-config)
 ;;; haskell-config.el ends here

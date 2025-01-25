@@ -11,6 +11,21 @@
   (require 'org-agenda)
   (require 'org-id)
 
+  (setq org-directory "~/Sync/Org"
+        org-inbox-file "inbox.org"
+        org-index-file "index.org"
+        org-calendar-file "calendar.org"
+        org-job-index-file "job/job.org"
+        org-notes-index-file "notes/notes.org")
+
+  (setq org-agenda-files
+        (append
+         (f-files org-directory (lambda (f) (s-ends-with? "org" f))) ;; root
+         (list (f-join org-directory org-job-index-file)) ;; job/index
+         (f-files (f-join org-directory "roam") (lambda (f) (s-ends-with? "org" f))))) ;; all roam stuff
+
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 6)))
+
   (setq org-log-done t
         org-src-preserve-indentation t
         org-startup-indented t
@@ -28,20 +43,6 @@
         org-lowest-priority ?C
         org-default-priority ?A
 
-        org-directory "~/Sync/Org"
-        org-inbox-file "inbox.org"
-        org-index-file "index.org"
-        org-calendar-file "calendar.org"
-        org-job-index-file "job/job.org"
-        org-notes-index-file "notes/notes.org"
-
-        org-agenda-files
-        (append
-         (f-files org-directory (lambda (f) (s-ends-with? "org" f))) ;; root
-         (list (f-join org-directory org-job-index-file)) ;; job/index
-         (f-files (f-join org-directory "roam") (lambda (f) (s-ends-with? "org" f)))) ;; all roam stuff
-
-        org-refile-targets '((org-agenda-files :maxlevel . 6))
         org-refile-use-outline-path 'file)
 
   ;; TODO split into main/job

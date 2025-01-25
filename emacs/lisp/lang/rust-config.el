@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (use-package rust-mode
-  :mode ("\\.rs\\'")
+  :mode (rx ".rs" eos)
   :hook ((rust-mode rust-ts-mode) . j2/project-eglot-ensure)
   :custom (rust-format-on-save t))
 

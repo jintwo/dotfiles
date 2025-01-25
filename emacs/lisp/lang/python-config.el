@@ -16,12 +16,12 @@
   :defer t)
 
 (use-package hy-mode
-  :mode ("\\.hy\\'"))
+  :mode (rx ".hy" eos))
 
 (use-package python-black
   :defer t)
 
-(add-to-list 'auto-mode-alist '("\\.jinja2\\'" . prog-mode))
+(add-to-list 'auto-mode-alist `(,(rx ".jinja2" eos) . prog-mode))
 
 (setq python-shell-interpreter "python"
       python-shell-interpreter-args "-i"

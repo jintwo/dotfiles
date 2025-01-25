@@ -132,7 +132,7 @@
   (setq json-encoding-default-indentation "  "))
 
 (use-package json-mode
-  :mode ("\\.json")
+  :mode (rx ".json" eos)
   :hook ((json-mode json-ts-mode) . j2/init-json-mode))
 
 (defun j2/init-yaml-mode ()
@@ -140,17 +140,17 @@
   (define-key yaml-ts-mode-map (kbd "C-c t") 'treesit-fold-toggle))
 
 (use-package yaml-mode
-  :mode ("\\.yaml\\'" "\\.yml\\'")
+  :mode (rx ".ya?ml" eos)
   :hook ((yaml-mode yaml-ts-mode) . j2/init-yaml-mode))
 
 (use-package markdown-mode
-  :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'"))
+  :mode (rx ".(text|markdown|md)" eos))
 
 (use-package protobuf-mode
-  :mode "\\.proto\\'")
+  :mode (rx ".proto" eos))
 
 (use-package capnp-mode
-  :mode "\\.capnp\\'")
+  :mode (rx ".capnp" eos))
 
 (use-package dockerfile-mode
   :defer t)
@@ -167,11 +167,27 @@
           org-plantuml-executable-path (concat plantuml-prefix "/bin/plantuml")
           org-plantuml-exec-mode 'plantuml)))
 
-(add-to-list 'auto-mode-alist '("\\.tpl\\'" . prog-mode))
+(add-to-list 'auto-mode-alist `(,(rx ".tpl" eos) . prog-mode))
 
 (use-package sqlite-mode-extras
   :ensure t
   :hook ((sqlite-mode . sqlite-extras-minor-mode)))
+
+(use-package gleam-ts-mode
+  :mode (rx ".gleam" eos)
+  :config
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+                 '(gleam-ts-mode . ("gleam" "lsp"))))
+  (defun gleam-ts-before-save-hook ()
+    (when (eq major-mode 'gleam-ts-mode)
+      (gleam-ts-format)))
+  (add-hook 'before-save-hook #'gleam-ts-before-save-hook))
+
+(use-package elisp-mode
+  :ensure nil
+  :init
+  (add-hook 'completion-at-point-functions #'elisp-completion-at-point))
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

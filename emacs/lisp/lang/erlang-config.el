@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (use-package erlang
-  :mode ("\\.erl\\'" "\\.hrl\\'" "rebar\\.config\\'"))
+  :mode (rx ".(erl|hrl|rebar.config)" eos))
 
 (provide 'erlang-config)
 ;;; erlang-config.el ends here

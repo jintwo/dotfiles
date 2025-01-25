@@ -221,8 +221,9 @@ The symbol at point is added to the future history."
 
 (use-package cape
   :ensure t
-  :config
-  (setq completion-at-point-functions '(cape-file cape-dabbrev)))
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file))
 
 (use-package kind-icon
   :ensure t

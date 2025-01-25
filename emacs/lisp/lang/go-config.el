@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (use-package go-mode
-  :mode ("\\.go\\'")
+  :mode (rx ".go" eos)
   :hook (((go-mode go-ts-mode) . j2/project-eglot-ensure)
          ((go-mode go-ts-mode) . j2/go-mode-hook))
   :config (setenv "GOPATH" (expand-file-name "~/Documents/dev/golang/go")))
