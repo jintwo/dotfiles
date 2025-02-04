@@ -51,3 +51,6 @@ append-path "$HOME/Documents/dev/zig/zls/zig-out/bin"
 append-path "$HOMEBREW_PREFIX/opt/rustup/bin"
 # java
 prepend-path "$HOMEBREW_PREFIX/opt/openjdk/bin"
+
+# uv
+prepend-path "$HOME/.local/bin"

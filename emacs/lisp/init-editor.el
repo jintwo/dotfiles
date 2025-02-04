@@ -36,8 +36,7 @@
   :bind ("C-=" . er/expand-region))
 
 (use-package avy
-  :defer t
-  :bind ("s-l" . avy-goto-line)
+  :ensure t
   :config
   (avy-setup-default))
 
@@ -152,14 +151,15 @@ Use the filename relative to the current VC root directory."
 (use-package autorevert
   :delight auto-revert-mode)
 
-;; TODO: configure me!
-;; (when (not (package-installed-p 'treesit-fold))
-;;   (package-vc-install
-;;    '(treesit-fold
-;;      :url "https://github.com/emacs-tree-sitter/treesit-fold.git")))
-;; (require 'treesit-fold)
-;; (global-treesit-fold-mode t)
-;; (keymap-global-set "<backtab>" #'treesit-fold-toggle)
+(when (not (package-installed-p 'treesit-fold))
+  (package-vc-install
+   '(treesit-fold
+     :url "https://github.com/emacs-tree-sitter/treesit-fold.git")))
+
+(use-package treesit-fold
+  :config
+  (require 'treesit-fold)
+  (global-treesit-fold-mode t))
 
 (provide 'init-editor)
 ;;; init-editor.el ends here

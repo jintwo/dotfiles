@@ -21,10 +21,11 @@
 (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
 (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
 
-(define-key prog-mode-map (kbd "C-c t") 'treesit-fold-toggle)
-
 (when (featurep 'devdocs)
   (keymap-global-set "C-h D" #'devdocs-lookup))
+
+(when (featurep 'treesit-fold)
+  (keymap-global-set "S-<tab>" #'treesit-fold-toggle))
 
 ;; utils
 (keymap-global-set "C-c l" #'j2/current-location)
@@ -35,13 +36,13 @@
   (keymap-global-set "<remap> <project-shell>" 'eat-project-other-window))
 
 ;; org (TODO: move it somewhere to init-org.el)
-(keymap-global-set "C-c o j" #'j2/org-jump)
-(keymap-global-set "C-c o c" #'org-capture)
-(keymap-global-set "C-c o a" #'org-agenda)
-(keymap-global-set "C-c o t" #'org-timer-set-timer)
-(keymap-global-set "C-c o s" #'org-store-link)
-(keymap-global-set "C-c o l" #'org-insert-link)
-(keymap-global-set "C-c o f" #'org-roam-node-find)
+(keymap-global-set "C-c j" #'j2/org-jump)
+(keymap-global-set "C-c c" #'org-capture)
+(keymap-global-set "C-c a" #'org-agenda)
+(keymap-global-set "C-c f" #'org-roam-node-find)
+(keymap-global-set "C-c l" #'org-store-link)
+(keymap-global-set "C-c k" #'org-insert-link)
+(keymap-global-set "C-c t" #'j2/timer)
 
 (provide 'init-keys)
 ;;; init-keys.el ends here

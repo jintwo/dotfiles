@@ -136,8 +136,7 @@
   :hook ((json-mode json-ts-mode) . j2/init-json-mode))
 
 (defun j2/init-yaml-mode ()
-  (display-line-numbers-mode t)
-  (define-key yaml-ts-mode-map (kbd "C-c t") 'treesit-fold-toggle))
+  (display-line-numbers-mode t))
 
 (use-package yaml-mode
   :mode (rx ".ya?ml" eos)

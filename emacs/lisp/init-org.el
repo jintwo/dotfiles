@@ -16,7 +16,8 @@
         org-index-file "index.org"
         org-calendar-file "calendar.org"
         org-job-index-file "job/job.org"
-        org-notes-index-file "notes/notes.org")
+        org-notes-index-file "notes/notes.org"
+        org-timer-file "timer.org")
 
   (setq org-agenda-files
         (append
@@ -61,6 +62,25 @@
 (customize-set-variable 'org-agenda-todo-keyword-format "%-10s")
 
 (require 'transient)
+
+(transient-define-prefix j2/timer ()
+  "Prefix to work with org-timer"
+  ["Main"
+   ("s" "Start"
+    (lambda ()
+      (interactive)
+      (org-timer-start)))
+   ("p" "Stop"
+    (lambda (task-name)
+      (interactive "sTask name: ")
+      (with-current-buffer (find-file-noselect (f-join org-directory org-timer-file))
+        (end-of-buffer)
+        (org-timer-item)
+        (insert task-name " ")
+        (org-insert-timestamp (current-time))
+        (org-timer-stop)
+        (save-buffer))))])
+
 (transient-define-prefix j2/org-jump ()
   "Prefix to jump to org doc not included in roam"
   ["Main"
@@ -79,7 +99,11 @@
    ("n" "Notes"
     (lambda ()
       (interactive)
-      (find-file (f-join org-directory org-notes-index-file))))]
+      (find-file (f-join org-directory org-notes-index-file))))
+   ("t" "Timers"
+    (lambda ()
+      (interactive)
+      (find-file (f-join org-directory org-timer-file))))]
   ["Job"
    ("j" "Tasks"
     (lambda ()

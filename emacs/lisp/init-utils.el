@@ -71,11 +71,11 @@
 
 (use-package transmission
   :defer 1
-  :bind (:map global-map (("s-t" . transmission))))
+  :bind (:map global-map (("C-c u t" . transmission))))
 
 (use-package elpher
   :defer 1
-  :bind (:map global-map (("s-e" . elpher))))
+  :bind (:map global-map (("C-c u e" . elpher))))
 
 (use-package osc
   :ensure t)
@@ -83,7 +83,8 @@
 (use-package eat
   :ensure t
   :config
-  (setq eat-term-name "eat-mono")
+  ;; (setq eat-term-name "eat-mono")
+  (setq eat-term-name "xterm-256color")
   (add-hook 'eshell-load-hook #'eat-eshell-mode)
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
   ;; allow ace-window
@@ -119,6 +120,10 @@
   (buffer-terminator-verbose nil)
   :config
   (buffer-terminator-mode 1))
+
+(use-package rainbow-mode
+  :ensure t
+  :hook (prog-mode . rainbow-mode))
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

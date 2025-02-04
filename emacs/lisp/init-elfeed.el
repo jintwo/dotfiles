@@ -3,7 +3,7 @@
 ;;; Code:
 (use-package elfeed
   :defer 1
-  :bind (:map global-map (("s-f" . elfeed)))
+  :bind (:map global-map (("C-c u f" . elfeed)))
   :custom
   ;; (elfeed-show-entry-switch #'j2/elfeed-display-buffer)
   ;; (elfeed-show-entry-delete #'j2/elfeed-delete-buffer)

@@ -35,9 +35,9 @@
 (use-package flymake-ruff
   :hook ((python-mode python-ts-mode) . flymake-ruff-load))
 
-(require 'flymake-mypy)
-(add-hook 'python-mode-hook #'flymake-mypy-load)
-(add-hook 'python-ts-mode-hook #'flymake-mypy-load)
+(use-package flymake-mypy
+  :load-path "./"
+  :hook ((python-mode python-ts-mode) . flymake-mypy-load))
 
 (provide 'python-config)
 ;;; python-config.el ends here
