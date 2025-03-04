@@ -98,9 +98,14 @@
 ;; utils
 ;; feeds
 (require 'init-elfeed)
+
 ;; mail
 (when (file-exists-p (expand-file-name "lisp/init-mail.el" user-emacs-directory))
   (require 'init-mail))
+
+;; llm
+(when (file-exists-p (expand-file-name "lisp/init-llm.el" user-emacs-directory))
+  (require 'init-llm))
 
 ;; custom packages
 (require 'init-vendor)

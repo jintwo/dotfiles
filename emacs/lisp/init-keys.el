@@ -17,6 +17,9 @@
 (keymap-global-set "C-M-s" #'isearch-forward)
 (keymap-global-set "C-M-r" #'isearch-backward)
 
+;; completions
+(keymap-global-set "C-<tab>" #'completion-at-point)
+
 ;; flymake (straight outta manual)
 (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
 (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)

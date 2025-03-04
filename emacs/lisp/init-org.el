@@ -63,23 +63,25 @@
 
 (require 'transient)
 
+(defun j2/timer-start ()
+  (interactive)
+  (org-timer-start))
+
+(defun j2/timer-stop (task-name)
+  (interactive "sTask name: ")
+  (with-current-buffer (find-file-noselect (f-join org-directory org-timer-file))
+    (end-of-buffer)
+    (org-timer-item)
+    (insert task-name " ")
+    (org-insert-timestamp (current-time))
+    (org-timer-stop)
+    (save-buffer)))
+
 (transient-define-prefix j2/timer ()
   "Prefix to work with org-timer"
   ["Main"
-   ("s" "Start"
-    (lambda ()
-      (interactive)
-      (org-timer-start)))
-   ("p" "Stop"
-    (lambda (task-name)
-      (interactive "sTask name: ")
-      (with-current-buffer (find-file-noselect (f-join org-directory org-timer-file))
-        (end-of-buffer)
-        (org-timer-item)
-        (insert task-name " ")
-        (org-insert-timestamp (current-time))
-        (org-timer-stop)
-        (save-buffer))))])
+   ("s" "Start" j2/timer-start)
+   ("p" "Stop" j2/timer-stop)])
 
 (transient-define-prefix j2/org-jump ()
   "Prefix to jump to org doc not included in roam"
@@ -230,9 +232,10 @@
        :url "https://github.com/positron-solutions/master-of-ceremonies.git")))
   (require 'master-of-ceremonies)
   (require 'dslide)
-  (add-hook 'dslide-start-hook (lambda ()
-                                 (mc-hide-cursor-mode t)
-                                 (text-scale-adjust 5))))
+  ;; (add-hook 'dslide-start-hook (lambda ()
+  ;;                                (mc-hide-cursor-mode t)
+  ;;                                (text-scale-adjust 2)))
+  )
 
 ;; org-babel
 (org-babel-do-load-languages 'org-babel-load-languages '((shell . t)
