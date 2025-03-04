@@ -25,6 +25,8 @@ append-path "$HOME/.tools/bin"
 # installed tools
 # X11
 append-path "/opt/X11/bin"
+# latex
+append-path "/Library/TeX/texbin"
 # lua
 append-path "$HOME/.luarocks/bin"
 # golang
