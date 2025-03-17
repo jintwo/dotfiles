@@ -101,9 +101,13 @@
       (let ((display-func (lambda (buffer) (display-buffer-fn buffer #'display-buffer-below-selected))))
         (list program arg display-func))))
 
-  (advice-add 'eat--1 :filter-args #'j2/eat--1-advice))
+  (advice-add 'eat--1 :filter-args #'j2/eat--1-advice)
+
+  ;; handle dired shell command: open cwd in dired
+  (push '("dired" . (lambda (d) (dired d))) eat-message-handler-alist))
 
 (use-package ediff
+  :ensure nil
   :config
   (setq ediff-window-setup-function 'ediff-setup-windows-plain
         ediff-split-window-function 'split-window-horizontally))
@@ -124,6 +128,24 @@
 (use-package rainbow-mode
   :ensure t
   :hook (prog-mode . rainbow-mode))
+
+(use-package dired
+  :ensure nil
+  :defer t
+  :hook (dired-mode . dired-hide-details-mode)
+  :config
+  (setq dired-dwim-target t                  ;; do what I mean
+        dired-recursive-copies 'always       ;; don't ask when copying directories
+        dired-create-destination-dirs 'ask
+        dired-clean-confirm-killing-deleted-buffers nil
+        dired-make-directory-clickable t
+        dired-mouse-drag-files t
+        dired-kill-when-opening-new-dired-buffer t)   ;; Tidy up open buffers by default
+  (let ((gls (executable-find "gls")))
+    (when gls
+      (setq dired-use-ls-dired t
+            insert-directory-program gls
+            dired-listing-switches "-aBhl --group-directories-first"))))
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

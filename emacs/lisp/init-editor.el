@@ -161,5 +161,13 @@ Use the filename relative to the current VC root directory."
   (require 'treesit-fold)
   (global-treesit-fold-mode t))
 
+(use-package remember
+  :bind ("C-c M-r" . remember)
+  :config
+  (setq initial-buffer-choice 'remember-notes
+        remember-data-file "~/Sync/Org/remember.org"
+        remember-notes-initial-major-mode 'org-mode
+        remember-in-new-frame nil))
+
 (provide 'init-editor)
 ;;; init-editor.el ends here

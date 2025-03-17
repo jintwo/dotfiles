@@ -46,6 +46,7 @@
 (keymap-global-set "C-c l" #'org-store-link)
 (keymap-global-set "C-c k" #'org-insert-link)
 (keymap-global-set "C-c t" #'j2/timer)
+(keymap-global-set "C-c n" #'remember-notes)
 
 (provide 'init-keys)
 ;;; init-keys.el ends here

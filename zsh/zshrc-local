@@ -150,7 +150,12 @@ function get-tmux-panes {
     echo $(tmux list-panes | cut -d":" -f1 | sed "s/^/$window./" | tr "\n" " ")
 }
 
+# eat
 [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && source "$EAT_SHELL_INTEGRATION_DIR/zsh"
+
+function dired {
+    _eat_msg dired $PWD
+}
 
 # linux stuff
 export QT_QPA_PLATFORMTHEME=qt6ct
