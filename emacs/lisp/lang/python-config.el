@@ -23,8 +23,8 @@
 
 (add-to-list 'auto-mode-alist `(,(rx ".jinja2" eos) . prog-mode))
 
-(setq python-shell-interpreter "python"
-      python-shell-interpreter-args "-i"
+(setq python-shell-interpreter "uv"
+      python-shell-interpreter-args "run python -i"
       ;; python-shell-interpreter "ipython"
       ;; python-shell-interpreter-args "--simple-prompt"
       python-shell-prompt-detect-failure-warning nil

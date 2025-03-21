@@ -36,7 +36,7 @@
 
 ;; project
 (when (featurep 'eat)
-  (keymap-global-set "<remap> <project-shell>" 'eat-project-other-window))
+  (keymap-global-set "<remap> <project-shell>" #'j2/eat-project-below))
 
 ;; org (TODO: move it somewhere to init-org.el)
 (keymap-global-set "C-c j" #'j2/org-jump)

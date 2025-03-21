@@ -60,7 +60,7 @@
                              (consult-ripgrep "Ripgrep" ?r)
                              (project-dired "Dired")
                              (j2/magit-current-project "Magit" ?m)
-                             (eat-project-other-window "Eat" ?e)
+                             (j2/eat-project-below "Eat" ?e)
                              (j2/new-activity-for-current-project "New activity" ?a))))
 
 (use-package reveal-in-folder
@@ -93,18 +93,14 @@
   (eat-update-semi-char-mode-map)
   (eat-reload)
 
-  (defun j2/eat--1-advice (&rest args)
-    (let* ((real-args (car args))
-           (program (car real-args))
-           (arg (cadr real-args)))
-      (fset 'display-buffer-fn (caddr real-args))
-      (let ((display-func (lambda (buffer) (display-buffer-fn buffer #'display-buffer-below-selected))))
-        (list program arg display-func))))
-
-  (advice-add 'eat--1 :filter-args #'j2/eat--1-advice)
-
   ;; handle dired shell command: open cwd in dired
   (push '("dired" . (lambda (d) (dired d))) eat-message-handler-alist))
+
+(defun j2/eat-project-below (&optional arg)
+  (interactive "P")
+  (let ((w (split-window-below)))
+    (select-window w)
+    (eat-project arg)))
 
 (use-package ediff
   :ensure nil
