@@ -70,10 +70,10 @@
 (defun j2/timer-stop (task-name)
   (interactive "sTask name: ")
   (with-current-buffer (find-file-noselect (f-join org-directory org-timer-file))
-    (end-of-buffer)
+    (org-datetree-find-date-create (org-date-to-gregorian (format-time-string "%Y-%m-%d")))
+    (org-end-of-subtree t t)
     (org-timer-item)
-    (insert task-name " ")
-    (org-insert-timestamp (current-time))
+    (insert task-name)
     (org-timer-stop)
     (save-buffer)))
 
@@ -162,11 +162,6 @@
 
 ;; (advice-add 'org-agenda :before #'j2/org-roam-update-agenda-files)
 
-;; use following package as inspiration ;)
-;; (use-package toc-org
-;;   :defer t
-;;   :hook (org-mode-hook . toc-org-mode))
-
 ;; utils
 ;; stolen from: https://localauthor.github.io/posts/popup-frames/
 (defun popup-frame-delete (&rest _)
@@ -217,25 +212,20 @@
 ;; plantuml
 (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 
-;; org-re-reveal
-;; disabled for now in favor of dslide
+;; disabled
 ;; (use-package org-re-reveal
 ;;   :ensure t)
 
-(use-package dslide
-  :ensure t
-  :config
-  (setq dslide-breadcrumb-separator " > ")
-  (when (not (package-installed-p 'master-of-ceremonies))
-    (package-vc-install
-     '(master-of-ceremonies
-       :url "https://github.com/positron-solutions/master-of-ceremonies.git")))
-  (require 'master-of-ceremonies)
-  (require 'dslide)
-  ;; (add-hook 'dslide-start-hook (lambda ()
-  ;;                                (mc-hide-cursor-mode t)
-  ;;                                (text-scale-adjust 2)))
-  )
+;; disabled
+;; (use-package dslide
+;;   :ensure t
+;;   :config
+;;   (setq dslide-breadcrumb-separator " > "))
+;;
+;; (use-package master-of-ceremonies
+;;   :after dslide
+;;   :vc (:url "https://github.com/positron-solutions/master-of-ceremonies"
+;;        :rev :newest))
 
 ;; org-babel
 (org-babel-do-load-languages 'org-babel-load-languages '((shell . t)

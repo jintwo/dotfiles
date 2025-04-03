@@ -9,9 +9,6 @@
   :config
   (pyvenv-mode 1))
 
-(use-package python-mls
-  :hook (inferior-python-mode . python-mls-mode))
-
 (use-package jupyter
   :defer t)
 
@@ -25,11 +22,7 @@
 
 (setq python-shell-interpreter "uv"
       python-shell-interpreter-args "run python -i"
-      ;; python-shell-interpreter "ipython"
-      ;; python-shell-interpreter-args "--simple-prompt"
       python-shell-prompt-detect-failure-warning nil
-      ;; python-shell-completion-native-disabled-interpreters '("ipython" "python3" "python")
-      python-shell-completion-native-enable nil
       python-indent-offset 4)
 
 (use-package flymake-ruff
