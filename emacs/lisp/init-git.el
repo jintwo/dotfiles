@@ -3,6 +3,8 @@
 ;;; Code:
 (use-package magit
   :defer t
+  :bind (:map magit-mode-map (("C-c C-f" . magit-pull-from-upstream)
+                              ("C-c C-p" . magit-push-current-to-upstream)))
   :custom
   (magit-define-global-key-bindings 'recommended)
   (magit-refresh-status-buffer nil)

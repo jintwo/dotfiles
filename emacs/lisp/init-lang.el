@@ -24,7 +24,10 @@
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (setq xref-show-definitions-function #'xref-show-definitions-completing-read
         dumb-jump-prefer-searcher 'rg
-        dumb-jump-selector 'completing-read))
+        dumb-jump-force-searcher 'rg
+        dumb-jump-rg-search-args "--pcre2 --hidden"
+        dumb-jump-selector 'completing-read
+        dumb-jump-default-project "~"))
 
 (use-package eros
   :ensure t
@@ -33,33 +36,30 @@
 
 ;; tree sitter stuff ;)
 (setq treesit-language-source-alist
-   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-     (css "https://github.com/tree-sitter/tree-sitter-css")
-     ;; (clojure "https://github.com/sogaiu/tree-sitter-clojure")
-     ;; (commonlisp "https://github.com/theHamsta/tree-sitter-commonlisp")
-     (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
-     (cmake "https://github.com/uyha/tree-sitter-cmake")
-     ;; (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-     ;; (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
-     (go "https://github.com/tree-sitter/tree-sitter-go")
-     ;; (html "https://github.com/tree-sitter/tree-sitter-html")
-     (java "https://github.com/tree-sitter/tree-sitter-java")
-     (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
-     (json "https://github.com/tree-sitter/tree-sitter-json")
-     ;; (julia "https://github.com/tree-sitter/tree-sitter-julia")
-     ;; (lua "https://github.com/Azganoth/tree-sitter-lua")
-     ;; (make "https://github.com/alemuller/tree-sitter-make")
-     ;; (markdown "https://github.com/ikatyang/tree-sitter-markdown")
-     ;; (protobuf "https://github.com/mitchellh/tree-sitter-proto")
-     (python "https://github.com/tree-sitter/tree-sitter-python")
-     (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
-     (rust "https://github.com/tree-sitter/tree-sitter-rust")
-     (toml "https://github.com/tree-sitter/tree-sitter-toml")
-     (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-     (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-     (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-     (zig "https://github.com/maxxnino/tree-sitter-zig")
-     ))
+      '((bash . ("https://github.com/tree-sitter/tree-sitter-bash"))
+        (css . ("https://github.com/tree-sitter/tree-sitter-css"))
+        (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp"))
+        (cmake . ("https://github.com/uyha/tree-sitter-cmake"))
+        (go . ("https://github.com/tree-sitter/tree-sitter-go"))
+        (html . ("https://github.com/tree-sitter/tree-sitter-html"))
+        (java . ("https://github.com/tree-sitter/tree-sitter-java"))
+        (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
+        (json . ("https://github.com/tree-sitter/tree-sitter-json"))
+
+        ;; (julia . ("https://github.com/tree-sitter/tree-sitter-julia"))
+        ;; (lua . ("https://github.com/Azganoth/tree-sitter-lua"))
+        ;; (make . ("https://github.com/alemuller/tree-sitter-make"))
+        ;; (markdown . ("https://github.com/ikatyang/tree-sitter-markdown"))
+        ;; (protobuf . ("https://github.com/mitchellh/tree-sitter-proto"))
+
+        (python . ("https://github.com/tree-sitter/tree-sitter-python"))
+        (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
+        (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
+        (toml . ("https://github.com/tree-sitter/tree-sitter-toml"))
+        (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript master" "tsx/src"))
+        (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
+        (yaml . ("https://github.com/ikatyang/tree-sitter-yaml"))
+        (zig . ("https://github.com/maxxnino/tree-sitter-zig"))))
 
 (setq major-mode-remap-alist
       '((bash-mode . bash-ts-mode)
@@ -76,7 +76,6 @@
         (java-mode . java-ts-mode)
         (js2-mode . js-ts-mode)
         (js-json-mode . json-ts-mode)
-        (json-mode . json-ts-mode)
         ;; (julia-mode . julia-ts-mode)
         ;; (lua-mode . lua-ts-mode)
         ;; (makefile-mode . makefile-ts-mode)
@@ -87,8 +86,6 @@
         ;; (rust-mode . rust-ts-mode)
         (conf-toml-mode . toml-ts-mode)
         (typescript-mode . typescript-ts-mode)
-        (yaml-mode . yaml-ts-mode)
-        ;; (zig-mode . zig-ts-mode)
         ))
 
 ;; TODO: schedule grammars update
@@ -120,27 +117,21 @@
 (require 'r-config)
 
 ;; conf/markup
-;; (use-package jsonian
-;;   :ensure nil
-;;   :after so-long
-;;   :custom
-;;   (jsonian-no-so-long-mode))
 
 (defun j2/init-json-mode ()
-  (setq js-indent-level 2)
   (setq indent-tabs-mode nil)
   (setq json-encoding-default-indentation "  "))
 
-(use-package json-mode
+(use-package json-ts-mode
   :mode (rx ".json" eos)
-  :hook ((json-mode json-ts-mode) . j2/init-json-mode))
+  :hook (json-ts-mode . j2/init-json-mode))
 
 (defun j2/init-yaml-mode ()
   (display-line-numbers-mode t))
 
-(use-package yaml-mode
-  :mode (rx ".ya?ml" eos)
-  :hook ((yaml-mode yaml-ts-mode) . j2/init-yaml-mode))
+(use-package yaml-ts-mode
+  :mode (rx ".(yml|yaml)" eos)
+  :hook (yaml-ts-mode . j2/init-yaml-mode))
 
 (use-package markdown-mode
   :mode (rx ".(text|markdown|md)" eos))
