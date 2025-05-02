@@ -13,6 +13,13 @@
 (use-package git-modes
   :defer t)
 
+(use-package bufferfile
+  :ensure t
+  :vc (:url "https://github.com/jamescherti/bufferfile.el"
+       :rev :newest)
+  :config
+  (setq bufferfile-use-vc t))
+
 (setq dired-vc-rename-file t)
 
 ;; stop asking about symlinks

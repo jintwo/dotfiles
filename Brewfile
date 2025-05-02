@@ -200,4 +200,3 @@ cask "r"
 cask "rstudio"
 
 cask "rar"
-mas "Be Focused Pro: Pomodoro Timer", id: 961632517

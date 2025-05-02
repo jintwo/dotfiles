@@ -23,7 +23,9 @@
 (setq python-shell-interpreter "uv"
       python-shell-interpreter-args "run python -i"
       python-shell-prompt-detect-failure-warning nil
-      python-indent-offset 4)
+      python-indent-offset 4
+      python-interpreter "uv"
+      python-interpreter-args "run python")
 
 (use-package flymake-ruff
   :hook ((python-mode python-ts-mode) . flymake-ruff-load))

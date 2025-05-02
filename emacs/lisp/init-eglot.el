@@ -26,5 +26,12 @@
   (when (project-current)
     (eglot-ensure)))
 
+(use-package eglot-booster
+  :after eglot
+  :ensure t
+  :vc (:url "https://github.com/jdtsmith/eglot-booster"
+       :rev :newest)
+  :config (eglot-booster-mode))
+
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

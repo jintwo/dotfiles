@@ -53,8 +53,16 @@
     (activities-new (project-name project))
     (dired (project-root project))))
 
+(defun j2/project-override (dir)
+  (let ((override (locate-dominating-file dir ".project.el")))
+    (if override
+        (cons 'vc override)
+      nil)))
+
 ;; project
 (use-package project
+  :config
+  (add-hook 'project-find-functions #'j2/project-override)
   :custom
   (project-switch-commands '((project-find-file "Find file")
                              (consult-ripgrep "Ripgrep" ?r)

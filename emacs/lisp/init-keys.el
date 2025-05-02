@@ -47,6 +47,7 @@
 (keymap-global-set "C-c k" #'org-insert-link)
 (keymap-global-set "C-c t" #'j2/timer)
 (keymap-global-set "C-c n" #'remember-notes)
+(define-key org-mode-map (kbd "C-c C-x M-l") #'j2/org-open-linear-link)
 
 (provide 'init-keys)
 ;;; init-keys.el ends here

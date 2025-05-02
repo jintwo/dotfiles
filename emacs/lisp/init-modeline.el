@@ -29,7 +29,12 @@
 
 (put 'j2/modeline-project 'risky-local-variable t)
 
-;;  buffer
+;; buffer
+;; TODO:
+;; 1. reduce-head -> start of path shortened
+;; 2. reduce-tail -> end of path shortened
+;; 3. reduce-fit -> should fit in length
+
 (defun --file-name-short ()
   (if-let ((project (project-current)))
       (let* ((project-dir (project-root project))

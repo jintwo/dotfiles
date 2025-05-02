@@ -189,5 +189,17 @@ Use the filename relative to the current VC root directory."
         remember-notes-initial-major-mode 'org-mode
         remember-in-new-frame nil))
 
+(use-package vlf
+  :ensure t
+  :config
+  (require 'vlf-setup))
+
+;; timestamp (disabled but can be useful)
+;; (setq time-stamp-active t          ; Do enable time-stamps.
+;;       time-stamp-line-limit 10     ; Check first 10 buffer lines for Time-stamp: <>
+;;       time-stamp-format "Last changed %Y-%02m-%02d %02H:%02M:%02S by %u")
+
+;; (add-hook 'write-file-hooks 'time-stamp) ; Update when saving.
+
 (provide 'init-editor)
 ;;; init-editor.el ends here

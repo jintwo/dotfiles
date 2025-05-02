@@ -56,10 +56,11 @@
         (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
         (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
         (toml . ("https://github.com/tree-sitter/tree-sitter-toml"))
-        (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript master" "tsx/src"))
+        (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
         (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
         (yaml . ("https://github.com/ikatyang/tree-sitter-yaml"))
-        (zig . ("https://github.com/maxxnino/tree-sitter-zig"))))
+        (zig . ("https://github.com/maxxnino/tree-sitter-zig"))
+        (typst . ("https://github.com/uben0/tree-sitter-typst"))))
 
 (setq major-mode-remap-alist
       '((bash-mode . bash-ts-mode)
@@ -178,6 +179,10 @@
   :ensure nil
   :init
   (add-hook 'completion-at-point-functions #'elisp-completion-at-point))
+
+(use-package typst-ts-mode
+  :ensure t
+  :mode (rx ".typ" eos))
 
 (provide 'init-lang)
 ;;; init-lang.el ends here
