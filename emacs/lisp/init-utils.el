@@ -104,11 +104,15 @@
   ;; handle dired shell command: open cwd in dired
   (push '("dired" . (lambda (d) (dired d))) eat-message-handler-alist))
 
-(defun j2/eat-project-below (&optional arg)
-  (interactive "P")
-  (let ((w (split-window-below)))
-    (select-window w)
-    (eat-project arg)))
+
+;; display eat termnal in bottom window
+(add-to-list 'display-buffer-alist
+             `(,(rx "-eat*")
+               (display-buffer-at-bottom
+                display-buffer-in-side-window)
+               (window-height . 0.3)
+               (side . bottom)
+               (slot . -6)))
 
 (use-package ediff
   :ensure nil

@@ -142,7 +142,7 @@
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
         aw-dispatch-always t
         aw-dispatch-alist
-        '((?0 aw-delete-window "Delete Window")
+        '((?0 (lambda (window) (aw-delete-window window t)) "Delete Window")
           (?m aw-swap-window "Swap Windows")
           (?M aw-move-window "Move Window")
           (?c aw-copy-window "Copy Window")

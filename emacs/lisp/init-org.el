@@ -232,6 +232,8 @@
                                                          (python . t)
                                                          (plantuml . t)))
 
+(setq org-babel-python-command "/opt/homebrew/bin/uv run python")
+
 ;; following part stolen from https://isamert.net/2022/01/04/dealing-with-apis-jsons-and-databases-in-org-mode.html
 (defun org-babel-execute:json (body params)
   (let ((jq (cdr (assoc :jq params)))
