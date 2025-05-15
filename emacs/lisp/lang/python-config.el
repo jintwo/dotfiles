@@ -31,7 +31,7 @@
   :hook ((python-mode python-ts-mode) . flymake-ruff-load))
 
 (use-package flymake-mypy
-  :load-path "./"
+  :load-path "lisp/lang/"
   :hook ((python-mode python-ts-mode) . flymake-mypy-load))
 
 (provide 'python-config)

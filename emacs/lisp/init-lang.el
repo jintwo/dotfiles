@@ -131,7 +131,7 @@
   (display-line-numbers-mode t))
 
 (use-package yaml-ts-mode
-  :mode (rx ".(yml|yaml)" eos)
+  :mode (rx ".ya?ml" eos)
   :hook (yaml-ts-mode . j2/init-yaml-mode))
 
 (use-package markdown-mode
