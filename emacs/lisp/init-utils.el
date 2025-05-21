@@ -101,18 +101,18 @@
   (eat-update-semi-char-mode-map)
   (eat-reload)
 
-  ;; handle dired shell command: open cwd in dired
-  (push '("dired" . (lambda (d) (dired d))) eat-message-handler-alist))
-
+  ;; handle dired shell
+  (setq eat-message-handler-alist '(("dired" . (lambda (d) (dired d))) ;; open cwd in dired
+                                    ("magit" . (lambda (d) (magit-status d nil)))))) ;; open cwd in magit
 
 ;; display eat termnal in bottom window
 (add-to-list 'display-buffer-alist
              `(,(rx "-eat*")
-               (display-buffer-at-bottom
+               (display-buffer-reuse-mode-window
+                display-buffer-at-bottom
                 display-buffer-in-side-window)
                (window-height . 0.3)
-               (side . bottom)
-               (slot . -6)))
+               (side . bottom)))
 
 (use-package ediff
   :ensure nil

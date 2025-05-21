@@ -157,6 +157,10 @@ function dired {
     _eat_msg dired $PWD
 }
 
+function magit {
+    _eat_msg magit $PWD
+}
+
 # linux stuff
 export QT_QPA_PLATFORMTHEME=qt6ct
 

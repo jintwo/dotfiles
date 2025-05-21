@@ -22,6 +22,7 @@
          ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
          ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
          ("C-x C-r" . consult-recent-file)           ;; j2
+         ("C-c C-a" . consult-org-agenda)            ;; j2
          ;; Custom M-# bindings for fast register access
          ("M-#" . consult-register-load)
          ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)

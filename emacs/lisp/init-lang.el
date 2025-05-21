@@ -131,11 +131,11 @@
   (display-line-numbers-mode t))
 
 (use-package yaml-ts-mode
-  :mode (rx ".ya?ml" eos)
+  :mode (rx ".y" (0+ "a") "ml" eos)
   :hook (yaml-ts-mode . j2/init-yaml-mode))
 
 (use-package markdown-mode
-  :mode (rx ".(text|markdown|md)" eos))
+  :mode (rx "." (| "text" "markdown" "md") eos))
 
 (use-package protobuf-mode
   :mode (rx ".proto" eos))
