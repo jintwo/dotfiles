@@ -159,6 +159,9 @@
           (?? aw-show-dispatch-help))
         aw-minibuffer-flag t
         aw-ignore-current nil)
+  (custom-set-faces
+   '(aw-leading-char-face
+     ((t (:foreground "red" :height 2.0)))))
   :bind (("M-o" . ace-window)))
 
 (winner-mode t)
