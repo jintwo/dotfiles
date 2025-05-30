@@ -63,26 +63,6 @@
 
 (require 'transient)
 
-(defun j2/timer-start ()
-  (interactive)
-  (org-timer-start))
-
-(defun j2/timer-stop (task-name)
-  (interactive "sTask name: ")
-  (with-current-buffer (find-file-noselect (f-join org-directory org-timer-file))
-    (org-datetree-find-date-create (org-date-to-gregorian (format-time-string "%Y-%m-%d")))
-    (org-end-of-subtree t t)
-    (org-timer-item)
-    (insert task-name)
-    (org-timer-stop)
-    (save-buffer)))
-
-(transient-define-prefix j2/timer ()
-  "Prefix to work with org-timer"
-  ["Main"
-   ("s" "Start" j2/timer-start)
-   ("p" "Stop" j2/timer-stop)])
-
 (transient-define-prefix j2/org-jump ()
   "Prefix to jump to org doc not included in roam"
   ["Main"
@@ -101,11 +81,7 @@
    ("n" "Notes"
     (lambda ()
       (interactive)
-      (find-file (f-join org-directory org-notes-index-file))))
-   ("t" "Timers"
-    (lambda ()
-      (interactive)
-      (find-file (f-join org-directory org-timer-file))))]
+      (find-file (f-join org-directory org-notes-index-file))))]
   ["Job"
    ("j" "Tasks"
     (lambda ()
