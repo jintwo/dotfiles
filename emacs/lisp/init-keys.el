@@ -17,6 +17,8 @@
 (keymap-global-set "C-M-s" #'isearch-forward)
 (keymap-global-set "C-M-r" #'isearch-backward)
 
+(keymap-global-set "M-G" #'avy-goto-line)
+
 ;; completions
 (keymap-global-set "C-<tab>" #'completion-at-point)
 
@@ -31,7 +33,7 @@
   (keymap-global-set "S-<tab>" #'treesit-fold-toggle))
 
 ;; utils
-(keymap-global-set "C-c l" #'j2/current-location)
+;; (keymap-global-set "C-c l" #'j2/current-location)
 (keymap-global-set "s-k" #'kill-current-buffer)
 
 ;; project

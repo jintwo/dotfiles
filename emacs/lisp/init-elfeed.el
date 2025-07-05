@@ -28,11 +28,15 @@
 ;;     (kill-buffer buf)
 ;;     (delete-window window)))
 
+;; DONE: add save YT link to *yt-links* buffer to download them later
+;; TODO: add yt-dlp path VAR and store batch there
+
 (use-package elfeed-tube
   :after elfeed
   :config
   (elfeed-tube-setup)
-  (bind-key "d" #'j2/elfeed-tube-download-entry 'elfeed-search-mode-map))
+  (bind-key "d" #'j2/elfeed-tube-download-entry 'elfeed-search-mode-map)
+  (bind-key "D" #'j2/elfeed-tube-add-to-batch 'elfeed-search-mode-map))
 
 (use-package elfeed-tube-mpv
   :ensure t
@@ -51,6 +55,15 @@
   (interactive)
   (let ((url (thing-at-point 'url)))
     (elfeed-tube-add-feeds url)))
+
+(defun j2/elfeed-tube-add-to-batch ()
+  (interactive)
+  (elfeed-search-untag-all-unread)
+  (save-window-excursion
+    (let ((url (elfeed-entry-link (car (elfeed-search-selected)))))
+      (switch-to-buffer-other-window "*yt-batch*")
+      (end-of-buffer)
+      (insert url "\n"))))
 
 (defun j2/elfeed-tube-download-entry ()
   (interactive)

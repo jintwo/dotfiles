@@ -222,9 +222,6 @@ The symbol at point is added to the future history."
   :init
   (savehist-mode))
 
-;; corfu disabled for now
-;; (require 'init-corfu)
-
 (use-package completion-preview
   :config
   (global-completion-preview-mode)
@@ -236,6 +233,8 @@ The symbol at point is added to the future history."
         completions-header-format nil
         completions-max-height 20
         completions-sort 'historical))
+
+(require 'init-corfu)
 
 (provide 'init-completion)
 ;;; init-completion.el ends here

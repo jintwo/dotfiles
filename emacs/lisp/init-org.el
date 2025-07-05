@@ -30,9 +30,11 @@
   (setq org-log-done t
         org-src-preserve-indentation t
         org-startup-indented t
+        org-goto-interface 'outline-path-completion
         org-outline-path-complete-in-steps nil
         org-image-actual-width nil
         org-insert-heading-respect-content t
+        org-imenu-depth 8
 
         org-babel-load-languages '((shell . t)
                                    (python . t)

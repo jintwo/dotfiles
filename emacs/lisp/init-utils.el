@@ -68,7 +68,7 @@
                              (consult-ripgrep "Ripgrep" ?r)
                              (project-dired "Dired")
                              (j2/magit-current-project "Magit" ?m)
-                             (j2/eat-project-below "Eat" ?e)
+                             (eat-project "Eat" ?e)
                              (j2/new-activity-for-current-project "New activity" ?a))))
 
 (use-package reveal-in-folder

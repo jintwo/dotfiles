@@ -3,18 +3,13 @@
 ;;; Code:
 (use-package corfu
   :ensure t
+
   ;; TAB-and-Go customizations
   :custom
   (corfu-cycle t)             ;; Enable cycling for `corfu-next/previous'
-  (corfu-preselect-first nil) ;; Disable candidate preselection
-  (corfu-count 7)
-  (corfu-min-width 20)
-  (corfu-preview-current 'insert)
-  (corfu-scroll-margin 1)
-  (corfu-echo-documentation t)
-  (corfu-bar-width 1)
-  (corfu-right-margin-width 0.5)
-  (corfu-left-margin-width 0.5)
+  (corfu-preselect 'prompt) ;; Always preselect the prompt
+  (corfu-echo-mode t)
+  (corfu-popupinfo-mode t)
 
   ;; Use TAB for cycling, default is `corfu-complete'.
   :bind
@@ -23,17 +18,18 @@
         ("TAB" . corfu-next)
         ([tab] . corfu-next)
         ("S-TAB" . corfu-previous)
-        ([backtab] . corfu-previous)
-        ([remap completion-at-point] . corfu-complete)
-        ("M-q" . corfu-quick-jump))
+        ([backtab] . corfu-previous))
 
   :config
   (defun corfu-move-to-minibuffer ()
     (interactive)
-    (let ((completion-extra-properties corfu--extra)
-          completion-cycle-threshold completion-cycling)
-      (apply #'consult-completion-in-region completion-in-region--data)))
-  (define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
+    (pcase completion-in-region--data
+      (`(,beg ,end ,table ,pred ,extras)
+       (let ((completion-extra-properties extras)
+             completion-cycle-threshold completion-cycling)
+         (consult-completion-in-region beg end table pred)))))
+  (keymap-set corfu-map "M-m" #'corfu-move-to-minibuffer)
+  (add-to-list 'corfu-continue-commands #'corfu-move-to-minibuffer)
 
   :init
   (global-corfu-mode))
@@ -42,13 +38,6 @@
   :ensure t
   :config
   (corfu-terminal-mode +1))
-
-(use-package corfu-candidate-overlay
-  :ensure t
-  :config
-  (corfu-candidate-overlay-mode +1)
-  (global-set-key (kbd "C-<tab>") 'completion-at-point)
-  (global-set-key (kbd "C-S-<tab>") 'corfu-candidate-overlay-complete-at-point))
 
 (use-package kind-icon
   :ensure t
@@ -59,4 +48,6 @@
   (kind-icon-default-face 'corfu-default)
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+(provide 'init-corfu)
 ;;; init-corfu.el ends here

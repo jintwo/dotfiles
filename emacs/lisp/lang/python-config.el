@@ -34,5 +34,7 @@
   :load-path "lisp/lang/"
   :hook ((python-mode python-ts-mode) . flymake-mypy-load))
 
+;; (use-package uv-mode)
+
 (provide 'python-config)
 ;;; python-config.el ends here

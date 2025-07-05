@@ -201,5 +201,8 @@ Use the filename relative to the current VC root directory."
 
 ;; (add-hook 'write-file-hooks 'time-stamp) ; Update when saving.
 
+;; narrowing (i found it quite useful)
+(put 'narrow-to-region 'disabled nil)
+
 (provide 'init-editor)
 ;;; init-editor.el ends here
