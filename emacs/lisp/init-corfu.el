@@ -18,7 +18,10 @@
         ("TAB" . corfu-next)
         ([tab] . corfu-next)
         ("S-TAB" . corfu-previous)
-        ([backtab] . corfu-previous))
+        ([backtab] . corfu-previous)
+        ("M-q" . corfu-quick-complete)
+        ("C-q" . corfu-quick-jump))
+
 
   :config
   (defun corfu-move-to-minibuffer ()
