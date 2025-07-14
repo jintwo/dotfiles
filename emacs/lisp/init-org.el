@@ -83,7 +83,11 @@
    ("n" "Notes"
     (lambda ()
       (interactive)
-      (find-file (f-join org-directory org-notes-index-file))))]
+      (find-file (f-join org-directory org-notes-index-file))))
+   ("r" "Ritual"
+    (lambda ()
+      (interactive)
+      (find-file (org-roam-node-file (org-roam-node-from-title-or-alias "ritual")))))]
   ["Job"
    ("j" "Tasks"
     (lambda ()
