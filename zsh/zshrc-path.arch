@@ -1,0 +1,38 @@
+# -*- mode: sh -*-
+function append-path {
+    export PATH="$PATH:$1"
+}
+
+function prepend-path {
+    export PATH="$1:$PATH"
+}
+
+export PATH=""
+
+# kinda system paths
+append-path "/usr/local/sbin"
+append-path "/usr/local/bin"
+append-path "/usr/bin"
+append-path "/usr/bin/site_perl"
+append-path "/usr/bin/vendor_perl"
+append-path "/usr/bin/core_perl"
+
+# custom tools
+append-path "$HOME/.tools/bin"
+
+# installed tools
+# lua
+[ -d "$HOME/.luarocks" ] && append-path "$HOME/.luarocks/bin"
+
+# golang
+export GOPATH="$HOME/Documents/dev/golang/go"
+[ -d "$GOPATH" ] && append-path "$GOPATH/bin"
+
+# rust
+[ -d "$HOME/.cargo" ] && append-path "$HOME/.cargo/bin"
+
+# ocaml
+[ -d "$HOME/.opam" ] && append-path "$HOME/.opam/default/bin"
+
+# haskell
+# [-d "$HOME/.cabal" ] append-path "$HOME/.cabal/bin"
