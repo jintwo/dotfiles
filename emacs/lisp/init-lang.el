@@ -186,5 +186,8 @@
   :ensure t
   :mode (rx ".typ" eos))
 
+(use-package mhtml-mode
+  :hook ((mhtml-mode . (lambda () (local-unset-key (kbd "M-o"))))))
+
 (provide 'init-lang)
 ;;; init-lang.el ends here

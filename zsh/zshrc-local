@@ -8,8 +8,8 @@ if [[ $OSTYPE == darwin* ]]; then
     if [ -d "/opt/homebrew" ]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
         alias b="brew"
-        alias bo="brew outdated"
-        alias bup="brew update"
+        alias bod="brew outdated"
+        alias bud="brew update"
         alias bug="brew upgrade"
     fi
 fi
@@ -166,6 +166,11 @@ function magit {
 
 # linux stuff
 export QT_QPA_PLATFORMTHEME=qt6ct
+
+# path
+if [ -f ~/.zshrc-path ]; then
+    source ~/.zshrc-path
+fi
 
 # private
 if [ -f ~/.zshrc-private ]; then

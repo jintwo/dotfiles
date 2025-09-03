@@ -21,8 +21,11 @@
     (add-hook 'tuareg-mode-hook 'merlin-mode t)
     (add-hook 'caml-mode-hook 'merlin-mode t)
     ;; Use opam switch to lookup ocamlmerlin binary
-    (setq merlin-command "~/.opam/default/bin/ocamlmerlin")
-    (require 'ocp-indent)))
+    (setq merlin-command 'opam)
+    ;; To easily change opam switches within a given Emacs session, you can
+    ;; install the minor mode https://github.com/ProofGeneral/opam-switch-mode
+    ;; and use one of its "OPSW" menus.
+    ))
 
 (put 'tuareg-mode 'eglot-language-id "ocaml")
 (put 'tuareg-opam-mode 'eglot-language-id "ocaml")

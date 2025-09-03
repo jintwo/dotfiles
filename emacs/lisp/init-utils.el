@@ -106,13 +106,14 @@
                                     ("magit" . (lambda (d) (magit-status d nil)))))) ;; open cwd in magit
 
 ;; display eat termnal in bottom window
-(add-to-list 'display-buffer-alist
-             `(,(rx "-eat*")
-               (display-buffer-reuse-mode-window
-                display-buffer-at-bottom
-                display-buffer-in-side-window)
-               (window-height . 0.3)
-               (side . bottom)))
+;; TODO: fix following params
+;; (add-to-list 'display-buffer-alist
+;;              `(,(rx "-eat*")
+;;                (display-buffer-reuse-mode-window
+;;                 display-buffer-at-bottom
+;;                 display-buffer-in-side-window)
+;;                (window-height . 0.3)
+;;                (side . bottom)))
 
 (use-package ediff
   :ensure nil

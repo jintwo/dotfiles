@@ -3,6 +3,7 @@
 ;;; Code:
 (require 'f)
 (require 's)
+(require 'verb)
 
 (use-package org
   :ensure t
@@ -11,23 +12,23 @@
   (require 'org-agenda)
   (require 'org-id)
 
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
+
   (setq org-directory "~/Sync/Org"
-        org-inbox-file "inbox.org"
-        org-index-file "index.org"
-        org-calendar-file "calendar.org"
-        org-job-index-file "job/job.org"
-        org-notes-index-file "notes/notes.org"
+        org-notes-index-file "notes/notes.org" ;; TODO: move to denote?
         org-timer-file "timer.org")
 
   (setq org-agenda-files
         (append
          (f-files org-directory (lambda (f) (s-ends-with? "org" f))) ;; root
-         (list (f-join org-directory org-job-index-file)) ;; job/index
          (f-files (f-join org-directory "roam") (lambda (f) (s-ends-with? "org" f))))) ;; all roam stuff
 
   (setq org-refile-targets '((org-agenda-files :maxlevel . 6)))
 
   (setq org-log-done t
+        org-log-into-drawer t
+        org-log-redeadline 'time
+        org-log-reschedule 'time
         org-src-preserve-indentation t
         org-startup-indented t
         org-goto-interface 'outline-path-completion
@@ -36,69 +37,17 @@
         org-insert-heading-respect-content t
         org-imenu-depth 8
 
-        org-babel-load-languages '((shell . t)
-                                   (python . t)
-                                   (emacs-lisp . t))
-
         org-todo-keywords '((sequence "TODO(t)" "WIP(w!)" "WAIT(g!)" "|" "DONE(d!)" "CANCEL(c!)"))
 
         org-highest-priority ?A
-        org-lowest-priority ?C
-        org-default-priority ?A
+        org-lowest-priority ?F
+        org-default-priority ?E
 
-        org-refile-use-outline-path 'file)
+        org-refile-use-outline-path 'file
 
-  ;; TODO split into main/job
-  ;; TODO add job/task capture template with backlink
-  (setq org-capture-templates `(("h" "TODO.home" entry (file+headline ,org-inbox-file "Tasks")
-                                 "** TODO %?\n")
-                                ("l" "Link" item (file+headline ,org-inbox-file "Links")
-                                 "- %?\n")
-                                ("j" "TODO.job" entry (file+headline ,org-job-index-file "Inbox")
-                                 "** TODO %?\n")
-                                ("n" "Note" entry (file+datetree ,org-notes-index-file)
-                                 "** %?\nEntered on %U\n"))))
-
-(customize-set-variable 'org-agenda-remove-tags t)
-(customize-set-variable 'org-agenda-prefix-format "%-24c %?-14t% s")
-(customize-set-variable 'org-agenda-todo-keyword-format "%-10s")
-
-(require 'transient)
-
-(transient-define-prefix j2/org-jump ()
-  "Prefix to jump to org doc not included in roam"
-  ["Main"
-   ("i" "Index"
-    (lambda ()
-      (interactive)
-      (find-file (f-join org-directory org-index-file))))
-   ("b" "INBOX"
-    (lambda ()
-      (interactive)
-      (find-file (f-join org-directory org-inbox-file))))
-   ("c" "Calendar"
-    (lambda ()
-      (interactive)
-      (find-file (f-join org-directory org-calendar-file))))
-   ("n" "Notes"
-    (lambda ()
-      (interactive)
-      (find-file (f-join org-directory org-notes-index-file))))
-   ("r" "Ritual"
-    (lambda ()
-      (interactive)
-      (find-file (org-roam-node-file (org-roam-node-from-title-or-alias "ritual")))))]
-  ["Job"
-   ("j" "Tasks"
-    (lambda ()
-      (interactive)
-      (find-file (f-join org-directory org-job-index-file))))])
-
-;; setup calendar
-(require 'gnus-icalendar)
-(setq gnus-icalendar-org-capture-file (f-join org-directory org-calendar-file)
-      gnus-icalendar-org-capture-headline '("Calendar"))
-(gnus-icalendar-org-setup)
+	org-agenda-remove-tags t
+	org-agenda-prefix-format "%-24c %?-14t% s"
+	org-agenda-todo-keyword-format "%-10s"))
 
 (defun j2/org-set-checkbox ()
   "Add checkbox inplace or before selected text."
@@ -119,7 +68,6 @@
   :ensure t
   :custom
   (org-roam-directory (f-join org-directory "roam"))
-  (org-roam-root-file "index.org")
   (org-roam-completion-everywhere t)
   :bind (:map org-mode-map
               ("C-c r l" . org-roam-buffer-toggle)
@@ -136,13 +84,28 @@
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
-  (require 'org-roam-protocol))
+  (require 'org-roam-protocol)
 
-;; (defun j2/org-roam-update-agenda-files (&rest _)
-;;   (let ((node-files (org-roam-list-files)))
-;;     (setq org-agenda-files (append base-org-agenda-files node-files))))
+  (defun find-roam-file (title)
+    (require 'org-roam)
+    (org-roam-node-file (org-roam-node-from-title-or-alias title)))
 
-;; (advice-add 'org-agenda :before #'j2/org-roam-update-agenda-files)
+  ;; setup calendar
+  (require 'gnus-icalendar)
+  (setq gnus-icalendar-org-capture-file (find-roam-file "calendar")
+	gnus-icalendar-org-capture-headline '("Calendar"))
+  (gnus-icalendar-org-setup)
+
+  ;; TODO split into main/job
+  ;; TODO add job/task capture template with backlink
+  (setq org-capture-templates `(("h" "TODO.home" entry (file+headline ,(find-roam-file "inbox") "Tasks")
+				 "** TODO %?\n")
+				("l" "Link" item (file+headline ,(find-roam-file "inbox") "Links")
+				 "- %?\n")
+				("j" "TODO.job" entry (file+headline ,(find-roam-file "job") "Inbox")
+				 "** TODO %?\n")
+				("n" "Note" entry (file+datetree ,org-notes-index-file)
+				 "** %?\nEntered on %U\n"))))
 
 ;; utils
 ;; stolen from: https://localauthor.github.io/posts/popup-frames/
@@ -179,9 +142,6 @@
 (popup-frame-define org-capture "org-capture")
 (add-hook 'org-capture-after-finalize-hook #'popup-frame-delete)
 
-;; org-timer
-(add-hook 'org-timer-done-hook (lambda () (message "timer done!")))
-
 ;; export articles web->org
 (use-package org-web-tools
   :ensure t)
@@ -210,9 +170,14 @@
 ;;        :rev :newest))
 
 ;; org-babel
+(setq org-babel-load-languages '((shell . t)
+                                 (python . t)
+                                 (emacs-lisp . t)))
+
 (org-babel-do-load-languages 'org-babel-load-languages '((shell . t)
                                                          (python . t)
-                                                         (plantuml . t)))
+                                                         (plantuml . t)
+                                                         (verb . t)))
 
 (setq org-babel-python-command "/opt/homebrew/bin/uv run python")
 

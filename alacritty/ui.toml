@@ -2,11 +2,11 @@
 size = 12
 
 [font.bold]
-family = "Iosevka"
+family = "Iosevka Term"
 style = "Bold"
 
 [font.normal]
-family = "Iosevka"
+family = "Iosevka Term"
 style = "Medium"
 
 [window]

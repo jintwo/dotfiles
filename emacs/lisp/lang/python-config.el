@@ -12,6 +12,9 @@
 (use-package jupyter
   :defer t)
 
+(use-package ein
+  :defer t)
+
 (use-package hy-mode
   :mode (rx ".hy" eos))
 

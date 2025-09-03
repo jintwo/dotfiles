@@ -6,6 +6,11 @@
       mac-option-modifier 'meta
       mac-command-modifier 'super)
 
+(when (eq system-type 'darwin)
+  (keymap-global-unset "s-w")
+  (keymap-global-unset "s-q")
+  (keymap-global-unset "s-h"))
+
 ;; editor
 (keymap-global-set "M-z" #'zap-up-to-char)
 (keymap-global-set "M-f" #'forward-to-word)
@@ -30,7 +35,7 @@
   (keymap-global-set "C-h D" #'devdocs-lookup))
 
 (when (featurep 'treesit-fold)
-  (keymap-global-set "S-<tab>" #'treesit-fold-toggle))
+  (define-key treesit-fold-mode-map (kbd "<backtab>") #'treesit-fold-toggle))
 
 ;; utils
 ;; (keymap-global-set "C-c l" #'j2/current-location)
@@ -41,7 +46,6 @@
   (keymap-global-set "<remap> <project-shell>" #'eat-project))
 
 ;; org (TODO: move it somewhere to init-org.el)
-(keymap-global-set "C-c j" #'j2/org-jump)
 (keymap-global-set "C-c c" #'org-capture)
 (keymap-global-set "C-c a" #'org-agenda)
 (keymap-global-set "C-c f" #'org-roam-node-find)

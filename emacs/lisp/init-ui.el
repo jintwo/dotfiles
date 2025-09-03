@@ -162,7 +162,9 @@
   (custom-set-faces
    '(aw-leading-char-face
      ((t (:foreground "red" :height 2.0)))))
-  :bind (("M-o" . ace-window)))
+  :bind (("M-o" . ace-window)
+         ("s-o" . ace-window)
+         ("C-x o" . ace-window)))
 
 (winner-mode t)
 
