@@ -3,7 +3,9 @@
 ;;; Code:
 (require 'f)
 (require 's)
-(require 'verb)
+
+(use-package verb
+  :ensure t)
 
 (use-package org
   :ensure t

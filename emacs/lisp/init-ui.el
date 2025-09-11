@@ -124,8 +124,8 @@
   (use-package auto-dark
     :ensure t
     :config
-    (setq auto-dark-dark-theme 'nordless-new
-          auto-dark-light-theme 'kaoless-new
+    (setq auto-dark-themes (list '(nordless-new)
+                                 '(kaoless-new))
           auto-dark-polling-interval-seconds 5)
     (auto-dark-mode t)))
 
