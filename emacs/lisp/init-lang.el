@@ -53,6 +53,7 @@
 
         ;; (markdown . ("https://github.com/ikatyang/tree-sitter-markdown"))
         ;; (protobuf . ("https://github.com/mitchellh/tree-sitter-proto"))
+        ;; (r . ("https://github.com/r-lib/tree-sitter-r"))
 
         (python . ("https://github.com/tree-sitter/tree-sitter-python"))
         (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
