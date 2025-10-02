@@ -5,6 +5,7 @@
   :bind (:map prog-mode-map (("C-c e r" . eglot-rename)))
   :hook ((eglot-managed-mode . manually-activate-flymake))
   :config
+  (setq eglot-ignored-server-capabilites '(:inlayHintProvider))
   (add-to-list 'eglot-stay-out-of 'flymake))
 
 (defun manually-activate-flymake ()

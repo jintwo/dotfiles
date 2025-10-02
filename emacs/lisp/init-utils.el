@@ -103,7 +103,10 @@
 
   ;; handle dired shell
   (setq eat-message-handler-alist '(("dired" . (lambda (d) (dired d))) ;; open cwd in dired
-                                    ("magit" . (lambda (d) (magit-status d nil)))))) ;; open cwd in magit
+                                    ("magit" . (lambda (d) (magit-status d nil)))))  ;; open cwd in magit
+
+  (setq eat-term-scrollback-size 1048576)
+  )
 
 ;; display eat termnal in bottom window
 ;; TODO: fix following params

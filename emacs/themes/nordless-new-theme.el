@@ -215,7 +215,8 @@
    `(tab-bar-tab ((t (:background ,bg :foreground ,fg :box (:line-width 3 :color ,bg :style nil)))))
    `(tab-bar-tab-ungrouped ((t (:background ,current-line :foreground ,fg+ :box (:line-width 3 :color ,current-line :style nil)))))
    `(tab-bar-tab-group-inactive ((t (:background ,current-line :foreground ,fg+ :box (:line-width 3 :color ,current-line :style nil)))))
-   `(tab-bar-tab-group-current ((t (:background ,current-line :foreground ,fg :box (:line-width 3 :color ,current-line :style nil)))))))
+   `(tab-bar-tab-group-current ((t (:background ,current-line :foreground ,fg :box (:line-width 3 :color ,current-line :style nil)))))
+   `(eglot-highlight-symbol-face ((t (:weight ultraheavy))))))
 
 (provide-theme 'nordless-new)
 

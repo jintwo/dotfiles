@@ -34,6 +34,12 @@
   :config
   (eros-mode 1))
 
+;; code formatter
+(use-package apheleia
+  :ensure t
+  :config
+  (apheleia-global-mode t))
+
 ;; tree sitter stuff ;)
 (setq treesit-language-source-alist
       '((bash . ("https://github.com/tree-sitter/tree-sitter-bash"))

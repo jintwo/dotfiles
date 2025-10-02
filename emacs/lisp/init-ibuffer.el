@@ -11,8 +11,6 @@
 
 (add-hook 'ibuffer-hook 'ibuffer-set-up-preferred-filters)
 
-(setq-default ibuffer-show-empty-filter-groups nil)
-
 (with-eval-after-load 'ibuffer
   ;; Use human readable Size column instead of original one
   (define-ibuffer-column size-h
@@ -21,14 +19,24 @@
 
 (setq ibuffer-formats
       '((mark modified read-only locked " "
-              (name 22 22 :left :elide)
+              (name 30 30 :left :elide)
               " "
               (size-h 9 -1 :right)
               " "
-              (mode 12 12 :left :elide)
+              (mode 16 16 :left :elide)
               " "
-              project-file-relative)))
-
+              project-file-relative
+              ;; filename-and-process
+              )
+        (mark " "
+              (name 16 -1)
+              " " filename)))
+(setq ibuffer-use-header-line t)
+(setq ibuffer-default-shrink-to-minimum-size nil)
+(setq ibuffer-display-summary nil)
+(setq ibuffer-use-other-window nil)
+(setq ibuffer-show-empty-filter-groups nil)
+(setq ibuffer-title-face 'bold)
 (setq ibuffer-filter-group-name-face 'font-lock-doc-face)
 
 (keymap-global-set "C-x C-b" 'ibuffer)
