@@ -196,5 +196,12 @@
 (use-package mhtml-mode
   :hook ((mhtml-mode . (lambda () (local-unset-key (kbd "M-o"))))))
 
+(use-package flymake
+  :ensure t
+  :pin gnu
+  :config
+  (setq flymake-diagnostic-format-alist
+        '((t . (origin code message)))))
+
 (provide 'init-lang)
 ;;; init-lang.el ends here

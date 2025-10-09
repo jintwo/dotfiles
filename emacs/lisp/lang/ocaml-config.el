@@ -4,7 +4,8 @@
 (use-package tuareg
   :ensure t
   :mode (((rx ".(mll|ml[ip]?|eliomi?)" eos) . tuareg-mode)
-         ((rx ".mly" eos) . tuareg-menhir-mode))
+         ((rx ".mly" eos) . tuareg-menhir-mode)
+         ((rx ".ocamlinit" eos) . tuareg-mode))
   :hook (tuareg-mode . j2/project-eglot-ensure))
 
 (use-package ocaml-eglot
@@ -18,13 +19,18 @@
   :config
   (setq ocaml-eglot-syntax-checker 'flymake))
 
+(use-package dune
+  :ensure t)
+
 (use-package opam-switch-mode
   :ensure t
   :hook
   ((coq-mode tuareg-mode) . opam-switch-mode))
 
-(use-package dune
-  :ensure t)
+(use-package ocp-indent
+  :ensure t
+  :config
+  (add-hook 'ocaml-eglot-hook 'ocp-setup-indent))
 
 (use-package utop
   :ensure t
