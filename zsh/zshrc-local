@@ -161,7 +161,12 @@ function dired {
 }
 
 function magit {
-    _eat_msg magit $PWD
+    local git_root=$(git rev-parse --show-toplevel)
+    if [ $? -eq 0 ]; then
+        _eat_msg magit $git_root
+    else
+        _eat_msg magit $PWD
+    fi
 }
 
 # linux stuff
