@@ -24,8 +24,8 @@
 (defmacro nordless-new-with-color-variables (&rest body)
   (declare (indent 0))
   `(let (,@(mapcar (lambda (cons)
-		     (list (car cons) (cdr cons)))
-		   nordless-new-theme-colors-alist))
+		             (list (car cons) (cdr cons)))
+		           nordless-new-theme-colors-alist))
      ,@body))
 
 (nordless-new-with-color-variables
@@ -106,6 +106,7 @@
    `(org-meta-line ((t (:foreground ,fg+))))
    `(org-document-info-keyword ((t ())))
    `(org-document-info ((t ())))
+   `(org-drawer ((t (:foreground ,docs))))
    `(merlin-type-face ((t (:weight bold :background ,bg+))))
    `(diff-header ((t (:weight bold))))
    `(diff-context ((t ())))

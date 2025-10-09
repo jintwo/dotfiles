@@ -47,9 +47,9 @@
 
         org-refile-use-outline-path 'file
 
-	org-agenda-remove-tags t
-	org-agenda-prefix-format "%-24c %?-14t% s"
-	org-agenda-todo-keyword-format "%-10s"))
+	    org-agenda-remove-tags t
+	    org-agenda-prefix-format "%-24c %?-14t% s"
+	    org-agenda-todo-keyword-format "%-10s"))
 
 (defun j2/org-set-checkbox ()
   "Add checkbox inplace or before selected text."
@@ -95,19 +95,19 @@
   ;; setup calendar
   (require 'gnus-icalendar)
   (setq gnus-icalendar-org-capture-file (find-roam-file "calendar")
-	gnus-icalendar-org-capture-headline '("Calendar"))
+	    gnus-icalendar-org-capture-headline '("Calendar"))
   (gnus-icalendar-org-setup)
 
   ;; TODO split into main/job
   ;; TODO add job/task capture template with backlink
   (setq org-capture-templates `(("h" "TODO.home" entry (file+headline ,(find-roam-file "inbox") "Tasks")
-				 "** TODO %?\n")
-				("l" "Link" item (file+headline ,(find-roam-file "inbox") "Links")
-				 "- %?\n")
-				("j" "TODO.job" entry (file+headline ,(find-roam-file "job") "Inbox")
-				 "** TODO %?\n")
-				("n" "Note" entry (file+datetree ,org-notes-index-file)
-				 "** %?\nEntered on %U\n"))))
+				                 "** TODO %?\n")
+				                ("l" "Link" item (file+headline ,(find-roam-file "inbox") "Links")
+				                 "- %?\n")
+				                ("j" "TODO.job" entry (file+headline ,(find-roam-file "job") "Inbox")
+				                 "** TODO %?\n")
+				                ("n" "Note" entry (file+datetree ,org-notes-index-file)
+				                 "** %?\nEntered on %U\n"))))
 
 ;; utils
 ;; stolen from: https://localauthor.github.io/posts/popup-frames/
