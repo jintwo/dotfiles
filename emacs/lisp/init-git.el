@@ -14,6 +14,9 @@
 (use-package git-modes
   :defer t)
 
+(use-package orgit-forge
+  :ensure t)
+
 (use-package bufferfile
   :ensure t
   :vc (:url "https://github.com/jamescherti/bufferfile.el"
