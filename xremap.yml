@@ -4,46 +4,47 @@ keymap:
       only: org.gnome.Epiphany
     exact_match: true
     remap:
-      Super-a: C-a
-      Super-x: C-x
-      Super-c: C-c
-      Super-v: C-v
-      Super-l: C-l
-      Super-t: C-t
-      Super-w: C-w
-      Super-f: C-f
-      Super-r: C-r
-      Super-Equal: C-Equal
-      Super-Minus: C-Minus
-      Super-0: C-0
+      Super_L-a: Control_L-a
+      Super_L-x: Control_L-x
+      Super_L-c: Control_L-c
+      Super_L-v: Control_L-v
+      Super_L-l: Control_L-l
+      Super_L-t: Control_L-t
+      Super_L-w: Control_L-w
+      Super_L-f: Control_L-f
+      Super_L-r: Control_L-r
+      Super_L-Equal: Control_L-Equal
+      Super_L-Minus: Control_L-Minus
+      Super_L-0: Control_L-0
   - name: Firefox
     application:
       only: firefox
     exact_match: true
     remap:
-      Super-a: C-a
-      Super-x: C-x
-      Super-c: C-c
-      Super-v: C-v
-      Super-l: C-l
-      Super-t: C-t
-      Super-w: C-f4
-      Super-f: C-f
-      Super-r: C-r
-      Super-Equal: C-Equal
-      Super-Minus: C-Minus
-      Super-0: C-0
+      Super_L-a: C-a
+      Super_L-x: C-x
+      Super_L-c: C-c
+      Super_L-v: C-v
+      Super_L-l: C-l
+      Super_L-t: C-t
+      Super_L-w: Control_L-f4
+      Super_L-f: C-f
+      Super_L-r: C-r
+      Super_L-Equal: C-Equal
+      Super_L-Minus: C-Minus
+      Super_L-0: C-0
   - name: Alacritty
     application:
       only: Alacritty
     remap:
-      Super-x: C-Shift-x
-      Super-c: C-Shift-c
-      Super-v: C-Shift-v
+      Super_L-x: C-Shift-x
+      Super_L-c: C-Shift-c
+      Super_L-v: C-Shift-v
   - name: CUA
     application:
       not: emacs
     remap:
-      Super-x: C-x
-      Super-c: C-c
-      Super-v: C-v
+      Super_L-x: C-x
+      Super_L-c: C-c
+      Super_L-v: C-v
+default_mode: default
