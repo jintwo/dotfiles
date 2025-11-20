@@ -6,6 +6,7 @@
   :hook ((eglot-managed-mode . manually-activate-flymake))
   :config
   (setq eglot-ignored-server-capabilites '(:inlayHintProvider))
+  (setq eglot-code-action-indicator "*")
   (add-to-list 'eglot-stay-out-of 'flymake))
 
 (defun manually-activate-flymake ()
@@ -22,10 +23,9 @@
     (eglot-ensure)))
 
 (use-package eglot-booster
-  :after eglot
   :ensure t
-  :vc (:url "https://github.com/jdtsmith/eglot-booster"
-       :rev :newest)
+  :after eglot
+  :vc (:url "https://github.com/jdtsmith/eglot-booster" :rev :newest)
   :config (eglot-booster-mode))
 
 (provide 'init-eglot)

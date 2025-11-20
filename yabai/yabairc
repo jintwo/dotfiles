@@ -7,15 +7,15 @@ sudo yabai --load-sa
 # yabai -m config external_bar all:35:0
 yabai -m config layout float
 
-yabai -m config top_padding    4
-yabai -m config bottom_padding 4
-yabai -m config left_padding   4
-yabai -m config right_padding  4
-yabai -m config window_gap     4
+yabai -m config top_padding    8
+yabai -m config bottom_padding 8
+yabai -m config left_padding   8
+yabai -m config right_padding  8
+yabai -m config window_gap     8
 
 yabai -m config window_placement first_child
 yabai -m config auto_balance off
-yabai -m config split_ratio 0.6
+yabai -m config split_ratio 0.65
 yabai -m config split_type vertical
 yabai -m config window_shadow float
 
@@ -29,7 +29,7 @@ yabai -m config mouse_follows_focus on
 #
 # setup spaces
 #
-for id in $(yabai -m query --spaces | jq '.[].index | select(. > 7)'); do
+for id in $(yabai -m query --spaces | jq '.[].index | select(. > 5)'); do
   yabai -m space --destroy $id
 done
 
@@ -47,25 +47,22 @@ function setup_space {
   yabai -m space "$idx" --label "$name" --layout "$layout"
 }
 
-setup_space 1 term bsp
-yabai -m rule --add app="^Alacritty$" space=^1
+setup_space 1 dev bsp
+yabai -m rule --add app="^(Alacritty|Emacs)$" space=^1
 
-setup_space 2 emacs bsp
-yabai -m rule --add app="^Emacs$" space=^2
+setup_space 2 wwwork bsp
+yabai -m rule --add app="^Firefox$" space=^2
 
-setup_space 3 wwwork bsp
-yabai -m rule --add app="^Firefox$" space=^3
+setup_space 3 wcomm float
+yabai -m rule --add app="^(Telegram|Mattermost|Notability)$" space=^3
 
-setup_space 4 wcomm float
-yabai -m rule --add app="^(Telegram|Mattermost|Notability)$" space=^4
+setup_space 4 freeweb bsp
+yabai -m rule --add app="^Safari$" space=^4
 
-setup_space 5 freeweb bsp
-yabai -m rule --add app="^Safari$" space=^5
+setup_space 5 freecomm float
+yabai -m rule --add app="^(WhatsApp|Discord|Messages)$" space=^5
 
-setup_space 6 freecomm float
-yabai -m rule --add app="^(WhatsApp|Discord|Messages)$" space=^6
-
-setup_space 7 freeapp float
+setup_space 6 freeapp float
 
 yabai -m rule --add app="^(Finder|Music|Podcasts|TV|VLC|System Settings|Preferences|Calendar|Dash|AppCleaner|Weather|Transmission|DeepL|Dropshare)$" manage=off
 

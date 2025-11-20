@@ -44,6 +44,7 @@
 (setq treesit-language-source-alist
       '((bash . ("https://github.com/tree-sitter/tree-sitter-bash"))
         (css . ("https://github.com/tree-sitter/tree-sitter-css"))
+        (c . ("https://github.com/tree-sitter/tree-sitter-c"))
         (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp"))
         (cmake . ("https://github.com/uyha/tree-sitter-cmake"))
         (go . ("https://github.com/tree-sitter/tree-sitter-go"))
