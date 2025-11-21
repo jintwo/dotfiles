@@ -15,9 +15,9 @@ local function prepare_window_canvas(x, y, letter)
     local c = canvas.new{x = x + 10, y = y, h = 50, w = 50}
     c[1] = {
         frame = { h = 50, w = 50, x = 0, y = 0 },
-        textSize = 50,
+        textSize = 40,
         textColor = { red = 1.0 },
-        text = letter,
+        text = string.lower(letter),
         type = 'text',
     }
     return c
