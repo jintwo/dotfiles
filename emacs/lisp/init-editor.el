@@ -37,6 +37,7 @@
 
 (use-package avy
   :ensure t
+  :bind ("M-g l" . avy-goto-line)
   :config
   (avy-setup-default))
 
