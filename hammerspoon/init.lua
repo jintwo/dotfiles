@@ -1,4 +1,5 @@
 canvas = require("hs.canvas")
+st = require("hs.styledtext")
 
 local function reload_config(files)
 	hs.reload()
@@ -11,13 +12,18 @@ local letters = { "A", "S", "D", "F", "G", "H", "J", "K", "L" }
 local canvases = {}
 local windows = {}
 
+local font_attrs = {
+	font = { name = "Iosevka", size = 50 },
+	color = { red = 1.0 },
+	strokeColor = { white = 1.0 },
+	strokeWidth = -2.0,
+}
+
 local function prepare_window_canvas(x, y, letter)
 	local c = canvas.new({ x = x + 10, y = y, h = 50, w = 50 })
 	c[1] = {
 		frame = { h = 50, w = 50, x = 0, y = 0 },
-		textSize = 40,
-		textColor = { red = 1.0 },
-		text = string.lower(letter),
+		text = st.new(string.lower(letter), font_attrs),
 		type = "text",
 	}
 	return c

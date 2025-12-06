@@ -1,6 +1,14 @@
 ;;; ocaml-config.el --- ocaml config
 ;;; Commentary:
 ;;; Code:
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               `(caml-mode . ,(eglot-alternatives '(("ocamllsp" "--fallback-read-dot-merlin")))))
+  (add-to-list 'eglot-server-programs
+               `(ocaml-ts-mode . ,(eglot-alternatives '(("ocamllsp" "--fallback-read-dot-merlin")))))
+  (add-to-list 'eglot-server-programs
+               `(tuareg-mode . ,(eglot-alternatives '(("ocamllsp" "--fallback-read-dot-merlin"))))))
+
 (use-package tuareg
   :ensure t
   :mode (((rx ".(mll|ml[ip]?|eliomi?)" eos) . tuareg-mode)
