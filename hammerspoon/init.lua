@@ -13,16 +13,16 @@ local canvases = {}
 local windows = {}
 
 local font_attrs = {
-	font = { name = "Iosevka", size = 50 },
+	font = { name = "Iosevka", size = 60 },
 	color = { red = 1.0 },
 	strokeColor = { white = 1.0 },
 	strokeWidth = -2.0,
 }
 
 local function prepare_window_canvas(x, y, letter)
-	local c = canvas.new({ x = x + 10, y = y, h = 50, w = 50 })
+	local c = canvas.new({ x = x + 10, y = y, h = 90, w = 90 })
 	c[1] = {
-		frame = { h = 50, w = 50, x = 0, y = 0 },
+		frame = { h = 90, w = 90, x = 0, y = 0 },
 		text = st.new(string.lower(letter), font_attrs),
 		type = "text",
 	}
