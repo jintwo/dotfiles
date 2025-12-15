@@ -1,4 +1,4 @@
-;;; scheme-config.el --- scheme config
+;;; scheme-config.el --- scheme config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package geiser

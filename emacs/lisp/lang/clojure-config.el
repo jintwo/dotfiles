@@ -1,4 +1,4 @@
-;;; clojure-config.el --- clojure config
+;;; clojure-config.el --- clojure config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package cider

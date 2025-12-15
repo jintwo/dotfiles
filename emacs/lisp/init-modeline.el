@@ -1,4 +1,4 @@
-;;; init-modeline.el --- mode-line config
+;;; init-modeline.el --- mode-line config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

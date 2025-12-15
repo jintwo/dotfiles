@@ -1,4 +1,4 @@
-;;; init-keys.el --- common keyboard shortcuts config
+;;; init-keys.el --- common keyboard shortcuts config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 ;; emacs-mac bindings

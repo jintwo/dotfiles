@@ -1,4 +1,4 @@
-;;; csound-config.el -- csound config
+;;; csound-config.el -- csound config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package csound-mode

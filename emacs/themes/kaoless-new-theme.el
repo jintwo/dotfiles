@@ -1,7 +1,6 @@
-;;; kaoless-theme.el --- kaolin colorless theme
+;;; kaoless-theme.el --- kaolin colorless theme -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-;; -*- lexical-binding: t -*-
 
 (deftheme kaoless-new "kaolin colorless")
 

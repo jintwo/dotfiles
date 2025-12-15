@@ -1,4 +1,4 @@
-;;; init-org.el --- org mode config
+;;; init-org.el --- org mode config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (require 'f)

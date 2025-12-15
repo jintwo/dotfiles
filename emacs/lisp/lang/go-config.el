@@ -1,4 +1,4 @@
-;;; go-config.el --- go config
+;;; go-config.el --- go config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package go-mode

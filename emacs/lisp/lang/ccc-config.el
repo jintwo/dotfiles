@@ -1,4 +1,4 @@
-;;; ccc-config.el --- c/c++/obj-c config
+;;; ccc-config.el --- c/c++/obj-c config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package cmake-mode

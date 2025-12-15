@@ -1,4 +1,4 @@
-;;; janet-config.el --- janet config
+;;; janet-config.el --- janet config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package janet-mode

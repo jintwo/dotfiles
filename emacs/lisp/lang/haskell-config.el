@@ -1,4 +1,4 @@
-;;; haskell-config.el --- haskell config
+;;; haskell-config.el --- haskell config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package haskell-mode

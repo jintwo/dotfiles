@@ -1,4 +1,4 @@
-;;; ocaml-config.el --- ocaml config
+;;; ocaml-config.el --- ocaml config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (with-eval-after-load 'eglot

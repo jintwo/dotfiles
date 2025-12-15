@@ -1,4 +1,4 @@
-;;; sc-config.el --- supercollider config
+;;; sc-config.el --- supercollider config  -*- lexical-binding: t; -*-
 ;;; Commentary: only works on macos
 ;;; Code:
 (if (not (eq (window-system) 'x))

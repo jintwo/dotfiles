@@ -1,4 +1,4 @@
-;;; init-vendor.el --- init vendor modules
+;;; init-vendor.el --- init vendor modules  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 ;; utils

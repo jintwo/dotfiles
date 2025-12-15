@@ -1,7 +1,6 @@
-;;; nordless-new-theme.el --- nord colorless theme
+;;; nordless-new-theme.el --- nord colorless theme -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-;; -*- lexical-binding: t -*-
 
 (deftheme nordless-new "nord colorless")
 

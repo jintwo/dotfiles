@@ -1,4 +1,4 @@
-;;; init-linux.el --- linux related stuff
+;;; init-linux.el --- linux related stuff  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

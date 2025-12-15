@@ -1,4 +1,4 @@
-;;; elixir-config.el --- elixir config
+;;; elixir-config.el --- elixir config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package elixir-mode

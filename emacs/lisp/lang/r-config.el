@@ -1,4 +1,4 @@
-;;; r-config.el --- R (ESS) config
+;;; r-config.el --- R (ESS) config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package ess

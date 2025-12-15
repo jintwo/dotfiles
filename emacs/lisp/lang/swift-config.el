@@ -1,4 +1,4 @@
-;;; swift-config.el --- swift config
+;;; swift-config.el --- swift config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package swift-mode

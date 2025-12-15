@@ -1,4 +1,4 @@
-;;; init-completion.el --- completion config
+;;; init-completion.el --- completion config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

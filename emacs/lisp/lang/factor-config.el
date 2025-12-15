@@ -1,4 +1,4 @@
-;;; factor-config.el --- factor config
+;;; factor-config.el --- factor config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package fuel

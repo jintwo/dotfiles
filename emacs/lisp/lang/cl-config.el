@@ -1,4 +1,4 @@
-;;; cl-config.el --- CL config
+;;; cl-config.el --- CL config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package sly

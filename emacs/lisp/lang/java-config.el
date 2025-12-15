@@ -1,4 +1,4 @@
-;;; java-config.el --- java config
+;;; java-config.el --- java config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (add-hook 'java-mode-hook #'j2/project-eglot-ensure)

@@ -1,4 +1,4 @@
-;;; init-sp.el --- smartparens mode config
+;;; init-sp.el --- smartparens mode config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package smartparens

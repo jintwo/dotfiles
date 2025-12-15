@@ -1,4 +1,4 @@
-;;; rust-config.el --- rust config
+;;; rust-config.el --- rust config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package rust-mode

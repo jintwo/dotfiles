@@ -1,4 +1,4 @@
-;;; python-config.el --- python config
+;;; python-config.el --- python config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

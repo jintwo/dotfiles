@@ -1,4 +1,4 @@
-;;; init-lang.el --- other languages config
+;;; init-lang.el --- other languages config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (setq-default indent-tabs-mode nil

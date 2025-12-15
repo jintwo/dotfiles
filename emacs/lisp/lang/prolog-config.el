@@ -1,4 +1,4 @@
-;;; prolog-config.el --- prolog config
+;;; prolog-config.el --- prolog config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))

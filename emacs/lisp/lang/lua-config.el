@@ -1,4 +1,4 @@
-;;; lua-config.el --- lua config
+;;; lua-config.el --- lua config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package lua-mode

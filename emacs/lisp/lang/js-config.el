@@ -1,4 +1,4 @@
-;;; js-config.el --- js config
+;;; js-config.el --- js config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package js2-mode

@@ -1,4 +1,4 @@
-;;; zig-config.el --- zig config
+;;; zig-config.el --- zig config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (use-package zig-ts-mode
