@@ -5,8 +5,8 @@
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                `(python-ts-mode . ,(eglot-alternatives '(("uv" "run" "pylsp")
-                                                         ("zubanls")
-                                                         ("pyright-langserver" "--stdio"))))))
+                                                         ("uv" "run" "zubanls")
+                                                         ("uv" "run" "pyright-langserver" "--stdio"))))))
 
 (use-package python
   :hook ((python-mode python-ts-mode) . j2/project-eglot-ensure))
@@ -38,8 +38,9 @@
   :load-path "lisp/lang/"
   :hook ((python-mode python-ts-mode) . flymake-mypy-load)
   :config
+  (setq mypy-executable "mypy")
   (setq flymake-mypy-executable "uv")
-  (setq flymake-mypy-args '("run" "mypy" "--show-column-numbers" ".")))
+  (setq flymake-mypy-args '("run" ,mypy-executable "--show-column-numbers" ".")))
 
 (provide 'python-config)
 ;;; python-config.el ends here
