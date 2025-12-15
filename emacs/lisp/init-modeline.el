@@ -25,7 +25,7 @@
     ""))
 
 (defvar-local j2/modeline-project
-    '(:eval (propertize (j2/modeline--project) 'face 'org-done)))
+  '(:eval (propertize (j2/modeline--project) 'face 'org-done)))
 
 (put 'j2/modeline-project 'risky-local-variable t)
 
@@ -53,7 +53,7 @@
             (buffer-name))))
 
 (defvar-local j2/modeline-buffer-name
-    '(:eval (propertize (j2/modeline--buffer-name) 'face 'mode-line-buffer-id 'help-echo '(j2/modeline--buffer-name t))))
+  '(:eval (propertize (j2/modeline--buffer-name) 'face 'mode-line-buffer-id 'help-echo '(j2/modeline--buffer-name t))))
 
 (put 'j2/modeline-buffer-name 'risky-local-variable t)
 
@@ -62,7 +62,7 @@
   (if (and buffer-file-name (buffer-modified-p)) " (modified)" ""))
 
 (defvar-local j2/modeline-buffer-modified
-    '(:eval (propertize (j2/modeline--buffer-modified) 'face 'diff-changed)))
+  '(:eval (propertize (j2/modeline--buffer-modified) 'face 'diff-changed)))
 
 (put 'j2/modeline-buffer-modified 'risky-local-variable t)
 
@@ -72,7 +72,7 @@
           (string-replace "-mode" "" (symbol-name major-mode))))
 
 (defvar-local j2/modeline-mode
-    '(:eval (propertize (j2/modeline--mode) 'face 'eat-term-faint)))
+  '(:eval (propertize (j2/modeline--mode) 'face 'eat-term-faint)))
 
 (put 'j2/modeline-mode 'risky-local-variable t)
 
@@ -85,7 +85,7 @@
     ""))
 
 (defvar-local j2/modeline-vcs
-    '(:eval (propertize (j2/modeline--vcs) 'face 'tab-bar)))
+  '(:eval (propertize (j2/modeline--vcs) 'face 'tab-bar)))
 
 (put 'j2/modeline-vcs 'risky-local-variable t)
 
@@ -94,7 +94,7 @@
 
 ;;  position
 (defvar-local j2/modeline-position
-    "%4l:%2c")
+  "%4l:%2c")
 
 (put 'j2/modeline-position 'risky-local-variable t)
 ;; --- segments ends here ---

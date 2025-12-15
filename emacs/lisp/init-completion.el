@@ -108,7 +108,7 @@
   ;; Optionally make narrowing help available in the minibuffer.
   ;; You may want to use `embark-prefix-help-command' or which-key instead.
   ;; (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
-)
+  )
 
 ;; consult goodies?
 (use-package consult-project-extra
@@ -139,17 +139,17 @@ The command supports preview of the currently selected marker position.
 The symbol at point is added to the future history."
   (interactive)
   (consult--read
-    (consult--global-mark-candidates
-      (or markers (flatten-list xref--history)))
-    :prompt "Go to Xref: "
-    :annotate (consult--line-prefix)
-    :category 'consult-location
-    :sort nil
-    :require-match t
-    :lookup #'consult--lookup-location
-    :history '(:input consult--xref-history)
-    :add-history (thing-at-point 'symbol)
-    :state (consult--jump-state)))
+   (consult--global-mark-candidates
+    (or markers (flatten-list xref--history)))
+   :prompt "Go to Xref: "
+   :annotate (consult--line-prefix)
+   :category 'consult-location
+   :sort nil
+   :require-match t
+   :lookup #'consult--lookup-location
+   :history '(:input consult--xref-history)
+   :add-history (thing-at-point 'symbol)
+   :state (consult--jump-state)))
 
 (global-set-key (kbd "M-g x") #'consult-recent-xref)
 

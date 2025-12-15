@@ -183,7 +183,7 @@
   :hook (term-mode . eterm-256color-mode))
 
 (when (and (boundp 'server-process)
-	   (memq (process-status server-process) '(connect listen open run)))
+	       (memq (process-status server-process) '(connect listen open run)))
   (when (featurep 'ns)
     (defun ns-raise-emacs ()
       "Raise Emacs."
@@ -191,7 +191,7 @@
     (defun ns-raise-emacs-with-frame (frame)
       "Raise Emacs and select the provided frame."
       (with-selected-frame frame
-	(when (display-graphic-p)
+	    (when (display-graphic-p)
           (ns-raise-emacs))))
     (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame)
     (when (display-graphic-p)
