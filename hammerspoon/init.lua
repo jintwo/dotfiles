@@ -33,6 +33,11 @@ local function prepare_state()
 	local index = 1
 	local canvases, windows = {}, {}
 	local windows = hs.window.visibleWindows()
+	table.sort(windows, function(w1, w2)
+		local w1_tl = w1:topLeft()
+		local w2_tl = w2:topLeft()
+		return w1_tl.x < w2_tl.x
+	end)
 	for _, window in ipairs(windows) do
 		local title = window:title()
 		if string.len(title) > 0 then
@@ -56,6 +61,7 @@ local function cleanup()
 			c:hide()
 		end
 	end
+	prepare_state()
 end
 
 local function focus_window(letter, modal)
