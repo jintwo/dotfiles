@@ -89,10 +89,12 @@
 
 (defun j2/init-ui-mac-daemon ()
   ;; (j2/set-font "Iosevka" 120 'medium 'bold)
-  (j2/set-font "ZedMono Nerd Font Mono" 120 'medium 'bold) ;; rounded iosevka takes 1.25 place
+  (j2/set-font "ZedMono Nerd Font Mono" 120 'medium 'bold)) ;; rounded iosevka takes 1.25 place
 
 (defun j2/init-ui-linux ()
-  (j2/set-font "Iosevka" 120 'medium 'bold))
+  ;; (j2/set-font "Iosevka" 120 'medium 'bold)
+  (j2/set-font "ZedMono Nerd Font Mono" 120 'medium 'bold)
+  )
 
 (defun j2/init-ui ()
   "UI settings."
@@ -101,6 +103,7 @@
    ((eq system-type 'gnu/linux) (j2/init-ui-linux))
    ((null initial-window-system) (j2/init-ui-mac-daemon))
    (t (j2/init-ui-linux))))
+
 
 (global-hl-line-mode t)
 
