@@ -47,7 +47,7 @@ append-path "$HOMEBREW_PREFIX/opt/postgresql@16/bin"
 # llvm
 append-path "$HOMEBREW_PREFIX/opt/llvm/bin"
 # zig
-append-path "$HOME/Documents/dev/zig/zig/build/stage3/bin"
+append-path "$HOME/Documents/dev/zig/zig-bootstrap/out/zig-aarch64-macos-none-baseline/"
 append-path "$HOME/Documents/dev/zig/zls/zig-out/bin"
 # rust
 append-path "$HOMEBREW_PREFIX/opt/rustup/bin"

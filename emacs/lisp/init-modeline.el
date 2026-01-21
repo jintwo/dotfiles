@@ -36,7 +36,7 @@
 ;; 3. reduce-fit -> should fit in length
 
 (defun --file-name-short ()
-  (if-let ((project (project-current)))
+  (if-let* ((project (project-current)))
       (let* ((project-dir (project-root project))
              (comps (file-name-split (file-relative-name buffer-file-name project-dir)))
              (file-name (last comps))

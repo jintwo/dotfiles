@@ -29,7 +29,7 @@ yabai -m config mouse_follows_focus on
 #
 # setup spaces
 #
-for id in $(yabai -m query --spaces | jq '.[].index | select(. > 5)'); do
+for id in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
   yabai -m space --destroy $id
 done
 
@@ -47,20 +47,20 @@ function setup_space {
   yabai -m space "$idx" --label "$name" --layout "$layout"
 }
 
-setup_space 1 dev bsp
-yabai -m rule --add app="^(Alacritty|Emacs)$" space=^1
+setup_space 1 emacs bsp
+yabai -m rule --add app="^Emacs$" space=^1
 
-setup_space 2 wwwork bsp
-yabai -m rule --add app="^Firefox$" space=^2
+setup_space 2 terminal bsp
+yabai -m rule --add app="^Alacritty$" space=^2
 
-setup_space 3 wcomm float
-yabai -m rule --add app="^(Telegram|Mattermost|Notability)$" space=^3
+setup_space 3 wwwork bsp
+yabai -m rule --add app="^Firefox$" space=^3
 
-setup_space 4 freeweb bsp
-yabai -m rule --add app="^Safari$" space=^4
+setup_space 4 comm float
+yabai -m rule --add app="^(Telegram|Mattermost|Notability|WhatsApp|Discord|Messages)$" space=^4
 
-setup_space 5 freecomm float
-yabai -m rule --add app="^(WhatsApp|Discord|Messages)$" space=^5
+setup_space 5 web bsp
+yabai -m rule --add app="^Safari$" space=^5
 
 setup_space 6 freeapp float
 

@@ -32,6 +32,7 @@
 
 ;; stolen from https://www.gonsie.com/blorg/tab-bar.html and vim-tab-bar (https://github.com/jamescherti/vim-tab-bar.el)
 (setq tab-bar-show t
+      tab-bar-define-keys nil ;; following stuff break my completions shortcut
       tab-bar-close-button-show nil
       tab-bar-new-tab-choice "*scratch*"
       tab-bar-tab-hints nil
@@ -69,25 +70,26 @@
         (seq-elt weights (1+ weight-idx))
       'normal)))
 
-(defun j2/set-font (family height &optional weight bold-weight)
+(defun j2/set-font (family height &optional weight bold-weight width)
   "Set font FAMILY with given HEIGHT and optional WEIGHT and BOLD-WEIGHT."
   (interactive)
   (unless weight (setq weight 'normal))
   (unless bold-weight (setq bold-weight (j2/next-font-weight weight)))
+  (unless width (setq width 'normal))
   ;; default
-  (set-face-attribute 'default nil :family family :height height :weight weight :width 'normal)
+  (set-face-attribute 'default nil :family family :height height :weight weight :width width)
   ;; fixed-pitch
-  (set-face-attribute 'fixed-pitch nil :family family :height height :weight weight :width 'normal)
+  (set-face-attribute 'fixed-pitch nil :family family :height height :weight weight :width width)
   ;; fixed-pitch-serif (w/o serifs)
-  (set-face-attribute 'fixed-pitch-serif nil :family family :height height :weight weight :width 'normal)
+  (set-face-attribute 'fixed-pitch-serif nil :family family :height height :weight weight :width width)
   ;; strings + docs should be bold
   (set-face-attribute 'font-lock-string-face nil :weight bold-weight)
   (set-face-attribute 'font-lock-doc-face nil :weight bold-weight)
   (set-fontset-font "fontset-default" 'unicode-bmp family))
 
 (defun j2/init-ui-mac-daemon ()
-  (j2/set-font "Iosevka" 120 'medium 'bold)
-  (toggle-frame-fullscreen))
+  ;; (j2/set-font "Iosevka" 120 'medium 'bold)
+  (j2/set-font "ZedMono Nerd Font Mono" 120 'medium 'bold) ;; rounded iosevka takes 1.25 place
 
 (defun j2/init-ui-linux ()
   (j2/set-font "Iosevka" 120 'medium 'bold))
@@ -214,6 +216,10 @@
 
 (use-package delight
   :ensure t)
+
+(use-package transpose-frame
+  :ensure t
+  :bind ("C-c t" . transpose-frame))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

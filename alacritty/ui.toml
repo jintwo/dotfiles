@@ -2,11 +2,11 @@
 size = 12
 
 [font.bold]
-family = "Iosevka Term"
+family = "ZedMono Nerd Font Mono"
 style = "Bold"
 
 [font.normal]
-family = "Iosevka Term"
+family = "ZedMono Nerd Font Mono"
 style = "Medium"
 
 [window]

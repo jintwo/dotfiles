@@ -65,11 +65,12 @@
         (python . ("https://github.com/tree-sitter/tree-sitter-python"))
         (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
         (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
+        ;; (swift . ("https://github.com/alex-pinkus/tree-sitter-swift"))  ;; generate parsr.c manually
         (toml . ("https://github.com/tree-sitter/tree-sitter-toml"))
         (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
         (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
         (yaml . ("https://github.com/ikatyang/tree-sitter-yaml"))
-        (zig . ("https://github.com/maxxnino/tree-sitter-zig"))
+        (zig . ("https://github.com/tree-sitter-grammars/tree-sitter-zig"))
         (typst . ("https://github.com/uben0/tree-sitter-typst"))))
 
 (setq major-mode-remap-alist
@@ -95,6 +96,7 @@
         (python-mode . python-ts-mode)
         (ruby-mode . ruby-ts-mode)
         ;; (rust-mode . rust-ts-mode)
+        ;; (swift-mode . swift-ts-mode)
         (conf-toml-mode . toml-ts-mode)
         (typescript-mode . typescript-ts-mode)
         ))
@@ -203,6 +205,9 @@
   :config
   (setq flymake-diagnostic-format-alist
         '((t . (origin code message)))))
+
+(use-package eldoc-box
+  :bind ("C-h d" . eldoc-box-help-at-point))
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

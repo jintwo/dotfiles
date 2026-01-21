@@ -206,7 +206,7 @@
 
 (defun j2/org-open-linear-link ()
   (interactive)
-  (if-let ((ll (org-entry-get (point) "LINEAR_LINK")))
+  (if-let* ((ll (org-entry-get (point) "LINEAR_LINK")))
       (browse-url ll)))
 
 (provide 'init-org)
