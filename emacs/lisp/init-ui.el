@@ -87,13 +87,19 @@
   (set-face-attribute 'font-lock-doc-face nil :weight bold-weight)
   (set-fontset-font "fontset-default" 'unicode-bmp family))
 
+
 (defun j2/init-ui-mac-daemon ()
   ;; (j2/set-font "Iosevka" 120 'medium 'bold)
-  (j2/set-font "ZedMono Nerd Font Mono" 120 'medium 'bold)) ;; rounded iosevka takes 1.25 place
+  (j2/set-font "Iosevka J2" 120 'medium 'bold) ;;  custom iosevka
+  ;; (j2/set-font "NK57 Monospace" 120 'regular 'bold 'condensed) ;; got 2nd place (but letter spacing. too dense)
+  ;; (j2/set-font "JetBrains Mono" 120 'medium 'bold)
+  ;; (j2/set-font "Input Mono Condensed" 130 'regular 'medium)
+  ;; (toggle-frame-fullscreen)
+  )
 
 (defun j2/init-ui-linux ()
   ;; (j2/set-font "Iosevka" 120 'medium 'bold)
-  (j2/set-font "ZedMono Nerd Font Mono" 120 'medium 'bold)
+  (j2/set-font "Iosevka J2" 120 'medium 'bold)
   )
 
 (defun j2/init-ui ()

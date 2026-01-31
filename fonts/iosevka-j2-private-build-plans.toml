@@ -1,0 +1,28 @@
+[buildPlans.IosevkaJ2]
+family = "Iosevka J2"
+spacing = "normal"
+serifs = "sans"
+noCvSs = true
+exportGlyphNames = false
+noLigation = true
+
+[buildPlans.IosevkaJ2.variants.design]
+asterisk = "hex-low"
+paren = "flat-arc"
+brace = "curly"
+at = "fourfold"
+
+[buildPlans.IosevkaJ2.widths.Normal]
+shape = 500
+menu = 5
+css = "normal"
+
+[buildPlans.IosevkaJ2.widths.Extended]
+shape = 600
+menu = 7
+css = "expanded"
+
+[buildPlans.IosevkaJ2.widths.UltraExtended]
+shape = 720
+menu = 9
+css = "ultra-expanded"

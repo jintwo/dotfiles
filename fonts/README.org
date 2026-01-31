@@ -1,0 +1,3 @@
+* Installation
+1. read https://github.com/be5invis/Iosevka/blob/main/doc/custom-build.md
+2. use =iosevka-j2-private-build-plans.toml=
