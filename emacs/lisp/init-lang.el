@@ -95,7 +95,7 @@
         ;; (protobuf-mode . protobuf-ts-mode)
         (python-mode . python-ts-mode)
         (ruby-mode . ruby-ts-mode)
-        ;; (rust-mode . rust-ts-mode)
+        (rust-mode . rust-ts-mode)
         ;; (swift-mode . swift-ts-mode)
         (conf-toml-mode . toml-ts-mode)
         (typescript-mode . typescript-ts-mode)

@@ -52,14 +52,24 @@
   :config
   (global-display-fill-column-indicator-mode t))
 
-(use-package highlight-indent-guides
-  :hook ((prog-mode conf-mode yaml-mode yaml-ts-mode) . highlight-indent-guides-mode)
-  :delight
+;; disable temporary: trying indent-bars
+;; (use-package highlight-indent-guides
+;;   :hook ((prog-mode conf-mode yaml-mode yaml-ts-mode) . highlight-indent-guides-mode)
+;;   :delight
+;;   :config
+;;   (setq highlight-indent-guides-method 'character
+;;         highlight-indent-guides-auto-odd-face-perc 45
+;;         highlight-indent-guides-auto-even-face-perc 45
+;;         highlight-indent-guides-auto-character-face-perc 60))
+
+(use-package indent-bars
+  :ensure t
+  :hook ((prog-mode conf-mode yaml-mode yaml-ts-mode) . indent-bars-mode)
   :config
-  (setq highlight-indent-guides-method 'character
-        highlight-indent-guides-auto-odd-face-perc 45
-        highlight-indent-guides-auto-even-face-perc 45
-        highlight-indent-guides-auto-character-face-perc 60))
+  (setq indent-bars-width-frac 0.2
+        indent-bars-treesit-support t
+        indent-bars-starting-column 0))
+
 
 (use-package whole-line-or-region
   :delight whole-line-or-region-local-mode
@@ -155,8 +165,8 @@
 Use the filename relative to the current VC root directory."
   (interactive)
   (let* ((file-name (file-relative-name buffer-file-name (vc-root-dir)))
-	 (line-number (line-number-at-pos nil t))
-	 (location (format "%s:%s" file-name line-number)))
+	     (line-number (line-number-at-pos nil t))
+	     (location (format "%s:%s" file-name line-number)))
     (kill-new location)
     (message location)))
 
@@ -177,7 +187,7 @@ Use the filename relative to the current VC root directory."
 (use-package treesit-fold
   :ensure t
   :vc (:url "https://github.com/emacs-tree-sitter/treesit-fold.git"
-       :rev :newest)
+            :rev :newest)
   :config
   (require 'treesit-fold)
   (global-treesit-fold-mode t))
