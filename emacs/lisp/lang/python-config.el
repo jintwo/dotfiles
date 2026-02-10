@@ -40,7 +40,7 @@
   :config
   (setq mypy-executable "mypy")
   (setq flymake-mypy-executable "uv")
-  (setq flymake-mypy-args '("run" ,mypy-executable "--show-column-numbers" ".")))
+  (setq flymake-mypy-args `("run" ,mypy-executable "--show-column-numbers" ".")))
 
 (provide 'python-config)
 ;;; python-config.el ends here
