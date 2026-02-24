@@ -37,7 +37,8 @@
 
 (use-package avy
   :ensure t
-  :bind ("M-g l" . avy-goto-line)
+  :bind (("M-g l" . avy-goto-line)
+         ("M-g t" . avy-goto-char-timer))
   :config
   (avy-setup-default))
 

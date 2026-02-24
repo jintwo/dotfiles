@@ -51,10 +51,9 @@
            gcs-done))
 
 (add-hook 'emacs-startup-hook #'display-startup-time)
-;;
 
 ;; native comp
-(setq native-comp-async-report-warnings-errors nil)
+(setq native-comp-async-report-warnings-errors 'silent)
 (setq native-comp-deferred-compilation t)
 
 ;; base
@@ -86,6 +85,8 @@
 (require 'init-ibuffer)
 (require 'init-utils)
 (require 'init-org)
+
+;; TODO: combine dev+langs
 
 ;; dev
 (require 'init-git)

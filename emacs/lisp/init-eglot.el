@@ -22,5 +22,8 @@
   (when (project-current)
     (eglot-ensure)))
 
+;; stolen from: https://codeberg.org/TristanCacqueray/dot-files/src/branch/master/emacs/.config/emacs/lisp/mr-dev.el
+(fset #'jsonrpc--log-event #'ignore)
+
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

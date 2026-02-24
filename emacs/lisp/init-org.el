@@ -10,6 +10,7 @@
 (use-package org
   :ensure t
   :config
+  ;; TODO: split configuration by sections
   (require 'org)
   (require 'org-agenda)
   (require 'org-id)
@@ -18,7 +19,7 @@
 
   (setq org-directory "~/Sync/Org"
         org-notes-index-file "notes/notes.org" ;; TODO: move to denote?
-        org-timer-file "timer.org")
+        )
 
   (setq org-agenda-files
         (append
@@ -27,11 +28,12 @@
 
   (setq org-refile-targets '((org-agenda-files :maxlevel . 6)))
 
-  (setq org-log-done t
+  (setq org-log-done 'time
         org-log-into-drawer t
         org-log-redeadline 'time
         org-log-reschedule 'time
         org-src-preserve-indentation t
+        org-use-fast-todo-selection t
         org-startup-indented t
         org-goto-interface 'outline-path-completion
         org-outline-path-complete-in-steps nil
