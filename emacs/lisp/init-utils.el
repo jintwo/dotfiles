@@ -20,6 +20,32 @@
   :config
   (memento-mori-mode t))
 
+(use-package life-calendar
+  :defer 1
+  :config
+  ;; Your birthday (set automatically on first use, or set manually).
+  (setq life-calendar-birthday "1987-04-14")
+
+  ;; Number of years to display (default: 90).
+  (setq life-calendar-years 80)
+
+  ;; When to count a new week (default: 'birthday).
+  ;; 'birthday = day of week you were born (each week starts on that day)
+  ;; Or use a day symbol: 'sunday, 'monday, 'tuesday, etc.
+  (setq life-calendar-week-start-day 'monday)
+
+  ;; Number of columns to display (default: nil).
+  ;; nil = auto-fit as many columns as the window allows
+  ;; Or set to a specific number for fixed columns.
+  ;; (setq life-calendar-columns nil)   ; auto-fit to window
+  (setq life-calendar-columns 2)     ; always show 2 columns
+
+  ;; Characters for different week states.
+  (setq life-calendar-past-char "*")
+  (setq life-calendar-current-char "O")
+  (setq life-calendar-future-char ".")
+  (setq life-calendar-chapter-char "*"))
+
 ;; TODO: add consult-dash + dash-docs
 
 (use-package gcmh
@@ -158,6 +184,12 @@
       (setq dired-use-ls-dired t
             insert-directory-program gls
             dired-listing-switches "-aBhl --group-directories-first"))))
+
+(use-package soft-narrow
+  :vc (:url "https://github.com/takeokunn/soft-narrow"
+            :rev :newest)
+  :config
+  (soft-narrow-mode t))
 
 (provide 'init-utils)
 ;;; init-utils.el ends here
