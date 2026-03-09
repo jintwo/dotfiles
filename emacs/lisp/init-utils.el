@@ -191,5 +191,8 @@
   :config
   (soft-narrow-mode t))
 
+(use-package time-zones
+  :ensure t)
+
 (provide 'init-utils)
 ;;; init-utils.el ends here

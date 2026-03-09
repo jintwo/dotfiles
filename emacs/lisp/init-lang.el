@@ -209,5 +209,8 @@
 (use-package eldoc-box
   :bind ("C-h d" . eldoc-box-help-at-point))
 
+(use-package gdscript-mode
+  :ensure t)
+
 (provide 'init-lang)
 ;;; init-lang.el ends here

@@ -49,7 +49,7 @@
 
         org-refile-use-outline-path 'file
 
-	    org-agenda-remove-tags t
+	    org-agenda-remove-tags nil
 	    org-agenda-prefix-format "%-24c %?-14t% s"
 	    org-agenda-todo-keyword-format "%-10s"))
 

@@ -68,25 +68,31 @@
 (defun j2/elfeed-tube-download-entry ()
   (interactive)
   (elfeed-search-untag-all-unread)
-  (yt-dlp-url (elfeed-entry-link (car (elfeed-search-selected)))))
+  (let* ((entry (car (elfeed-search-selected)))
+         (feed (elfeed-db-get-feed (elfeed-entry-feed-id entry))))
+    (yt-dlp-url (elfeed-entry-link entry) (elfeed-feed-title feed))))
 
-(defun yt-dlp-url (url)
-  (let* ((default-directory "~/Downloads/yt/")
-         (proc (start-process
-                (format "yt-dlp download: %s" url)
-                (get-buffer-create (format "*yt-dlp*: %s" url))
-                "yt-dlp" "--no-progress" url)))
-    (set-process-sentinel
-     proc
-     (lambda (process s)
-       (unless (process-live-p process)
-         (if (eq (process-exit-status process) 0)
-             (progn
-               (message "Finished download: %s" url)
-               (kill-buffer (process-buffer process)))
-           (message "Download: [%s] failed (%d) with error: %s"
-                    url (process-exit-status process) s)))))
-    (message "Started download: %s" url)))
+(defun yt-dlp-url (url &optional feed-name)
+  (unless feed-name (setq feed-name ""))
+  (let ((out-dir-name (format "~/Downloads/yt/%s" feed-name)))
+    (ignore-errors
+      (make-directory out-dir-name))
+    (let* ((default-directory out-dir-name)
+           (proc (start-process
+                  (format "yt-dlp download: %s" url)
+                  (get-buffer-create (format "*yt-dlp*: %s" url))
+                  "yt-dlp" "--no-progress" url)))
+      (set-process-sentinel
+       proc
+       (lambda (process s)
+         (unless (process-live-p process)
+           (if (eq (process-exit-status process) 0)
+               (progn
+                 (message "Finished download: %s" url)
+                 (kill-buffer (process-buffer process)))
+             (message "Download: [%s] failed (%d) with error: %s"
+                      url (process-exit-status process) s)))))
+      (message "Started download: %s" url))))
 
 (defun yt-dlp-at-point ()
   (interactive)

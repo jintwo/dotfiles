@@ -10,10 +10,24 @@
   (set-frame-parameter frame 'menu-bar-lines 0))
 (add-hook 'after-make-frame-functions 'contextual-menubar)
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+(use-package menu-bar
+  :ensure nil
+  :config
+  (menu-bar-mode -1))
+
+(use-package tool-bar
+  :ensure nil
+  :config
+  (tool-bar-mode -1))
+
+(use-package scroll-bar
+  :ensure nil
+  :config
+  (scroll-bar-mode -1))
+
 (blink-cursor-mode 0)
+
+(setq ns-pop-up-frames nil)
 
 ;; --- tabs ---
 (defun j2/tab-bar-tab-name-format (tab i)
