@@ -212,5 +212,20 @@
 (use-package gdscript-mode
   :ensure t)
 
+(defun j2/mark-named-region (beg end)
+  (interactive "r")
+  (let ((name (read-from-minibuffer "Name: ")))
+    (save-excursion
+      (goto-char end)
+      (unless (bolp)
+        (insert "\n"))
+      (deactivate-mark)
+      (insert (format "--8<-- [end:%s]\n" name))
+      (comment-line -1)
+      (goto-char beg)
+      (insert (format "--8<-- [start:%s]\n" name))
+      (comment-line -1))))
+
+
 (provide 'init-lang)
 ;;; init-lang.el ends here

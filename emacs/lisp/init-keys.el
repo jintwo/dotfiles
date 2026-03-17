@@ -54,5 +54,7 @@
 (keymap-global-set "C-c n" #'remember-notes)
 (define-key org-mode-map (kbd "C-c C-x M-l") #'j2/org-open-linear-link)
 
+(define-key prog-mode-map (kbd "C-c M-m") #'j2/mark-named-region)
+
 (provide 'init-keys)
 ;;; init-keys.el ends here
