@@ -29,8 +29,9 @@
 (use-package iedit
   :ensure t)
 
-(use-package wgrep
-  :ensure t)
+;; already included in emacs31
+;; (use-package wgrep
+;;   :ensure t)
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
@@ -149,6 +150,8 @@
 ;; paren
 (show-paren-mode t)
 (setq show-paren-delay 0)
+(setq show-paren-context-when-offscreen 'overlay)
+
 (add-hook 'prog-mode-hook
           (lambda ()
             (set-face-attribute 'show-paren-match nil :inverse-video t)))
@@ -214,6 +217,29 @@ Use the filename relative to the current VC root directory."
 
 ;; narrowing (i found it quite useful)
 (put 'narrow-to-region 'disabled nil)
+
+;; kill-ring settings (bbatsov)
+(setq save-interprogram-paste-before-kill t)
+(setq kill-do-not-save-duplicates t)
+(setq savehist-additional-variables
+      '(search-ring regexp-search-ring kill-ring))
+(add-hook 'savehist-save-hook
+          (lambda ()
+            (setq kill-ring
+                  (mapcar #'substring-no-properties
+                          (cl-remove-if-not #'stringp kill-ring)))))
+
+
+;; rex
+(setq reb-re-syntax 'string)
+(minibuffer-regexp-mode 1)
+
+;; stolen from https://rahuljuliato.com/posts/emacs-31-around-the-corner
+(add-to-list 'save-some-buffers-action-alist
+			 (list "d"
+				   (lambda (buffer)
+					 (diff-buffer-with-file (buffer-file-name buffer)))
+				   "show diff between the buffer and its file"))
 
 (provide 'init-editor)
 ;;; init-editor.el ends here

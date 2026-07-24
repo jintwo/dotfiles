@@ -34,13 +34,27 @@
   :config
   (setq flymake-ruff-program '("uv" "run" "ruff")))
 
-(use-package flymake-mypy
+;; (use-package flymake-mypy
+;;   :load-path "lisp/lang/"
+;;   :hook ((python-mode python-ts-mode) . flymake-mypy-load)
+;;   :config
+
+;;   ;; zuban mode
+;;   (setq mypy-executable "zmypy")
+
+;;   ;; default mode
+;;   ;; (setq mypy-executable "mypy")
+
+;;   (setq flymake-mypy-executable "uv"
+;;         flymake-mypy-args `("run" ,mypy-executable "--show-column-numbers" ".")))
+
+
+(use-package flymake-pyrefly
   :load-path "lisp/lang/"
-  :hook ((python-mode python-ts-mode) . flymake-mypy-load)
+  :hook ((python-mode python-ts-mode) . flymake-pyrefly-load)
   :config
-  (setq mypy-executable "mypy")
-  (setq flymake-mypy-executable "uv")
-  (setq flymake-mypy-args `("run" ,mypy-executable "--show-column-numbers" ".")))
+  (setq flymake-pyrefly-executable "uv"
+        flymake-pyrefly-args `("run" "pyrefly" "check" "--output-format" "min-text" "--summary=none" ".")))
 
 (provide 'python-config)
 ;;; python-config.el ends here

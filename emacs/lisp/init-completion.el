@@ -63,7 +63,7 @@
 
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI.
-  :hook (completion-list-mode . consult-preview-at-point-mode)
+  ;; :hook (completion-list-mode . consult-preview-at-point-mode)
 
   ;; The :init configuration is always executed (Not lazy)
   :init
@@ -73,7 +73,7 @@
   ;; register formatting, adds thin separator lines, register sorting and hides
   ;; the window mode line.
   (advice-add #'register-preview :override #'consult-register-window)
-  (setq register-preview-delay 0.0)
+  (setq register-preview-delay 0.5)
 
   ;; Use Consult to select xref locations with preview
   (setq xref-show-xrefs-function #'consult-xref
@@ -93,9 +93,10 @@
   (consult-customize
    consult-theme :preview-key '(:debounce 0.2 any)
    consult-ripgrep consult-git-grep consult-grep consult-man
-   consult-bookmark consult-recent-file consult-xref consult-line
-   consult--source-bookmark consult--source-file-register
-   consult--source-recent-file consult--source-project-recent-file
+   consult-bookmark consult-recent-file consult-xref
+   consult-line
+   consult-source-bookmark consult-source-file-register
+   consult-source-recent-file consult-source-project-recent-file
    ;; :preview-key "M-."
    :preview-key '(:debounce 0.2 any)
    :initial (thing-at-point 'symbol))
@@ -226,14 +227,21 @@ The symbol at point is added to the future history."
 (use-package completion-preview
   :config
   (global-completion-preview-mode)
-  (setq completion-auto-help 'visible
+  (setq ;; from consult readme
+        completions-format 'one-column
+        completions-detailed t
+        completions-group t
+        completions-sort 'historical
+        minibuffer-visible-completions 'up-down
+        completion-eager-update t
+        completion-eager-display t
+        completion-show-help nil
+
+        completion-auto-help 'visible
         completion-auto-select t
         completion-ignore-case t
-        completion-show-help nil
-        completions-format 'one-column
         completions-header-format nil
-        completions-max-height 20
-        completions-sort 'historical))
+        completions-max-height 20))
 
 (require 'init-corfu)
 

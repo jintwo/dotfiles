@@ -211,5 +211,11 @@
   (if-let* ((ll (org-entry-get (point) "LINEAR_LINK")))
       (browse-url ll)))
 
+;; (use-package org-window-habit
+;;   :ensure t
+;;   :demand t
+;;   :config
+;;   (org-window-habit-mode +1))
+
 (provide 'init-org)
 ;;; init-org.el ends here

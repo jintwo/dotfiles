@@ -3,15 +3,12 @@
 ;;; Code:
 (use-package eglot
   :bind (:map prog-mode-map (("C-c e r" . eglot-rename)))
-  :hook ((eglot-managed-mode . manually-activate-flymake))
   :config
-  (setq eglot-ignored-server-capabilites '(:inlayHintProvider))
+  (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
   (setq eglot-code-action-indicator "*")
-  (add-to-list 'eglot-stay-out-of 'flymake))
-
-(defun manually-activate-flymake ()
-  (add-hook 'flymake-diagnostic-functions #'eglot-flymake-backend nil t)
-  (flymake-mode t))
+  ;; (setq eglot-code-action-indications nil) ;; emacs31
+  ;; (setq eglot-documentation-renderer 'markdown-ts-view-mode) ;; emacs31
+  )
 
 (when (featurep 'consult-eglot)
   (add-hook 'prog-mode-hook

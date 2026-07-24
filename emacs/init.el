@@ -16,7 +16,9 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(setq read-process-output-max (* 1024 1024))
+(setq read-process-output-max (* 4 1024 1024))
+
+(setq ffap-machine-p-known 'reject)
 
 (set-language-environment "UTF-8")
 (setenv "ESHELL" (expand-file-name "/bin/zsh"))

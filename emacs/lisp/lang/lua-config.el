@@ -1,10 +1,8 @@
 ;;; lua-config.el --- lua config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(use-package lua-mode
-  :mode (rx ".lua" eos)
-  :custom
-  (lua-indent-level 4))
+
+;; INFO: emacs31 already included lua-mode
 
 (use-package fennel-mode
   :mode (rx ".fnl" eos))

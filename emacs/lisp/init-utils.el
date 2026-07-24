@@ -131,8 +131,7 @@
   (setq eat-message-handler-alist '(("dired" . (lambda (d) (dired d))) ;; open cwd in dired
                                     ("magit" . (lambda (d) (magit-status d nil)))))  ;; open cwd in magit
 
-  (setq eat-term-scrollback-size 1048576)
-  )
+  (setq eat-term-scrollback-size 1048576))
 
 ;; display eat termnal in bottom window
 ;; TODO: fix following params
@@ -183,7 +182,21 @@
     (when gls
       (setq dired-use-ls-dired t
             insert-directory-program gls
-            dired-listing-switches "-aBhl --group-directories-first"))))
+            dired-listing-switches "-aBhl --group-directories-first")))
+
+  ;; stolen from https://mbork.pl/2026-04-13_Binding_TAB_in_Dired_to_something_useful
+  (defun dired-cycle-dired-windows ()
+    "Switch to the next Dired window in the selected frame."
+    (interactive)
+    (select-window
+     (cadr (seq-filter
+          (lambda (window)
+            (eq (buffer-local-value
+                 'major-mode (window-buffer window))
+                'dired-mode))
+	  (window-list)))))
+
+  (keymap-set dired-mode-map "TAB" #'dired-cycle-dired-windows))
 
 (use-package soft-narrow
   :vc (:url "https://github.com/takeokunn/soft-narrow"
@@ -193,6 +206,24 @@
 
 (use-package time-zones
   :ensure t)
+
+(use-package tramp
+  :config
+  (setq remote-file-name-inhibit-locks t
+        tramp-use-scp-direct-remote-copying t
+        remote-file-name-inhibit-auto-save-visited t
+        tramp-copy-size-limit (* 1024 1024) ;; 1MB
+        tramp-verbose 2)
+
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+
+  (connection-local-set-profiles
+   '(:application tramp :protocol "scp")
+   'remote-direct-async-process)
+
+  (setq magit-tramp-pipe-stty-settings 'pty))
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

@@ -72,6 +72,14 @@
   (add-to-list 'default-frame-alist '(undecorated-round . t))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
+;; bbatsov perf tips
+(setq redisplay-skip-fontification-on-input t)
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
+(setq-default cursor-in-non-selected-windows nil)
+(setq highlight-nonselected-windows nil)
+
 (set-language-environment "UTF-8")
 
 (defun j2/next-font-weight (weight)
@@ -187,9 +195,7 @@
   (custom-set-faces
    '(aw-leading-char-face
      ((t (:foreground "red" :height 2.0)))))
-  :bind (("M-o" . ace-window)
-         ("s-o" . ace-window)
-         ("C-x o" . ace-window)))
+  :bind (("C-x o" . ace-window)))
 
 (winner-mode t)
 

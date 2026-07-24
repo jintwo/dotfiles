@@ -22,33 +22,23 @@
 
 (defun flymake-mypy--build-regexp ()
   "Regexp for Mypy output."
-  (rx (seq line-start
-           ;; File
-           (group
-            (one-or-more nonl)
-            ".py")
-           ":"
-           ;; Line
-           (group
-            (one-or-more
-             (any "0-9")))
-           ":"
-           ;; Col
-           (zero-or-more
-            (seq
-             (group
-              (one-or-more
-               (any "0-9")))
-             ":"))
-           " "
-           ;; Type
-           (group
-            (or "note" "warning" "error"))
-           ": "
-           ;; Message
-           (group
-            (zero-or-more nonl))
-           line-end)))
+  (rx
+   (seq line-start
+        ;; File
+        (group (one-or-more nonl) ".py")
+        ":"
+        ;; Line
+        (group (one-or-more (any "0-9")))
+        ":"
+        ;; Col
+        (zero-or-more (seq (group (one-or-more (any "0-9"))) ":"))
+        " "
+        ;; Type
+        (group (or "note" "warning" "error"))
+        ": "
+        ;; Message
+        (group (zero-or-more nonl))
+        line-end)))
 
 (defvar-local flymake-mypy--proc nil)
 

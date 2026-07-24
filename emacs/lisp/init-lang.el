@@ -37,41 +37,46 @@
 ;; code formatter
 (use-package apheleia
   :ensure t
-  :config
-  (apheleia-global-mode t))
+  :bind (:map prog-mode-map (("C-c e p" . apheleia-format-buffer))))
 
 ;; tree sitter stuff ;)
-(setq treesit-language-source-alist
-      '((bash . ("https://github.com/tree-sitter/tree-sitter-bash"))
-        (css . ("https://github.com/tree-sitter/tree-sitter-css"))
-        (c . ("https://github.com/tree-sitter/tree-sitter-c"))
-        (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp"))
-        (cmake . ("https://github.com/uyha/tree-sitter-cmake"))
-        (go . ("https://github.com/tree-sitter/tree-sitter-go"))
-        (gomod . ("https://github.com/camdencheek/tree-sitter-go-mod"))
-        (html . ("https://github.com/tree-sitter/tree-sitter-html"))
-        (java . ("https://github.com/tree-sitter/tree-sitter-java"))
-        (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
-        (json . ("https://github.com/tree-sitter/tree-sitter-json"))
+(use-package treesit
+  :ensure nil
+  :config
+  (setq treesit-language-source-alist
+        '((bash . ("https://github.com/tree-sitter/tree-sitter-bash"))
+          (css . ("https://github.com/tree-sitter/tree-sitter-css"))
+          (c . ("https://github.com/tree-sitter/tree-sitter-c"))
+          (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp"))
+          (cmake . ("https://github.com/uyha/tree-sitter-cmake"))
+          (go . ("https://github.com/tree-sitter/tree-sitter-go"))
+          (gomod . ("https://github.com/camdencheek/tree-sitter-go-mod"))
+          (html . ("https://github.com/tree-sitter/tree-sitter-html"))
+          (java . ("https://github.com/tree-sitter/tree-sitter-java"))
+          (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
+          (json . ("https://github.com/tree-sitter/tree-sitter-json"))
 
-        (julia . ("https://github.com/tree-sitter/tree-sitter-julia"))
-        (lua . ("https://github.com/Azganoth/tree-sitter-lua"))
-        (make . ("https://github.com/alemuller/tree-sitter-make"))
+          (julia . ("https://github.com/tree-sitter/tree-sitter-julia"))
+          (lua . ("https://github.com/Azganoth/tree-sitter-lua"))
+          (make . ("https://github.com/alemuller/tree-sitter-make"))
 
-        ;; (markdown . ("https://github.com/ikatyang/tree-sitter-markdown"))
-        ;; (protobuf . ("https://github.com/mitchellh/tree-sitter-proto"))
-        ;; (r . ("https://github.com/r-lib/tree-sitter-r"))
+          ;; (markdown . ("https://github.com/ikatyang/tree-sitter-markdown"))
+          ;; (protobuf . ("https://github.com/mitchellh/tree-sitter-proto"))
+          ;; (r . ("https://github.com/r-lib/tree-sitter-r"))
 
-        (python . ("https://github.com/tree-sitter/tree-sitter-python"))
-        (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
-        (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
-        ;; (swift . ("https://github.com/alex-pinkus/tree-sitter-swift"))  ;; generate parsr.c manually
-        (toml . ("https://github.com/tree-sitter/tree-sitter-toml"))
-        (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
-        (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
-        (yaml . ("https://github.com/ikatyang/tree-sitter-yaml"))
-        (zig . ("https://github.com/tree-sitter-grammars/tree-sitter-zig"))
-        (typst . ("https://github.com/uben0/tree-sitter-typst"))))
+          (python . ("https://github.com/tree-sitter/tree-sitter-python"))
+          (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
+          (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
+          ;; (swift . ("https://github.com/alex-pinkus/tree-sitter-swift"))  ;; generate parsr.c manually
+          (toml . ("https://github.com/tree-sitter/tree-sitter-toml"))
+          (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+          (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
+          (yaml . ("https://github.com/ikatyang/tree-sitter-yaml"))
+          (zig . ("https://github.com/tree-sitter-grammars/tree-sitter-zig"))
+          (typst . ("https: //github.com/uben0/tree-sitter-typst")))
+
+        treesit-auto-install-grammar 'always
+        treesit-enabled-modes t))
 
 (setq major-mode-remap-alist
       '((bash-mode . bash-ts-mode)
@@ -89,17 +94,16 @@
         (js2-mode . js-ts-mode)
         (js-json-mode . json-ts-mode)
         (julia-mode . julia-ts-mode)
-        ;; (lua-mode . lua-ts-mode)
+        (lua-mode . lua-ts-mode)
         (makefile-mode . makefile-ts-mode)
-        ;; (markdown-mode . markdown-ts-mode)
+        (markdown-mode . markdown-ts-mode)
         ;; (protobuf-mode . protobuf-ts-mode)
         (python-mode . python-ts-mode)
         (ruby-mode . ruby-ts-mode)
         (rust-mode . rust-ts-mode)
         ;; (swift-mode . swift-ts-mode)
         (conf-toml-mode . toml-ts-mode)
-        (typescript-mode . typescript-ts-mode)
-        ))
+        (typescript-mode . typescript-ts-mode)))
 
 ;; TODO: schedule grammars update
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
@@ -146,8 +150,9 @@
   :mode (rx ".y" (0+ "a") "ml" eos)
   :hook (yaml-ts-mode . j2/init-yaml-mode))
 
-(use-package markdown-mode
-  :mode (rx "." (| "text" "markdown" "md") eos))
+(use-package markdown-ts-mode
+  :ensure nil
+  :defer t)
 
 (use-package protobuf-mode
   :mode (rx ".proto" eos))
@@ -206,8 +211,16 @@
   (setq flymake-diagnostic-format-alist
         '((t . (origin code message)))))
 
-(use-package eldoc-box
-  :bind ("C-h d" . eldoc-box-help-at-point))
+;; (use-package eldoc
+;;   :ensure nil
+;;   :defer t
+;;   :config
+;;   (setq eldoc-help-at-pt t
+;;         eldoc-idle-delay 0.5
+;;         eldoc-echo-area-prefer-doc-buffer t))
+
+;; (use-package eldoc-box
+;;   :bind ("C-h d" . eldoc-box-help-at-point))
 
 (use-package gdscript-mode
   :ensure t)

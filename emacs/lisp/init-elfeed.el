@@ -7,7 +7,9 @@
   :custom
   ;; (elfeed-show-entry-switch #'j2/elfeed-display-buffer)
   ;; (elfeed-show-entry-delete #'j2/elfeed-delete-buffer)
-  (elfeed-search-remain-on-entry t))
+  (elfeed-search-remain-on-entry t)
+  :config
+  (bind-key "d" #'j2/elfeed-tube-download-entry 'elfeed-show-mode-map))
 
 ;; deps ;)
 ;; (use-package popwin
@@ -65,16 +67,17 @@
       (end-of-buffer)
       (insert url "\n"))))
 
+;; TODO: split into two functions: one for "search", one for "show"
 (defun j2/elfeed-tube-download-entry ()
   (interactive)
   (elfeed-search-untag-all-unread)
-  (let* ((entry (car (elfeed-search-selected)))
+  (let* ((entry (or (car (elfeed-search-selected)) elfeed-show-entry))
          (feed (elfeed-db-get-feed (elfeed-entry-feed-id entry))))
     (yt-dlp-url (elfeed-entry-link entry) (elfeed-feed-title feed))))
 
 (defun yt-dlp-url (url &optional feed-name)
   (unless feed-name (setq feed-name ""))
-  (let ((out-dir-name (format "~/Downloads/yt/%s" feed-name)))
+  (let ((out-dir-name (format "~/Downloads/yt/%s" (string-replace "/" "_slash_" feed-name))))
     (ignore-errors
       (make-directory out-dir-name))
     (let* ((default-directory out-dir-name)
