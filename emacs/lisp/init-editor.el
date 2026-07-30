@@ -158,6 +158,7 @@
 
 ;; line numbers
 (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode t)))
+(add-hook 'conf-mode-hook (lambda () (display-line-numbers-mode t)))
 
 ;; replace current selection with anything
 (delete-selection-mode t)

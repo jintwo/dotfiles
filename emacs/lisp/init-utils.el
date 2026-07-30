@@ -196,7 +196,8 @@
                 'dired-mode))
 	  (window-list)))))
 
-  (keymap-set dired-mode-map "TAB" #'dired-cycle-dired-windows))
+  (keymap-set dired-mode-map "TAB" #'dired-cycle-dired-windows)
+  (keymap-set dired-mode-map "e" #'wdired-change-to-wdired-mode))
 
 (use-package soft-narrow
   :vc (:url "https://github.com/takeokunn/soft-narrow"
