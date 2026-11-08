@@ -48,7 +48,7 @@
   (use-package ocp-indent
     :ensure t
     :config
-    (add-hook 'ocaml-eglot-hook 'ocp-setup-indent))
+    (add-hook 'ocaml-eglot-mode-hook 'ocp-setup-indent))
 
   (use-package utop
     :ensure t

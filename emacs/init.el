@@ -16,10 +16,6 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(setq read-process-output-max (* 4 1024 1024))
-
-(setq ffap-machine-p-known 'reject)
-
 (set-language-environment "UTF-8")
 (setenv "ESHELL" (expand-file-name "/bin/zsh"))
 (setenv "LC_CTYPE" "UTF-8")
@@ -28,18 +24,22 @@
 
 (setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
 
-(setq use-short-answers 1
-      kill-buffer-delete-auto-save-files 1
-      calendar-week-start-day 1)
-
-(setq ring-bell-function 'pulse-momentary-highlight-one-line)
-
-(setq-default
- inhibit-startup-screen t               ; Disable start-up screen
- inhibit-startup-message t              ; Disable startup message
- inhibit-startup-echo-area-message t    ; Disable initial echo message
- initial-scratch-message ""             ; Empty the initial *scratch* buffer
- initial-buffer-choice t)               ; Open *scratch* buffer at init
+(setopt
+ inhibit-startup-screen t                 ; Disable start-up screen
+ inhibit-startup-message t                ; Disable startup message
+ inhibit-startup-echo-area-message "jin"  ; Disable initial echo message
+ initial-scratch-message ""               ; Empty the initial *scratch* buffer
+ initial-buffer-choice t                  ; Open *scratch* buffer at init
+ read-process-output-max (* 4 1024 1024)
+ ffap-machine-p-known 'reject
+ load-prefer-newer t
+ use-short-answers t
+ kill-buffer-delete-auto-save-files t
+ calendar-week-start-day 1
+ ring-bell-function 'pulse-momentary-highlight-one-line
+ ;; native comp
+ native-comp-async-report-warnings-errors 'silent
+ native-comp-deferred-compilation t)
 
 ;; (context-menu-mode 1)
 
@@ -54,30 +54,28 @@
 
 (add-hook 'emacs-startup-hook #'display-startup-time)
 
-;; native comp
-(setq native-comp-async-report-warnings-errors 'silent)
-(setq native-comp-deferred-compilation t)
-
 ;; base
 (require 'init-packages)
 (when (eq system-type 'gnu/linux)
   (require 'init-linux))
 
-;;
+(setopt
 ;; Do not saves duplicates in kill-ring
-(customize-set-variable 'kill-do-not-save-duplicates t)
-
-;; Make scrolling less stuttered
-(setq auto-window-vscroll nil)
-(customize-set-variable 'fast-but-imprecise-scrolling t)
-(customize-set-variable 'scroll-conservatively 101)
-(customize-set-variable 'scroll-margin 0)
-(customize-set-variable 'scroll-preserve-screen-position t)
+ kill-do-not-save-duplicates t
+ ;; Make scrolling less stuttered
+ auto-window-vscroll nil
+ fast-but-imprecise-scrolling t
+ scroll-conservatively 101
+ scroll-margin 0
+ scroll-preserve-screen-position t)
 
 ;; Better support for files with long lines
 (setq-default bidi-paragraph-direction 'left-to-right)
 (setq-default bidi-inhibit-bpa t)
 (global-so-long-mode 1)
+
+;; unset some shortcuts
+(keymap-global-unset "C-x C-u")  ;; prefix used by j2 utils
 
 ;; maybe join ui+editor
 (require 'init-ui)

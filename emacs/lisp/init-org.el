@@ -50,8 +50,13 @@
         org-refile-use-outline-path 'file
 
 	    org-agenda-remove-tags nil
-	    org-agenda-prefix-format "%-24c %?-14t% s"
-	    org-agenda-todo-keyword-format "%-10s"))
+        org-agenda-scheduled-leaders '("!!!   " "!%3d  ")
+	    ;; org-agenda-prefix-format "%-24c %?-14t% s"
+        org-agenda-prefix-format '((agenda . "%-12:c  %12t %8s")
+                                   (todo . "%-32:c")
+                                   (tags . "%-32:c")
+                                   (search . "%-32:c"))
+	    org-agenda-todo-keyword-format "%-8s"))
 
 (defun j2/org-set-checkbox ()
   "Add checkbox inplace or before selected text."

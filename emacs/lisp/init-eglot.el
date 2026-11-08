@@ -5,8 +5,8 @@
   :bind (:map prog-mode-map (("C-c e r" . eglot-rename)))
   :config
   (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
-  (setq eglot-code-action-indicator "*")
-  ;; (setq eglot-code-action-indications nil) ;; emacs31
+  (setq refactor-indicator "*")
+  ;; (setq refactor-indications nil) ;; emacs31
   ;; (setq eglot-documentation-renderer 'markdown-ts-view-mode) ;; emacs31
   )
 

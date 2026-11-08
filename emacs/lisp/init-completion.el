@@ -177,6 +177,12 @@ The symbol at point is added to the future history."
 
   :config
 
+  (setq embark-prompter 'embark-completing-read-prompter)
+  (setq embark-indicators
+      '(embark-minimal-indicator  ; default is embark-mixed-indicator
+        embark-highlight-indicator
+        embark-isearch-highlight-indicator))
+
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
@@ -186,12 +192,7 @@ The symbol at point is added to the future history."
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
-  :ensure t
-  :after (embark consult)
-  :demand t ; only necessary if you have the hook below
-  ;; if you want to have consult previews as you move around an
-  ;; auto-updating embark collect buffer
-  :hook (embark-collect-mode . consult-preview-at-point-mode))
+  :ensure t)
 
 ;; Enable richer annotations using the Marginalia package
 (use-package marginalia
@@ -218,7 +219,11 @@ The symbol at point is added to the future history."
 
 (use-package vertico
   :init
-  (vertico-mode))
+  (vertico-mode)
+  :config
+  (require 'vertico-multiform)
+  (add-to-list 'vertico-multiform-categories '(embark-keybinding grid))
+  (vertico-multiform-mode))
 
 (use-package savehist
   :init

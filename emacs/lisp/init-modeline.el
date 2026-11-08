@@ -25,7 +25,7 @@
     ""))
 
 (defvar-local j2/modeline-project
-  '(:eval (propertize (j2/modeline--project) 'face 'org-done)))
+  '(:eval (propertize (j2/modeline--project) 'face 'mode-line-project-name)))
 
 (put 'j2/modeline-project 'risky-local-variable t)
 
@@ -72,17 +72,20 @@
           (string-replace "-mode" "" (symbol-name major-mode))))
 
 (defvar-local j2/modeline-mode
-  '(:eval (propertize (j2/modeline--mode) 'face 'eat-term-faint)))
+  '(:eval (propertize (j2/modeline--mode) 'face 'mode-line-mode-name)))
 
 (put 'j2/modeline-mode 'risky-local-variable t)
 
 ;;  vcs (git only)
 (defun j2/modeline--vcs ()
-  (if (and vc-mode buffer-file-name)
-      (format " %s:%s "
-              (downcase (symbol-name (vc-backend buffer-file-name)))
-              (car (vc-git-branches)))
-    ""))
+  (cond ((and vc-mode buffer-file-name)
+         (format " %s:%s "
+                 (downcase (symbol-name (vc-backend buffer-file-name)))
+                 (car (vc-git-branches))))
+        ((eq major-mode 'magit-status-mode)
+         (format " git:%s "
+                 (car (vc-git-branches))))
+        (t "")))
 
 (defvar-local j2/modeline-vcs
   '(:eval (propertize (j2/modeline--vcs) 'face 'tab-bar)))
@@ -95,6 +98,9 @@
 ;;  position
 (defvar-local j2/modeline-position
   "%4l:%2c")
+
+(defvar-local j2/modeline-current-time
+  '(:eval (propertize (format-time-string "[%F %H:%M]") 'face 'italic)))
 
 (put 'j2/modeline-position 'risky-local-variable t)
 ;; --- segments ends here ---
@@ -111,6 +117,7 @@
                   (format-mode-line
                    (list
                     mode-line-misc-info
+                    j2/modeline-current-time
                     j2/modeline-position
                     " "
                     mode-line-percent-position

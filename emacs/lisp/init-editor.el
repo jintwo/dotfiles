@@ -54,29 +54,35 @@
   :config
   (global-display-fill-column-indicator-mode t))
 
-;; disable temporary: trying indent-bars
 ;; (use-package highlight-indent-guides
 ;;   :hook ((prog-mode conf-mode yaml-mode yaml-ts-mode) . highlight-indent-guides-mode)
 ;;   :delight
 ;;   :config
 ;;   (setq highlight-indent-guides-method 'character
-;;         highlight-indent-guides-auto-odd-face-perc 45
-;;         highlight-indent-guides-auto-even-face-perc 45
-;;         highlight-indent-guides-auto-character-face-perc 60))
+;;         highlight-indent-guides-responsive 'stack
+;;         highlight-indent-guides-delay 0.0
+;;         highlight-indent-guides-auto-odd-face-perc 30
+;;         highlight-indent-guides-auto-even-face-perc 30
+;;         highlight-indent-guides-auto-character-face-perc 40
+;;         highlight-indent-guides-auto-stack-odd-face-perc 50
+;;         highlight-indent-guides-auto-stack-even-face-perc 50
+;;         highlight-indent-guides-auto-stack-character-face-perc 60))
 
+;; INFO: testing again ;)
 (use-package indent-bars
   :ensure t
   :hook ((prog-mode conf-mode yaml-mode yaml-ts-mode) . indent-bars-mode)
+  :init
+  (advice-add 'load-theme
+              :after (lambda (&rest _)
+                       (progn
+                         (setq indent-bars-color `(,(color-lighten-name (face-background 'highlight) 20) :blend 0.3))
+                         (indent-bars-reset))))
   :config
-  (setq indent-bars-width-frac 0.2
-        indent-bars-treesit-support t
-        indent-bars-starting-column 0))
-
-
-(use-package whole-line-or-region
-  :delight whole-line-or-region-local-mode
-  :config
-  (whole-line-or-region-global-mode t))
+  (setq indent-bars-treesit-support t
+        indent-bars-no-descend-lists t
+        indent-bars-starting-column 0
+        indent-bars-prefer-character t))
 
 (use-package stripspace
   :ensure t
@@ -241,6 +247,13 @@ Use the filename relative to the current VC root directory."
 				   (lambda (buffer)
 					 (diff-buffer-with-file (buffer-file-name buffer)))
 				   "show diff between the buffer and its file"))
+
+(defun j2/trim-leading-spaces ()
+  (interactive)
+  (beginning-of-visual-line)
+  (set-mark-command nil)
+  (back-to-indentation)
+  (kill-region (region-beginning) (region-end)))
 
 (provide 'init-editor)
 ;;; init-editor.el ends here

@@ -1,6 +1,11 @@
 ;;; init-keys.el --- common keyboard shortcuts config  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
+
+;; INFO
+;; global binding C+x
+;; local bindings C+c
+
 ;; emacs-mac bindings
 (setq mac-function-modifier 'hyper
       mac-option-modifier 'meta
@@ -41,18 +46,16 @@
 ;; (keymap-global-set "C-c l" #'j2/current-location)
 (keymap-global-set "s-k" #'kill-current-buffer)
 
-;; project
-(when (featurep 'eat)
-  (keymap-global-set "<remap> <project-shell>" #'eat-project))
-
 ;; org (TODO: move it somewhere to init-org.el)
-(keymap-global-set "C-c c" #'org-capture)
-(keymap-global-set "C-c a" #'org-agenda)
-(keymap-global-set "C-c f" #'org-roam-node-find)
-(keymap-global-set "C-c l" #'org-store-link)
-(keymap-global-set "C-c k" #'org-insert-link)
-(keymap-global-set "C-c n" #'remember-notes)
-(define-key org-mode-map (kbd "C-c C-x M-l") #'j2/org-open-linear-link)
+(keymap-global-unset "C-x C-o")
+(keymap-global-set "C-x C-o c" #'org-capture)
+(keymap-global-set "C-x C-o a" #'org-agenda)
+(keymap-global-set "C-x C-o f" #'org-roam-node-find)
+(keymap-global-set "C-x C-o s" #'org-store-link)
+(keymap-global-set "C-x C-o i" #'org-insert-link)
+(keymap-global-set "C-x C-o n" #'remember-notes)
+
+(define-key org-mode-map (kbd "C-x C-o M-l") #'j2/org-open-linear-link)
 
 (define-key prog-mode-map (kbd "C-c M-m") #'j2/mark-named-region)
 

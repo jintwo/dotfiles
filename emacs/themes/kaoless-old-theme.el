@@ -1,39 +1,40 @@
-;;; nordless-new-theme.el --- nord colorless theme -*- lexical-binding: t -*-
+;;; kaoless-theme.el --- kaolin colorless theme -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
-(deftheme nordless-new "nord colorless")
+(deftheme kaoless-new "kaolin colorless")
 
 (eval-and-compile
-  (defconst nordless-new-theme-colors-alist
-    '((bg . "#2E3440")
-      (bg+ . "#3B4252")
-      (current-line . "#434C5E")
-      (fade . "#4C566A")
-      (fg . "#D8DEE9")
-      ;; (fg+ . "#E5E9F0") ;; original
-      (fg+ . "#ECEFF4")
-      (docs . "#88C0D0") ;; cyan
-      (red . "#BF616A")
-      (warning . "#D08770")
-      (yellow . "#EBCB8B")
-      (green . "#A3BE8C")
+  (defconst kaoless-new-theme-colors-alist
+    '((bg . "#F5F6F5")
+      (bg+ . "#F1F3E9")
+      (current-line . "#E5E6DE")
+      (fade . "#C3C4BF")
+      (fg . "#4E4757")
+      (fg+ . "#CA6036")
+      (docs . "#5B7C93") ;; cyan
+      (red . "#CD5C60")
+      (warning . "#C5882C")
+      (yellow . "#D1832E")
+      (green . "#4D8B5B")
       (blue . "#81A1C1"))))
 
-(defmacro nordless-new-with-color-variables (&rest body)
+(defmacro kaoless-new-with-color-variables (&rest body)
   (declare (indent 0))
   `(let (,@(mapcar (lambda (cons)
 		             (list (car cons) (cdr cons)))
-		           nordless-new-theme-colors-alist))
+		           kaoless-new-theme-colors-alist))
      ,@body))
 
-(nordless-new-with-color-variables
+(kaoless-new-with-color-variables
   (custom-theme-set-faces
-   'nordless-new
+   'kaoless-new
    `(default ((t (:background ,bg :foreground ,fg))))
    `(cursor ((t (:background ,fg+ :foreground ,bg+))))
    `(mode-line ((t (:background ,current-line :underline (:color ,fade :position 0) :overline ,fade :box (:color ,current-line :line-width (3 . 3))))))
    `(mode-line-inactive ((t (:underline (:color ,fade :position 0) :overline ,fade :box (:color ,bg :line-width (3 . 3))))))
+   `(mode-line-project-name ((t (:foreground ,green))))
+   `(mode-line-mode-name ((t (:weight normal))))
    `(fill-column-indicator ((t (:foreground ,fade))))
    `(isearch ((t (:weight bold :background ,green :foreground ,bg))))
    `(lazy-highlight ((t (:weight bold :background ,current-line :foreground ,green))))
@@ -210,6 +211,12 @@
    `(eat-term-color-6 ((t (:foreground ,docs)))) ;; cyan
    `(eat-term-color-7 ((t (:foreground ,fade)))) ;; ~white
    `(eat-term-faint ((t (:weight normal))))
+   `(ghostel-color-red ((t (:foreground ,red))))
+   `(ghostel-color-green ((t (:foreground ,green))))
+   `(ghostel-color-yellow ((t (:foreground ,yellow))))
+   `(ghostel-color-blue ((t (:foreground ,blue))))
+   `(ghostel-color-cyan ((t (:foreground ,docs))))
+   `(ghostel-color-white ((t (:foreground ,fade))))
    `(which-func ((t ())))
    `(jupyter-repl-input-prompt ((t (:foreground ,green))))
    `(jupyter-repl-output-prompt ((t (:foreground ,red))))
@@ -221,12 +228,12 @@
    `(tab-bar-tab-group-current ((t (:background ,current-line :foreground ,fg :box (:line-width 3 :color ,current-line :style nil)))))
    `(eglot-highlight-symbol-face ((t (:weight ultraheavy))))))
 
-(provide-theme 'nordless-new)
+(provide-theme 'kaoless-new)
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide 'nordless-new-theme)
-;;; nordless-new-theme.el ends here
+(provide 'kaoless-new-theme)
+;;; kaoless-new-theme.el ends here

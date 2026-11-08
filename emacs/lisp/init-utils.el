@@ -94,7 +94,6 @@
                              (consult-ripgrep "Ripgrep" ?r)
                              (project-dired "Dired")
                              (j2/magit-current-project "Magit" ?m)
-                             (eat-project "Eat" ?e)
                              (j2/new-activity-for-current-project "New activity" ?a))))
 
 (use-package reveal-in-folder
@@ -105,43 +104,66 @@
 
 (use-package transmission
   :defer 1
-  :bind (:map global-map (("C-c u t" . transmission))))
+  :bind (:map global-map (("C-x C-u t" . transmission))))
 
 (use-package elpher
   :defer 1
-  :bind (:map global-map (("C-c u e" . elpher))))
+  :bind (:map global-map (("C-x C-u e" . elpher))))
 
 (use-package osc
   :ensure t)
 
+;; --8<-- [start:eat-terminal-config]
 (use-package eat
   :ensure t
+  :bind (:map project-prefix-map ("e" . eat-project))
   :config
-  ;; (setq eat-term-name "eat-mono")
   (setq eat-term-name "xterm-256color")
+  (setq eat-term-scrollback-size (* 1024 1024))
   (add-hook 'eshell-load-hook #'eat-eshell-mode)
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+
   ;; allow ace-window
   (require 'eat)
   (push '[?\e ?o] eat-semi-char-non-bound-keys)
   (eat-update-semi-char-mode-map)
   (eat-reload)
 
-  ;; handle dired shell
+  ;; handle shell commands
   (setq eat-message-handler-alist '(("dired" . (lambda (d) (dired d))) ;; open cwd in dired
                                     ("magit" . (lambda (d) (magit-status d nil)))))  ;; open cwd in magit
 
-  (setq eat-term-scrollback-size 1048576))
 
-;; display eat termnal in bottom window
-;; TODO: fix following params
-;; (add-to-list 'display-buffer-alist
-;;              `(,(rx "-eat*")
-;;                (display-buffer-reuse-mode-window
-;;                 display-buffer-at-bottom
-;;                 display-buffer-in-side-window)
-;;                (window-height . 0.3)
-;;                (side . bottom)))
+  ;; project "menu"
+  (add-to-list 'project-switch-commands '(eat-project "Eat" ?e) t))
+;; --8<-- [end:eat-terminal-config]
+
+;; --8<-- [start:ghostel-terminal-config]
+(use-package ghostel
+  :ensure t
+  :hook (after-init . ghostel-status-indicator-mode)
+  :bind (:map ghostel-semi-char-mode-map
+         ("C-k" . my/ghostel-send-C-k-and-kill)
+
+         :map project-prefix-map
+         ("g" . ghostel-project)
+         ("G" . ghostel-project-list-buffers))
+  :config
+  (defun my/ghostel-send-C-k-and-kill ()
+    "Send `C-k' to ghostel.
+Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
+    (interactive)
+    (kill-ring-save (point) (line-end-position))
+    (ghostel-send-key "k" "ctrl"))
+
+  ;; handle shell commands
+  (add-to-list 'ghostel-eval-cmds '("magit-status-setup-buffer" magit-status-setup-buffer))
+
+  ;; project "menu"
+  (require 'ghostel-project)
+  (add-to-list 'project-switch-commands '(ghostel-project "Ghostel" ?g) t)
+  (add-to-list 'project-switch-commands '(ghostel-project-list-buffers "Ghostel buffers" ?G) t))
+;; --8<-- [end:ghostel-terminal-config]
 
 (use-package ediff
   :ensure nil
@@ -225,6 +247,16 @@
    'remote-direct-async-process)
 
   (setq magit-tramp-pipe-stty-settings 'pty))
+
+(use-package d2-mode
+  :init
+  (setq d2-flags '("--layout" "elk" "--theme" "200"))
+
+  (define-advice d2-compile
+      (:before (&rest _) setup) (save-buffer)))
+
+(use-package emureader
+  :vc (:url "https://codeberg.org/MonadicSheep/emureader"))
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

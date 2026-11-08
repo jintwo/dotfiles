@@ -16,5 +16,9 @@
 (add-hook 'objc-mode-hook #'j2/project-eglot-ensure)
 ;; TODO: is there tree-sitter grammar for objc?
 
+;;; emscripten
+;; (add-to-list 'eglot-server-programs
+;; '((c-mode c++-mode c-ts-mode c++-ts-mode) . ("clangd" "--query-driver=/path/to/emscripten/em++"))))
+
 (provide 'ccc-config)
 ;;; ccc-config.el ends here

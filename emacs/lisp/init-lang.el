@@ -44,39 +44,46 @@
   :ensure nil
   :config
   (setq treesit-language-source-alist
+        ;; base repo
         '((bash . ("https://github.com/tree-sitter/tree-sitter-bash"))
           (css . ("https://github.com/tree-sitter/tree-sitter-css"))
           (c . ("https://github.com/tree-sitter/tree-sitter-c"))
           (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp"))
-          (cmake . ("https://github.com/uyha/tree-sitter-cmake"))
           (go . ("https://github.com/tree-sitter/tree-sitter-go"))
-          (gomod . ("https://github.com/camdencheek/tree-sitter-go-mod"))
           (html . ("https://github.com/tree-sitter/tree-sitter-html"))
           (java . ("https://github.com/tree-sitter/tree-sitter-java"))
           (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
           (json . ("https://github.com/tree-sitter/tree-sitter-json"))
-
-          (julia . ("https://github.com/tree-sitter/tree-sitter-julia"))
-          (lua . ("https://github.com/Azganoth/tree-sitter-lua"))
-          (make . ("https://github.com/alemuller/tree-sitter-make"))
-
-          ;; (markdown . ("https://github.com/ikatyang/tree-sitter-markdown"))
-          ;; (protobuf . ("https://github.com/mitchellh/tree-sitter-proto"))
-          ;; (r . ("https://github.com/r-lib/tree-sitter-r"))
-
+          ;; (julia . ("https://github.com/tree-sitter/tree-sitter-julia"))
+          ;; (ocaml . ("https://github.com/tree-sitter/tree-sitter-ocaml")) ;; broken?
           (python . ("https://github.com/tree-sitter/tree-sitter-python"))
-          (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
+          ;; (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
           (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
-          ;; (swift . ("https://github.com/alex-pinkus/tree-sitter-swift"))  ;; generate parsr.c manually
           (toml . ("https://github.com/tree-sitter/tree-sitter-toml"))
           (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
           (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
-          (yaml . ("https://github.com/ikatyang/tree-sitter-yaml"))
+
+          ;; grammars repo
+          (capnp . ("https://github.com/tree-sitter-grammars/tree-sitter-capnp"))
+          (lua . ("https://github.com/tree-sitter-grammars/tree-sitter-lua"))
+          (markdown . ("https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown/src"))
+          (markdown-inline . ("https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown-inline/src"))
+          (make . ("https://github.com/tree-sitter-grammars/tree-sitter-make"))
+          (yaml . ("https://github.com/tree-sitter-grammars/tree-sitter-yaml"))
           (zig . ("https://github.com/tree-sitter-grammars/tree-sitter-zig"))
-          (typst . ("https: //github.com/uben0/tree-sitter-typst")))
+
+          ;; other
+          (cmake . ("https://github.com/uyha/tree-sitter-cmake"))
+          (gomod . ("https://github.com/camdencheek/tree-sitter-go-mod"))
+          ;; (protobuf . ("https://github.com/coder3101/tree-sitter-proto"))
+          (r . ("https://github.com/r-lib/tree-sitter-r"))
+          ;; (swift . ("https://github.com/alex-pinkus/tree-sitter-swift"))  ;; generate parsr.c manually
+          ;; (typst . ("https://github.com/uben0/tree-sitter-typst"))
+          )
 
         treesit-auto-install-grammar 'always
-        treesit-enabled-modes t))
+        treesit-enabled-modes t
+        treesit-font-lock-level 2))
 
 (setq major-mode-remap-alist
       '((bash-mode . bash-ts-mode)
@@ -93,13 +100,13 @@
         (java-mode . java-ts-mode)
         (js2-mode . js-ts-mode)
         (js-json-mode . json-ts-mode)
-        (julia-mode . julia-ts-mode)
+        ;; (julia-mode . julia-ts-mode)
         (lua-mode . lua-ts-mode)
         (makefile-mode . makefile-ts-mode)
         (markdown-mode . markdown-ts-mode)
         ;; (protobuf-mode . protobuf-ts-mode)
         (python-mode . python-ts-mode)
-        (ruby-mode . ruby-ts-mode)
+        ;; (ruby-mode . ruby-ts-mode)
         (rust-mode . rust-ts-mode)
         ;; (swift-mode . swift-ts-mode)
         (conf-toml-mode . toml-ts-mode)
@@ -136,15 +143,16 @@
 ;; conf/markup
 
 (defun j2/init-json-mode ()
-  (setq indent-tabs-mode nil)
-  (setq json-encoding-default-indentation "  "))
+  (setq-local indent-tabs-mode nil)
+  (setq-local json-encoding-default-indentation "  "))
 
 (use-package json-ts-mode
   :mode (rx ".json" eos)
   :hook (json-ts-mode . j2/init-json-mode))
 
 (defun j2/init-yaml-mode ()
-  (display-line-numbers-mode t))
+  (display-line-numbers-mode t)
+  (setq-local tab-width 2))
 
 (use-package yaml-ts-mode
   :mode (rx ".y" (0+ "a") "ml" eos)
@@ -152,13 +160,25 @@
 
 (use-package markdown-ts-mode
   :ensure nil
-  :defer t)
+  :mode (rx ".md" eos))
+
+(use-package markdown-ts-appear
+  :vc ( :url "https://github.com/Thysrael/markdown-ts-appear"
+        :rev :newest)
+  :hook (markdown-ts-mode . markdown-ts-appear-mode)
+  :config
+  (setq markdown-ts-appear-code-fence-style 'raw))
 
 (use-package protobuf-mode
   :mode (rx ".proto" eos))
 
+(defun j2/init-capnp-mode ()
+  (setq indent-tabs-mode nil)
+  (setq tab-width 2))
+
 (use-package capnp-mode
-  :mode (rx ".capnp" eos))
+  :mode (rx ".capnp" eos)
+  :hook (capnp-mode . j2/init-capnp-mode))
 
 (use-package dockerfile-mode
   :defer t)

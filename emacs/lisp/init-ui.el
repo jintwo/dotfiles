@@ -147,8 +147,8 @@
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
-    ('light (load-theme 'kaoless-new t))
-    ('dark (load-theme 'nordless-new t))))
+    ('light (load-theme 'kaoless t))
+    ('dark (load-theme 'nordless t))))
 
 (defun j2/init-appearance-mac-daemon ()
   (add-hook 'ns-system-appearance-change-functions #'j2/load-theme))
@@ -157,8 +157,8 @@
   (use-package auto-dark
     :ensure t
     :config
-    (setq auto-dark-themes (list '(nordless-new)
-                                 '(kaoless-new))
+    (setq auto-dark-themes (list '(nordless)
+                                 '(kaoless))
           auto-dark-polling-interval-seconds 5)
     (auto-dark-mode t)))
 
@@ -192,10 +192,31 @@
           (?? aw-show-dispatch-help))
         aw-minibuffer-flag t
         aw-ignore-current nil)
+
+  ;; stolen from https://karthinks.com/software/fifteen-ways-to-use-embark/
+  (defun ace-window-prefix ()
+    "Use `ace-window' to display the buffer of the next command.
+The next buffer is the buffer displayed by the next command invoked
+immediately after this command (ignoring reading from the minibuffer).
+Creates a new window before displaying the buffer.
+When `switch-to-buffer-obey-display-actions' is non-nil,
+`switch-to-buffer' commands are also supported."
+    (interactive)
+    (display-buffer-override-next-command
+     (lambda (buffer _)
+       (let (window type)
+         (setq
+          window (aw-select (propertize " ACE" 'face 'mode-line-highlight))
+          type 'reuse)
+         (cons window type)))
+     nil "[ace-window]")
+    (message "Use `ace-window' to display next command buffer..."))
+
   (custom-set-faces
    '(aw-leading-char-face
      ((t (:foreground "red" :height 2.0)))))
-  :bind (("C-x o" . ace-window)))
+  :bind (("C-x o" . ace-window)
+         ("C-x M-o" . ace-window-prefix)))
 
 (winner-mode t)
 

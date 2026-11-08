@@ -10,7 +10,8 @@
 (require 'use-package)
 (setq use-package-always-ensure t
       use-package-verbose t
-      package-native-compile t)
+      package-native-compile t
+      package-install-upgrade-built-in t)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here

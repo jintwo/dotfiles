@@ -37,10 +37,11 @@ fi
 # common
 export VIRTUAL_ENV_DISABLE_PROMPT='Y'
 
+# use emacs GUI here
 if [[ $OSTYPE == darwin* ]]; then
-    export EDITOR="${HOMEBREW_PREFIX}/bin/emacsclient -ta ''"
+    export EDITOR="${HOMEBREW_PREFIX}/bin/emacsclient -ca ''"
 else
-    export EDITOR="emacsclient -ta ''"
+    export EDITOR="emacsclient -ca ''"
 fi
 export MAVEN_OPTS="-Xmx512m -XX:MaxMetaspaceSize=128M"
 
@@ -134,7 +135,7 @@ export LESS=-RS
 
 alias l="eza -F -lah"
 alias ls="eza -1"
-alias cat="bat -n"
+alias cat="bat -p"
 eval "$(zoxide init --cmd j zsh)"
 
 # tmux
