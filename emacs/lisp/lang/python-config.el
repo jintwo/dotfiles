@@ -14,9 +14,6 @@
 (use-package jupyter
   :defer t)
 
-(use-package ein
-  :defer t)
-
 (use-package hy-mode
   :mode (rx ".hy" eos))
 
@@ -29,8 +26,9 @@
       python-interpreter "uv"
       python-interpreter-args "run python")
 
+
 (use-package flymake-ruff
-  :hook ((python-mode python-ts-mode) . flymake-ruff-load)
+  :hook ((python-mode python-ts-mode) . (lambda () (add-hook 'eglot-managed-mode-hook #'flymake-ruff-load)))
   :config
   (setq flymake-ruff-program '("uv" "run" "ruff")))
 
@@ -49,12 +47,12 @@
 ;;         flymake-mypy-args `("run" ,mypy-executable "--show-column-numbers" ".")))
 
 
-(use-package flymake-pyrefly
-  :load-path "lisp/lang/"
-  :hook ((python-mode python-ts-mode) . flymake-pyrefly-load)
-  :config
-  (setq flymake-pyrefly-executable "uv"
-        flymake-pyrefly-args `("run" "pyrefly" "check" "--output-format" "min-text" "--summary=none" ".")))
+;; (use-package flymake-pyrefly
+;;   :load-path "lisp/lang/"
+;;   :hook ((python-mode python-ts-mode) . flymake-pyrefly-load)
+;;   :config
+;;   (setq flymake-pyrefly-executable "uv"
+;;         flymake-pyrefly-args `("run" "pyrefly" "check" "--output-format" "min-text" "--summary=none" ".")))
 
 (provide 'python-config)
 ;;; python-config.el ends here

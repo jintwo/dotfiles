@@ -2,6 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
+(defface mode-line-project-name '((t :foreground "green"))
+  "default mode-line project name"
+  :group 'less-theme)
+
+(defface mode-line-mode-name '((t :weight normal))
+  "default mode-line mode name"
+  :group 'less-theme)
+
 (defvar less-definition
   '((custom-theme-set-faces
      theme-name

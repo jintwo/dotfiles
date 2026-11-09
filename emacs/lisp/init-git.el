@@ -52,7 +52,9 @@
   (global-diff-hl-mode 1)
   (diff-hl-flydiff-mode 1)
   (unless (display-graphic-p)
-    (diff-hl-margin-mode 1)))
+    (diff-hl-margin-mode 1))
+
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
 (use-package smerge-mode
   :ensure t

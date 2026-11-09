@@ -117,17 +117,12 @@
 (use-package eat
   :ensure t
   :bind (:map project-prefix-map ("e" . eat-project))
-  :config
+  :init
   (setq eat-term-name "xterm-256color")
   (setq eat-term-scrollback-size (* 1024 1024))
+
   (add-hook 'eshell-load-hook #'eat-eshell-mode)
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
-
-  ;; allow ace-window
-  (require 'eat)
-  (push '[?\e ?o] eat-semi-char-non-bound-keys)
-  (eat-update-semi-char-mode-map)
-  (eat-reload)
 
   ;; handle shell commands
   (setq eat-message-handler-alist '(("dired" . (lambda (d) (dired d))) ;; open cwd in dired
@@ -135,7 +130,13 @@
 
 
   ;; project "menu"
-  (add-to-list 'project-switch-commands '(eat-project "Eat" ?e) t))
+  (add-to-list 'project-switch-commands '(eat-project "Eat" ?e) t)
+
+  :config
+  ;; allow ace-window
+  (require 'eat)
+  (push '[?\e ?o] eat-semi-char-non-bound-keys)
+  (eat-update-semi-char-mode-map))
 ;; --8<-- [end:eat-terminal-config]
 
 ;; --8<-- [start:ghostel-terminal-config]
