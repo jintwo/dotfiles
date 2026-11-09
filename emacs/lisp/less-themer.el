@@ -143,6 +143,7 @@
      `(magit-branch-local ((t (:foreground ,docs))))
      `(magit-branch-remote ((t (:foreground ,warning))))
      `(magit-hash ((t (:inherit magit-dimmed))))
+     `(forge-pullreq-open ((t (:foreground ,green))))
      `(diff-refine-added ((t (:foreground ,bg :background ,green))))
      `(diff-refine-removed ((t (:foreground ,bg :background ,red))))
      `(markdown-header-delimiter-face ((t (:foreground ,docs :weight bold))))
